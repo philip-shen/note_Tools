@@ -1,0 +1,211 @@
+Table of Contents  
+=================
+- [Purpose](#purpose)
+- [Publish by Markdown](#publish-by-markdown)
+- [Markdown TOC](#markdown-toc)
+  - [[步驟一] 點選擴充功能按鈕](#步驟一-點選擴充功能按鈕)
+  - [[步驟二] 搜尋『Markdown Toc』，找到Markdown Toc，點選安裝。](#步驟二-搜尋markdown-toc找到markdown-toc點選安裝)
+  - [[步驟三] 點選『重新載入』。](#步驟三-點選重新載入)
+  - [生成目錄](#生成目錄)
+  - [結果](#結果)
+- [Markdown TOC on GitHub - 01](#markdown-toc-on-github---01)
+  - [Installation-Linux (manual installation)](#installation-linux-manual-installation)
+  - [Usage](#usage)
+    - [STDIN](#stdin)
+    - [Local files](#local-files)
+    - [Remote files](#remote-files)
+- [Markdown TOC on GitHub - 02](#markdown-toc-on-github---02)
+  - [Usage](#usage)
+- [Troubleshooting](#troubleshooting)
+- [Reference](#reference)
+- [h1 size](#h1-size)
+  - [h2 size](#h2-size)
+    - [h3 size](#h3-size)
+      - [h4 size](#h4-size)
+        - [h5 size](#h5-size)
+
+# Purpose  
+Take note of Markdown  
+
+
+# Publish by Markdown  
+[使用 Markdown 來發文章吧! Dec 01 Fri 2017](https://j796160836.pixnet.net/blog/post/45509889-%e4%bd%bf%e7%94%a8-markdown-%e4%be%86%e7%99%bc%e6%96%87%e7%ab%a0%e5%90%a7%21)
+
+```
+現在有一個新的流程 -- 使用 Markdown
+用 MacDown 編寫 Markdown 文字內容，然後用 Export > HTML... 的方式，將 Markdown 文件轉成 HTML 語法（含預設的CSS）
+然後在所見即所得 (WYSIWYG) 編輯器裡適時的加上圖片、設定文字顏色、超連結...等。
+
+```
+[MacDown 軟體下載](https://macdown.uranusjr.com/)
+
+
+# Markdown TOC  
+[[Markdown] 使用Markdown Toc生成目錄 Aug 7, 2018](https://dotblogs.com.tw/yitingblog/2018/08/07/144059)  
+## [步驟一] 點選擴充功能按鈕  
+![alt tag](https://dotblogsfile.blob.core.windows.net/user/yiting/0523ccc9-be64-4e51-b462-b28c65fe66e3/1533616010_07189.png)  
+
+## [步驟二] 搜尋『Markdown Toc』，找到Markdown Toc，點選安裝。  
+![alt tag](https://dotblogsfile.blob.core.windows.net/user/yiting/0523ccc9-be64-4e51-b462-b28c65fe66e3/1533621231_47384.png)  
+
+## [步驟三] 點選『重新載入』。   
+![alt tag](https://dotblogsfile.blob.core.windows.net/user/yiting/0523ccc9-be64-4e51-b462-b28c65fe66e3/1533623020_05707.png)  
+
+## 生成目錄  
+![alt tag](https://dotblogsfile.blob.core.windows.net/user/yiting/0523ccc9-be64-4e51-b462-b28c65fe66e3/1533623355_16844.png)  
+
+## 結果  
+![alt tag](https://dotblogsfile.blob.core.windows.net/user/yiting/0523ccc9-be64-4e51-b462-b28c65fe66e3/1533623447_01461.png)  
+
+
+# Markdown TOC on GitHub - 01   
+[ekalinin /github-markdown-toc](https://github.com/ekalinin/github-markdown-toc)  
+## Installation-Linux (manual installation)    
+```
+$ wget https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc
+$ chmod a+x gh-md-toc
+```
+## Usage  
+### STDIN  
+```
+➥ cat ~/projects/Dockerfile.vim/README.md | ./gh-md-toc -
+  * [Dockerfile.vim](#dockerfilevim)
+  * [Screenshot](#screenshot)
+  * [Installation](#installation)
+        * [OR using Pathogen:](#or-using-pathogen)
+        * [OR using Vundle:](#or-using-vundle)
+  * [License](#license)
+```
+
+### Local files  
+```
+➥ ./gh-md-toc ~/projects/Dockerfile.vim/README.md                                                                                                                                                Вс. марта 22 22:51:46 MSK 2015
+
+Table of Contents
+=================
+
+  * [Dockerfile.vim](#dockerfilevim)
+  * [Screenshot](#screenshot)
+  * [Installation](#installation)
+        * [OR using Pathogen:](#or-using-pathogen)
+        * [OR using Vundle:](#or-using-vundle)
+  * [License](#license)
+```
+
+### Remote files  
+```
+➥ ./gh-md-toc https://github.com/ekalinin/envirius/blob/master/README.md
+
+Table of Contents
+=================
+
+  * [envirius](#envirius)
+    * [Idea](#idea)
+    * [Features](#features)
+  * [Installation](#installation)
+  * [Uninstallation](#uninstallation)
+  * [Available plugins](#available-plugins)
+  * [Usage](#usage)
+    * [Check available plugins](#check-available-plugins)
+    * [Check available versions for each plugin](#check-available-versions-for-each-plugin)
+    * [Create an environment](#create-an-environment)
+    * [Activate/deactivate environment](#activatedeactivate-environment)
+      * [Activating in a new shell](#activating-in-a-new-shell)
+      * [Activating in the same shell](#activating-in-the-same-shell)
+    * [Get list of environments](#get-list-of-environments)
+    * [Get current activated environment](#get-current-activated-environment)
+    * [Do something in environment without enabling it](#do-something-in-environment-without-enabling-it)
+    * [Get help](#get-help)
+    * [Get help for a command](#get-help-for-a-command)
+  * [How to add a plugin?](#how-to-add-a-plugin)
+    * [Mandatory elements](#mandatory-elements)
+      * [plug_list_versions](#plug_list_versions)
+      * [plug_url_for_download](#plug_url_for_download)
+      * [plug_build](#plug_build)
+    * [Optional elements](#optional-elements)
+      * [Variables](#variables)
+      * [Functions](#functions)
+    * [Examples](#examples)
+  * [Example of the usage](#example-of-the-usage)
+  * [Dependencies](#dependencies)
+  * [Supported OS](#supported-os)
+  * [Tests](#tests)
+  * [Version History](#version-history)
+  * [License](#license)
+  * [README in another language](#readme-in-another-language)
+```
+
+
+# Markdown TOC on GitHub - 02  
+[GitHub 上の Markdown が TOC(目次) を表示してくれないのでどうしようか → ツール自製したよって話 Jul 27, 2017](https://qiita.com/sta/items/9481c94e0fc36f27fa92)  
+[stakiran /test_anchor_rendering](https://github.com/stakiran/test_anchor_rendering)  
+[stakiran /intoc](https://github.com/stakiran/intoc/tree/d541b893f36fedf3f772fdbacdd6cd8c77891889)  
+> Generate a markdown TOC for a README or any GFM files.  
+
+> Requirement  
+* Python 2.7
+* Windows7+ 
+
+## Usage  
+```
+$ python intoc.py -i intoc.md --indent-depth 4 --parse-depth 2
+- [intoc](#intoc)
+    - [Install](#install)
+    - [CLI](#cli)
+    - [Info](#info)
+```
+
+
+
+
+
+[GitHubのREADME.mdにシーケンス図を埋め込む May 22, 2019](https://qiita.com/takke/items/86a5ddf145cf9693b6e9)  
+[Markdown に gist を参照するプロキシ URL を画像として埋め込む](https://qiita.com/takke/items/86a5ddf145cf9693b6e9#markdown-%E3%81%AB-gist-%E3%82%92%E5%8F%82%E7%85%A7%E3%81%99%E3%82%8B%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7-url-%E3%82%92%E7%94%BB%E5%83%8F%E3%81%A8%E3%81%97%E3%81%A6%E5%9F%8B%E3%82%81%E8%BE%BC%E3%82%80) 
+> Markdown に下記のように記述します。  
+```
+![sequence dialog](http://www.plantuml.com/plantuml/proxy?src=https://gist.githubusercontent.com/takke/995d474a8ad72a724c8187cf21b1e238/raw)
+https://gist.github.com/takke/995d474a8ad72a724c8187cf21b1e238
+```
+![alt tag](https://qiita-user-contents.imgix.net/http%3A%2F%2Fwww.plantuml.com%2Fplantuml%2Fproxy%3Fsrc%3Dhttps%3A%2F%2Fgist.githubusercontent.com%2Ftakke%2F995d474a8ad72a724c8187cf21b1e238%2Fraw?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=1cc14e918ab5d3e3cbcd978c69fe35eb)  
+
+
+[]()  
+[]()  
+[]()  
+
+
+# Troubleshooting
+
+
+# Reference
+
+
+* []()
+![alt tag]()  
+
+# h1 size
+
+## h2 size
+
+### h3 size
+
+#### h4 size
+
+##### h5 size
+
+*strong*strong  
+**strong**strong  
+
+> quote  
+> quote
+
+- [ ] checklist1
+- [x] checklist2
+
+* 1
+* 2
+* 3
+
+- 1
+- 2
+- 3
