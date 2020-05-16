@@ -102,14 +102,15 @@ How to be more stronger no matter in career or life
 ## 1. Learn a Programming Language  
 ## 2. Understand different OS concepts  
 ## 3. Learn to Live in terminal   
-![alt tag](https://pluralsight.pxf.io/c/1193463/424552/7490?u=https%3A%2F%2Fwww.pluralsight.com%2Fcourses%2Flinux-cli-fundamentals&ref=hackernoon.com)  
+![alt tag](https://hackernoon.com/hn-images/0*ZcWQyifRt_NXZMGy.jpg)  
 
 ## 4. Networking and Security  
 ## 5. What is and how to setup  
-![alt tag](http://bit.ly/2AGj5m2?ref=hackernoon.com)  
+![alt tag](https://hackernoon.com/hn-images/1*c7z6N5xH8t1i6msXzIuWHw.gif)  
 
 ## 6. Learn Infrastructure as code  
-![alt tag](https://click.linksynergy.com/fs-bin/click?id=JVFxdTr9V80&subid=0&offerid=323058.1&type=10&tmpid=14538&RD_PARM1=https%3A%2F%2Fwww.udemy.com%2Fdocker-mastery%2F&ref=hackernoon.com)  
+![alt tag](https://hackernoon.com/hn-images/0*JHLKDBLXZy9MzSFm.png)  
+
 ![alt tag](https://hackernoon.com/hn-images/0*tCO6kfeZjL0lc7LG.jpg)  
 
 ## 7. Learn some Continuous Integration and Delivery (CI/CD) tools  
