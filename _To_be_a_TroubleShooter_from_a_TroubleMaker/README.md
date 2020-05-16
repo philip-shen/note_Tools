@@ -38,7 +38,7 @@ How to be more stronger no matter in career or life
 
 ## DevOps Roadmaps  
 [DevOps Roadmap](https://roadmap.sh/devops)
-![alt tag](https://i.imgur.com/8IJ9dQT.png)  
+![alt tag](https://i.imgur.com/jSFK8aA.png)  
 
 ## QA Roadmaps  
 [QA Roadmap]()
