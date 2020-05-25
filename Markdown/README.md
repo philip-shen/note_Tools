@@ -1,28 +1,35 @@
-Table of Contents  
+Table of Contents
 =================
-- [Purpose](#purpose)
-- [Publish by Markdown](#publish-by-markdown)
-- [Markdown TOC](#markdown-toc)
-  - [[步驟一] 點選擴充功能按鈕](#步驟一-點選擴充功能按鈕)
-  - [[步驟二] 搜尋『Markdown Toc』，找到Markdown Toc，點選安裝。](#步驟二-搜尋markdown-toc找到markdown-toc點選安裝)
-  - [[步驟三] 點選『重新載入』。](#步驟三-點選重新載入)
-  - [生成目錄](#生成目錄)
-  - [結果](#結果)
-- [Markdown TOC on GitHub - 01](#markdown-toc-on-github---01)
-  - [Installation-Linux (manual installation)](#installation-linux-manual-installation)
-  - [Usage](#usage)
-    - [STDIN](#stdin)
-    - [Local files](#local-files)
-    - [Remote files](#remote-files)
-- [Markdown TOC on GitHub - 02](#markdown-toc-on-github---02)
-  - [Usage](#usage)
-- [Troubleshooting](#troubleshooting)
-- [Reference](#reference)
-- [h1 size](#h1-size)
-  - [h2 size](#h2-size)
-    - [h3 size](#h3-size)
-      - [h4 size](#h4-size)
-        - [h5 size](#h5-size)
+
+   * [Table of Contents](#table-of-contents)
+   * [Purpose](#purpose)
+   * [Publish by Markdown](#publish-by-markdown)
+   * [Markdown TOC](#markdown-toc)
+      * [[步驟一] 點選擴充功能按鈕](#步驟一-點選擴充功能按鈕)
+      * [[步驟二] 搜尋『Markdown Toc』，找到Markdown Toc，點選安裝。](#步驟二-搜尋markdown-toc找到markdown-toc點選安裝)
+      * [[步驟三] 點選『重新載入』。](#步驟三-點選重新載入)
+      * [生成目錄](#生成目錄)
+      * [結果](#結果)
+   * [Markdown TOC on GitHub - 01](#markdown-toc-on-github---01)
+      * [Installation-Linux (manual installation)](#installation-linux-manual-installation)
+      * [Usage](#usage)
+         * [STDIN](#stdin)
+         * [Local files](#local-files)
+         * [Remote files](#remote-files)
+   * [Markdown TOC on GitHub - 02](#markdown-toc-on-github---02)
+      * [Usage](#usage-1)
+   * [Markdown to PDF](#markdown-to-pdf)
+      * [Prince 輸出PDF](#prince-輸出pdf)
+   * [Troubleshooting](#troubleshooting)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 # Purpose  
 Take note of Markdown  
@@ -234,3 +241,5 @@ https://gist.github.com/takke/995d474a8ad72a724c8187cf21b1e238
 - 1
 - 2
 - 3
+
+
