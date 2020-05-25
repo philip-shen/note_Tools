@@ -174,7 +174,29 @@ https://gist.github.com/takke/995d474a8ad72a724c8187cf21b1e238
 [安裝 Markdown Preview Enhanced](https://jonny-huang.github.io/projects/02_markdown_preview_enhanced/#%E5%AE%89%E8%A3%9D-Markdown-Preview-Enhanced)  
 [匯出 PDF](https://jonny-huang.github.io/projects/02_markdown_preview_enhanced/#%E5%8C%AF%E5%87%BA-PDF)  
 
+[Visual Studio Code 寫文檔或文章必裝的外掛Markdown Preview Enhanced 2020年4月22日](https://aishuafei.com/markdown-preview-enhanced/)  
+## Prince 輸出PDF  
+```
+1. 安裝 Prince
 
+    下載 ：https://www.princexml.com/download/
+    選擇你的電腦的位元安裝下載。
+
+2. 設定環境變數
+新增：C:\Program Files (x86)\Prince\engine\bin
+```
+![alt tag](https://i2.wp.com/aishuafei.com/wp-content/uploads/image-1587556618066.png?w=900&ssl=1)  
+
+```
+3.markdown設定輸出格式
+在要輸出的md格式檔案開頭輸入，官方文檔說明
+```
+![alt tag](https://i2.wp.com/aishuafei.com/wp-content/uploads/image-1587556744869.png?w=900&ssl=1)  
+
+```
+4.輸出
+對預覽的markdown文件右鍵選擇 PDF
+```
 
 
 # Troubleshooting
