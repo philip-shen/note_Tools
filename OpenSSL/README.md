@@ -1,5 +1,26 @@
-Table of Contents  
+Table of Contents
 =================
+
+   * [Table of Contents](#table-of-contents)
+   * [Purpose](#purpose)
+   * [Create a self-signed certificate using OpenSSL](#create-a-self-signed-certificate-using-openssl)
+      * [Method #1: 直接生出一組 key &amp; certificate](#method-1-直接生出一組-key--certificate)
+      * [Method #2: 用自己的 CA 簽自己的 Certificate](#method-2-用自己的-ca-簽自己的-certificate)
+   * [SAN Certificate for Multi-Domain Certificate](#san-certificate-for-multi-domain-certificate)
+      * [Wildcard certificate &amp; SAN](#wildcard-certificate--san)
+   * [SANの設定（OpenSSL）](#sanの設定openssl)
+      * [環境](#環境)
+      * [手順](#手順)
+   * [Troubleshooting](#troubleshooting)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 
 # Purpose
@@ -105,6 +126,35 @@ Wildcard certificate 的概念是在簽 certificate 的時候使用萬用字元�
 例如我可以簽一張 certificate 給 cnmc.tw 跟 cnmc.club 一起用，不需要是同一個網域下面的子網域。
 相對的，變更 SAN 需要進行重新簽發；另外 SAN 也有一個上限值，不能無限增加網域。
 ```
+
+# SANの設定（OpenSSL）
+[Docker Registry v2設定(TLS) updated at 2019-11-22](https://qiita.com/niiku-y/items/df3dbcb3453e6f529e07)
+[SANの設定（OpenSSL）updated at 2019-11-22](https://qiita.com/niiku-y/items/df3dbcb3453e6f529e07#san%E3%81%AE%E8%A8%AD%E5%AE%9Aopenssl)  
+
+## 環境  
+* OS : Ubuntu 18.04
+* Docker-ce : 19.03.5
+* OpenSSL : 1.1.1 
+* リバースプロキシ 
+
+## 手順  
+```
+1. SANの設定（OpenSSL）
+2. 自己署名証明書の作成
+    1. 証明書、鍵ファイルの作成 : TLS通信のサーバ側の作業
+    2. 証明書の配置、更新 : TLS通信のクライアント側の作業
+    3. dockerエンジン再起動
+3. Basic認証設定
+    1. htpasswd（を含むパッケージ）インストール
+    2. パスワードファイル作成
+4. registry起動
+    1. 起動用スクリプト準備
+    2. registryコンテナの起動
+5. 設定ファイルについて
+```
+[niiku-y/make_certs.sh](https://gist.github.com/niiku-y/feaf7a2d4b4111641480dd4e9f737212)  
+[niiku-y/add_san.sh](https://gist.github.com/niiku-y/e4435d6d2f308cbf484940e20eff4946)  
+
 
 # Troubleshooting
 
