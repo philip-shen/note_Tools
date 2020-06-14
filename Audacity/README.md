@@ -138,7 +138,21 @@ Take note of Audacity
 ![alt tag](https://i1.wp.com/usklog.net/wp-content/uploads/2014/05/Audacity-15.png)  
 > 書き出し形式などを設定して”書き出し”ボタンを押す  
 
-## 3Q_TimeShift_Label_Export-Multiple
+## 3Q_TimeShift_Label_Export-Multiple  
+
+Items  | start	actual | duration | Add Label at Selection-- 「Ctrl+B」 | Remark
+------------------------------------ | --------------------------------------------- | ----------------------------------- | --------------------------------------------- | ----------------------------------- 
+1 | 0:00:00 | 00:00:00.000 | 00:00:00.000	 |  
+2 | 0:01:36 | 00:01:36.261 | 0:01:35 | Star and Length of Selection 
+3 | 0:03:11 | 00:03:11.261 | 0:01:38 | Star and Length of Selection
+4 | 0:04:49 | 00:04:48.921 | 0:01:38 | Star and Length of Selection
+5 | 0:06:27 | 00:06:27.358 | 0:01:37 | Star and Length of Selection
+6 | 0:08:04 | 00:08:04.336 | 0:01:38 | Star and Length of Selection
+7 | 0:09:43 | 00:09:42.688 | 0:01:38 | Star and Length of Selection
+8 | 0:11:20 | 00:11:20.382 | 0:01:37 | Star and Length of Selection
+9 | 0:12:58 | 00:12:57.531 | 0:01:37 | Star and Length of Selection
+10 | 0:14:35 | | | 
+
 ![alt tag](https://i.imgur.com/lt8LnHA.png)  
 
 ![alt tag](https://i.imgur.com/Kmg2aTC.png)  
