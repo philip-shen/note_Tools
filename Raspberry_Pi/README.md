@@ -23,6 +23,23 @@ Take note of Raspberry_Pi
 
 ### LINEへの通知準備  
 [[超簡単]LINE notify を使ってみる](https://qiita.com/iitenkida7/items/576a8226ba6584864d95)
+RThBFBKPPKa1lKyVv1mKURTRci4Mq4VZhOnUdoIefKp
+
+```
+curl -X POST -H "Authorization: Bearer ACCESS_TOKEN" -F "message=ABC" https://notify-api.line.me/api/notify
+```
+
+[上手 LINE Notify 不求人：一行代碼都不用寫的推播通知方法 2020/02/17](https://blog.miniasp.com/post/2020/02/17/Go-Through-LINE-Notify-Without-Any-Code)  
+```
+如果想得知目前 Access Token 的 API Rate Limit 相關資訊，可以改用以下命令查詢：
+
+curl -D - -H "Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" https://notify-api.line.me/api/status
+```
+```
+其中的 X-RateLimit-Remaining 就是你這個 Token 在這一個小時內還能用幾次。
+
+還有 X-RateLimit-Reset 代表著下次 Reset 用量限制的時間點，這是 UTC epoch seconds 單位。
+```
 
 ### slackで通知する  
 [Slack APIを使用してメッセージを送信する](https://qiita.com/kou_pg_0131/items/56dd81f2f4716ca292ef)
