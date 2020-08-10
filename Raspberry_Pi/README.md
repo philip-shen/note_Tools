@@ -142,13 +142,13 @@ $ sudo raspi-config
 3. <Yes>　を選択
 4. <Ok>　を選択
 ```
-![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount1.png?resize=960%2C726&ssl=1)  
+![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount1.png?resize=760%2C726&ssl=1)  
 
-![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount2.png?resize=960%2C732&ssl=1)  
+![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount2.png?resize=760%2C732&ssl=1)  
 
-![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount3.png?resize=768%2C571&ssl=1)  
+![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount3.png?resize=568%2C571&ssl=1)  
 
-![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount4.png?resize=768%2C581&ssl=1)  
+![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount4.png?resize=568%2C581&ssl=1)  
 
 ### /etc/rc.localに３秒Sleep後マウント  
 ```
