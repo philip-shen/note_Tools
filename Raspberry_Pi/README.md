@@ -1,15 +1,30 @@
 Table of Contents
 =================
 
-   * [Notes of Tools](#notes-of-tools)
+   * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
    * [声優ラジオ録音環境](#声優ラジオ録音環境)
       * [録音ファイルのアップロード、アップロード完了通知の準備](#録音ファイルのアップロードアップロード完了通知の準備)
          * [Dropboxへのファイルアップロード準備](#dropboxへのファイルアップロード準備)
          * [LINEへの通知準備](#lineへの通知準備)
          * [slackで通知する](#slackで通知する)
+   * [NFS](#nfs)
+      * [NAS の設定変更する](#nas-の設定変更する)
+      * [Raspberry Pi でマウント設定する](#raspberry-pi-でマウント設定する)
+      * [Clinet Side](#clinet-side)
+      * [Raspberry PiからNASボリュームMount](#raspberry-piからnasボリュームmount)
+         * [/etc/fstabにNFSボリュームのマウント情報を記載](#etcfstabにnfsボリュームのマウント情報を記載)
+         * [Raspberry PiのBootオプション変更（NASマウントタイミング変更）](#raspberry-piのbootオプション変更nasマウントタイミング変更)
+         * [/etc/rc.localに３秒Sleep後マウント](#etcrclocalに３秒sleep後マウント)
+         * [その他ブートシーケンスに関係すると](#その他ブートシーケンスに関係すると)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 
 # Purpose  
 Take note of Raspberry_Pi  
@@ -55,6 +70,104 @@ curl -D - -H "Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 ### slackで通知する  
 [Slack APIを使用してメッセージを送信する](https://qiita.com/kou_pg_0131/items/56dd81f2f4716ca292ef)
+
+
+# NFS  
+[Raspberry Pi 4 と NAS で録画環境を整える 2020-01-02](https://kumak1.hatenablog.com/entry/2020/01/02/202308)  
+
+## NAS の設定変更する  
+
+## Raspberry Pi でマウント設定する  
+```
+pi@raspberrypi:~ $ sudo mkdir -p /mnt/nas
+pi@raspberrypi:~ $ sudo chown pi /mnt/nas/
+```
+
+> /etc/fstab に以下を追記し、自動マウントさせる。  
+```
+192.168.10.2:/volume1/video /mnt/nas nfs rsize=8192,wsize=8192,timeo=14,intr
+```
+
+> 自動マウントしたら、保存先のディレクトリ作成と権限を付与しておく。
+```
+pi@raspberrypi:~ $ sudo mkdir -p /mnt/nas/recorded
+pi@raspberrypi:~ $ sudo chown pi /mnt/nas/recorded 
+pi@raspberrypi:~ $ sudo chown :video /mnt/nas/recorded 
+```
+
+## Clinet Side  
+[ubuntu 16.04 or raspberry pi 3 でのNFSの設定 クライアント側 posted at 2016-10-25](https://qiita.com/hdoi/items/06e3aeca07efa1993555#%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E5%81%B4)
+```
+sudo apt-get install nfs-common
+```
+
+> 次に、/etc/fstabを編集します。  
+```
+sudo vi /etc/fstab
+```
+
+> また中身に以下を追加します。
+```
+192.168.1.1:/home /home nfs defaults,soft,intr,clientaddr=192.168.1.2
+```
+
+> 以下のコマンドで確認してください。
+```
+sudo service rpcbind start
+sudo mount -a
+```
+
+## Raspberry PiからNASボリュームMount  
+[Raspberry PiからSynology NAS volumeをnfs mountする 2019年7月21日](https://www.miki-ie.com/infrastructure/raspberry-pi-nfs-mount-synology-nas/)
+
+### /etc/fstabにNFSボリュームのマウント情報を記載  
+```
+ $ cat /etc/fstab
+proc /proc proc defaults 0 0
+/dev/mmcblk0p6 /boot vfat defaults 0 2
+/dev/mmcblk0p7 / ext4 defaults,noatime 0 1
+# a swapfile is not a swap partition, no line here
+# use dphys-swapfile swap[on|off] for that
+192.168.0.100:/volume1/raspberry /mnt/synology nfs defaults,_netdev 0 0
+```
+
+### Raspberry PiのBootオプション変更（NASマウントタイミング変更）  
+```
+$ sudo raspi-config
+```
+
+```
+1. 3 Boot Options Configure options for start-up　を選択
+2. B2 Wait for Network at Boot Chose whether to wait for network connection　を選択
+3. <Yes>　を選択
+4. <Ok>　を選択
+```
+![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount1.png?resize=960%2C726&ssl=1)  
+
+![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount2.png?resize=960%2C732&ssl=1)  
+
+![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount3.png?resize=768%2C571&ssl=1)  
+
+![alt tag](https://i0.wp.com/www.miki-ie.com/wp-content/uploads/2019/07/nas-mount4.png?resize=768%2C581&ssl=1)  
+
+### /etc/rc.localに３秒Sleep後マウント  
+```
+よって、/etc/rc.localに３秒のスリープとマウントコマンドを追加しました。
+sleep 3
+sudo mount -t nfs 192.168.0.100:/volume1/raspberry /mnt/synology
+```
+
+### その他ブートシーケンスに関係すると  
+```
+$ sudo systemctl enable systemd-networkd
+
+$ sudo systemctl enable systemd-networkd-wait-online
+```
+
+
+[Raspberry Pi 3+Chinachuで地デジ録画サーバー構築 updated at 2019-12-02](https://qiita.com/shotasano/items/3809b8f3e0b62d51d3c3)
+[Raspberry Pi でTVを見る録る！ updated at 2019-09-29](https://qiita.com/sigma7641/items/5b4946d2388ae0f5402d)
+[とりあえずRaspberryPiにChinachu γを導入できた件  2017-07-30](http://k-pi.hatenablog.com/entry/2017/07/30/151659)
 
 * []()
 ![alt tag]()  
