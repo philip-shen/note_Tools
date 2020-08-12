@@ -17,6 +17,7 @@ Table of Contents
          * [Raspberry PiのBootオプション変更（NASマウントタイミング変更）](#raspberry-piのbootオプション変更nasマウントタイミング変更)
          * [/etc/rc.localに３秒Sleep後マウント](#etcrclocalに３秒sleep後マウント)
          * [その他ブートシーケンスに関係すると](#その他ブートシーケンスに関係すると)
+   * [I2C](#i2c)         
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -168,6 +169,22 @@ $ sudo systemctl enable systemd-networkd-wait-online
 [Raspberry Pi 3+Chinachuで地デジ録画サーバー構築 updated at 2019-12-02](https://qiita.com/shotasano/items/3809b8f3e0b62d51d3c3)
 [Raspberry Pi でTVを見る録る！ updated at 2019-09-29](https://qiita.com/sigma7641/items/5b4946d2388ae0f5402d)
 [とりあえずRaspberryPiにChinachu γを導入できた件  2017-07-30](http://k-pi.hatenablog.com/entry/2017/07/30/151659)
+
+
+# I2C  
+[Alexaに部屋の温度と湿度を教えてもらう updated at 2019-02-14](https://qiita.com/yuppejp/items/f1d26b1852935d3b50cb)
+```
+$ sudo apt-get install i2c-tools
+```
+
+```
+$ sudo raspi-config
+```
+
+```
+$ sudo i2cdetect -r -y 1
+```
+
 
 * []()
 ![alt tag]()  
