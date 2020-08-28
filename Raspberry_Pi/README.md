@@ -198,14 +198,14 @@ i2c-dev
 ```
 sudo nano /boot/config.txt
 ```
-![alt tag](https://i.imgur.com/xfIgfN1.jpg)  
-
+<img src="https://i.imgur.com/xfIgfN1.jpg"  width="400" height="500">
 ```
 sudo reboot
 ```
 
 * []()
 ![alt tag]()  
+<img src="">
 
 # h1 size
 
