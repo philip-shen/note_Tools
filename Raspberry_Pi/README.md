@@ -190,16 +190,18 @@ $ sudo i2cdetect -r -y 1
 [Raspberry Pi で I2C を利用するための設定 2019/06/03](https://www.qoosky.io/techs/2316d68b2e)  
 [Raspberry Pi3 I2C baud rate setting Sat Aug 04, 2018](https://www.raspberrypi.org/forums/viewtopic.php?t=219675)  
 [Raspberry PiのI2Cデータ転送速度と波形を見る　その2 2016.10.30](https://www.denshi.club/pc/raspi/raspberry-pii2c2.html)  
+**1**  
 ```
 sudo cat /etc/modules
 i2c-dev
 ```
-
+**2**  
 ```
 sudo nano /boot/config.txt
 ```
-<img src="https://i.imgur.com/xfIgfN1.jpg"  width="400" height="500">
+<img src="https://i.imgur.com/xfIgfN1.jpg"  width="300" height="400">
 
+**3**  
 ```
 sudo reboot
 ```
