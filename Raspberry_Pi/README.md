@@ -19,6 +19,7 @@ Table of Contents
          * [その他ブートシーケンスに関係すると](#その他ブートシーケンスに関係すると)
    * [I2C](#i2c)
       * [I2C configraion on Rpi 4](#i2c-configraion-on-rpi-4)
+      * [Raspberry PI Multiple I2C Devices](#raspberry-pi-multiple-i2c-devices)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -26,7 +27,6 @@ Table of Contents
                * [h5 size](#h5-size)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
 
 # Purpose  
 Take note of Raspberry_Pi  
@@ -206,6 +206,14 @@ sudo nano /boot/config.txt
 sudo reboot
 ```
 
+## Raspberry PI Multiple I2C Devices  
+[Raspberry PI Multiple I2C Devices](https://www.instructables.com/id/Raspberry-PI-Multiple-I2c-Devices/)  
+
+[RPi4 and i2c; Has anyone used additional i2c buses? ](https://www.raspberrypi.org/forums/viewtopic.php?f=44&t=244947&sid=998d60c61c7909512716e9d4a60634c3)  
+
+<img src="https://img.purch.com/1561671569116-png/w/755/aHR0cDovL21lZGlhLmJlc3RvZm1pY3JvLmNvbS8xLzAvODQzNzMyL29yaWdpbmFsLzE1NjE2NzE1NjkxMTYucG5n"  width="400" height="500">
+
+
 * []()
 ![alt tag]()  
 <img src="">
@@ -222,4 +230,6 @@ sudo reboot
 
 *strong*strong  
 **strong**strong  
+
+
 
