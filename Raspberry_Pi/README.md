@@ -17,6 +17,8 @@ Table of Contents
          * [Raspberry PiのBootオプション変更（NASマウントタイミング変更）](#raspberry-piのbootオプション変更nasマウントタイミング変更)
          * [/etc/rc.localに３秒Sleep後マウント](#etcrclocalに３秒sleep後マウント)
          * [その他ブートシーケンスに関係すると](#その他ブートシーケンスに関係すると)
+   * [樹莓派｜外接麥克風及喇叭設置](#樹莓派外接麥克風及喇叭設置)
+      * [調整音量](#調整音量)
    * [I2C](#i2c)
       * [I2C configraion on Rpi 4](#i2c-configraion-on-rpi-4)
       * [Raspberry PI Multiple I2C Devices](#raspberry-pi-multiple-i2c-devices)
@@ -27,7 +29,6 @@ Table of Contents
                * [h5 size](#h5-size)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
 # Purpose  
 Take note of Raspberry_Pi  
 
@@ -167,9 +168,19 @@ $ sudo systemctl enable systemd-networkd-wait-online
 ```
 
 
-[Raspberry Pi 3+Chinachuで地デジ録画サーバー構築 updated at 2019-12-02](https://qiita.com/shotasano/items/3809b8f3e0b62d51d3c3)
-[Raspberry Pi でTVを見る録る！ updated at 2019-09-29](https://qiita.com/sigma7641/items/5b4946d2388ae0f5402d)
-[とりあえずRaspberryPiにChinachu γを導入できた件  2017-07-30](http://k-pi.hatenablog.com/entry/2017/07/30/151659)
+[Raspberry Pi 3+Chinachuで地デジ録画サーバー構築 updated at 2019-12-02](https://qiita.com/shotasano/items/3809b8f3e0b62d51d3c3)  
+[Raspberry Pi でTVを見る録る！ updated at 2019-09-29](https://qiita.com/sigma7641/items/5b4946d2388ae0f5402d)  
+[とりあえずRaspberryPiにChinachu γを導入できた件  2017-07-30](http://k-pi.hatenablog.com/entry/2017/07/30/151659)  
+
+# 樹莓派｜外接麥克風及喇叭設置  
+[IoT｜硬體｜樹莓派｜外接麥克風及喇叭設置 9月 26, 2017](http://agilego99.blogspot.com/2017/09/iot_26.html) 
+
+## 調整音量  
+```
+我們直接用工具程式來調整。
+alsamixer
+```
+
 
 
 # I2C  
@@ -230,6 +241,4 @@ sudo reboot
 
 *strong*strong  
 **strong**strong  
-
-
 
