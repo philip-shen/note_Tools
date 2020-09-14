@@ -1636,6 +1636,9 @@ Button.pack(fill='x', side='left', padx=0)
 root.mainloop()
 ```
 
+[様子をチェック！Windows10でCPU・メモリ使用率を確認する方法 ](https://nurgle77.com/1203.html)  
+![alt tag](https://nurgle77.com/wp-content/uploads/2015/11/4cac4e97714c28d68969297902b5eed0.jpg)
+
 # 98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10  
 [Fix: Unable to Contact your DHCP Server Error on Windows 7, 8, 10 Aug 18, 2018](https://appuals.com/fix-unable-to-contact-your-dhcp-server-error-on-windows-7-8-10/)  
 Solution 1: Update or Roll Back Your Network Drivers  
