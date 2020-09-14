@@ -1,73 +1,110 @@
+Table of Contents
+=================
+
+   * [Notes of Tools](#notes-of-tools)
+   * [01. OpenSSH Server and Client on Windows 10](#01-openssh-server-and-client-on-windows-10)
+      * [サーバとクライアントの構成](#サーバとクライアントの構成)
+      * [1. sshを入れる](#1-sshを入れる)
+      * [2. ポート開放](#2-ポート開放)
+      * [3. sshdを起動](#3-sshdを起動)
+      * [4. 接続](#4-接続)
+      * [5. 鍵認証方式](#5-鍵認証方式)
+      * [感想](#感想)
+   * [Public, Private or Domain Network on Windows 10](#public-private-or-domain-network-on-windows-10)
+      * [Network Tyep](#network-tyep)
+         * [Public Network](#public-network)
+         * [Private Network](#private-network)
+         * [Domain Network](#domain-network)
+      * [What is the current network type of your computer?](#what-is-the-current-network-type-of-your-computer)
+      * [Ways to change network types in Windows 10](#ways-to-change-network-types-in-windows-10)
+         * [1- Using Windows Settings](#1--using-windows-settings)
+         * [2- Setting network type using Windows Registry](#2--setting-network-type-using-windows-registry)
+   * [02 NTP on Windows 10](#02-ntp-on-windows-10)
+      * [使用するOS](#使用するos)
+      * [レジストリ](#レジストリ)
+         * [regedit](#regedit)
+         * [NTP Server Enable](#ntp-server-enable)
+         * [W32Time](#w32time)
+      * [regedit閉じる](#regedit閉じる)
+      * [NTPサーバ　起動](#ntpサーバ起動)
+      * [Widows10でNTP同期](#widows10でntp同期)
+   * [03. WindowsのWiFi操作をコマンドプロンプトから行う](#03-windowsのwifi操作をコマンドプロンプトから行う)
+      * [既知のネットワーク詳細をパスワード含めて表示する](#既知のネットワーク詳細をパスワード含めて表示する)
+      * [XMLファイルからインポートする](#xmlファイルからインポートする)
+      * [レポートをHTML形式で生成する](#レポートをhtml形式で生成する)
+   * [04. Ping can't work on Windows8](#04-ping-cant-work-on-windows8)
+   * [Enable Control Panel on Windows8](#enable-control-panel-on-windows8)
+      * [アプリ一覧から開く場合](#アプリ一覧から開く場合)
+      * [メニューから開く場合](#メニューから開く場合)
+   * [05. Chinese is garbled in Japanese Display Interface on Win 10](#05-chinese-is-garbled-in-japanese-display-interface-on-win-10)
+   * [06. Find windows OS version from command line](#06-find-windows-os-version-from-command-line)
+   * [07. Remote Desktop Windows 10 Home](#07-remote-desktop-windows-10-home)
+      * [RDP Wrapper Libraryが突然使えなくなった！](#rdp-wrapper-libraryが突然使えなくなった)
+         * [ビルド番号10.0.17134.706(KB4493464)](#ビルド番号10017134706kb4493464)
+         * [ビルド番号10.0.18362.267(KB4505903)](#ビルド番号10018362267kb4505903)
+         * [Check RDP port number](#check-rdp-port-number)
+         * [RDP Conf](#rdp-conf)
+      * [RDP Wrapper導入メモ Aug 13, 2019](#rdp-wrapper導入メモ-aug-13-2019)
+         * [手順](#手順)
+         * [設定（任意）](#設定任意)
+      * [Files in release package:](#files-in-release-package)
+      * [Windows 10 version 10.0.18362.267 not supported](#windows-10-version-10018362267-not-supported)
+      * [Known issues: Listener is not listening on Win 10 Home (build 14997 )](#known-issues-listener-is-not-listening-on-win-10-home-build-14997)
+      * [What's 「TrustedInstaller」?](#whats-trustedinstaller)
+      * [How to Remote Desktop Windows 10 Home?](#how-to-remote-desktop-windows-10-home)
+      * [There are a few things to note before you invite someone to remotely connect with your PC:](#there-are-a-few-things-to-note-before-you-invite-someone-to-remotely-connect-with-your-pc)
+      * [Remote Desktop Command Line](#remote-desktop-command-line)
+      * [さらに RDP Wrapper Library が使えなくなって fork先に変更した。](#さらに-rdp-wrapper-library-が使えなくなって-fork先に変更した)
+   * [08. Windows 內建的遠端桌面連線工具設定與使用教學](#08-windows-內建的遠端桌面連線工具設定與使用教學)
+      * [被控端電腦的設定](#被控端電腦的設定)
+      * [主控端電腦的設定](#主控端電腦的設定)
+   * [09. Account added on Windows 10 for Remote Desktop login](#09-account-added-on-windows-10-for-remote-desktop-login)
+      * [Select Accounts icon to add](#select-accounts-icon-to-add)
+      * [Add accounts](#add-accounts)
+      * [Finally,](#finally)
+   * [10. Windows Remote CLI](#10-windows-remote-cli)
+      * [PsTools Setup on Windows 10](#pstools-setup-on-windows-10)
+         * [01. Open TCP#445 Firewall](#01-open-tcp445-firewall)
+         * [02. Open Remote Login Authority](#02-open-remote-login-authority)
+      * [PsExec Execution](#psexec-execution)
+         * [リモート端末での準備](#リモート端末での準備)
+   * [11. How to fix ‘No internet connection’ on Windows 10 mobile hotspot](#11-how-to-fix-no-internet-connection-on-windows-10-mobile-hotspot)
+      * [Enable devices &amp; update drivers](#enable-devices--update-drivers)
+      * [Enable connection sharing](#enable-connection-sharing)
+   * [Enable Win10 inbuild hotspot by cmd/batch/powershell](#enable-win10-inbuild-hotspot-by-cmdbatchpowershell)
+   * [12. Set up and Add a VPN Connection in Windows 10](#12-set-up-and-add-a-vpn-connection-in-windows-10)
+      * [To Add a VPN Connection in PowerShell](#to-add-a-vpn-connection-in-powershell)
+      * [Add-VpnConnection - Microsoft Windows IT Center](#add-vpnconnection---microsoft-windows-it-center)
+         * [Parameters](#parameters)
+   * [13. VPN Dailup Automatically](#13-vpn-dailup-automatically)
+      * [VPN(L2TP/IPsec)自動接続バッチプログラム](#vpnl2tpipsec自動接続バッチプログラム)
+         * [バッチプログラム保存先](#バッチプログラム保存先)
+         * [クラウドファイルサーバーの例](#クラウドファイルサーバーの例)
+      * [To Connect to a VPN by Command Prompt in Windows 10](#to-connect-to-a-vpn-by-command-prompt-in-windows-10)
+      * [To Disconnect a VPN in Command Prompt](#to-disconnect-a-vpn-in-command-prompt)
+   * [14. Turn On or Off Network Discovery in Windows 10](#14-turn-on-or-off-network-discovery-in-windows-10)
+      * [To Turn On or Off Network Discovery for All Network Profiles in Command Prompt](#to-turn-on-or-off-network-discovery-for-all-network-profiles-in-command-prompt)
+   * [15. Start, Stop, and Disable Services in Windows 10](#15-start-stop-and-disable-services-in-windows-10)
+      * [To Start, Stop, and Disable Services using Sc Command](#to-start-stop-and-disable-services-using-sc-command)
+      * [To Check Status of Services in PowerShell](#to-check-status-of-services-in-powershell)
+      * [To Start, Stop, Restart, Disable, and Enable Services in PowerShell](#to-start-stop-restart-disable-and-enable-services-in-powershell)
+   * [16. CPU and Memory Usage](#16-cpu-and-memory-usage)
+      * [やっておくと便利なこと](#やっておくと便利なこと)
+      * [今回は、ディスクの使用率もとれるようにした。](#今回はディスクの使用率もとれるようにした)
+   * [98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10](#98-fix-unable-to-contact-your-dhcp-server-error-on-windows--7-8-10)
+   * [99. Win 7 區域網路分享 –– 共用資料夾](#99-win-7-區域網路分享--共用資料夾)
+   * [Troubleshooting](#troubleshooting)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 # Notes of Tools
 Take a note of Win10 or Win7 various utilitization.
-
-# Table of Content  
-[01. OpenSSH Server and Client on Windows 10](#01-openssh-server-and-client-on-windows-10)  
-[Public, Private or Domain Network on Windows 10](#public-private-or-domain-network-on-windows-10)  
-
-[02. NTP on Windows 10](#02-ntp-on-windows-10)  
-
-[03. WindowsのWiFi操作をコマンドプロンプトから行う](#windows%E3%81%AEwifi%E6%93%8D%E4%BD%9C%E3%82%92%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%81%8B%E3%82%89%E8%A1%8C%E3%81%86)
-
-[04. Ping can't work on Windows8](#04-ping-cant-work-on-windows8)  
-[Enable Control Panel on Windows8](#enable-control-panel-on-windows8)  
-
-[05. Chinese is garbled in Japanese Display Interface on Win 10](#05-chinese-is-garbled-in-japanese-display-interface-on-Win-10)  
-
-[06. Find windows OS version from command line](#06-find-windows-os-version-from-command-line)  
-
-
-[07. Remote Desktop Windows 10 Home](#07-remote-desktop-windows-10-home)  
-[RDP Wrapper Libraryが突然使えなくなった！](#rdp-wrapper-library%E3%81%8C%E7%AA%81%E7%84%B6%E4%BD%BF%E3%81%88%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F)  
-[termsrv.dll ビルド番号10.0.18362.267(KB4505903)](#%E3%83%93%E3%83%AB%E3%83%89%E7%95%AA%E5%8F%B710018362267kb4505903)  
-[Check RDP port number](#check-rdp-port-number)  
-[RDP Wrapper導入メモ Aug 13, 2019](#rdp-wrapper%E5%B0%8E%E5%85%A5%E3%83%A1%E3%83%A2-aug-13-2019)  
-[Windows 10 version 10.0.18362.267 not supported](#windows-10-version-10018362267-not-supported)  
-[Known issues: Listener is not listening on Win 10 Home (build 14997+)](#known-issues-listener-is-not-listening-on-win-10-home-build-14997)  
-[What's 「TrustedInstaller」?](#whats-trustedinstaller)  
-[How to Remote Desktop Windows 10 Home?](#how-to-remote-desktop-windows-10-home)  
-[There are a few things to note before you invite someone to remotely connect with your PC](#there-are-a-few-things-to-note-before-you-invite-someone-to-remotely-connect-with-your-pc)  
-[Remote Desktop Command Line](#remote-desktop-command-line)  
-[さらに RDP Wrapper Library が使えなくなって fork先に変更した。](#%E3%81%95%E3%82%89%E3%81%AB-rdp-wrapper-library-%E3%81%8C%E4%BD%BF%E3%81%88%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%A6-fork%E5%85%88%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%97%E3%81%9F)  
-
-
-[08. Windows 內建的遠端桌面連線工具設定與使用教學](#08-windows-%E5%85%A7%E5%BB%BA%E7%9A%84%E9%81%A0%E7%AB%AF%E6%A1%8C%E9%9D%A2%E9%80%A3%E7%B7%9A%E5%B7%A5%E5%85%B7%E8%A8%AD%E5%AE%9A%E8%88%87%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8)  
-[被控端電腦的設定](#%E8%A2%AB%E6%8E%A7%E7%AB%AF%E9%9B%BB%E8%85%A6%E7%9A%84%E8%A8%AD%E5%AE%9A)  
-[主控端電腦的設定](#%E4%B8%BB%E6%8E%A7%E7%AB%AF%E9%9B%BB%E8%85%A6%E7%9A%84%E8%A8%AD%E5%AE%9A)  
-
-[09. Account added on Windows 10 for Remote Desktop login](#09-account-added-on-windows-10-for-remote-desktop-login)  
-
-
-[10. Windows Remote CLI](#10-windows-remote-cli)  
-[PsTools Setup on Windows 10](#pstools-setup-on-windows-10)  
-[PsExec Execution](#psexec-execution)  
-
-
-[11. How to fix ‘No internet connection’ on Windows 10 mobile hotspot](#11-how-to-fix-no-internet-connection-on-windows-10-mobile-hotspot)  
-[Enable Win10 inbuild hotspot by cmd/batch/powershell](#enable-win10-inbuild-hotspot-by-cmdbatchpowershell)  
-
-[12. Set up and Add a VPN Connection in Windows 10](#12-set-up-and-add-a-vpn-connection-in-windows-10)  
-[To Add a VPN Connection in PowerShell](#to-add-a-vpn-connection-in-powershell)  
-[Add-VpnConnection - Microsoft Windows IT Center](#add-vpnconnection---microsoft-windows-it-center)  
-
-
-[13. VPN Dailup Automatically](#13-vpn-dailup-automatically)  
-[VPN(L2TP/IPsec)自動接続バッチプログラム](#vpnl2tpipsec%E8%87%AA%E5%8B%95%E6%8E%A5%E7%B6%9A%E3%83%90%E3%83%83%E3%83%81%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0)  
-[To Connect to a VPN by Command Prompt in Windows 10](#to-connect-to-a-vpn-by-command-prompt-in-windows-10)  
-[To Disconnect a VPN in Command Prompt](#to-disconnect-a-vpn-in-command-prompt)  
-
-
-[14. Turn On or Off Network Discovery in Windows 10](#14-turn-on-or-off-network-discovery-in-windows-10)  
-[To Turn On or Off Network Discovery for All Network Profiles in Command Prompt](#to-turn-on-or-off-network-discovery-for-all-network-profiles-in-command-prompt)  
-
-[15. Start, Stop, and Disable Services in Windows 10](#15-start-stop-and-disable-services-in-windows-10)  
-[To Start, Stop, and Disable Services using Sc Command](#to-start-stop-and-disable-services-using-sc-command)  
-[To Check Status of Services in PowerShell](#to-check-status-of-services-in-powershell)  
-[To Start, Stop, Restart, Disable, and Enable Services in PowerShell](#to-start-stop-restart-disable-and-enable-services-in-powershell)  
-
-[98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10](#98-fix-unable-to-contact-your-dhcp-server-error-on-windows--7-8-10)  
-
-[99. Win 7 區域網路分享 –– 共用資料夾](#99-win-7-%E5%8D%80%E5%9F%9F%E7%B6%B2%E8%B7%AF%E5%88%86%E4%BA%AB--%E5%85%B1%E7%94%A8%E8%B3%87%E6%96%99%E5%A4%BE)  
 
 # 01. OpenSSH Server and Client on Windows 10  
 [Windows10でsshする 2019-04-13](https://qiita.com/TukamotoRyuzo/items/7bd4ff6810421bdc9924) 
@@ -1403,6 +1440,202 @@ Set-Service -DisplayName "HomeGroup Listener" -StartupType Automatic
 8. When finished, you can close PowerShell if you like.  
 
 
+# 16. CPU and Memory Usage  
+[]()  
+[【第2回】pythonでCPUとメモリの使用率を取得する updated at 2020-01-13](https://qiita.com/hokke_mirin/items/47b6787f2c25caa40452)
+```
+    windows10 1909
+    mac catalina
+```
+
+```
+#!/usr/bin/env python
+import psutil as psu
+import tkinter as tk
+import sys
+import os
+import datetime
+
+# tkinterでwindowの作成とタイトルを作る
+# windowサイズの指定
+root = tk.Tk()
+root.title(u"CPU&メモリ使用率")
+root.geometry("600x300")
+
+# cpu用ラベル
+Static1 = tk.Label(text=u'CPU:')
+Static1.pack()
+# CPUの取得した値を表示する
+txtcpu = tk.Entry(width=20)
+txtcpu.pack()
+
+# memory用ラベル
+Static2 = tk.Label(text=u'memory:')
+Static2.pack()
+
+# memoryの取得した値を表示する
+txtmem = tk.Entry(width=20)
+txtmem.pack()
+
+
+log = './cpumem.log'
+
+
+def btn_click():
+    # テキストボックスをクリア
+    txtcpu.delete(0, tk.END)
+    txtmem.delete(0, tk.END)
+    if(os.path.exists(log)):
+        with open(log, mode='a', encoding="utf-8") as f:
+            # 時間の取得
+            dt_now = datetime.datetime.now()
+            # 日時のフォーマット修正
+            dt = dt_now.strftime('%Y/%m/%d %H:%M:%S')
+            # メモリの利用情報を取得
+            memory = psu.virtual_memory()
+            txtcpu.insert(0, memory.percent)
+            cpu_percent = psu.cpu_percent(interval=1)
+            txtmem.insert(0, cpu_percent)
+            cpulog = txtcpu.get()
+            memorylog = txtmem.get()
+            f.write(dt + " " + cpulog + " , " + memorylog + "\n")
+    else:
+        with open(log, mode='w', encoding="utf-8") as f:
+            # 時間の取得
+            dt_now = datetime.datetime.now()
+            # 日時のフォーマット修正
+            dt = dt_now.strftime('%Y/%m/%d %H:%M:%S')
+            # メモリの利用情報を取得
+            memory = psu.virtual_memory()
+            txtcpu.insert(0, memory.percent)
+            cpu_percent = psu.cpu_percent(interval=1)
+            txtmem.insert(0, cpu_percent)
+            cpulog = txtcpu.get()
+            memorylog = txtmem.get()
+            f.write(dt + " " + cpulog + " , " + memorylog + "\n")
+
+
+# ボタンの生成
+Button = tk.Button(root, text='使用率取得', command=btn_click)
+Button.pack()
+
+root.mainloop()
+```
+
+
+[【第3回】pythonでCPUとメモリの使用率を取得する posted at 2020-01-29](https://qiita.com/hokke_mirin/items/ddf8e3c0c9ffa69cabbf)  
+
+## やっておくと便利なこと  
+```
+$ pyinstaller xxxx.py --onefile --noconsole
+```
+
+## 今回は、ディスクの使用率もとれるようにした。  
+```
+#!/usr/bin/env python
+import psutil as psu
+import tkinter as tk
+import sys
+import os
+import datetime
+
+# tkinterでwindowの作成とタイトルを作る
+# windowサイズの指定
+root = tk.Tk()
+root.title(u"CPU使用率&メモリ使用率&ディスク使用率")
+root.geometry("600x100")
+
+# cpu用ラベル
+Static1 = tk.Label(text=u'CPU:')
+Static1.pack(side='left')
+
+# CPUの取得した使用率を表示する
+txtcpu = tk.Entry(width=20)
+txtcpu.pack(side='left', padx=0)
+
+# memory用ラベル
+Static2 = tk.Label(text=u'memory:')
+Static2.pack(side='left')
+
+# memoryの取得した使用率を表示する
+txtmem = tk.Entry(width=20)
+txtmem.pack(side='left', padx=0)
+
+# disk用ラベル
+Static3 = tk.Label(text=u'disk:')
+Static3.pack(side='left')
+
+# diskの取得した使用率を表示する
+txtdsk = tk.Entry(width=20)
+txtdsk.pack(side='left', padx=0)
+
+
+log = './cpumem.log'
+
+
+def btn_click():
+    # テキストボックスをクリア
+    txtcpu.delete(0, tk.END)
+    txtmem.delete(0, tk.END)
+    txtdsk.delete(0, tk.END)
+
+    if os.path.exists(log):
+        # logファイルがある場合
+        with open(log, mode='a', encoding="utf-8") as f:
+            # 時間の取得
+            dt_now = datetime.datetime.now()
+            # 日時のフォーマット修正
+            dt = dt_now.strftime('%Y/%m/%d %H:%M:%S')
+            # メモリの利用情報を取得
+            memory = psu.virtual_memory()
+            txtmem.insert(0, memory.percent)
+            # CPUの使用率を取得
+            cpu_percent = psu.cpu_percent(interval=1)
+            txtcpu.insert(0, cpu_percent)
+            # diskの使用率
+            disk_percent = psu.disk_usage(path='/').percent
+            txtdsk.insert(0, disk_percent)
+
+            # textboxの値を取得
+            cpulog = txtcpu.get()
+            memorylog = txtmem.get()
+            disklog = txtdsk.get()
+
+            # ログに出力するフォーマット(日付 時間 cpu使用率 メモリ使用率 disk使用率)
+            f.write(dt + " " + cpulog + " , " +
+                    memorylog + " , " + disklog + "\n")
+    else:
+        # logファイルがない場合
+        with open(log, mode='w', encoding="utf-8") as f:
+            # 時間の取得
+            dt_now = datetime.datetime.now()
+            # 日時のフォーマット修正
+            dt = dt_now.strftime('%Y/%m/%d %H:%M:%S')
+            # メモリの利用情報を取得
+            memory = psu.virtual_memory()
+            txtmem.insert(0, memory.percent)
+            # CPUの使用率を取得
+            cpu_percent = psu.cpu_percent(interval=1)
+            txtcpu.insert(0, cpu_percent)
+            # diskの使用率
+            disk_percent = psu.disk_usage(path='/').percent
+            txtdsk.insert(0, disk_percent)
+            # textboxの値を取得
+            cpulog = txtcpu.get()
+            memorylog = txtmem.get()
+            disklog = txtdsk.get()
+            # ログに出力するフォーマット(日付 時間 cpu使用率 メモリ使用率 disk使用率)
+            f.write(dt + " " + cpulog + " , " +
+                    memorylog + " , " + disklog + "\n")
+
+
+# ボタンの生成
+Button = tk.Button(root, text='使用率取得', command=btn_click)
+Button.pack(fill='x', side='left', padx=0)
+
+root.mainloop()
+```
+
 # 98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10  
 [Fix: Unable to Contact your DHCP Server Error on Windows 7, 8, 10 Aug 18, 2018](https://appuals.com/fix-unable-to-contact-your-dhcp-server-error-on-windows-7-8-10/)  
 Solution 1: Update or Roll Back Your Network Drivers  
@@ -1522,3 +1755,4 @@ right-click on the service DHCP client and select Start/Restart.
 - 1
 - 2
 - 3
+
