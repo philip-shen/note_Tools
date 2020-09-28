@@ -1,31 +1,35 @@
-# Take note from MoneyHunter
+Table of Contents
+=================
 
-# Table of Contents
-09/29/2019  
-[買進持有](#%E8%B2%B7%E9%80%B2%E6%8C%81%E6%9C%89)  
+   * [買進持有](#買進持有)
+      * [穩定成長](#穩定成長)
+         * [進場條件:](#進場條件)
+         * [出場訊號:](#出場訊號)
+      * [指數ETF](#指數etf)
+         * [進場條件:](#進場條件-1)
+         * [出場訊號:](#出場訊號-1)
+      * [債券ETF](#債券etf)
+         * [進場條件:](#進場條件-2)
+         * [出場訊號:](#出場訊號-2)
+   * [交易系統](#交易系統)
+      * [波段投機交易系統](#波段投機交易系統)
+         * [進場條件: 活潑股中期回檔反轉向上](#進場條件-活潑股中期回檔反轉向上)
+         * [出場訊號:](#出場訊號-3)
+      * [循環投資交易系統](#循環投資交易系統)
+         * [進場條件: 循環股系統性急跌](#進場條件-循環股系統性急跌)
+         * [出場訊號:](#出場訊號-4)
+      * [景氣循環交易系統](#景氣循環交易系統)
+         * [進場條件: 景氣大循環低點](#進場條件-景氣大循環低點)
+         * [出場訊號:](#出場訊號-5)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
 
-[穩定成長](#%E7%A9%A9%E5%AE%9A%E6%88%90%E9%95%B7)  
-[進場條件](#%E9%80%B2%E5%A0%B4%E6%A2%9D%E4%BB%B6)  
-[出場訊號](#%E5%87%BA%E5%A0%B4%E8%A8%8A%E8%99%9F)  
-[指數ETF](#%E6%8C%87%E6%95%B8etf)  
-[進場條件](#%E9%80%B2%E5%A0%B4%E6%A2%9D%E4%BB%B6-1)  
-[出場訊號](#%E5%87%BA%E5%A0%B4%E8%A8%8A%E8%99%9F-1)  
-[債券ETF](#%E5%82%B5%E5%88%B8etf)  
-[進場條件](#%E9%80%B2%E5%A0%B4%E6%A2%9D%E4%BB%B6-2)  
-[出場訊號](#%E5%87%BA%E5%A0%B4%E8%A8%8A%E8%99%9F-2)  
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
-
-[交易系統](#%E4%BA%A4%E6%98%93%E7%B3%BB%E7%B5%B1)  
-
-[波段投機交易系統](#%E6%B3%A2%E6%AE%B5%E6%8A%95%E6%A9%9F%E4%BA%A4%E6%98%93%E7%B3%BB%E7%B5%B1)  
-[進場條件](#%E9%80%B2%E5%A0%B4%E6%A2%9D%E4%BB%B6-%E6%B4%BB%E6%BD%91%E8%82%A1%E4%B8%AD%E6%9C%9F%E5%9B%9E%E6%AA%94%E5%8F%8D%E8%BD%89%E5%90%91%E4%B8%8A)  
-[出場訊號](#%E5%87%BA%E5%A0%B4%E8%A8%8A%E8%99%9F-3)  
-[循環投資交易系統](#%E5%BE%AA%E7%92%B0%E6%8A%95%E8%B3%87%E4%BA%A4%E6%98%93%E7%B3%BB%E7%B5%B1)  
-[進場條件](#%E9%80%B2%E5%A0%B4%E6%A2%9D%E4%BB%B6-%E5%BE%AA%E7%92%B0%E8%82%A1%E7%B3%BB%E7%B5%B1%E6%80%A7%E6%80%A5%E8%B7%8C)  
-[出場訊號](#%E5%87%BA%E5%A0%B4%E8%A8%8A%E8%99%9F-4)  
-[景氣循環交易系統](#%E6%99%AF%E6%B0%A3%E5%BE%AA%E7%92%B0%E4%BA%A4%E6%98%93%E7%B3%BB%E7%B5%B1)  
-[進場條件](#%E9%80%B2%E5%A0%B4%E6%A2%9D%E4%BB%B6-%E6%99%AF%E6%B0%A3%E5%A4%A7%E5%BE%AA%E7%92%B0%E4%BD%8E%E9%BB%9E)  
-[出場訊號](#%E5%87%BA%E5%A0%B4%E8%A8%8A%E8%99%9F-5)  
 
 # 買進持有  
 ## 穩定成長   
@@ -235,9 +239,58 @@ Item | Description
 ```
 
 
+
+
 # Reference
+[Asoul/tsrtc Taiwan Stock Real Time Crawler](https://github.com/Asoul/tsrtc)
+
+[Asoul/tsec Taiwan Stock Exchange Crawler](https://github.com/Asoul/tsec)
+
+[初學者的Python金融分析日記EP1 | PyInvest](https://pyecontech.com/2019/06/13/%E5%88%9D%E5%AD%B8%E8%80%85%E7%9A%84python%E9%87%91%E8%9E%8D%E5%88%86%E6%9E%90%E6%97%A5%E8%A8%98ep1/)
 ```
+import requests
+import pandas as pd
+import io
+import re
+import time
+import datetime
+ 
+def crawler(date_time):
+    page_url = 'http://www.twse.com.tw/exchangeReport/MI_INDEX?response=csv&amp;date=' + date_time +'&amp;type=ALLBUT0999'
+    page = requests.get(page_url)
+    use_text = page.text.splitlines()
+    for i,text in enumerate(use_text):
+        if text == '"證券代號","證券名稱","成交股數","成交筆數","成交金額","開盤價","最高價","最低價","收盤價","漲跌(+/-)","漲跌價差","最後揭示買價","最後揭示買量","最後揭示賣價","最後揭示賣量","本益比",':
+            initial_point = i
+            break
+    test_df = pd.read_csv(io.StringIO(''.join( + '\n' for text in use_text[initial_point:]])))
+    test_df['證券代號'] = test_df['證券代號'].apply(lambda x:x.replace('"',''))
+    test_df['證券代號'] = test_df['證券代號'].apply(lambda x: x.replace('=',''))
+    return test_df
 ```
+
+```
+#抓好幾天
+def trans_date(date_time):
+    return ''.join(str(date_time).split(' ')[0].split('-'))
+ 
+def parse_n_days(start_date,n):
+     
+    df_dict = {}
+    now_date = start_date
+    for i in range(n):
+        time.sleep(5)
+        now_date = now_date - datetime.timedelta(days=1)
+        try:
+            df = crawler(trans_date(now_date))
+            print("Current date" + trans_date(now_date))
+            df_dict.update({trans_date(now_date):df})
+            print('Successful!!')
+        except:
+            print('Fails at' + str(now_date))
+    return df_dict
+```
+
 * []()  
 ![alt tag]()  
 
@@ -267,3 +320,4 @@ Item | Description
 - 1
 - 2
 - 3
+

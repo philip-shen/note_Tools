@@ -227,7 +227,7 @@ sudo reboot
 
 * []()
 ![alt tag]()  
-<img src="">
+<img src="" width="400" height="500">
 
 # h1 size
 
