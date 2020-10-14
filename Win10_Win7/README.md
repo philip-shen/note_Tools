@@ -1,6 +1,7 @@
 Table of Contents
 =================
 
+   * [Table of Contents](#table-of-contents)
    * [Notes of Tools](#notes-of-tools)
    * [01. OpenSSH Server and Client on Windows 10](#01-openssh-server-and-client-on-windows-10)
       * [サーバとクライアントの構成](#サーバとクライアントの構成)
@@ -91,6 +92,9 @@ Table of Contents
    * [16. CPU and Memory Usage](#16-cpu-and-memory-usage)
       * [やっておくと便利なこと](#やっておくと便利なこと)
       * [今回は、ディスクの使用率もとれるようにした。](#今回はディスクの使用率もとれるようにした)
+   * [17. Windows WMIC](#17-windows-wmic)
+      * [CPU Utilization by powershell](#cpu-utilization-by-powershell)
+      * [wmic process](#wmic-process)
    * [98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10](#98-fix-unable-to-contact-your-dhcp-server-error-on-windows--7-8-10)
    * [99. Win 7 區域網路分享 –– 共用資料夾](#99-win-7-區域網路分享--共用資料夾)
    * [Troubleshooting](#troubleshooting)
@@ -100,6 +104,7 @@ Table of Contents
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -1639,6 +1644,36 @@ root.mainloop()
 [様子をチェック！Windows10でCPU・メモリ使用率を確認する方法 ](https://nurgle77.com/1203.html)  
 ![alt tag](https://nurgle77.com/wp-content/uploads/2015/11/4cac4e97714c28d68969297902b5eed0.jpg)
 
+# 17. Windows WMIC    
+[Windows がなんか重いときにコマンドで調べる（WMIC PROCESS）May 15, 2015](https://qiita.com/qtwi/items/914021a8df608ab7792f)  
+
+## CPU Utilization by powershell  
+```
+WMIC PATH Win32_PerfFormattedData_PerfProc_Process WHERE "PercentUserTime > 10" GET Name,IDProcess,PercentUserTime /FORMAT:LIST
+```
+
+## wmic process  
+[Windowsのプロセスを、プロセス名・プロセスID以外の条件で停止する。 Jan 24, 2018](https://qiita.com/fjtm/items/7d3587b17cc403f52253)  
+
+```
+start mstsc
+start mstsc /help
+
+timeout 1
+
+REM mstsc.exeの中で、コマンドラインの中に"help"という文字列を含むプロセスを停止する
+wmic process where "name = 'mstsc.exe' and commandline like '%%help%%'" delete
+```
+
+```
+wmic process where "name = 'mstsc.exe' and commandline like '%help%'" get name,commandline 
+```
+
+```
+wmic process  get * /format:csv
+```
+
+
 # 98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10  
 [Fix: Unable to Contact your DHCP Server Error on Windows 7, 8, 10 Aug 18, 2018](https://appuals.com/fix-unable-to-contact-your-dhcp-server-error-on-windows-7-8-10/)  
 Solution 1: Update or Roll Back Your Network Drivers  
@@ -1758,4 +1793,6 @@ right-click on the service DHCP client and select Start/Restart.
 - 1
 - 2
 - 3
+
+
 
