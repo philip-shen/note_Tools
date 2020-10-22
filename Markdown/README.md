@@ -211,7 +211,7 @@ https://gist.github.com/takke/995d474a8ad72a724c8187cf21b1e238
 # Markdown to CSV/TSV  
 [(Multi)Markdown table to CSV/TSV ](https://stackoverflow.com/questions/15521912/multimarkdown-table-to-csv-tsv)  
 
-ou can use [tomroy/mdtable2csv](https://stackoverflow.com/questions/15521912/multimarkdown-table-to-csv-tsv).
+ou can use [tomroy/mdtable2csv](https://github.com/tomroy/mdtable2csv).
 ```
 $ mdtable2csv <filename>.md
 ```
