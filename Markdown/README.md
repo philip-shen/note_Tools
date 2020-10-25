@@ -3,6 +3,9 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
+   * [Markdown ABC](#markdown-abc)
+      * [Block](#block)
+      * [Table](#table)
    * [Publish by Markdown](#publish-by-markdown)
    * [Markdown TOC](#markdown-toc)
       * [[步驟一] 點選擴充功能按鈕](#步驟一-點選擴充功能按鈕)
@@ -19,6 +22,8 @@ Table of Contents
    * [Markdown TOC on GitHub - 02](#markdown-toc-on-github---02)
       * [Usage](#usage-1)
    * [Markdown to PDF](#markdown-to-pdf)
+      * [PlantUML](#plantuml)
+      * [CSV](#csv)
       * [Prince 輸出PDF](#prince-輸出pdf)
    * [Markdown to CSV/TSV](#markdown-to-csvtsv)
       * [Markdown Convert](#markdown-convert)
@@ -36,6 +41,42 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 # Purpose  
 Take note of Markdown  
+
+
+# Markdown ABC  
+[markdown風格· GIT教學 - kingofamani ](https://kingofamani.gitbooks.io/git-teach/content/chapter_6_gitbook/markdown.html)  
+
+## Block  
+小區塊用1個反引號(`)   
+
+大區塊用3個反引號(```)    
+
+`
+小區塊
+`
+
+```
+大區塊
+```
+
+多行區塊用大於符號(>)
+
+## Table  
+```
+| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |
+| test | 測試        |    $3333 |
+```
+
+| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |
+| test | 測試        |    $3333 |
 
 
 # Publish by Markdown  
@@ -183,6 +224,32 @@ https://gist.github.com/takke/995d474a8ad72a724c8187cf21b1e238
 [用筆記也可以管理專案(二)：Markdown Preview Enhanced 017/12/13](https://jonny-huang.github.io/projects/02_markdown_preview_enhanced/)  
 [安裝 Markdown Preview Enhanced](https://jonny-huang.github.io/projects/02_markdown_preview_enhanced/#%E5%AE%89%E8%A3%9D-Markdown-Preview-Enhanced)  
 [匯出 PDF](https://jonny-huang.github.io/projects/02_markdown_preview_enhanced/#%E5%8C%AF%E5%87%BA-PDF)  
+## PlantUML  
+[PlantUML](https://jonny-huang.github.io/projects/02_markdown_preview_enhanced/#PlantUML)  
+```
+但是筆者則採用 @import 方式將外部 UML 模型檔(.puml)嵌入進來，這樣 UML 模型就可以獨立維護。
+```
+![alt tag](https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_43.png)  
+
+![alt tag](https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_44.png)  
+
+## CSV  
+[CSV](https://jonny-huang.github.io/projects/02_markdown_preview_enhanced/#CSV)  
+![alt tag](https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_47.png)  
+
+```
+要注意的是因為 Markdown 會轉換成 HTML，所以會將 csv 檔採用 UTF-8 方式編碼，但是透過 Excel 開啟預設便會出現亂碼。
+
+但是如果是透過 LibreOffie 的 Calc 開啟時，只要先指定字元集為 UTF-8 便可正常開啟與編輯。
+```
+![alt tag](https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_48.png)  
+
+![alt tag](https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_46.png)  
+
+
+[安裝擴充功能：Excel Viewer (選擇性)](https://jonny-huang.github.io/projects/02_markdown_preview_enhanced/#%E5%AE%89%E8%A3%9D%E6%93%B4%E5%85%85%E5%8A%9F%E8%83%BD%EF%BC%9AExcel-Viewer-%E9%81%B8%E6%93%87%E6%80%A7)
+
+
 
 [Visual Studio Code 寫文檔或文章必裝的外掛Markdown Preview Enhanced 2020年4月22日](https://aishuafei.com/markdown-preview-enhanced/)  
 ## Prince 輸出PDF  
@@ -257,6 +324,5 @@ $ mdtable2csv <filename>.md
 - 1
 - 2
 - 3
-
 
 
