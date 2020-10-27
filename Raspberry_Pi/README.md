@@ -19,6 +19,11 @@ Table of Contents
          * [その他ブートシーケンスに関係すると](#その他ブートシーケンスに関係すると)
    * [樹莓派｜外接麥克風及喇叭設置](#樹莓派外接麥克風及喇叭設置)
       * [調整音量](#調整音量)
+   * [Raspberrypi Connection by Windows](#raspberrypi-connection-by-windows)
+      * [xrdpインストール](#xrdpインストール)
+      * [日本語キーボードの配列を追加](#日本語キーボードの配列を追加)
+      * [xrdpを再起動させる](#xrdpを再起動させる)
+      * [Windowsから接続](#windowsから接続)
    * [I2C](#i2c)
       * [I2C configraion on Rpi 4](#i2c-configraion-on-rpi-4)
       * [Raspberry PI Multiple I2C Devices](#raspberry-pi-multiple-i2c-devices)
@@ -29,6 +34,7 @@ Table of Contents
                * [h5 size](#h5-size)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 # Purpose  
 Take note of Raspberry_Pi  
 
@@ -179,6 +185,46 @@ $ sudo systemctl enable systemd-networkd-wait-online
 ```
 我們直接用工具程式來調整。
 alsamixer
+```
+
+
+# Raspberrypi Connection by Windows  
+[Windowsパソコンからraspberrypi3にリモートデスクトップで接続する 2016/09/24](https://qiita.com/t114/items/bfac508504b9a6b7570d)  
+
+## xrdpインストール  
+```
+  $ sudo apt-get update
+  $ sudo apt-get install xrdp
+```
+
+## 日本語キーボードの配列を追加  
+```
+  $ cd /etc/xrdp/
+  $ sudo wget http://w.vmeta.jp/temp/km-0411.ini
+  $ sudo ln -s km-0411.ini km-e0010411.ini
+  $ sudo ln -s km-0411.ini km-e0200411.ini
+  $ sudo ln -s km-0411.ini km-e0210411.ini
+```
+
+## xrdpを再起動させる  
+```
+ $ sudo service xrdp restart
+```
+
+## Windowsから接続  
+```
+    win + R でファイル名を指定して実行画面表示する。
+    mstsc を入力する。
+
+    表示されたリモートデスクトップ接続画面でraspberrypi3のipアドレスを入力し接続する。 (raspberrypiのipアドレス固定方法はこちら)
+
+    Moduleはそのまま（sesman-Xvnc）
+
+    username：pi
+
+    password：raspberry
+
+    raspberrypiのデスクトップが表示されれば成功です。
 ```
 
 
