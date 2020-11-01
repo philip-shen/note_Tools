@@ -24,6 +24,7 @@ Table of Contents
       * [日本語キーボードの配列を追加](#日本語キーボードの配列を追加)
       * [xrdpを再起動させる](#xrdpを再起動させる)
       * [Windowsから接続](#windowsから接続)
+   * [Installing cryptography using pip on Raspbian Jessie image](#installing-cryptography-using-pip-on-raspbian-jessie-image)
    * [I2C](#i2c)
       * [I2C configraion on Rpi 4](#i2c-configraion-on-rpi-4)
       * [Raspberry PI Multiple I2C Devices](#raspberry-pi-multiple-i2c-devices)
@@ -227,6 +228,17 @@ alsamixer
     raspberrypiのデスクトップが表示されれば成功です。
 ```
 
+# Installing cryptography using pip on Raspbian Jessie image   
+[Installing cryptography using pip on Raspbian Jessie image asked Feb 22 '17](https://raspberrypi.stackexchange.com/questions/62364/installing-cryptography-using-pip-on-raspbian-jessie-image)  
+```
+sudo apt-get update  
+sudo apt-get upgrade  
+sudo apt-get install libffi-dev libssl-dev python-dev  
+```
+```
+pip install cryptography
+```
+<img src="https://i.imgur.com/UGQQgHM.png" width="900" height="150">
 
 
 # I2C  
