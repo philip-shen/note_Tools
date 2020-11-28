@@ -45,6 +45,15 @@ Table of Contents
    * [Transmission-daemon torrent-box](#transmission-daemon-torrent-box)
       * [１．transmission-daemonのインストール](#１transmission-daemonのインストール)
       * [２．transmission-daemonの設定](#２transmission-daemonの設定)
+   * [Rpi Security](#rpi-security)
+      * [１．rootユーザーのパスワード設定](#１rootユーザーのパスワード設定)
+      * [２．piユーザーに代わる新たなユーザーの追加とpiの削除](#２piユーザーに代わる新たなユーザーの追加とpiの削除)
+      * [３．SSHの設定見直し](#３sshの設定見直し)
+      * [４．ファイアウォールの設定](#４ファイアウォールの設定)
+      * [新規ユーザーの作成](#新規ユーザーの作成)
+      * [SSHで公開鍵認証](#sshで公開鍵認証)
+      * [ポート番号等の設定変更](#ポート番号等の設定変更)
+      * [piユーザーの削除](#piユーザーの削除)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -392,7 +401,22 @@ $ su - root
 http://[]ラズパイIPアドレス]:9091
 ```
 
+# Rpi Security  
+[RaspberryPi4 サーバー構築06　セキュリティ対策編 2020年06月30日](http://devlife.blog.jp/archives/54778281.html) 
 
+## １．rootユーザーのパスワード設定  
+## ２．piユーザーに代わる新たなユーザーの追加とpiの削除  
+## ３．SSHの設定見直し  
+## ４．ファイアウォールの設定  
+
+[ラズパイでやらなければいけない４つのセキュリティ対策！ 2020-06-11](https://qiita.com/nokonoko_1203/items/94a888444d5019f23a11) 
+
+## 新規ユーザーの作成  
+## SSHで公開鍵認証  
+[公開鍵と秘密鍵を作成](https://qiita.com/nokonoko_1203/items/94a888444d5019f23a11#%E5%85%AC%E9%96%8B%E9%8D%B5%E3%81%A8%E7%A7%98%E5%AF%86%E9%8D%B5%E3%82%92%E4%BD%9C%E6%88%90)
+## ポート番号等の設定変更  
+[ラズパイとSSHの設定変更](https://qiita.com/nokonoko_1203/items/94a888444d5019f23a11#%E3%83%A9%E3%82%BA%E3%83%91%E3%82%A4%E3%81%A8ssh%E3%81%AE%E8%A8%AD%E5%AE%9A%E5%A4%89%E6%9B%B4)  
+## piユーザーの削除
 
 * []()
 ![alt tag]()  
@@ -410,6 +434,4 @@ http://[]ラズパイIPアドレス]:9091
 
 *strong*strong  
 **strong**strong  
-
-
 
