@@ -28,11 +28,29 @@ Table of Contents
    * [I2C](#i2c)
       * [I2C configraion on Rpi 4](#i2c-configraion-on-rpi-4)
       * [Raspberry PI Multiple I2C Devices](#raspberry-pi-multiple-i2c-devices)
+   * [Raspberry Pi NAS](#raspberry-pi-nas)
+      * [Step 01: Is NAS for you?](#step-01-is-nas-for-you)
+      * [Step 02: Self-storage](#step-02-self-storage)
+      * [Step 03: Prepare the OS](#step-03-prepare-the-os)
+      * [Step 04: Add your storage](#step-04-add-your-storage)
+      * [Step 05: Prepare the drives](#step-05-prepare-the-drives)
+      * [Step 06: Create the RAID](#step-06-create-the-raid)
+      * [Step 07: Mount the drive](#step-07-mount-the-drive)
+      * [Step 08: Do the Samba!](#step-08-do-the-samba)
+      * [Step 09: Granting access](#step-09-granting-access)
+      * [Step 10: Create home directories](#step-10-create-home-directories)
+      * [Step 11: Backup, backup, backup](#step-11-backup-backup-backup)
+      * [Step 12: Don’t interrupt!](#step-12-dont-interrupt)
+      * [Step 13: Add more features](#step-13-add-more-features)
+   * [Transmission-daemon torrent-box](#transmission-daemon-torrent-box)
+      * [１．transmission-daemonのインストール](#１transmission-daemonのインストール)
+      * [２．transmission-daemonの設定](#２transmission-daemonの設定)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -282,6 +300,99 @@ sudo reboot
 
 <img src="https://img.purch.com/1561671569116-png/w/755/aHR0cDovL21lZGlhLmJlc3RvZm1pY3JvLmNvbS8xLzAvODQzNzMyL29yaWdpbmFsLzE1NjE2NzE1NjkxMTYucG5n"  width="400" height="500">
 
+# Raspberry Pi NAS  
+[Build a Raspberry Pi NAS](https://magpi.raspberrypi.org/articles/build-a-raspberry-pi-nas) 
+```
+You'll need
+
+    2 × External USB drives (minimum), e.g. these Seagate hard drives
+    USB 3.0 powered hub
+    Gigabit Ethernet (recommended)
+    UPS (optional)
+```
+## Step 01: Is NAS for you?  
+## Step 02: Self-storage  
+## Step 03: Prepare the OS  
+## Step 04: Add your storage  
+## Step 05: Prepare the drives  
+## Step 06: Create the RAID  
+## Step 07: Mount the drive  
+## Step 08: Do the Samba!  
+## Step 09: Granting access  
+## Step 10: Create home directories  
+## Step 11: Backup, backup, backup 
+## Step 12: Don’t interrupt!  
+## Step 13: Add more features  
+```
+ For the more adventurous user, 
+ Docker is an excellent way of making your NAS perform multiple functions without getting into a configuration nightmare. 
+ Why not set up a DLNA streaming server or run multiple databases? 
+ If you’ve enabled SSH, you’ve already got SFTP available; just connect using your favourite FTP client using /mnt/raid1/shared as the starting point.
+```
+
+[RaspberryPi4 サーバー構築03　ストレージ入替＆Samba共有編 2020年06月27日](http://devlife.blog.jp/archives/54771132.html)  
+
+
+# Transmission-daemon torrent-box  
+[Transmission-daemon@ラズパイでtorrent-box 2020年08月14日](http://devlife.blog.jp/archives/54915711.html)  
+## １．transmission-daemonのインストール  
+```
+$ su - root
+パスワード:
+ 
+# apt update
+# apt upgrade
+# apt install transmission-daemon
+```
+
+## ２．transmission-daemonの設定  
+```
+# systemctl stop transmission-daemon
+# cd /etc/transmission-daemon
+# vim ./setting.json
+ 
+:
+"download-dir": "/data/torrent/downloads",      15行目当たり。ここをダウンロード先ディレクトリに変更。
+:
+"incomplete-dir": "/data/torrent/Downloads",    23行目当たり。ここもダウンロード先ディレクトリに変更。
+:
+"rpc-host-whitelist": "127.0.0.1,192.168.*.*",  48行目当たり。ラズパイ自身とラズパイにリモート接続する端末IPアドレス帯を許可しておく。
+"rpc-host-whitelist-enabled": true,
+"rpc-password": "Password!",                    とりあえず"Password!"で。transmission-daemonを起動すると平文から暗号化される。
+"rpc-port": 9091,                               このポート番号は覚えておく。あとでファイアウォール許可します。
+"rpc-url": "/transmission/",                    ブラウザからアクセスするためのURLの定義。http://[]ラズパイIPアドレス]:9091でアクセスするとURL後ろに/transmission/が補完される。
+"rpc-username": "transmission",                 ブラウザからアクセスした時のBASIC認証のユーザー名
+"rpc-whitelist": "127.0.0.1,192.168.*.*",       48行目のrpc-host-whitelistと同じにした。
+"rpc-whitelist-enabled": true,
+:
+ 
+（上記変更して保存）
+```
+
+```
+# mkdir -p /data/torrent/downloads
+# mkdir -p /data/torrent/Downloads
+# chown -R debian-transmission:debian-transmission /data/torrent/
+# chmod -R g+w /data/torrent/
+```
+
+```
+# usermod -aG debian-transmission [smb.confの"force user"に記載したユーザー名]
+```
+
+```
+# ufw allow 9091
+```
+
+```
+# systemctl start transmission-daemon
+```
+
+```
+http://[]ラズパイIPアドレス]:9091
+```
+
+
 
 * []()
 ![alt tag]()  
@@ -299,4 +410,6 @@ sudo reboot
 
 *strong*strong  
 **strong**strong  
+
+
 
