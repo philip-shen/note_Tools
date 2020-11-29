@@ -43,6 +43,10 @@ Table of Contents
       * [Step 12: Don’t interrupt!](#step-12-dont-interrupt)
       * [Step 13: Add more features](#step-13-add-more-features)
    * [Raspberry Pi NAS_openmediavault and minidlna](#raspberry-pi-nas_openmediavault-and-minidlna)
+      * [4. Raspbian Buster Liteの入手](#4-raspbian-buster-liteの入手)
+      * [13. openmediavaultのセットアップ](#13-openmediavaultのセットアップ)
+      * [14. GUI（openmediavault）へアクセス](#14-guiopenmediavaultへアクセス)
+      * [15. イーサネットの追加](#15-イーサネットの追加)
       * [12.OpenMediaVaultをインストール](#12openmediavaultをインストール)
       * [13.不要なサービスを停止](#13不要なサービスを停止)
       * [14.minidlnaのインストール](#14minidlnaのインストール)
@@ -347,6 +351,20 @@ You'll need
 [RaspberryPi4 サーバー構築03　ストレージ入替＆Samba共有編 2020年06月27日](http://devlife.blog.jp/archives/54771132.html)  
 
 # Raspberry Pi NAS_openmediavault and minidlna  
+[Raspberry pi 4 でNAS（openmediavault）を構築する方法 ](https://qiita.com/zono_0/items/1eb877ad9c6e5ac12532)  
+## 4. Raspbian Buster Liteの入手  
+## 13. openmediavaultのセットアップ 
+## 14. GUI（openmediavault）へアクセス  
+## 15. イーサネットの追加  
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F240522%2F87895057-caa9-3a31-d09b-1edc5f49fc81.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=d841dc841985dfc30da5f5efd90b85de" width="800" height="500">
+
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F240522%2F7053d1f8-717a-c665-ad22-5189d249d450.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=1d4966dc51a83eb30ba07b362a46b288" width="800" height="500"> 
+
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F240522%2F9bb72847-4bae-09d3-5093-1f32d25e4ced.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=dbd4c7b630c68928c9a2433bd55d33be" width="800" height="500">
+
+
 [RaspberryPiをセットアップしてopenmediavaultでNASにする Sep 19, 2016](https://qiita.com/moperon/items/80bab1c00791090fd6ed#%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%E6%89%8B%E9%A0%86)  
 
 ## 12.OpenMediaVaultをインストール  
@@ -453,6 +471,8 @@ http://[]ラズパイIPアドレス]:9091
 
 *strong*strong  
 **strong**strong  
+
+
 
 
 
