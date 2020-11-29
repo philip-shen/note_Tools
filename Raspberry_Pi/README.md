@@ -42,6 +42,11 @@ Table of Contents
       * [Step 11: Backup, backup, backup](#step-11-backup-backup-backup)
       * [Step 12: Don’t interrupt!](#step-12-dont-interrupt)
       * [Step 13: Add more features](#step-13-add-more-features)
+   * [Raspberry Pi NAS_openmediavault and minidlna](#raspberry-pi-nas_openmediavault-and-minidlna)
+      * [12.OpenMediaVaultをインストール](#12openmediavaultをインストール)
+      * [13.不要なサービスを停止](#13不要なサービスを停止)
+      * [14.minidlnaのインストール](#14minidlnaのインストール)
+      * [15.tmpフォルダをRAMディスクに移す](#15tmpフォルダをramディスクに移す)
    * [Transmission-daemon torrent-box](#transmission-daemon-torrent-box)
       * [１．transmission-daemonのインストール](#１transmission-daemonのインストール)
       * [２．transmission-daemonの設定](#２transmission-daemonの設定)
@@ -341,6 +346,20 @@ You'll need
 
 [RaspberryPi4 サーバー構築03　ストレージ入替＆Samba共有編 2020年06月27日](http://devlife.blog.jp/archives/54771132.html)  
 
+# Raspberry Pi NAS_openmediavault and minidlna  
+[RaspberryPiをセットアップしてopenmediavaultでNASにする Sep 19, 2016](https://qiita.com/moperon/items/80bab1c00791090fd6ed#%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%E6%89%8B%E9%A0%86)  
+
+## 12.OpenMediaVaultをインストール  
+[Install OpenMediaVault Raspberry Pi NAS Server Minibian](http://www.htpcguides.com/install-openmediavault-raspberry-pi-nas-server-minibian/)  
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F83315%2F3d21c70f-3117-0b2d-6b8b-6965458e1ee3.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=9cdd8a056f991acc528dcacac5b2407e" width="800" height="500">
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F83315%2F906f892c-fafc-a76b-a9d5-ab3fbd367c1b.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=3904a3d72b491c95ed1c8a8bc5bd9c3a" width="800" height="500">
+
+## 13.不要なサービスを停止  
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F83315%2Fb6bddf6d-47b1-8165-730c-2c02a26d71d0.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=39da56c6ba0f746f75ba9016220b38bf" width="800" height="500">
+
+## 14.minidlnaのインストール
+## 15.tmpフォルダをRAMディスクに移す
 
 # Transmission-daemon torrent-box  
 [Transmission-daemon@ラズパイでtorrent-box 2020年08月14日](http://devlife.blog.jp/archives/54915711.html)  
@@ -434,4 +453,6 @@ http://[]ラズパイIPアドレス]:9091
 
 *strong*strong  
 **strong**strong  
+
+
 
