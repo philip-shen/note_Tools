@@ -1,6 +1,7 @@
 Table of Contents
 =================
 
+   * [Table of Contents](#table-of-contents)
    * [Notes of Google Sheet](#notes-of-google-sheet)
    * [Table of Content](#table-of-content)
    * [Dependent Drop-Down Lists in Google Sheets](#dependent-drop-down-lists-in-google-sheets)
@@ -25,6 +26,13 @@ Table of Contents
       * [步驟二：前往其他試算表輸入IMPORTRANGE公式](#步驟二前往其他試算表輸入importrange公式)
       * [步驟三：點擊允許存取](#步驟三點擊允許存取)
       * [如果要同步該試算表的特定分頁呢？](#如果要同步該試算表的特定分頁呢)
+   * [Google Sheet 如何調整儲存格的最適欄寬及欄高？](#google-sheet-如何調整儲存格的最適欄寬及欄高)
+      * [1](#1)
+      * [2](#2)
+      * [3](#3)
+      * [4](#4)
+      * [5](#5)
+      * [6](#6)
    * [Reference](#reference)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
@@ -175,6 +183,27 @@ https://support.google.com/docs/answer/3093340?hl=zh-Hant&rd=1
 ```
 <img src="https://pic.pimg.tw/isvincent/1460381836-3067860420.png" width="500" height="500">
 
+# Google Sheet 如何調整儲存格的最適欄寬及欄高？     
+[【活用 Google試算表的技巧】如何調整儲存格的最適欄寬及欄高？ 2016年8月1日](https://www.techbang.com/posts/43775-tips-for-using-google-spreadsheet-how-to-adjust-the-optimal-column-width-of-the-cell-and-the-bar-higher)
+
+## 1  
+<img src="https://cdn2.techbang.com/system/images/349792/original/ca237101d62459a10ce126742c4e6c35.jpg?1464681485" width="400" height="300">  
+
+## 2  
+<img src="https://cdn0.techbang.com/system/images/349793/original/877ca06d0b63b58fb3bb1e72d99c3338.jpg?1464681485" width="400" height="300">  
+
+## 3  
+<img src="https://cdn0.techbang.com/system/images/349794/original/fd8ca8a57042f0d3e37679826a8d3ea7.jpg?1464681486" width="400" height="300">  
+
+## 4  
+<img src="https://cdn1.techbang.com/system/images/349795/original/38e8d1c0ad08b3d3930ba69feff5e06e.jpg?1464681486" width="400" height="300">  
+
+## 5  
+<img src="https://cdn0.techbang.com/system/images/349796/original/df489f8b44699c5d4044bd3b9819f9ce.jpg?1464681487" width="400" height="300">
+
+## 6  
+<img src="https://cdn2.techbang.com/system/images/349797/original/2ed42b93d887aa8b1c8d38ea29340382.jpg?1464681487" width="400" height="300">
+
 
 # Reference    
 * [Google 試算表製作可執行 Apps Script 指令碼的(圖片)按鈕 Aug 11, 2018](https://www.wfublog.com/2018/08/google-spreadsheet-add-button-execute-apps-script.html)  
@@ -210,3 +239,5 @@ https://support.google.com/docs/answer/3093340?hl=zh-Hant&rd=1
 - 1
 - 2
 - 3
+
+
