@@ -95,6 +95,15 @@ Table of Contents
    * [17. Windows WMIC](#17-windows-wmic)
       * [CPU Utilization by powershell](#cpu-utilization-by-powershell)
       * [wmic process](#wmic-process)
+   * [18. SMB 1.0](#18-smb-10)
+      * [SMB 1.0有効化の背景](#smb-10有効化の背景)
+      * [SMB 1.0/CIFS ファイル共有のサポート（コマンド）](#smb-10cifs-ファイル共有のサポートコマンド)
+      * [GUIで有効化,無効化する方法](#guiで有効化無効化する方法)
+      * [CLIで有効化,無効化する方法](#cliで有効化無効化する方法)
+         * [SMB 1.0/CIFS File Sharing Supportの有効化](#smb-10cifs-file-sharing-supportの有効化)
+         * [SMB 1.0/CIFS Clientの有効化](#smb-10cifs-clientの有効化)
+         * [SMB 1.0/CIFS File Sharing SupportとSMB 1.0/CIFS Clientの無効化](#smb-10cifs-file-sharing-supportとsmb-10cifs-clientの無効化)
+         * [有効なのか、無効なのかの確認方法](#有効なのか無効なのかの確認方法)
    * [98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10](#98-fix-unable-to-contact-your-dhcp-server-error-on-windows--7-8-10)
    * [99. Win 7 區域網路分享 –– 共用資料夾](#99-win-7-區域網路分享--共用資料夾)
    * [Troubleshooting](#troubleshooting)
@@ -104,7 +113,6 @@ Table of Contents
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
-   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -1674,6 +1682,81 @@ wmic process  get * /format:csv
 ```
 
 
+# 18. SMB 1.0  
+[Windows10 1709 Fall Creator Update以降のSMB v1.0有効化  Nov 09, 2019]()  
+
+## SMB 1.0有効化の背景  
+```
+Windows10 1709 Fall Creator Updateより、Windowsファイル共通に使われる通信プロトコルの古いバージョンSMB v1.0が無効化されました。
+```
+
+[Windows 10 Fall Creators Update と Windows Server バージョン 1709 以降のバージョンの既定では SMBv1 はインストールされません](https://docs.microsoft.com/ja-jp/windows-server/storage/file-server/troubleshoot/smbv1-not-installed-by-default-in-windows)
+
+```
+重要度の低いファイルを保存した一部の古いNASが、SMB v1.0を利用しているようで、
+Windows10の大型アップデートを適用した端末がファイルサーバーへ繋がらないという症状が出たことがきっかけで気づきました。
+
+ping自体は通るので、初めは原因が分からずおかしいなぁと思っていました。
+
+本来ならば、NAS側のソフトウェアまたはファームウェアをSMB v2.02以降の新しいバージョンをサポートする更新プログラムで対応するのですが、
+
+古いNASの場合はメーカー側もそこまでサポートしてくれない場合もありますので、今回はクライアントPC側のプロコトルバージョンを下げて対応してみます。
+```
+
+## SMB 1.0/CIFS ファイル共有のサポート（コマンド）  
+[SMB 1.0/CIFS ファイル共有のサポート（コマンド）](https://qiita.com/aa_ha1uhik0/items/b84ee3f1d52e8867ec39#smb-10cifs-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%85%B1%E6%9C%89%E3%81%AE%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89)  
+```
+echo SMB 1.0/CIFS ファイル共有のサポート：有効化
+dism /online /Enable-Feature /FeatureName:SMB1Protocol /NoRestart
+rem echo SMB 1.0/CIFS クライアント：無効化
+rem ※今回はクライアントPCでSMBv1を利用するためコメントアウト化。
+rem dism /online /Enable-Feature /FeatureName:SMB1Protocol-Client /NoRestart
+echo SMB 1.0/CIFS サーバー：無効化
+dism /online /Disable-Feature /FeatureName:SMB1Protocol-Server /NoRestart
+echo SMB 1.0/CIFS 自動削除：無効化　バージョンによって自動削除が実装されていない場合があります。
+dism /online /Disable-Feature /FeatureName:SMB1Protocol-Deprecation /NoRestart
+echo このあとPCを再起動してください。
+PAUSE
+```
+
+[Windows 10でSMB1.0を有効化する方法（PowerShellで有効化/無効化する） Jan 29, 2020](https://qiita.com/xus/items/3c30c0841c0736689d5b)  
+
+## GUIで有効化,無効化する方法  
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F403714%2F8235edd8-31b9-0ac3-8fb8-3719056dea05.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=b894359efcbfe4f0a43ca2c4c65221f9" width="300" height="400">
+
+## CLIで有効化,無効化する方法  
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F403714%2F4221cd8d-6ffa-8f63-2bac-044f7959041c.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=858a4ad917b596d028895ea0480e9781" width="200" height="300">
+
+### SMB 1.0/CIFS File Sharing Supportの有効化  
+```
+Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -NoRestart
+```
+
+### SMB 1.0/CIFS Clientの有効化   
+```
+Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol-Client -NoRestart
+```
+
+### SMB 1.0/CIFS File Sharing SupportとSMB 1.0/CIFS Clientの無効化  
+```
+Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -NoRestart
+Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol-Client -NoRestart
+```
+
+```
+-NoRestartを付与すると再起動をする旨のYes/Noが問われない。
+ActiveDirectoryグループポリシーのスタートアップスクリプトやシャットダウンスクリプトでは必須オプションと思う。
+Yes/Noで停止してしまうとスクリプト同期の場合、
+ログイン後デスクトップが表示されないことやシャットダウンがいつまで経っても終わらないという悲劇に見舞われる。
+```
+
+### 有効なのか、無効なのかの確認方法  
+```
+Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
+Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol-Client
+```
+
+
 # 98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10  
 [Fix: Unable to Contact your DHCP Server Error on Windows 7, 8, 10 Aug 18, 2018](https://appuals.com/fix-unable-to-contact-your-dhcp-server-error-on-windows-7-8-10/)  
 Solution 1: Update or Roll Back Your Network Drivers  
@@ -1766,6 +1849,7 @@ right-click on the service DHCP client and select Start/Restart.
 
 * []()  
 ![alt tag]()   
+<img src="" width="400" height="500">
 
 # h1 size
 
@@ -1793,6 +1877,8 @@ right-click on the service DHCP client and select Start/Restart.
 - 1
 - 2
 - 3
+
+
 
 
 
