@@ -162,6 +162,16 @@ sudo service rpcbind start
 sudo mount -a
 ```
 
+ex.  cat /etc/fstab  
+```
+proc            /proc           proc    defaults          0       0
+PARTUUID=6c586e13-01  /boot           vfat    defaults          0       2
+PARTUUID=6c586e13-02  /               ext4    defaults,noatime  0       1
+# a swapfile is not a swap partition, no line here
+#   use  dphys-swapfile swap[on|off]  for that
+192.168.3.21:/volume1/QA /mnt/qa nfs defaults,soft,intr,timeo=14
+```
+
 ## Raspberry PiからNASボリュームMount  
 [Raspberry PiからSynology NAS volumeをnfs mountする 2019年7月21日](https://www.miki-ie.com/infrastructure/raspberry-pi-nfs-mount-synology-nas/)
 
@@ -200,6 +210,20 @@ $ sudo raspi-config
 よって、/etc/rc.localに３秒のスリープとマウントコマンドを追加しました。
 sleep 3
 sudo mount -t nfs 192.168.0.100:/volume1/raspberry /mnt/synology
+```
+ex. cat /etc/rc.local 
+```
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+mkdir -p /tmp/ramdisk
+chmod 777 /tmp/ramdisk
+mount -t tmpfs -o size=1024M tmpfs /tmp/ramdisk
+mount -t nfs 192.168.3.21:/volume1/QA /mnt/qa
+#sudo ifconfig eth0 192.168.1.219
+exit 0
 ```
 
 ### その他ブートシーケンスに関係すると  
