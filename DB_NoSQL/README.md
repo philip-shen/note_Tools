@@ -6,6 +6,14 @@ Table of Contents
       * [Register Windows Services](#register-windows-services)
    * [MongoDB Configuration](#mongodb-configuration)
       * [mongodb.conf](#mongodbconf)
+   * [RethinkDB](#rethinkdb)
+      * [Realtime 讀取資料](#realtime-讀取資料)
+         * [1st original](#1st-original)
+         * [2nd insert to rethinkdb](#2nd-insert-to-rethinkdb)
+         * [3rd update status](#3rd-update-status)
+      * [篩選資料](#篩選資料)
+         * [1st insert data](#1st-insert-data)
+         * [2nd cursor next](#2nd-cursor-next)
    * [Troubleshooting](#troubleshooting)
    * [Reference](#reference)
    * [h1 size](#h1-size)
@@ -13,10 +21,8 @@ Table of Contents
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
-   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
 
 # MongoDB Installation  
 [MongoDB的安装配置（zip版）2019-11-13](https://blog.csdn.net/J_wb49/article/details/103050462?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
@@ -183,6 +189,54 @@ replSet = name
 #sslPEMKeyPassword = pass
 ```
 
+# RethinkDB  
+
+## Realtime 讀取資料  
+[Rethink DB 初探 Jul 2, 2017](https://medium.com/bryanyang0528/rethink-db-%E5%88%9D%E6%8E%A2-42d4d477a72b)  
+
+```
+傳統資料庫（例如mysql）只有在當我們主動 select 的時候才會提取資料．
+如果我們要持續監聽資料庫有沒有新增資料，就必須定期的去詢問資料．這樣一來會增加資料庫無謂的負擔．
+而 RethinkDB 可以在資料庫近來資料庫，主動的將資料推送到使用者手中．
+
+首先我們開啟一個新的 terminal 連線，進入 iPython，並且和 RethinkDB建立連線：
+```
+
+```
+import rethinkdb as r
+r.connect( "localhost", 28015).repl()
+#重點我們這裡將監聽 test 這個table，只要有任何改變就通知我們
+cursor = r.table("test").changes().run()
+for document in cursor:
+    print(document)
+```  
+
+### 1st original  
+<img src="https://miro.medium.com/max/875/1*aocssTyNOKj89TYy4f8_sg.png" width="400" height="300">  
+
+### 2nd insert to rethinkdb  
+<img src="https://miro.medium.com/max/875/1*TYQcvkrXapJFSVov07pY7Q.png" width="400" height="300">
+
+### 3rd update status   
+<img src="https://miro.medium.com/max/875/1*EBQKCgVWJMMisPCiEiFMWg.png" width="800" height="200">
+
+## 篩選資料  
+[Rethink DB 初探 Jul 2, 2017](https://medium.com/bryanyang0528/rethink-db-%E5%88%9D%E6%8E%A2-42d4d477a72b)  
+
+先建立兩個監控單位：  
+
+```
+cursor = r.table("test").filter({'user_id': "5566"}).changes().run()
+cursor2 = r.table("test").filter({'user_id':"7788"}).changes().run()
+```
+
+### 1st insert data  
+<img src="https://miro.medium.com/max/875/1*aszhLKLdG4le4-hamZZv6A.png" width="400" height="500">  
+
+### 2nd cursor next  
+<img src="https://miro.medium.com/max/875/1*7BeF3l4bg4DDItQ4D9Cbqg.png" width="400" height="200">  
+
+
 # Troubleshooting
 
 
@@ -218,9 +272,5 @@ replSet = name
 - 1
 - 2
 - 3
-
-
-
-
 
 
