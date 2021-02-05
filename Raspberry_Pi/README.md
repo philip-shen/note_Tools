@@ -1,3 +1,4 @@
+
 Table of Contents
 =================
 
@@ -63,11 +64,22 @@ Table of Contents
       * [SSHで公開鍵認証](#sshで公開鍵認証)
       * [ポート番号等の設定変更](#ポート番号等の設定変更)
       * [piユーザーの削除](#piユーザーの削除)
+   * [ADB](#adb)
+      * [libimobiledevice ＆ ADB](#libimobiledevice--adb)
+         * [apt-get](#apt-get)
+         * [1：libplist](#1libplist)
+         * [2：libusbmuxd](#2libusbmuxd)
+         * [3：libimobiledevice](#3libimobiledevice)
+         * [4：ideviceinstaller](#4ideviceinstaller)
+         * [5：ifuse](#5ifuse)
+      * [Package requirements (fuse &gt;= 2.7.0) were not met: No package 'fuse' found.](#package-requirements-fuse--270-were-not-met-no-package-fuse-found)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
+   * [Table of Contents](#table-of-contents-2)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -482,6 +494,95 @@ http://[]ラズパイIPアドレス]:9091
 ![alt tag]()  
 <img src="" width="400" height="500">
 
+
+# ADB 
+
+## libimobiledevice ＆ ADB  
+[Raspberry Pi 3 安裝 libimobiledevice ＆ ADB 筆記 2016-12-10](https://hiy.tw/2016/12/raspberry_pi_libimobiledevice_adb/) 
+
+### apt-get 
+```
+sudo apt-get -y install vim tmux git build-essential libxml2-dev python2.7 python2.7-dev fuse libtool autoconf libusb-1.0-0-dev libfuse-dev make autoheader automake pkg-config libssl-dev libzip-dev
+```
+
+### 1：libplist
+```
+git clone https://github.com/libimobiledevice/libplist.git
+
+cd libplist
+
+./autogen.sh
+
+make
+
+sudo make install
+```
+
+### 2：libusbmuxd
+```
+git clone https://github.com/libimobiledevice/libusbmuxd.git
+
+cd libusbmuxd
+
+./autogen.sh
+
+make
+
+sudo make install
+```
+
+### 3：libimobiledevice  
+```
+git clone https://github.com/libimobiledevice/libimobiledevice.git
+
+cd libmobiledevice
+
+./autogen.sh
+
+make
+
+sudo make install
+
+```
+
+### 4：ideviceinstaller  
+```
+git clone https://github.com/libimobiledevice/ideviceinstaller.git
+
+cd ideviceinstaller
+
+./autogen.sh
+
+make
+
+sudo make install
+```
+
+### 5：ifuse  
+```
+git clone https://github.com/libimobiledevice/ifuse.git
+
+cd ifuse
+
+./autogen.sh
+
+make
+
+sudo make install
+```
+
+```
+理論上安裝好後執行 ideviceinfo 等指令有程式就代表都完成了，但如果是找不到檔案可以嘗試新增以下路徑應該就可以了
+
+export LD_LIBRARY_PATH=/usr/local/lib
+```
+
+## Package requirements (fuse >= 2.7.0) were not met: No package 'fuse' found.
+[ libimobiledevice /ifuse  complie failed #22](https://github.com/libimobiledevice/ifuse/issues/22)
+```
+you can try installing libfuse-dev
+```
+
 # h1 size
 
 ## h2 size
@@ -494,8 +595,5 @@ http://[]ラズパイIPアドレス]:9091
 
 *strong*strong  
 **strong**strong  
-
-
-
 
 
