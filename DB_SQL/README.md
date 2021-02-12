@@ -350,9 +350,11 @@ CREATE TABLE "restInterface_temp_entry" (
 
 ```
 id is not unique between the two tables. I would like to create another table with the same schema as Table 2. 
-I would like the id for the entries in Table 1 to start from 0 and then the entries from table 2 to start after the last entry from table 1.
+I would like the id for the entries in Table 1 to start from 0 and then 
+the entries from table 2 to start after the last entry from table 1.
 
-Ideally I would like to just add the entries from Table 1 to Table 2 and "reindex" the primary key so that it was in the same ascending order that "dateTime" is.
+Ideally I would like to just add the entries from Table 1 to Table 2 and "reindex" the primary key 
+so that it was in the same ascending order that "dateTime" is.
 ```
 
 ```
