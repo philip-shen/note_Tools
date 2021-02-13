@@ -480,6 +480,115 @@ from
   DbB.Table2 B on B.Emp_Id = A.Emp_Id;
 ```
 
+# 05 Prevent duplicate values in LEFT JOIN  
+## 1 Prevent duplicate values in LEFT JOIN 
+[Prevent duplicate values in LEFT JOIN May 23, 2015](https://stackoverflow.com/questions/30410622/prevent-duplicate-values-in-left-join) 
+```
+Sql Query :
+
+SELECT p.id, p.person_name, d.department_name, c.phone_number 
+FROM person p
+  LEFT JOIN department d 
+    ON p.id = d.person_id
+  LEFT JOIN contact c 
+    ON p.id = c.person_id;
+```
+
+```
+Result :
+
+id|person_name|department_name|phone_number
+--+-----------+---------------+------------
+1 |"John"     |"Finance"      |"023451"
+1 |"John"     |"Finance"      |"99478"
+1 |"John"     |"Finance"      |"67890"
+1 |"John"     |"Marketing"    |"023451"
+1 |"John"     |"Marketing"    |"99478"
+1 |"John"     |"Marketing"    |"67890"
+2 |"Barbara"  |"Finance"      |""
+3 |"Michelle" |""             |"005634"
+```
+
+```
+So, here is what I want:
+
+id|person_name|department_name|phone_number
+--+-----------+---------------+------------
+1 |"John"     |"Finance"      |"023451"
+1 |"John"     |"Marketing"    |"99478"
+1 |"John"     |""             |"67890"
+2 |"Barbara"  |"Finance"      |""
+3 |"Michelle" |""             |"005634"
+```
+
+```
+SELECT p.id, p.person_name, d.department_name, c.phone_number
+FROM   person p
+LEFT   JOIN (
+   SELECT person_id, min(department_name) AS department_name
+   FROM   department
+   GROUP  BY person_id
+   ) d ON d.person_id = p.id
+LEFT   JOIN (
+   SELECT person_id, min(phone_number) AS phone_number
+   FROM   contact
+   GROUP  BY person_id
+   ) c ON c.person_id = p.id;
+```
+
+## 2 Left Join without duplicate rows from left table  
+[Left Join without duplicate rows from left table Mar 31, 2014](https://stackoverflow.com/questions/22769641/left-join-without-duplicate-rows-from-left-table)
+```
+SELECT 
+C.Content_ID,
+C.Content_Title,
+M.Media_Id
+
+FROM tbl_Contents C
+LEFT JOIN tbl_Media M ON M.Content_Id = C.Content_Id 
+ORDER BY C.Content_DatePublished ASC
+```
+
+```
+Try an OUTER APPLY
+
+SELECT 
+    C.Content_ID,
+    C.Content_Title,
+    C.Content_DatePublished,
+    M.Media_Id
+FROM 
+    tbl_Contents C
+    OUTER APPLY
+    (
+        SELECT TOP 1 *
+        FROM tbl_Media M 
+        WHERE M.Content_Id = C.Content_Id 
+    ) m
+ORDER BY 
+    C.Content_DatePublished ASC
+```
+
+```
+Alternatively, you could GROUP BY the results
+
+SELECT 
+    C.Content_ID,
+    C.Content_Title,
+    C.Content_DatePublished,
+    M.Media_Id
+FROM 
+    tbl_Contents C
+    LEFT OUTER JOIN tbl_Media M ON M.Content_Id = C.Content_Id 
+GROUP BY
+    C.Content_ID,
+    C.Content_Title,
+    C.Content_DatePublished,
+    M.Media_Id
+ORDER BY
+    C.Content_DatePublished ASC
+```
+
 # Troubleshooting
 
 
