@@ -104,15 +104,27 @@ Table of Contents
          * [SMB 1.0/CIFS Clientの有効化](#smb-10cifs-clientの有効化)
          * [SMB 1.0/CIFS File Sharing SupportとSMB 1.0/CIFS Clientの無効化](#smb-10cifs-file-sharing-supportとsmb-10cifs-clientの無効化)
          * [有効なのか、無効なのかの確認方法](#有効なのか無効なのかの確認方法)
+   * [19. DEVCON Useage](#19-devcon-useage)
+      * [Driver Deletion](#driver-deletion)
+         * [ハードウェアIDを調べる](#ハードウェアidを調べる)
+         * [デバイスドライバのファイルを調べる](#デバイスドライバのファイルを調べる)
+         * [デバイスを削除する](#デバイスを削除する)
+         * [デバイスドライバのファイルを削除する](#デバイスドライバのファイルを削除する)
+         * [Powershell](#powershell)
+      * [Touchpad Enable/Disable](#touchpad-enabledisable)
+         * [Reference](#reference)
+      * [Devcon from GitHub](#devcon-from-github)
+         * [Run the sample](#run-the-sample)
    * [98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10](#98-fix-unable-to-contact-your-dhcp-server-error-on-windows--7-8-10)
    * [99. Win 7 區域網路分享 –– 共用資料夾](#99-win-7-區域網路分享--共用資料夾)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference)
+   * [Reference](#reference-1)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -1757,6 +1769,103 @@ Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol-Client
 ```
 
 
+#  19. DEVCON Useage  
+## Driver Deletion  
+[互換性のないドライバを削除する Jan 27, 2021](https://qiita.com/sweshelo/items/16cf08c1a45501d3dd87)  
+```
+
+```
+
+### ハードウェアIDを調べる  
+### デバイスドライバのファイルを調べる   
+```
+なんかよくわからないが削除時にはoem{enum}.infって指定するらしい。それを特定します。
+```
+
+```
+.\devcon driverfiles {HardWareID}
+```
+
+### デバイスを削除する  
+```
+先にデバイスを削除しないとドライバを消せないっぽい。(一応forceオプションもあります)
+```
+
+```
+.\devcon remove {HardWareID}
+```
+
+### デバイスドライバのファイルを削除する  
+```
+.\devcon dp_delete {DriverFile}
+```
+
+### Powershell  
+```
+$HWID  = "ACPI\VEN_XXXX&DEV_XXXX"
+$targ  = .\devcon driverfiles $HWID
+
+.\devcon remove $HWID
+
+$reg   = new-object regex("oem.*?\.inf")
+$reg.Matches($targ) | %{.\devcon dp_delete $_.value}
+```
+
+## Touchpad Enable/Disable  
+[Windows10：タッチパッドの有効／無効を切り替えるショートカット  Jun 07, 2020](https://qiita.com/aokit/items/dacc00e955dcacb8fc0e)
+
+```
+タッチパッド＿オフ：
+devcon /r disable "HID\VID_17EF&UP:0001_U:0002"
+```
+
+```
+devcon /r enable "HID\VID_17EF&UP:0001_U:0002"
+```
+
+```
+'"HID\VID_17EF&UP:0001_U:0002"' はデバイスマネージャでしらべておいたタッチパッドのデバイスID。念の為、
+devcon hwids "HID\VID_17EF&UP:0001_U:0002"
+でアクセスできることを確認しておいた。
+```
+
+### Reference  
+[Windows Driver Kitをインストールすることなしにdevcon.exeを用意する 投稿日: 2019年2月5日](https://www7390uo.sakura.ne.jp/wordpress/archives/705)  
+
+<img src="https://www7390uo.sakura.ne.jp/wordpress/wp-content/uploads/2019/02/devcon-3.png" width="600" height="300"> 
+
+```
+>move filbad6e2cce5ebc45a401e19c613d0a28f devcon.exe
+        1 個のファイルを移動しました。
+
+>devcon.exe
+devcon.exe Usage: devcon.exe [-r] [-m:\\<machine> ] <command> [<arg>...]
+For more information, type: devcon.exe help 
+```
+
+[一発でデバイスを有効・無効にするdevcon.exeを使ったバッチファイルの作り方 2015/03/18](https://qwerty.work/blog/2015/03/wdkdevconbatcommand.php)  
+```
+1. デバイスマネージャーで対象のハードウェアのプロパティを開く
+2. 「詳細」タブの「プロパティ」の欄をハードウェアIDにする
+3. 表示された値をコピーする
+```
+<img src="https://qwerty.work/blog/2015/03/18/1.jpg" width="300" height="400"> 
+
+[devcon.exe コマンドプロンプトの権限による動作の違い](https://www.youtube.com/watch?v=c9LaYVVigTQ)  
+
+## Devcon from GitHub 
+[Windows-driver-samples/setup/devcon/](https://github.com/microsoft/Windows-driver-samples/tree/master/setup/devcon)  
+
+### Run the sample  
+```
+Type devcon find * to list device instances of all present devices on the local machine.
+
+Type devcon status @root\rdp\_mou\0000 to list status of the terminal server mouse driver.
+
+Type devcon status *PNP05* to list status of all COM ports.
+```
+
+
 # 98. Fix Unable to contact your DHCP Server error on Windows  7, 8, 10  
 [Fix: Unable to Contact your DHCP Server Error on Windows 7, 8, 10 Aug 18, 2018](https://appuals.com/fix-unable-to-contact-your-dhcp-server-error-on-windows-7-8-10/)  
 Solution 1: Update or Roll Back Your Network Drivers  
@@ -1877,8 +1986,6 @@ right-click on the service DHCP client and select Start/Restart.
 - 1
 - 2
 - 3
-
-
 
 
 
