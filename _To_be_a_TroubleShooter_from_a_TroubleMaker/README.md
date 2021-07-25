@@ -11,7 +11,26 @@ Table of Contents
       * [Modern Backend Developer in 2018](#modern-backend-developer-in-2018)
       * [DevOps Roadmaps](#devops-roadmaps)
       * [Modern DevOps Engineer in 2018](#modern-devops-engineer-in-2018)
-      * [QA Roadmaps](#qa-roadmaps)
+   * [QA Roadmaps](#qa-roadmaps)
+      * [Quality Assurance Fundamentals](#quality-assurance-fundamentals)
+      * [Software Development Lifecycle (SDLC) Fundamentals](#software-development-lifecycle-sdlc-fundamentals)
+      * [Internet Fundamentals](#internet-fundamentals)
+      * [Computer Science and Engineering Fundamentals](#computer-science-and-engineering-fundamentals)
+      * [Web Application Fundamentals](#web-application-fundamentals)
+      * [Programming](#programming)
+      * [Enterprise Architecture](#enterprise-architecture)
+      * [Test Automation Fundamentals](#test-automation-fundamentals)
+      * [Modern Agile Delivery](#modern-agile-delivery)
+      * [The Quality Engineering Role](#the-quality-engineering-role)
+      * [Unit Testing](#unit-testing)
+      * [API Automation](#api-automation)
+      * [Web UI Automation](#web-ui-automation)
+      * [Continuous Integration, Delivery, and Deployment](#continuous-integration-delivery-and-deployment)
+      * [Performance Testing](#performance-testing)
+      * [Mobile Testing](#mobile-testing)
+      * [Accessibility Testing](#accessibility-testing)
+      * [Security Testing](#security-testing)
+      * [Extra Credit: AI/ML Testing and Data Engineering](#extra-credit-aiml-testing-and-data-engineering)
    * [The 2018 DevOps RoadMap](#the-2018-devops-roadmap)
       * [1. Learn a Programming Language](#1-learn-a-programming-language)
       * [2. Understand different OS concepts](#2-understand-different-os-concepts)
@@ -44,7 +63,6 @@ Table of Contents
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
-   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -92,9 +110,95 @@ How to be more stronger no matter in career or life
 
 ![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F22932%2F9a748067-461d-db10-8b9a-7eb78a60fa6b.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=0c49ef6b8fd8b6575aee640460933f70)  
 
-## QA Roadmaps  
-[QA Roadmap]()
-![alt tag]()  
+# QA Roadmaps  
+[Quality Engineer Learning Roadmap Feb 19, 2021](https://medium.com/slalom-build/quality-engineer-learning-roadmap-fddfcb77409e)
+
+```
+A beginner’s guide to the skills, tools, and technologies you need for a career as a Quality Engineer or SDET
+
+One role within these teams is the quality engineer (QE). 
+
+QEs are more than just testers or automators, 
+they empower teams by bringing a quality mindset to every aspect of building software. 
+They are experts in quality assurance, test automation, risk analysis, agile processes, CI/CD, 
+and everything else that can impact product quality.
+
+Some companies call this role an SDET (Software Development Engineer in Test), but every company defines roles differently, 
+so what an SDET or QE does at one company might not exactly match the next.
+```
+
+<img src="Quality_Engineer_Roadmap.png" width="1000" height="3600">
+
+<img src="https://miro.medium.com/max/692/1*NxlHL8J5A5jsJXlLbuFKXQ.png" width="300" height="500"> 
+
+## Quality Assurance Fundamentals 
+<img src="https://miro.medium.com/max/875/1*J3SDpvWUzUYqKYAEINM8zQ.png" width="500" height="800">
+
+## Software Development Lifecycle (SDLC) Fundamentals  
+<img src="https://miro.medium.com/max/875/1*3QwdyqzJLt6uOKpfg9VExg.png" width="500" height="800">
+
+## Internet Fundamentals  
+<img src="https://miro.medium.com/max/875/1*CDI-Y0PMN3GNEWeJGnDETA.png" width="500" height="800">
+
+## Computer Science and Engineering Fundamentals  
+<img src="https://miro.medium.com/max/875/1*XFLQKsP1W1qY0R_UlGuBVA.png" width="500" height="800">
+
+## Web Application Fundamentals  
+<img src="https://miro.medium.com/max/875/1*HKO96VgO47YFROc1lj7Dhg.png" width="500" height="800">
+
+## Programming  
+```
+We previously talked about computer science, but didn’t actually include programming. 
+We know about type systems and memory and operations systems and such, 
+but now we need to make that knowledge practical by learning to work in a programming language.
+```
+
+<img src="https://miro.medium.com/max/875/1*k2QY2PqFlDDPI7F5EQyOiw.png" width="500" height="800">
+
+## Enterprise Architecture  
+<img src="https://miro.medium.com/max/875/1*_mkWrSQLFwobZd2Bz-o7Fw.png" width="500" height="800">
+
+## Test Automation Fundamentals  
+<img src="https://miro.medium.com/max/875/1*-yAh2P46GTkU4eZxKLAWIA.png" width="500" height="800">
+
+## Modern Agile Delivery
+<img src="https://miro.medium.com/max/875/1*IpWEsr7BgDQuXQb-8ArADg.png" width="500" height="800">
+
+## The Quality Engineering Role  
+<img src="https://miro.medium.com/max/875/1*7Q3H00_J5XGSYvImb9ngGw.png" width="500" height="800">
+
+## Unit Testing  
+<img src="https://miro.medium.com/max/875/1*h7p4HPxA1ilTrPMAEbY8Ng.png" width="500" height="800">
+
+## API Automation  
+<img src="https://miro.medium.com/max/875/1*k40mIHbYtzcTYoBb18H7Hw.png" width="500" height="800">
+
+## Web UI Automation  
+<img src="https://miro.medium.com/max/875/1*oor44yUsJG02M6_TE0nAAA.png" width="500" height="800">
+
+## Continuous Integration, Delivery, and Deployment  
+<img src="https://miro.medium.com/max/875/1*8FqzELXwPOzFcxdTuLL_vQ.png" width="500" height="800">
+
+## Performance Testing  
+<img src="https://miro.medium.com/max/875/1*gewL7Rn28aj_owX_xeZVNA.png" width="500" height="800">
+
+## Mobile Testing  
+<img src="https://miro.medium.com/max/875/1*OQw_9gz5NW6ymw4NhHSMgQ.png" width="500" height="800">
+
+## Accessibility Testing  
+<img src="https://miro.medium.com/max/875/1*OsOmWApNFCXQWp37z4a7UA.png" width="500" height="800">
+
+## Security Testing  
+<img src="https://miro.medium.com/max/875/1*jvaFDdpsiR66va7nf1g6tw.png" width="500" height="800">
+
+## Extra Credit: AI/ML Testing and Data Engineering
+```
+AI/ML and Data Engineering are both hot topics in software development, 
+but we decided to omit them from the core roadmap because 1) this is already rather long, and 2) these are specializations that might not be applicable depending on the role and company you end up at. 
+However, if you’d like to go down this path, 
+the foundation you developed in previous sections like enterprise architecture and automation fundamentals will serve you well, 
+and it will be no problem to add AI/ML or data engineering testing to your testing toolbox.
+```
 
 
 # The 2018 DevOps RoadMap   
@@ -253,3 +357,4 @@ How to be more stronger no matter in career or life
 - 1
 - 2
 - 3
+
