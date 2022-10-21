@@ -105,6 +105,7 @@ docker-compose -f docker-compose-CeleryExecutor.yml scale worker=3
 docker-compose -f docker-compose-CeleryExecutor.yml scale scheduler=3
 ```
 (default setting for browser is localhost:5555)
+
 <img src="https://miro.medium.com/max/720/1*KbTBRPXn21XUJKsocetrBw.png" width="600" height="400">
 
 
