@@ -41,7 +41,8 @@ Take note of Airflow stuffs
 ```
 sudo apt-get update
 
-sudo apt-get install docker-ce#將當前用户加入docker組
+sudo apt-get install docker-ce
+#將當前用户加入docker組
 sudo gpasswd -a ${USER} docker  
 sudo systemcl enable docker 
 sudo systemcl restart docker  
@@ -52,7 +53,8 @@ docker ps
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
-#給予執行權限sudo chmod +x /usr/local/bin/docker-composesudo pip install docker-compose  
+#給予執行權限
+sudo chmod +x /usr/local/bin/docker-composesudo pip install docker-compose  
 
 #檢查版本
 docker-compose version
