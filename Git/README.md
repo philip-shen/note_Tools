@@ -67,9 +67,10 @@ git push --tags
 # Change Remote Repo Address
 [【Git】更換遠端伺服器倉庫網址  2020-12-23](https://cynthiachuang.github.io/Git-Remote-Set-Url/)
 
-# Setup .gitignore
-[設定 .gitignore 忽略清單 2020-09-06](https://cynthiachuang.github.io/Set-Gitignore-File/)
-[【狀況題】有些檔案我不想放在 Git 裡面…](https://gitbook.tw/chapters/using-git/ignore)
+# Setup .gitignore  
+[設定 .gitignore 忽略清單 2020-09-06](https://cynthiachuang.github.io/Set-Gitignore-File/) 
+
+[【狀況題】有些檔案我不想放在 Git 裡面…](https://gitbook.tw/chapters/using-git/ignore)  
 有些比較機密的檔案不想放在 Git 裡面一起備份，例如資料庫的存取密碼或是 AWS 伺服器的存取金鑰…
 
 # Reference  
