@@ -7,13 +7,14 @@ Table of Contents
    * [Airflow Docker](#airflow-docker)
       * [Install Docker CE](#install-docker-ce)
       * [Install Docker-Compose](#install-docker-compose)
-      * [Docker Pull](#docker-pull)
+      * [Docker Pull Image](#docker-pull-image)
       * [Docker Delopy Airflow CeleryExecutor Mode](#docker-delopy-airflow-celeryexecutor-mode)
          * [Update Dockerfile](#update-dockerfile)
          * [Update docker-compose-CeleryExecutor.yml](#update-docker-compose-celeryexecutoryml)
          * [Update Airflow config](#update-airflow-config)
    * [Airflow tutorial](#airflow-tutorial)
-      * [Setup](#setup)
+      * [docker-compose Installation](#docker-compose-installation)
+      * [Initialization](#initialization)
       * [DGA](#dga)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
       * [imageを取得する](#imageを取得する)
@@ -30,7 +31,6 @@ Table of Contents
                * [h5 size](#h5-size)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
 # Purpose  
 Take note of Airflow stuffs  
 
@@ -207,4 +207,3 @@ $  docker run --env-file=./env_example shinyorke/airflow worker init
 - 1
 - 2
 - 3
-
