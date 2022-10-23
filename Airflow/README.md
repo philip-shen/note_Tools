@@ -35,7 +35,8 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 Take note of Airflow stuffs  
 
 # Airflow Docker
-[Airflow with Docker 容器部署 — part 2](https://medium.com/@cchangleo/airflow-with-docker-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2-part2-8ddb83dc2d4a)
+[Airflow with Docker 容器部署 — part 2 Mar 26, 2019](https://medium.com/@cchangleo/airflow-with-docker-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2-part2-8ddb83dc2d4a)
+[cchangleo/docker-airflow](https://github.com/cchangleo/docker-airflow)
 
 ## Install Docker CE
 ```
@@ -50,8 +51,10 @@ docker ps
 ```
 
 ## Install Docker-Compose
+~~sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose~~
+
 ```
-sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 #給予執行權限
 sudo chmod +x /usr/local/bin/docker-composesudo pip install docker-compose  
@@ -60,7 +63,7 @@ sudo chmod +x /usr/local/bin/docker-composesudo pip install docker-compose
 docker-compose version
 ```
 
-## Docker Pull
+## Docker Pull Image
 ```
 docker pull puckel/docker-airflow
 
@@ -72,12 +75,10 @@ get from gitgit clone https://github.com/puckel/docker-airflow.git
 ## Docker Delopy Airflow CeleryExecutor Mode
 
 ### Update Dockerfile
-
+[gistfile1.txt](https://gist.github.com/cchangleo/ecc13e04424c75ac3028ada5fc1f421b#file-gistfile1-txt)
 
 ### Update docker-compose-CeleryExecutor.yml 
-```
-
-```
+[gistfile1.txt](https://gist.github.com/cchangleo/e6b2d79866eaf29485958b42c3716dd6#file-gistfile1-txt)
 
 ### Update Airflow config  
 ```
@@ -111,29 +112,37 @@ docker-compose -f docker-compose-CeleryExecutor.yml scale scheduler=3
 <img src="https://miro.medium.com/max/720/1*KbTBRPXn21XUJKsocetrBw.png" width="600" height="400">
 
 
-[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21(Tue)](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)
+[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)
 
 # Airflow tutorial
-[airflowのチュートリアルをしてみた updated at 2019-05-19](https://qiita.com/raqwel/items/37052d8d7d3fb1b7780b)
+[ChickenBenny/Airflow-tutorial](https://github.com/ChickenBenny/Airflow-tutorial)
 
-## Setup
+## docker-compose Installation
 ```
-git clone git@github.com:puckel/docker-airflow.git
+$ sudo curl -L https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+$ sudo chmod +x /usr/local/bin/docker-compose
+
+$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
 
+## Initialization
 ```
-docker build --rm --build-arg AIRFLOW_DEPS="datadog,dask" --build-arg PYTHON_DEPS="flask_oauthlib>=0.9" -t puckel/docker-airflow .
+$ docker-compose up airflow-init
 ```
+<img src="images/airflow_tutorial_docke-compose.png" width="900" height="200">
 
 ```
-docker run -d -p 8080:8080 puckel/docker-airflow webserver
+$ docker-compose -f docker-compose.yaml up -d
 ```
-<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F100993%2Ff506b702-5532-4f0b-9eb3-df9764071c40.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=1c72ce2863bc9a0c7a467f58abe14db4" width="800" height="400">
+```
+$ docker ps
+```
+<img src="images/airflow_tutorial_docke-compose_03.png" width="900" height="400">
 
 ## DGA
-<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F100993%2F53f814ca-3c05-77a9-6e0e-392ae42a74f6.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=1bc15fa50f8bd631f6f501371e2eceb2" width="800" height="400">
+<img src="images/airflow_tutorial_docke-compose_02.png" width="900" height="400">
 
-[Airflow をさわってみた - Docker でのチュートリアルの実行 (Mac OSX 環境) posted at 2019-08-03](https://qiita.com/smatsumt/items/fe156936121185a7db0e)
 
 [Airflow を単体の docker container で立ち上げる posted at 2019-02-15](https://qiita.com/kysnm/items/feda7b8cca44bb7389ac)
 
