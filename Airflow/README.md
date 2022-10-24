@@ -16,6 +16,11 @@ Table of Contents
       * [docker-compose Installation](#docker-compose-installation)
       * [Initialization](#initialization)
       * [DGA](#dga)
+   * [How to Upload Files to Google Drive using Airflow](#how-to-upload-files-to-google-drive-using-airflow)
+      * [1. Configuring the Google Drive API and a creating service account on GCP](#1-configuring-the-google-drive-api-and-a-creating-service-account-on-gcp)
+      * [2. Configuring Domain-wide Delegation on our Google Workspace](#2-configuring-domain-wide-delegation-on-our-google-workspace)
+      * [3. Writing the code for our custom GoogleDriveOperator](#3-writing-the-code-for-our-custom-googledriveoperator)
+      * [4. Testing a minimal DAG that uploads a text file to our Google Drive account](#4-testing-a-minimal-dag-that-uploads-a-text-file-to-our-google-drive-account)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
       * [imageを取得する](#imageを取得する)
       * [単体で動かす](#単体で動かす)
@@ -31,6 +36,8 @@ Table of Contents
                * [h5 size](#h5-size)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+
 # Purpose  
 Take note of Airflow stuffs  
 
@@ -145,6 +152,22 @@ $ docker ps
 
 
 [Airflow を単体の docker container で立ち上げる posted at 2019-02-15](https://qiita.com/kysnm/items/feda7b8cca44bb7389ac)
+
+
+# How to Upload Files to Google Drive using Airflow  
+[How to Upload Files to Google Drive using Airflow Mar 26, 2021](https://towardsdatascience.com/how-to-upload-files-to-google-drive-using-airflow-73d961bbd22)
+
+*A Google account with admin privileges on GCP and the Google Workspace it belongs to* 
+
+*An Airflow 2.0.x installation*
+
+## 1. Configuring the Google Drive API and a creating service account on GCP
+
+## 2. Configuring Domain-wide Delegation on our Google Workspace
+
+## 3. Writing the code for our custom GoogleDriveOperator
+
+## 4. Testing a minimal DAG that uploads a text file to our Google Drive account
 
 # Airflow, Docker and Data Analysis
 [AirflowとDockerで俺々データ分析基盤をつくってみた&Imageを公開してみた #kwskrb  2017-08-31](https://shinyorke.hatenablog.com/entry/airflow-docker#Production%E3%81%AA%E6%A7%8B%E6%88%90%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%99%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB)

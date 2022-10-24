@@ -55,8 +55,8 @@ git push --tags
 # Connect GitHub by SSH Public Key  
 [【Git】使用 SSH 金鑰與 GitHub 連線 2020-12-23](https://cynthiachuang.github.io/Generating-a-Ssh-Key-and-Adding-It-to-the-Github/#more)
 
-[Generating a new SSH key and adding it to the ssh-agent 2020-12-22](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-[Adding a new SSH key to your GitHub accountt 2020-12-22](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
+[Generating a new SSH key and adding it to the ssh-agent 2020-12-22](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)  
+[Adding a new SSH key to your GitHub accountt 2020-12-22](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)  
 [Switching remote URLs from HTTPS to SSH 2020-12-22](https://docs.github.com/en/free-pro-team@latest/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh)
 
 
