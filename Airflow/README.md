@@ -169,6 +169,7 @@ $ docker ps
 
 ## 4. Testing a minimal DAG that uploads a text file to our Google Drive account
 
+
 # Airflow, Docker and Data Analysis
 [AirflowとDockerで俺々データ分析基盤をつくってみた&Imageを公開してみた #kwskrb  2017-08-31](https://shinyorke.hatenablog.com/entry/airflow-docker#Production%E3%81%AA%E6%A7%8B%E6%88%90%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%99%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB)
 
