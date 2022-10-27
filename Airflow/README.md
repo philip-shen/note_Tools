@@ -21,6 +21,8 @@ Table of Contents
       * [2. Configuring Domain-wide Delegation on our Google Workspace](#2-configuring-domain-wide-delegation-on-our-google-workspace)
       * [3. Writing the code for our custom GoogleDriveOperator](#3-writing-the-code-for-our-custom-googledriveoperator)
       * [4. Testing a minimal DAG that uploads a text file to our Google Drive account](#4-testing-a-minimal-dag-that-uploads-a-text-file-to-our-google-drive-account)
+   * [Airflow import local module](#airflow-import-local-module)
+   * [Failed to import custom python module in Airflow](#failed-to-import-custom-python-module-in-airflow)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
       * [imageを取得する](#imageを取得する)
       * [単体で動かす](#単体で動かす)
@@ -170,6 +172,58 @@ $ docker ps
 ## 4. Testing a minimal DAG that uploads a text file to our Google Drive account
 
 
+# Airflow import local module
+[Importing local module (python script) in Airflow DAG  Jun 6, 2019](https://stackoverflow.com/questions/50150384/importing-local-module-python-script-in-airflow-dag)
+
+```
+In airflow.cfg, make sure the path in airflow_home is correctly set to the path 
+the Airflow directory strucure is in.
+
+Then Airflow scans all subfolders and populates them so that modules can be found.
+```
+
+Otherwise, just make sure the folder you are trying to import is in 
+the Python path: How to use [PYTHONPATH](https://stackoverflow.com/questions/19917492/how-to-use-pythonpath)
+
+
+# Failed to import custom python module in Airflow
+[Failed to import custom python module in Airflow Jul 14, 2020](https://stackoverflow.com/questions/62868156/failed-to-import-custom-python-module-in-airflow)
+
+So the Airflow folder structure looks like this:
+```
+airflow/  
+    |_ dag/  
+    |    |_ __init__.py  
+    |    |_ my_first_DAG.py  
+    |_ my_scripts/
+    |    |_ __init__.py         
+    |    |_  custom_script.py 
+    |_ __init__.py 
+```
+
+Inside my_first_DAG.py I try:
+
+```
+from my_scripts import custom_script     
+```
+
+But I get the error: ModuleNotFoundError: No module named 'my_scripts'
+
+
+
+The problem was that the PYTHONPATH was only getting set in local terminal, 
+not for all programs. FIxed by adding it in
+
+```
+~/.bashrc
+
+~/.profile
+
+/etc/environment
+```
+
+
+
 # Airflow, Docker and Data Analysis
 [AirflowとDockerで俺々データ分析基盤をつくってみた&Imageを公開してみた #kwskrb  2017-08-31](https://shinyorke.hatenablog.com/entry/airflow-docker#Production%E3%81%AA%E6%A7%8B%E6%88%90%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%99%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB)
 
@@ -231,3 +285,5 @@ $  docker run --env-file=./env_example shinyorke/airflow worker init
 - 1
 - 2
 - 3
+
+
