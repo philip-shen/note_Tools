@@ -163,6 +163,7 @@ $ docker ps
 
 ## update docker-compose.yml by Airflow-Learning-English-tool/docker-compose.yaml
 
+<img src="images/airflow_learning_english_tool_01.jpg" width="900" height="300">
 
 # How to Upload Files to Google Drive using Airflow  
 [How to Upload Files to Google Drive using Airflow Mar 26, 2021](https://towardsdatascience.com/how-to-upload-files-to-google-drive-using-airflow-73d961bbd22)
