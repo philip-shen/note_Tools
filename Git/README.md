@@ -3,12 +3,16 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
-   * [Remote Repository in GitHub <g-emoji class="g-emoji" alias="memo" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dd.png">📝</g-emoji>](#remote-repository-in-github-memo)
       * [一、從頭開始－新增遠端空白儲存庫、本地空白儲存庫](#一從頭開始新增遠端空白儲存庫本地空白儲存庫)
       * [二、將遠端已存在儲存庫，拷貝至本地空白儲存庫](#二將遠端已存在儲存庫拷貝至本地空白儲存庫)
       * [三、將本地已存在的儲存庫(已有版控)，上傳至遠端儲存庫](#三將本地已存在的儲存庫已有版控上傳至遠端儲存庫)
       * [四、將本地的程式專案(未建立版控)，上傳至遠端儲存庫](#四將本地的程式專案未建立版控上傳至遠端儲存庫)
    * [Connect GitHub by SSH Public Key](#connect-github-by-ssh-public-key)
+      * [配置 GitHub 金鑰](#配置-github-金鑰)
+         * [Step1. 產生金鑰對](#step1-產生金鑰對)
+         * [Step2. 設定金鑰代理](#step2-設定金鑰代理)
+         * [Step3. 新增公鑰到你的遠端倉庫](#step3-新增公鑰到你的遠端倉庫)
+      * [更改連線協議](#更改連線協議)
    * ["server certificate verification failed. CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none"](#server-certificate-verification-failed-cafile-etcsslcertsca-certificatescrt-crlfile-none)
    * [Change Remote Repo Address](#change-remote-repo-address)
    * [Setup .gitignore](#setup-gitignore)
@@ -54,6 +58,26 @@ git push --tags
 
 # Connect GitHub by SSH Public Key  
 [【Git】使用 SSH 金鑰與 GitHub 連線 2020-12-23](https://cynthiachuang.github.io/Generating-a-Ssh-Key-and-Adding-It-to-the-Github/#more)
+
+## 配置 GitHub 金鑰
+
+### Step1. 產生金鑰對
+
+### Step2. 設定金鑰代理
+
+### Step3. 新增公鑰到你的遠端倉庫
+
+    產生的金鑰有兩把，一把是公鑰（Public Key）、一把是私鑰（Private Key）。
+
+   1. 檢視並複製生成的公鑰： 
+   2. 新增金鑰：
+   3. 連線測試
+
+## 更改連線協議
+
+```
+$ git remote set-url origin git@github.com:user_name/project.git
+```
 
 [Generating a new SSH key and adding it to the ssh-agent 2020-12-22](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)  
 [Adding a new SSH key to your GitHub accountt 2020-12-22](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)  
