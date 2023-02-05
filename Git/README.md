@@ -130,4 +130,3 @@ $ git remote set-url origin git@github.com:user_name/project.git
 - 1
 - 2
 - 3
-
