@@ -1,10 +1,15 @@
-
-
 Table of Contents
 =================
 
    * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
+   * [Airflow Environment Setup Pattern](#airflow-environment-setup-pattern)
+      * [1. Installation Directly](#1-installation-directly)
+      * [2. Installation Directly and Another Instance Execution](#2-installation-directly-and-another-instance-execution)
+      * [3. Docker Compose Startup](#3-docker-compose-startup)
+         * [Installation Procedures](#installation-procedures)
+      * [4. Docker Compose Startup and Another Instance Execution](#4-docker-compose-startup-and-another-instance-execution)
+      * [Reference](#reference)
    * [Airflow Docker](#airflow-docker)
       * [Install Docker CE](#install-docker-ce)
       * [Install Docker-Compose](#install-docker-compose)
@@ -13,6 +18,7 @@ Table of Contents
          * [Update Dockerfile](#update-dockerfile)
          * [Update docker-compose-CeleryExecutor.yml](#update-docker-compose-celeryexecutoryml)
          * [Update Airflow config](#update-airflow-config)
+      * [Reference](#reference-1)
    * [Airflow tutorial](#airflow-tutorial)
       * [docker-compose Installation](#docker-compose-installation)
       * [Initialization](#initialization)
@@ -24,6 +30,7 @@ Table of Contents
       * [2. Configuring Domain-wide Delegation on our Google Workspace](#2-configuring-domain-wide-delegation-on-our-google-workspace)
       * [3. Writing the code for our custom GoogleDriveOperator](#3-writing-the-code-for-our-custom-googledriveoperator)
       * [4. Testing a minimal DAG that uploads a text file to our Google Drive account](#4-testing-a-minimal-dag-that-uploads-a-text-file-to-our-google-drive-account)
+      * [Reference](#reference-2)
    * [Airflow import local module](#airflow-import-local-module)
    * [Failed to import custom python module in Airflow](#failed-to-import-custom-python-module-in-airflow)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
@@ -33,7 +40,7 @@ Table of Contents
          * [scheduler](#scheduler)
          * [worker](#worker)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference)
+   * [Reference](#reference-3)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -45,9 +52,38 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 # Purpose  
 Take note of Airflow stuffs  
 
+# Airflow Environment Setup Pattern   
+
+## 1. Installation Directly  
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F177076%2F0a93ee43-3525-d297-a561-1a8e03f88fe8.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=f048c3f85badaa459cdccece6e27d58e" width="600" height="500">  
+
+## 2. Installation Directly and Another Instance Execution  
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F177076%2F4c718fd7-a2ff-2639-3b47-1eedac8c739d.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=88ebb4209c223070fdc7a89b28346068" width="600" height="400">  
+
+## 3. Docker Compose Startup
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F177076%2F95b78171-b9f6-f502-c1fb-ecaff601f010.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=196edb249700d81ab6f36fa4fbc68d38" width="600" height="400">  
+
+### Installation Procedures 
+[Official docker-compose.yaml](https://airflow.apache.org/docs/apache-airflow/2.5.2/docker-compose.yaml)  
+[Running Airflow in Docker](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#)  
+
+```
+今回の構成ではDBやRedisは既存の環境を利用するため不要です。
+また、flowerやairflow-cliも使いません。
+
+下記はdocker-compose.yamlのディレクトリ構成です。
+mntにマウントするファイルを格納しています。
+```
+
+## 4. Docker Compose Startup and Another Instance Execution  
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F177076%2F68d6629c-a0be-22a8-705b-c9f69410f30f.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=00c70a3972aa1cff21056794d2e04443" width="600" height="400">  
+
+## Reference  
+[Airflow環境構築パターン&構築手順メモ　～その1～ Last updated at 2023-03-31](https://qiita.com/yuuman/items/a449bbe36710ad837df7)  
+[家計簿アプリZaimデータの分析・可視化基盤を作った話 Posted at 2019-04-02](https://qiita.com/hassiweb/items/63374089edef63dc35b3)  
+
+
 # Airflow Docker
-[Airflow with Docker 容器部署 — part 2 Mar 26, 2019](https://medium.com/@cchangleo/airflow-with-docker-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2-part2-8ddb83dc2d4a)
-[cchangleo/docker-airflow](https://github.com/cchangleo/docker-airflow)
 
 ## Install Docker CE
 ```
@@ -122,11 +158,12 @@ docker-compose -f docker-compose-CeleryExecutor.yml scale scheduler=3
 
 <img src="https://miro.medium.com/max/720/1*KbTBRPXn21XUJKsocetrBw.png" width="600" height="400">
 
-
-[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)
+## Reference  
+[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
+[Airflow with Docker 容器部署 — part 2 Mar 26, 2019](https://medium.com/@cchangleo/airflow-with-docker-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2-part2-8ddb83dc2d4a)  
+[cchangleo/docker-airflow](https://github.com/cchangleo/docker-airflow)
 
 # Airflow tutorial
-[ChickenBenny/Airflow-tutorial](https://github.com/ChickenBenny/Airflow-tutorial)
 
 ## docker-compose Installation
 ```
@@ -180,6 +217,8 @@ $ docker ps
 
 ## 4. Testing a minimal DAG that uploads a text file to our Google Drive account
 
+## Reference  
+[ChickenBenny/Airflow-tutorial](https://github.com/ChickenBenny/Airflow-tutorial)  
 
 # Airflow import local module
 [Importing local module (python script) in Airflow DAG  Jun 6, 2019](https://stackoverflow.com/questions/50150384/importing-local-module-python-script-in-airflow-dag)
@@ -230,7 +269,6 @@ not for all programs. FIxed by adding it in
 
 /etc/environment
 ```
-
 
 
 # Airflow, Docker and Data Analysis
@@ -294,4 +332,5 @@ $  docker run --env-file=./env_example shinyorke/airflow worker init
 - 1
 - 2
 - 3
+
 
