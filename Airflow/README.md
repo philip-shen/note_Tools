@@ -23,6 +23,7 @@ Table of Contents
       * [docker-compose Installation](#docker-compose-installation)
       * [Initialization](#initialization)
       * [DGA](#dga)
+      * [Reference](#reference-2)
    * [Airflow-Learning-English-tool](#airflow-learning-english-tool)
       * [update docker-compose.yml by Airflow-Learning-English-tool/docker-compose.yaml](#update-docker-composeyml-by-airflow-learning-english-tooldocker-composeyaml)
    * [How to Upload Files to Google Drive using Airflow](#how-to-upload-files-to-google-drive-using-airflow)
@@ -30,7 +31,7 @@ Table of Contents
       * [2. Configuring Domain-wide Delegation on our Google Workspace](#2-configuring-domain-wide-delegation-on-our-google-workspace)
       * [3. Writing the code for our custom GoogleDriveOperator](#3-writing-the-code-for-our-custom-googledriveoperator)
       * [4. Testing a minimal DAG that uploads a text file to our Google Drive account](#4-testing-a-minimal-dag-that-uploads-a-text-file-to-our-google-drive-account)
-      * [Reference](#reference-2)
+      * [Reference](#reference-3)
    * [Airflow import local module](#airflow-import-local-module)
    * [Failed to import custom python module in Airflow](#failed-to-import-custom-python-module-in-airflow)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
@@ -40,14 +41,15 @@ Table of Contents
          * [scheduler](#scheduler)
          * [worker](#worker)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-3)
+   * [Reference](#reference-4)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
 
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)  
+
 
 # Purpose  
 Take note of Airflow stuffs  
@@ -192,8 +194,9 @@ $ docker ps
 <img src="images/airflow_tutorial_docke-compose_02.png" width="900" height="400">
 
 
-[Airflow を単体の docker container で立ち上げる posted at 2019-02-15](https://qiita.com/kysnm/items/feda7b8cca44bb7389ac)
-
+## Reference  
+[Airflow を単体の docker container で立ち上げる posted at 2019-02-15](https://qiita.com/kysnm/items/feda7b8cca44bb7389ac)  
+[用 Airflow & Flink 來開發 ETL 吧 系列](https://ithelp.ithome.com.tw/users/20161625/ironman/6233)  
 
 # Airflow-Learning-English-tool
 [ ChickenBenny/Airflow-Learning-English-tool ](https://github.com/ChickenBenny/Airflow-Learning-English-tool)
