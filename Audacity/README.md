@@ -224,19 +224,6 @@ Items  | start	actual | duration | Add Label at Selection-- 「Ctrl+B」 | Remar
 ```
 <img src="https://affikatsu.com/wp-content/uploads/2015/09/7331-b01-Audacity%E3%81%AE%E9%81%93%E5%85%B7%E7%AE%B1%E3%81%AE%E3%83%9E%E3%82%AF%E3%83%AD.png" width="200" height="300">  
 
-<img src="" width="400" height="500">
-
-<img src="" width="400" height="500">
-
-<img src="" width="400" height="500">
-
-<img src="" width="400" height="500">
-
-<img src="" width="400" height="500">
-
-<img src="" width="400" height="500">
-
-
 [3 mp3再生速度一括倍速変換](https://affikatsu.com/mp3-double-speed-conversion-soft-7331/#mp3-2)  
 
 

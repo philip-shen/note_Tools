@@ -1,4 +1,4 @@
-Table of Contents
+# Table of Contents
 =================
 
    * [Table of Contents](#table-of-contents)
@@ -70,13 +70,17 @@ Table of Contents
       * [C: cv2.FaceDetectorYN](#c-cv2facedetectoryn)
       * [D: cv2.FaceRecognizerSF](#d-cv2facerecognizersf)
       * [Reference](#reference-5)
+   * [OpenCV on Ubuntu in C++](#opencv-on-ubuntu-in-c)
+     * [OpenCV Installtion with CUDA](#opencv-installtion-with-cuda)
+     * [OpenCV Installtion without CUDA](#opencv-installtion-without-cuda)
+     * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
       * [ModuleNotFoundError: No module named '_lzma'](#modulenotfounderror-no-module-named-_lzma)
       * [How to install tkinter for python 3.7 on xubuntu 20.04?](#how-to-install-tkinter-for-python-37-on-xubuntu-2004)
       * [Can't use SURF, SIFT in OpenCV](#cant-use-surf-sift-in-opencv)
       * [BRIEF (Binary Robust Independent Elementary Features)](#brief-binary-robust-independent-elementary-features)
-   * [Reference](#reference-6)
+   * [Reference](#reference-7)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -85,6 +89,95 @@ Table of Contents
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
+<!-- TOC -->
+
+- [Table of Contents](#table-of-contents)
+- [Purpose](#purpose)
+- [Image Processing Tutorials](#image-processing-tutorials)
+    - [Sampling and Quantization](#sampling-and-quantization)
+    - [Scaling and Rotation](#scaling-and-rotation)
+    - [Image Enhancement](#image-enhancement)
+        - [Image Negative](#image-negative)
+        - [Gamma Correct](#gamma-correct)
+        - [Beta Correct](#beta-correct)
+        - [Histogram Equalize](#histogram-equalize)
+            - [Reference](#reference)
+        - [Average Filtering](#average-filtering)
+        - [Gaussian Filtering](#gaussian-filtering)
+    - [Image Gradiant and Image Sharpening](#image-gradiant-and-image-sharpening)
+        - [Sobel Filtering and Scharr Filtering](#sobel-filtering-and-scharr-filtering)
+        - [Laplacian and Composite Laplacian](#laplacian-and-composite-laplacian)
+        - [Unsharp Masking, Median Filter, and Bilateral Filtering](#unsharp-masking-median-filter-and-bilateral-filtering)
+    - [Noise, PSNR](#noise-psnr)
+    - [Image Inpainting](#image-inpainting)
+            - [Reference](#reference)
+    - [Affine Transformation and Pseudocolor Transform](#affine-transformation-and-pseudocolor-transform)
+        - [Shift_X](#shift_x)
+        - [Shift_y](#shift_y)
+        - [Random_Shift](#random_shift)
+        - [Scale](#scale)
+        - [Horizontal Shear](#horizontal-shear)
+        - [Vertical Shear from Upper Right](#vertical-shear-from-upper-right)
+        - [Vertical Shear from Upper Left](#vertical-shear-from-upper-left)
+        - [Horizontal Flip](#horizontal-flip)
+        - [Vertical Flip](#vertical-flip)
+        - [Rotate at Upper Left](#rotate-at-upper-left)
+        - [Rotate at Central Point](#rotate-at-central-point)
+        - [Rotate Fit](#rotate-fit)
+        - [Image Mosaicing](#image-mosaicing)
+            - [Reference](#reference)
+    - [Edge Detection, Morphology Transform](#edge-detection-morphology-transform)
+        - [Sobel laplacian_Filter](#sobel-laplacian_filter)
+        - [Canny](#canny)
+        - [Morghology](#morghology)
+        - [Rinkaku](#rinkaku)
+        - [Reference](#reference)
+    - [Image Thresholding, Adaptive Thresholding, Watershed, and GrabCut](#image-thresholding-adaptive-thresholding-watershed-and-grabcut)
+    - [Line Detection and Circle Detection](#line-detection-and-circle-detection)
+        - [findcontours: RetrievalModes](#findcontours-retrievalmodes)
+            - [Black Contours](#black-contours)
+            - [White Contours](#white-contours)
+            - [RETR_EXTERNAL](#retr_external)
+            - [RETR_LIST](#retr_list)
+            - [RETR_CCOMP](#retr_ccomp)
+            - [RETR_TREE](#retr_tree)
+        - [Reference](#reference)
+    - [Region, Pattern recongnition](#region-pattern-recongnition)
+        - [WaterShed](#watershed)
+        - [Edge Info](#edge-info)
+        - [Circel Detection](#circel-detection)
+        - [Static Saliency](#static-saliency)
+        - [Face Detection](#face-detection)
+        - [Human Detection](#human-detection)
+        - [K-means](#k-means)
+        - [BOVW: Bag Of Visual Words](#bovw-bag-of-visual-words)
+    - [Flourier Transformation](#flourier-transformation)
+    - [Moment](#moment)
+- [OpenCV-Python Tutorials](#opencv-python-tutorials)
+    - [dlib](#dlib)
+    - [A: cv2.CascadeClassifier](#a-cv2cascadeclassifier)
+    - [B: cv2.dnn_DetectionModel](#b-cv2dnn_detectionmodel)
+    - [C: cv2.FaceDetectorYN](#c-cv2facedetectoryn)
+    - [D: cv2.FaceRecognizerSF](#d-cv2facerecognizersf)
+    - [Reference](#reference)
+- [OpenCV on Ubuntu in C++](#opencv-on-ubuntu-in-c)
+    - [OpenCV Installtion with CUDA](#opencv-installtion-with-cuda)
+    - [OpenCV Installtion without CUDA](#opencv-installtion-without-cuda)
+    - [Reference](#reference)
+- [Troubleshooting](#troubleshooting)
+    - [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
+    - [ModuleNotFoundError: No module named '_lzma'](#modulenotfounderror-no-module-named-_lzma)
+    - [How to install tkinter for python 3.7 on xubuntu 20.04?](#how-to-install-tkinter-for-python-37-on-xubuntu-2004)
+    - [Can't use SURF, SIFT in OpenCV](#cant-use-surf-sift-in-opencv)
+    - [BRIEF Binary Robust Independent Elementary Features](#brief-binary-robust-independent-elementary-features)
+- [Reference](#reference)
+- [h1 size](#h1-size)
+    - [h2 size](#h2-size)
+        - [h3 size](#h3-size)
+            - [h4 size](#h4-size)
+                - [h5 size](#h5-size)
+
+<!-- /TOC -->
 
 # Purpose  
 Take note of OpenCV  
@@ -114,11 +207,14 @@ Take note of OpenCV
     空間域(Spatial Domain)
     頻率域(Frequency Domain)
 ```
+
 ### Image Negative  
+
 ### Gamma Correct  
 [23_image_negative_gamma_correct.py](23_image_negative_gamma_correct.py)  
 
 ### Beta Correct  
+
 ### Histogram Equalize  
 
 ```
@@ -639,7 +735,159 @@ k-meansでk個のカテゴリに分類し、各カテゴリ毎にそのカテゴ
 [(最終回)Python + OpenCVで遊んでみる(OCR編)](https://itport.cloud/?p=8326)  
 
 
+# OpenCV on Ubuntu in C++  
+
+## OpenCV Installtion with CUDA      
+Check version  
+```
+# nvidia-smi
+Fri Sep 29 15:58:24 2023       
+
+| NVIDIA-SMI 520.61.05    Driver Version: 520.61.05    CUDA Version: 11.8     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ...  On   | 00000000:01:00.0 Off |                  N/A |
+| 53%   50C    P0    50W / 170W |     10MiB / 12288MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      1348      G   /usr/lib/xorg/Xorg                  4MiB |
+|    0   N/A  N/A      2103      G   /usr/lib/xorg/Xorg                  4MiB |
++-----------------------------------------------------------------------------+
+```
+
+```
+# nvcc -V
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2019 NVIDIA Corporation
+Built on Sun_Jul_28_19:07:16_PDT_2019
+Cuda compilation tools, release 10.1, V10.1.243
+```
+
+Build with opencv_contrib 
+```
+# Install minimal prerequisites (Ubuntu 18.04 as reference)
+sudo apt update && sudo apt install -y cmake g++ wget unzip
+
+# Download and unpack sources
+wget -O 4.5.5.tar.gz https://github.com/opencv/opencv/archive/4.5.5.tar.gz
+tar -zxvf 4.5.5.tar.gz 
+wget -O 4.5.5.tar.gz https://github.com/opencv/opencv_contrib/archive/4.5.5.tar.gz
+tar -zxvf 4.5.5.tar.gz 
+
+# Create build directory and switch into it
+mkdir -p build && cd build
+
+$ ls -l ../
+ ./
+　├ build/
+　├ opencv-4.5.5/
+　├ opencv_contrib-4.5.5/
+
+# Configure
+cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-4.5.5/modules ../opencv-4.5.5
+```
+
+```
+CC=gcc-9 CXX=g++-9 cmake -D CMAKE_BUILD_TYPE=RELEASE \
+ -D CMAKE_CXX_FLAGS="-std=c++17" \
+ -D CMAKE_INSTALL_PREFIX=/usr/local/lib/opencv4.5 \
+ -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib-4.5.5/modules \
+ -D INSTALL_C_EXAMPLES=ON \
+ -D INSTALL_TESTS=ON \
+ -D WITH_MKL=OFF \
+ -D WITH_CUDA=ON \
+ -D CUDA_FAST_MATH=ON \
+ -D WITH_CUDNN=ON \
+ -D ENABLE_FAST_MATH=ON \
+ -D CUDA_ARCH_BIN=7.5 \
+ -D CUDA_ARCH_PTX=7.5 \
+ -D BUILD_EXAMPLES=ON \
+ -D WITH_TBB=ON \
+ -D BUILD_TBB=ON \
+ -D WITH_V4L=ON \
+ -D WITH_QT=ON \
+ -D WITH_GTK=ON \
+ -D CVV_DEBUG_MODE=ON \
+ -D WITH_OPENCL=ON \
+ -D WITH_OPENGL=ON \
+ -D OPENCV_SKIP_DLLMAIN_GENERATION=ON \
+ -D BUILD_opencv_python2=OFF \
+ -D BUILD_opencv_python3=ON \
+ -D INSTALL_PYTHON_EXAMPLES=ON \
+ -D WITH_PYTHON=ON \
+ -D PYTHON_DEFAULT_EXECUTABLE=python3 \
+ -D PYTHON3_NUMPY_INCLUDE_DIRS=/home/philphoenix/.local/lib/python3.8/site-packages/numpy/core/include/numpy \
+ ../opencv-4.5.5
+```
+
+Error Msg:  
+```
+In file included from /usr/include/cuda_runtime.h:83,
+                 from <command-line>:
+/usr/include/crt/host_config.h:138:2: error: #error -- unsupported GNU version! gcc versions later than 8 are not supported!
+  138 | #error -- unsupported GNU version! gcc versions later than 8 are not supported!
+      |  ^~~~~
+CMake Error at cuda_compile_1_generated_gpu_mat.cu.o.RELEASE.cmake:222 (message):
+  Error generating
+  /home/philphoenix/projects/OpenCV/build/modules/core/CMakeFiles/cuda_compile_1.dir/src/cuda/./cuda_compile_1_generated_gpu_mat.cu.o
+
+
+make[2]: *** [modules/core/CMakeFiles/opencv_core.dir/build.make:65: modules/core/CMakeFiles/cuda_compile_1.dir/src/cuda/cuda_compile_1_generated_gpu_mat.cu.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:6018: modules/core/CMakeFiles/opencv_core.dir/all] Error 2
+make: *** [Makefile:163: all] Error 2
+```
+
+## OpenCV Installtion without CUDA      
+Build with opencv_contrib 
+```
+# Install minimal prerequisites (Ubuntu 18.04 as reference)
+sudo apt update && sudo apt install -y cmake g++ wget unzip
+
+# Download and unpack sources
+wget -O 4.5.5.tar.gz https://github.com/opencv/opencv/archive/4.5.5.tar.gz
+tar -zxvf 4.5.5.tar.gz 
+wget -O 4.5.5.tar.gz https://github.com/opencv/opencv_contrib/archive/4.5.5.tar.gz
+tar -zxvf 4.5.5.tar.gz 
+
+# Create build directory and switch into it
+mkdir -p build && cd build
+
+$ ls -l ../
+ ./
+　├ build/
+　├ opencv-4.5.5/
+　├ opencv_contrib-4.5.5/
+
+# Configure
+cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-4.5.5/modules ../opencv-4.5.5
+```
+
+[60_test_opencv.cpp](60_test_opencv.cpp)  
+
+## Reference  
+[OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
+[CUDAありのOpenCVをbuildしたった(Ubuntu18.04) 2020-12-07](https://qiita.com/satsukiya/items/7d5a5e66bb361667f882)  
+
+[Cudaに対応したOpenCVのビルド方法（OpenCV with Cuda）2023-07-15](https://qiita.com/wahhoi22/items/d9ef90877fdb41dba1af)  
+[GPU(CUDA)を有効にしたOpenCVのインストール方法 2023-03-19](https://chantastu.hatenablog.com/entry/2023/03/19/105908)  
+[CUDA_ARCH_BIN](https://developer.nvidia.com/cuda-gpus#collapse2)  
+[How to install OpenCV 4.2.0 with CUDA 10.1 on Ubuntu 20.04 LTS (Focal Fossa) May 9, 2020](https://medium.com/@sb.jaduniv/how-to-install-opencv-4-2-0-with-cuda-10-1-on-ubuntu-20-04-lts-focal-fossa-bdc034109df3)    
+
+
+[OpenCVをビルドしてg++で実行する 2023-09-04](https://qiita.com/KaoruHosokawa00/items/406ae00eaa99ce77d00c)
+
+
 # Troubleshooting
+
 ## install libgtk2.0-dev and pkg-config, then re-run cmake or  
 [【opencv】——ubuntu源码安装opencv之后，编译通过后，运行报错：install libgtk2.0-dev and pkg-config, then re-run cmake or 2020-10-16](https://blog.csdn.net/u011622208/article/details/109117436)  
 
@@ -647,6 +895,7 @@ k-meansでk個のカテゴリに分類し、各カテゴリ毎にそのカテゴ
 sudo apt-get install libgtk2.0-dev pkg-config
 pip install opencv-contrib-python
 ```
+
 ## ModuleNotFoundError: No module named '_lzma'  
 ```
 ModuleNotFoundError: No module named '_lzma'
