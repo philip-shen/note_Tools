@@ -73,6 +73,8 @@
    * [OpenCV on Ubuntu in C++](#opencv-on-ubuntu-in-c)
      * [OpenCV Installtion with CUDA](#opencv-installtion-with-cuda)
      * [OpenCV Installtion without CUDA](#opencv-installtion-without-cuda)
+     * [Header files and Library files](#header-files-and-library-files)
+     * [RGB and Gray Scale](#rgb-and-gray-scale)
      * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
@@ -88,96 +90,6 @@
                * [h5 size](#h5-size)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
-<!-- TOC -->
-
-- [Table of Contents](#table-of-contents)
-- [Purpose](#purpose)
-- [Image Processing Tutorials](#image-processing-tutorials)
-    - [Sampling and Quantization](#sampling-and-quantization)
-    - [Scaling and Rotation](#scaling-and-rotation)
-    - [Image Enhancement](#image-enhancement)
-        - [Image Negative](#image-negative)
-        - [Gamma Correct](#gamma-correct)
-        - [Beta Correct](#beta-correct)
-        - [Histogram Equalize](#histogram-equalize)
-            - [Reference](#reference)
-        - [Average Filtering](#average-filtering)
-        - [Gaussian Filtering](#gaussian-filtering)
-    - [Image Gradiant and Image Sharpening](#image-gradiant-and-image-sharpening)
-        - [Sobel Filtering and Scharr Filtering](#sobel-filtering-and-scharr-filtering)
-        - [Laplacian and Composite Laplacian](#laplacian-and-composite-laplacian)
-        - [Unsharp Masking, Median Filter, and Bilateral Filtering](#unsharp-masking-median-filter-and-bilateral-filtering)
-    - [Noise, PSNR](#noise-psnr)
-    - [Image Inpainting](#image-inpainting)
-            - [Reference](#reference)
-    - [Affine Transformation and Pseudocolor Transform](#affine-transformation-and-pseudocolor-transform)
-        - [Shift_X](#shift_x)
-        - [Shift_y](#shift_y)
-        - [Random_Shift](#random_shift)
-        - [Scale](#scale)
-        - [Horizontal Shear](#horizontal-shear)
-        - [Vertical Shear from Upper Right](#vertical-shear-from-upper-right)
-        - [Vertical Shear from Upper Left](#vertical-shear-from-upper-left)
-        - [Horizontal Flip](#horizontal-flip)
-        - [Vertical Flip](#vertical-flip)
-        - [Rotate at Upper Left](#rotate-at-upper-left)
-        - [Rotate at Central Point](#rotate-at-central-point)
-        - [Rotate Fit](#rotate-fit)
-        - [Image Mosaicing](#image-mosaicing)
-            - [Reference](#reference)
-    - [Edge Detection, Morphology Transform](#edge-detection-morphology-transform)
-        - [Sobel laplacian_Filter](#sobel-laplacian_filter)
-        - [Canny](#canny)
-        - [Morghology](#morghology)
-        - [Rinkaku](#rinkaku)
-        - [Reference](#reference)
-    - [Image Thresholding, Adaptive Thresholding, Watershed, and GrabCut](#image-thresholding-adaptive-thresholding-watershed-and-grabcut)
-    - [Line Detection and Circle Detection](#line-detection-and-circle-detection)
-        - [findcontours: RetrievalModes](#findcontours-retrievalmodes)
-            - [Black Contours](#black-contours)
-            - [White Contours](#white-contours)
-            - [RETR_EXTERNAL](#retr_external)
-            - [RETR_LIST](#retr_list)
-            - [RETR_CCOMP](#retr_ccomp)
-            - [RETR_TREE](#retr_tree)
-        - [Reference](#reference)
-    - [Region, Pattern recongnition](#region-pattern-recongnition)
-        - [WaterShed](#watershed)
-        - [Edge Info](#edge-info)
-        - [Circel Detection](#circel-detection)
-        - [Static Saliency](#static-saliency)
-        - [Face Detection](#face-detection)
-        - [Human Detection](#human-detection)
-        - [K-means](#k-means)
-        - [BOVW: Bag Of Visual Words](#bovw-bag-of-visual-words)
-    - [Flourier Transformation](#flourier-transformation)
-    - [Moment](#moment)
-- [OpenCV-Python Tutorials](#opencv-python-tutorials)
-    - [dlib](#dlib)
-    - [A: cv2.CascadeClassifier](#a-cv2cascadeclassifier)
-    - [B: cv2.dnn_DetectionModel](#b-cv2dnn_detectionmodel)
-    - [C: cv2.FaceDetectorYN](#c-cv2facedetectoryn)
-    - [D: cv2.FaceRecognizerSF](#d-cv2facerecognizersf)
-    - [Reference](#reference)
-- [OpenCV on Ubuntu in C++](#opencv-on-ubuntu-in-c)
-    - [OpenCV Installtion with CUDA](#opencv-installtion-with-cuda)
-    - [OpenCV Installtion without CUDA](#opencv-installtion-without-cuda)
-    - [Reference](#reference)
-- [Troubleshooting](#troubleshooting)
-    - [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
-    - [ModuleNotFoundError: No module named '_lzma'](#modulenotfounderror-no-module-named-_lzma)
-    - [How to install tkinter for python 3.7 on xubuntu 20.04?](#how-to-install-tkinter-for-python-37-on-xubuntu-2004)
-    - [Can't use SURF, SIFT in OpenCV](#cant-use-surf-sift-in-opencv)
-    - [BRIEF Binary Robust Independent Elementary Features](#brief-binary-robust-independent-elementary-features)
-- [Reference](#reference)
-- [h1 size](#h1-size)
-    - [h2 size](#h2-size)
-        - [h3 size](#h3-size)
-            - [h4 size](#h4-size)
-                - [h5 size](#h5-size)
-
-<!-- /TOC -->
 
 # Purpose  
 Take note of OpenCV  
@@ -871,7 +783,22 @@ $ ls -l ../
 cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-4.5.5/modules ../opencv-4.5.5
 ```
 
-[60_test_opencv.cpp](60_test_opencv.cpp)  
+## Header files and Library files  
+```
+$ ls -C /usr/local/include/opencv4/opencv2 | expand
+```
+
+```
+$ ls /usr/local/lib | grep libopencv | column -c 80 | expand
+```
+
+[50_test_opencv.cpp](50_test_opencv.cpp)  
+
+## RGB and Gray Scale  
+[51_rgb_basic.cpp](51_rgb_basic.cpp)  
+[52_grayscale.cpp](52_grayscale.cpp)  
+
+<img src="media/52_grayscale.jpg" width="600" height="300">
 
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
@@ -884,6 +811,7 @@ cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-4.5.5/modules ../opencv-4.5.
 
 
 [OpenCVをビルドしてg++で実行する 2023-09-04](https://qiita.com/KaoruHosokawa00/items/406ae00eaa99ce77d00c)
+[OpenCV 4.3 (C++) で Hello World と顔検出 2020-05-04](https://qiita.com/niwasawa/items/87feb5f7923bbe2a7e26)
 
 
 # Troubleshooting
