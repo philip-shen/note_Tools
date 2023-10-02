@@ -75,6 +75,7 @@
      * [OpenCV Installtion without CUDA](#opencv-installtion-without-cuda)
      * [Header files and Library files](#header-files-and-library-files)
      * [RGB and Gray Scale](#rgb-and-gray-scale)
+     * [Brightness and Contrast](#brightness-and-contrast)
      * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
@@ -800,6 +801,10 @@ $ ls /usr/local/lib | grep libopencv | column -c 80 | expand
 
 <img src="media/52_grayscale.jpg" width="600" height="300">
 
+## Brightness and Contrast
+[53_brightness_contrast.cpp](53_brightness_contrast.cpp)  
+<img src="media/53_brightness_contrast.jpg" width="600" height="700">  
+
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
 [CUDAありのOpenCVをbuildしたった(Ubuntu18.04) 2020-12-07](https://qiita.com/satsukiya/items/7d5a5e66bb361667f882)  
@@ -812,6 +817,13 @@ $ ls /usr/local/lib | grep libopencv | column -c 80 | expand
 
 [OpenCVをビルドしてg++で実行する 2023-09-04](https://qiita.com/KaoruHosokawa00/items/406ae00eaa99ce77d00c)
 [OpenCV 4.3 (C++) で Hello World と顔検出 2020-05-04](https://qiita.com/niwasawa/items/87feb5f7923bbe2a7e26)
+
+[CMakeLists.txt から始めよう 2019-07-12](https://qiita.com/nonbiri15/items/c77c046f0e10f8140cfe)  
+[Using OpenCV with gcc and CMake](http://docs.opencv.org/3.0-beta/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.html#linux-gcc-usage) 
+[Define preprocessor macro through CMake? Jan 26, 2012](https://stackoverflow.com/questions/9017573/define-preprocessor-macro-through-cmake)
+[第4回　初めてのOpenCV開発 ― Visual Studio／CMake／NuGetでプロジェクト作成【OpenCV 3.0／3.1】2016-06-01](https://atmarkit.itmedia.co.jp/ait/articles/1606/01/news195.html)
+
+[圖解C++影像處理與OpenCV應用：從基礎到高階，深入學習超硬核技術！](https://ithelp.ithome.com.tw/users/20161732/ironman/5994)
 
 
 # Troubleshooting
