@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.27)
 project(OpenCV_Cpp)
 
 # Copy resouce
-file(COPY ${CMAKE_SOURCE_DIR}/media/ DESTINATION ${PROJECT_BINARY_DIR}/media/)
-add_definitions(-DRESOURCE_DIR="${PROJECT_BINARY_DIR}/media/")
+#file(COPY ${CMAKE_SOURCE_DIR}/media/ DESTINATION ${PROJECT_BINARY_DIR}/media/)
+#add_definitions(-DRESOURCE_DIR="${PROJECT_BINARY_DIR}/media/")
 
 # Create Main project
 set(SOURCES
-    53_brightness_contrast.cpp
+    56_adaptiveThreshold.cpp
 )
 
 set(HEADERS

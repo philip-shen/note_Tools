@@ -76,6 +76,8 @@
      * [Header files and Library files](#header-files-and-library-files)
      * [RGB and Gray Scale](#rgb-and-gray-scale)
      * [Brightness and Contrast](#brightness-and-contrast)
+     * [Histogram Equalization](#histogram-equalization)
+     * [Adaptive Threshold](#adaptive-threshold)
      * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
@@ -793,17 +795,25 @@ $ ls -C /usr/local/include/opencv4/opencv2 | expand
 $ ls /usr/local/lib | grep libopencv | column -c 80 | expand
 ```
 
-[50_test_opencv.cpp](50_test_opencv.cpp)  
+[50_test_opencv.cpp](cpp/50_test_opencv.cpp)  
 
 ## RGB and Gray Scale  
-[51_rgb_basic.cpp](51_rgb_basic.cpp)  
-[52_grayscale.cpp](52_grayscale.cpp)  
+[51_rgb_basic.cpp](cpp/51_rgb_basic.cpp)  
+[52_grayscale.cpp](cpp/52_grayscale.cpp)  
 
 <img src="media/52_grayscale.jpg" width="600" height="300">
 
 ## Brightness and Contrast
-[53_brightness_contrast.cpp](53_brightness_contrast.cpp)  
+[53_brightness_contrast.cpp](cpp/53_brightness_contrast.cpp)  
 <img src="media/53_brightness_contrast.jpg" width="600" height="700">  
+
+## Histogram Equalization
+[54_histogram-equalization.cpp](cpp/54_histogram-equalization.cpp)  
+<img src="media/54_histogram-equalization.jpg" width="600" height="400">  
+
+## Adaptive Threshold  
+[56_adaptiveThreshold.cpp](cpp/56_adaptiveThreshold)  
+<img src="media/56_adaptiveThreshold.jpg" width="600" height="400">  
 
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
