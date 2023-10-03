@@ -10,7 +10,10 @@
       * [Reference](#reference-1)
    * [CMake for Cross Platform](#cmake-for-cross-platform)
       * [Reference](#reference-2)
-   * [Reference](#reference-3)
+   * [Visual Studio vs. VSCode and CMake](#visual-studio-vs-vscode-and-cmake)
+      * [Reference](#reference-3)   
+   * [Reference](#reference-4)
+
 
 # Upgarde the Latest CMake on Ubuntu  
 
@@ -51,6 +54,72 @@ sudo make install
 
 ## Reference  
 [30 天 CMake 跨平台之旅 2023-09-01](https://ithelp.ithome.com.tw/users/20161950/ironman/6278?page=1)
+
+# Visual Studio vs. VSCode and CMake  
+Visual Studio  | CMake 
+------------------------------------ | --------------------------------------------- 
+language standard | set(CMAKE_CXX_STANDARD 17)
+output directory | install
+additional include directories | target_include_directories
+additional library directories | target_link_directories
+additional dependencies | target_link_libraries
+macro settings | target_compile_definitions
+
+settings.json
+```
+{
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.installPrefix": "${workspaceFolder}/build/install",
+  "cmake.configureArgs": []
+}
+```
+
+tasks.json
+```
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "type": "cmake",
+      "label": "CMake: install",
+      "command": "install"
+    }
+  ]
+}
+```
+
+launch.json
+```
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // for Windows
+      "name": "(msvc) Launch",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${command:cmake.launchTargetPath}",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "CMake: install"
+    },
+    {
+      // for Linux
+      "name": "(gdb) Launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${command:cmake.launchTargetPath}",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "CMake: install"
+    }
+  ]
+}
+```
+
+## Reference  
+[Visual StudioでC++書く人向けのvscode&CMake乗り換えメモ 2023-09-30](https://qiita.com/husty530/items/ba74386a64a87631ef8e)  
+
 
 # Reference 
 [CMakeの使い方（その１）2022-03-25](https://qiita.com/shohirose/items/45fb49c6b429e8b204ac)  
