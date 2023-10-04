@@ -7,7 +7,7 @@ project(OpenCV_Cpp)
 
 # Create Main project
 set(SOURCES
-    56_adaptiveThreshold.cpp
+    60_resize_rect.cpp
 )
 
 set(HEADERS

@@ -71,6 +71,8 @@ void trackbar_callback(int position, void*) {
 
 int main()
 {
+	//boost::timer::cpu_timer timer;
+
 	// 設定OpenCV日誌級別為SILENT，禁止輸出日誌
 	cv::utils::logging::setLogLevel(cv::utils::logging::LOG_LEVEL_SILENT); 
 	grayImage = cv::imread("/home/philphoenix/infinicloud/OpenCV/adaptive_thresholding.jpg", cv::IMREAD_GRAYSCALE);

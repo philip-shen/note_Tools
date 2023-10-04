@@ -78,6 +78,10 @@
      * [Brightness and Contrast](#brightness-and-contrast)
      * [Histogram Equalization](#histogram-equalization)
      * [Adaptive Threshold](#adaptive-threshold)
+     * [Otsu Thresholding](#otsu-thresholding)
+     * [Smoothing and Blurring](#smoothing-and-Blurring)
+     * [Image Pyramid](#image-pyramid)
+     * [Resize](#resize)
      * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
@@ -812,8 +816,21 @@ $ ls /usr/local/lib | grep libopencv | column -c 80 | expand
 <img src="media/54_histogram-equalization.jpg" width="600" height="400">  
 
 ## Adaptive Threshold  
-[56_adaptiveThreshold.cpp](cpp/56_adaptiveThreshold)  
+[56_adaptiveThreshold.cpp](cpp/56_adaptiveThreshold.cpp)  
 <img src="media/56_adaptiveThreshold.jpg" width="600" height="400">  
+
+## Otsu Thresholding  
+[57_otsu.cpp](cpp/57_otsu.cpp)  
+
+## Smoothing and Blurring
+[58_smoothing-blurring.cpp](cpp/58_smoothing-blurring.cpp)  
+<img src="media/58_smoothing-blurring.jpg" width="600" height="400">  
+
+## Image Pyramid 
+[59_image_pyramid.cpp](cpp/59_image_pyramid.cpp)
+
+## Resize  
+[60_resize_rect.cpp](cpp/60_resize_rect.cpp)  
 
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
@@ -823,7 +840,6 @@ $ ls /usr/local/lib | grep libopencv | column -c 80 | expand
 [GPU(CUDA)を有効にしたOpenCVのインストール方法 2023-03-19](https://chantastu.hatenablog.com/entry/2023/03/19/105908)  
 [CUDA_ARCH_BIN](https://developer.nvidia.com/cuda-gpus#collapse2)  
 [How to install OpenCV 4.2.0 with CUDA 10.1 on Ubuntu 20.04 LTS (Focal Fossa) May 9, 2020](https://medium.com/@sb.jaduniv/how-to-install-opencv-4-2-0-with-cuda-10-1-on-ubuntu-20-04-lts-focal-fossa-bdc034109df3)    
-
 
 [OpenCVをビルドしてg++で実行する 2023-09-04](https://qiita.com/KaoruHosokawa00/items/406ae00eaa99ce77d00c)
 [OpenCV 4.3 (C++) で Hello World と顔検出 2020-05-04](https://qiita.com/niwasawa/items/87feb5f7923bbe2a7e26)
