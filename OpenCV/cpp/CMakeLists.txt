@@ -7,7 +7,7 @@ project(OpenCV_Cpp)
 
 # Create Main project
 set(SOURCES
-    60_resize_rect.cpp
+    65_contour_area.cpp
 )
 
 set(HEADERS

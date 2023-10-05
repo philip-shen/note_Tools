@@ -79,9 +79,12 @@
      * [Histogram Equalization](#histogram-equalization)
      * [Adaptive Threshold](#adaptive-threshold)
      * [Otsu Thresholding](#otsu-thresholding)
-     * [Smoothing and Blurring](#smoothing-and-Blurring)
+     * [Smoothing and Blurring](#smoothing-and-blurring)
      * [Image Pyramid](#image-pyramid)
      * [Resize](#resize)
+     * [Hue_Saturation_Value](#hue_saturation_value)
+     * [Gradient, Edge and Edge Dection](#gradient-edge-and-edge-dection)
+     * [Contour and Area](#contour-and-area)
      * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
@@ -97,6 +100,7 @@
                * [h5 size](#h5-size)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 
 # Purpose  
 Take note of OpenCV  
@@ -832,6 +836,145 @@ $ ls /usr/local/lib | grep libopencv | column -c 80 | expand
 ## Resize  
 [60_resize_rect.cpp](cpp/60_resize_rect.cpp)  
 
+## Hue_Saturation_Value  
+
+```
+1. 色相（Hue）：
+     色相指的是顏色的種類或在彩虹光譜上的位置。以0到360度的角度值表示，其中0度對應紅色，60度對應黃色，120度對應綠色，240度對應藍色，以此類推。這種方式讓我們能夠直觀地區分不同的顏色，並控制顏色的變化。
+2. 飽和度（Saturation）：
+      飽和度表示顏色的純度或鮮艷度。以0%到100%之間的值來表示。較高的飽和度表示顏色更鮮艷，而較低的飽和度則會使顏色變得更加褪色，看起來更白。
+3. 明度（Value）：
+      明度表示顏色的明亮度或亮度。同樣是以0%到100%之間的值表示。明度值較高的顏色看起來更明亮，而明度值較低的顏色看起來更昏暗。
+
+https://ithelp.ithome.com.tw/upload/images/20230925/201617321jxZ6Y92wO.png
+```
+<img src="https://ithelp.ithome.com.tw/upload/images/20230925/2016173215Hq4EQdlH.png" width="600" height="400">  
+
+[由 Jacob Rus - 自己的作品, CC BY-SA 3](https://commons.wikimedia.org/w/index.php?curid=9445469)
+
+[61_bgr2hsv.cpp](cpp/61_bgr2hsv.cpp)  
+<img src="media/61_hsv_palm.jpg" width="600" height="450">  
+
+## Morphology  
+```
+1. 擴張(Dilation)
+
+擴張的原理基於一個稱為結構元素的核，在影像上做摺積。以下是擴張運算的原理：
+
+   1. 結構元素(kernel)：擴張運算使用一個事先定義的結構元素，通常是一個小的矩形、圓形或其他形狀的核w(x,y)。
+   
+   2. 摺積操作：尋找結構元素中的最大值，並將這個最大值放在結構元素的錨(anchor)上，意思是核的中心點，下圖例右圖紅色的數字即為錨。可以看到下圖例，只要結構元素內有一個元素為1，摺積出來的結果就為1。
+   
+   3. 結果生成：產生一個新的影像，可以看到下圖1的區域變得更大、更廣泛。
+```
+```
+2. 侵蝕(Erosion)
+
+侵蝕（Erosion）原理一樣是基於一個結構元素的核，在影像上做摺積。以下是侵蝕運算的原理：
+
+   1. 結構元素（kernel）：侵蝕運算使用一個事先定義的結構元素，通常是一個小的矩形、圓形或其他形狀的核w(x,y)。
+   
+   2. 卷積操作：尋找結構元素中的最小值，並將這個最大值放在結構元素的錨(anchor)上，可以看到下圖例，只要結構元素內有一個元素不為1，摺積出來的結果就為0。
+   
+   3. 結果生成：產生一個新的影像，可以看到下圖1的區域變得更小、更緊湊。
+```
+```
+3. 開運算(Opening)
+
+開運算是由侵蝕（Erosion）後接著擴張（Dilation）所組成的運算。運算的步驟如下：
+
+   1. 對影像應用侵蝕運算。這個步驟會縮小或消除影像中小的白色區域（或物體），去除小的噪聲或連接物體的細小連接部分。
+
+   2. 對侵蝕後的影像應用擴張運算。這個步驟可以填充或擴展物體，但被侵蝕的細小部分無法恢復。
+```
+```
+4. 閉運算(Closing)
+
+閉運算是由擴張（Dilation）後接著侵蝕（Erosion）所組成的運算。運算的步驟如下：
+
+   1. 對影像座擴張運算。這個步驟會擴大或填充影像中的白色區域（或物體），有助於閉合物體的小間隙。
+   2. 對擴張後的影像進行侵蝕運算。這個步驟會縮小物體，但無法消除雜訊。
+```
+
+[62_morphology.cpp](cpp/62_morphology.cpp)  
+
+## Gradient, Edge and Edge Dection   
+```
+1. 梯度(Gradient)
+
+在數學和物理學領域，「梯度」是一個重要的概念，它用來描繪變化率和方向之間的關係。梯度是一個向量，可以提供函數在不同方向上變化的速率(斜率)和趨勢。
+這個概念在多個學科中均有廣泛應用，在影像處理中，梯度可以用來檢測影像的明暗變化率，相當於做一階微分，變化越強的位置越有可能是邊緣。下
+```
+
+```
+2. 什麼是邊緣
+
+「邊緣」指的是影像中強度或顏色突然劇變的地方，通常這些地方代表著物體或結構的界限。
+這些邊緣是影像中值得關注的區域，因為它們反映了物體之間的分界，進一步協助我們進行物體辨識、分割以及其他相關的電腦視覺應用。
+```
+
+```
+3. 邊緣檢測
+
+在邊緣檢測中，「梯度」被用來表示影像中強度變化的情況。劇烈的變化通常隱含著物體的邊緣或輪廓。
+我們通常會在影像的每個像素位置計算梯度，以瞭解影像不同區域的變化。
+
+邊緣檢測的核心概念是計算影像f(x,y)在不同方向上的梯度，也就是是計算影像的一階導數 f'(x,y)求出特定座標處影像灰階值的變化率。
+由於影像f(x,y)的離散性質，我們可以將上文的梯度計算公式中的變化量Δx和Δy替換為1。這樣一來，我們就能夠計算出影像f(x,y)在不同方向上的一階導數。
+這種方法使我們能夠捕捉到影像中的強度變化，從而識別出潛在的邊緣區域。
+```
+
+```
+4. 邊緣檢測運算子(Operator)
+
+在進行邊緣檢測的過程中，我們需要使用特定的運算子。
+透過這些運算子對整張圖片進行摺積運算，我們能夠生成一個新的輪廓圖，這個輪廓圖可以用來突顯並提取影像中的輪廓。
+這個運算子的大小和內容將直接影響到邊緣檢測的結果。運算子的內容由一組權重構成，這些係數將與影像中相鄰像素的值進行加權總和，產生新的像素值。
+
+   1) Roberts 運算子
+      Roberts邊緣檢測是一種簡單的邊緣檢測方法，用於識別影像中的邊緣區域。
+      它使用兩個 2x2 的矩陣（稱為 Roberts 運算子）來計算影像的梯度，進而捕捉出強度變化的區域。
+
+   2) Sobel 運算子
+      Sobel運算子是一種常用於影像邊緣檢測的過濾器，用於捕捉影像中的強度變化，從而識別出物體的邊緣或輪廓。
+      Sobel運算子通常在影像處理和計算機視覺中使用，它有助於檢測影像中的局部強度變化，從而找到物體的邊界。
+      Sobel運算子可以計算每個像素的水平和垂直方向的梯度（變化率）。這些梯度可以用來識別影像中的亮度變化，進而找到邊緣位置。
+      Sobel運算子的核心權重較簡單，計算複雜度相對較低，但在某些情況下可能對雜訊較敏感。
+   
+   3) Scharr 運算子
+      Scharr運算子是一種用於邊緣檢測的濾波器，它與Sobel運算子類似，但在計算梯度時更加敏感，檢測弱邊緣的能力較強。
+      
+   4) Prewitt 運算子
+      Prewitt是一種邊緣檢測演算法，用於檢測影像中的邊緣特徵。
+      Prewitt具有雜訊抑制的作用，可減少雜訊帶來的誤判。
+
+   5) Laplacian 運算子
+      Laplacian（拉普拉斯）是一種在影像處理中廣泛使用的邊緣檢測算法。
+      它不同於Sobel、Scharr、Prewitt等運算子，Laplacian是一種二階導數運算子，它在捕捉影像中的細微變化和邊緣更加敏感。   
+```
+
+[63_edge_dection.cpp](cpp/63_edge_dection.cpp)  
+<img src="media/63_edge_dection.jpg" width="600" height="500">  
+
+## Contour and Area 
+
+[64_contour.cpp](cpp/64_contour.cpp)  
+<img src="media/64_contour.jpg" width="600" height="400">  
+
+```
+重要な関数はfindContoursとdrawContours。
+findContoursは輪郭間のネスト関係を保存してくれていて、スケールバーを動かすとcontourを表示する際のhierarchyを変えてくれます。
+説明だとこの辺り？
+```
+```
+Maximal level for drawn contours. If it is 0, only the specified contour is drawn. If it is 1, the function draws the contour(s) and all the nested contours. If it is 2, the function draws the contours, all the nested contours, all the nested-to-nested contours, and so on. This parameter is only taken into account when there is hierarchy available.
+```
+[64_contour2.cpp](cpp/64_contour2.cpp)  
+<img src="media/64_contour2.jpg" width="600" height="400">  
+
+[65_contour_area.cpp](cpp/65_contour_area.cpp)  
+<img src="media/65_contour_area.jpg" width="900" height="400">  
+
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
 [CUDAありのOpenCVをbuildしたった(Ubuntu18.04) 2020-12-07](https://qiita.com/satsukiya/items/7d5a5e66bb361667f882)  
@@ -848,6 +991,8 @@ $ ls /usr/local/lib | grep libopencv | column -c 80 | expand
 [Using OpenCV with gcc and CMake](http://docs.opencv.org/3.0-beta/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.html#linux-gcc-usage) 
 [Define preprocessor macro through CMake? Jan 26, 2012](https://stackoverflow.com/questions/9017573/define-preprocessor-macro-through-cmake)
 [第4回　初めてのOpenCV開発 ― Visual Studio／CMake／NuGetでプロジェクト作成【OpenCV 3.0／3.1】2016-06-01](https://atmarkit.itmedia.co.jp/ait/articles/1606/01/news195.html)
+
+[Mac+Opencvで医療画像解析 2017-09-08](https://qiita.com/carushi@github/items/1994a7454fc3d2971741)  
 
 [圖解C++影像處理與OpenCV應用：從基礎到高階，深入學習超硬核技術！](https://ithelp.ithome.com.tw/users/20161732/ironman/5994)
 
