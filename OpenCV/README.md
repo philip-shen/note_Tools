@@ -975,6 +975,30 @@ Maximal level for drawn contours. If it is 0, only the specified contour is draw
 [65_contour_area.cpp](cpp/65_contour_area.cpp)  
 <img src="media/65_contour_area.jpg" width="900" height="400">  
 
+## Hu moments and Shape Match  
+
+```
+4. Hu不變矩(Hu's invariant moments)
+
+最後，我們解決了上述各種操作對矩的影響，包括平移、縮放。
+然而我們還沒有考慮旋轉、鏡射對矩的影響，為了解決旋轉、鏡射對矩的影響，Hu不變矩因此誕生。
+Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定義：
+```
+
+```
+1. 形狀比對
+
+形狀比對的原理是利用Hu矩比較兩個形狀，並計算它們之間的數值差異。然而，要如何比對兩個帶有七個小數點的數據呢？形狀比對的流程如下：
+
+   1. 計算兩形狀的Hu矩。
+   2. 選定的距離度量方式，計算兩個Hu矩之間的差異。
+   3. 如果差異值夠小，則可以認形狀為相似，反之形狀為不相似。
+```
+[66_hu_moments.cpp](cpp/66_hu_moments.cpp)  
+
+[66_hu_moments3.cpp](cpp/66_hu_moments3.cpp)  
+<img src="media/66_hu_moments3.jpg" width="900" height="400">  
+
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
 [CUDAありのOpenCVをbuildしたった(Ubuntu18.04) 2020-12-07](https://qiita.com/satsukiya/items/7d5a5e66bb361667f882)  
@@ -993,6 +1017,7 @@ Maximal level for drawn contours. If it is 0, only the specified contour is draw
 [第4回　初めてのOpenCV開発 ― Visual Studio／CMake／NuGetでプロジェクト作成【OpenCV 3.0／3.1】2016-06-01](https://atmarkit.itmedia.co.jp/ait/articles/1606/01/news195.html)
 
 [Mac+Opencvで医療画像解析 2017-09-08](https://qiita.com/carushi@github/items/1994a7454fc3d2971741)  
+[cv::matchShapesによる形状マッチングを試してみた 2016-02-07](https://qiita.com/fuzuki57/items/48ed43ec15195ca8a2d4)  
 
 [圖解C++影像處理與OpenCV應用：從基礎到高階，深入學習超硬核技術！](https://ithelp.ithome.com.tw/users/20161732/ironman/5994)
 
