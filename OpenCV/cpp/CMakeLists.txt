@@ -7,7 +7,7 @@ project(OpenCV_Cpp)
 
 # Create Main project
 set(SOURCES
-    66_hu_moments3.cpp
+    67_hough_line_transform3.cpp
 )
 
 set(HEADERS

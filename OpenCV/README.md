@@ -56,6 +56,8 @@
          * [WaterShed](#watershed)
          * [Edge Info](#edge-info)
          * [Circel Detection](#circel-detection)
+         * [Square Detection](#square-detection)
+         * [Hough Transform](#hough-transform)
          * [Static Saliency](#static-saliency)
          * [Face Detection](#face-detection)
          * [Human Detection](#human-detection)
@@ -85,6 +87,8 @@
      * [Hue_Saturation_Value](#hue_saturation_value)
      * [Gradient, Edge and Edge Dection](#gradient-edge-and-edge-dection)
      * [Contour and Area](#contour-and-area)
+     * [Hu moments and Shape Match](#hu-moments-and-shape-match)
+     * [Hough Line Transform and Hough Circle Transform](#hough-line-transform-and-hough-circle-transform)
      * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
@@ -508,6 +512,7 @@ contours, hierarchy = cv2.findContours(image, mode, method[, contours[, hierarch
 [[OpenCV][Python3]検出した輪郭を描画し、輪郭線を近似して滑らかにする Last updated at 2019-07-05](https://qiita.com/y_kani/items/c9861b1f3517c32491d6#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB)  
 [【OpenCV; Python】findcontours関数のまとめ Last updated at 2017-11-26](https://qiita.com/anyamaru/items/fd3d894966a98098376c)  
 
+
 ## Region, Pattern recongnition  
 [python+opencvで画像処理の勉強7 領域処理](https://qiita.com/tanaka_benkyo/items/0a607c01fcbe8e0a934f)  
 [34_1_region_texture.py](34_1_region_texture.py)  
@@ -538,9 +543,24 @@ k-meansに比べてMean-shiftの方がバランスよく分けられているこ
 <img src="./media/34_2_maru_detect.jpg" width="500" height="400">  
 <img src="./media/34_2_maru_detect02.jpg" width="500" height="400">  
 
+### Square Detection  
+
+[34_4_pattern_square.py](34_4_pattern_square.py)  
+<img src="./media/34_4_pattern_square.jpg" width="500" height="400">  
+
+[輪郭から四角形を検出 2020-12-09](https://qiita.com/sitar-harmonics/items/ac584f99043574670cf3)  
+
+### Hough Transform  
+
+[35_2_Hough_circle.py](35_2_Hough_circle.py)  
+<img src="./media/35_2_hough_circle.jpg" width="700" height="400">  
+
+[【画像処理】くっついている硬貨(コイン)を検出してみよう 2022-03-24](https://qiita.com/spc_ehara/items/afba011e15392c7851f6)  
+[画像処理入門講座 : OpenCVとPythonで始める画像処理 2016-4-6日](https://postd.cc/image-processing-101/)   
+[piratefsh/image-processing-101](https://github.com/piratefsh/image-processing-101)  
+
 ### Static Saliency   
 <img src="./media/34_2_static_saliency.jpg" width="800" height="400">  
-
 
 [python+opencvで画像処理の勉強9 パターン認識](https://qiita.com/tanaka_benkyo/items/43ef63f54f3dc191e64b)  
 [34_3_pattern_recongnition.py](34_3_pattern_recongnition.py)  
@@ -653,7 +673,8 @@ k-meansでk個のカテゴリに分類し、各カテゴリ毎にそのカテゴ
 [07_real_time_detector.py](07_real_time_detector.py)  
 
 [(第5回)Python + OpenCV で遊んでみる(YOLOを用いた物体検出編)](https://itport.cloud/?p=7652)  
-[]()
+
+
 
 [(最終回)Python + OpenCVで遊んでみる(OCR編)](https://itport.cloud/?p=8326)  
 
@@ -999,6 +1020,13 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 [66_hu_moments3.cpp](cpp/66_hu_moments3.cpp)  
 <img src="media/66_hu_moments3.jpg" width="900" height="400">  
 
+# Hough Line Transform and Hough Circle Transform  
+
+[67_hough_ine_transform.cpp](cpp/67_hough_ine_transform.cpp)  
+
+[67_hough_ine_transform3.cpp](cpp/67_hough_ine_transform3.cpp)  
+<img src="media/67_hough_line_transform3.jpg" width="900" height="400">  
+
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
 [CUDAありのOpenCVをbuildしたった(Ubuntu18.04) 2020-12-07](https://qiita.com/satsukiya/items/7d5a5e66bb361667f882)  
@@ -1018,6 +1046,12 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 
 [Mac+Opencvで医療画像解析 2017-09-08](https://qiita.com/carushi@github/items/1994a7454fc3d2971741)  
 [cv::matchShapesによる形状マッチングを試してみた 2016-02-07](https://qiita.com/fuzuki57/items/48ed43ec15195ca8a2d4)  
+[使用MOMENTS描述辨識葉片類型 2017-03-24](https://chtseng.wordpress.com/2017/03/24/%e4%bd%bf%e7%94%a8moments%e6%8f%8f%e8%bf%b0%e8%91%89%e7%89%87%e9%a1%9e%e5%9e%8b/)  
+[ch-tseng/computerVisionLib](https://github.com/ch-tseng/computerVisionLib/tree/master)  
+[ch-tseng/detectLeaf](https://github.com/ch-tseng/detectLeaf)
+
+[画像処理とC++を用いたアナログメーターの自動読み取り　アルゴリズム実装 2021-09-18](https://qiita.com/seamcarving/items/f20eed42d4d778db1fa7)
+[seamcarving / pressure_gaugesA2D](https://github.com/seamcarving/pressure_gaugesA2D)    
 
 [圖解C++影像處理與OpenCV應用：從基礎到高階，深入學習超硬核技術！](https://ithelp.ithome.com.tw/users/20161732/ironman/5994)
 
