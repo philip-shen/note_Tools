@@ -41,7 +41,7 @@ void on_line_index_change(int position, void*) {
 int main()
 {
 	cv::utils::logging::setLogLevel(cv::utils::logging::LOG_LEVEL_SILENT); 
-	grayImage = cv::imread("/home/philphoenix/infinicloud/OpenCV/67_hough_line_transform3.jpg", cv::IMREAD_GRAYSCALE); // 讀取灰度圖像
+	grayImage = cv::imread("/home/philphoenix/infinicloud/OpenCV/67_hough_line_68_hough_circle_transform.jpg", cv::IMREAD_GRAYSCALE); // 讀取灰度圖像
 
     cv::namedWindow("Line", cv::WindowFlags::WINDOW_NORMAL); // 建立一個視窗用於顯示線的詳細信息
     cv::resizeWindow("Line", 512.0f * ((float)grayImage.cols / grayImage.rows), 512);
@@ -50,8 +50,10 @@ int main()
 	cv::Canny(grayImage, edge_image, 28, 16); // 使用Canny邊緣檢測
 
 	cv::HoughLines(edge_image, lines, 1, CV_PI / 180, 150); // 應用霍夫變換來檢測線段
-	cv::createTrackbar("Index", "Line", NULL, 0, on_line_index_change); // 建立一個滑動條用於選擇線的索引
-	cv::setTrackbarMax("Index", "Line", lines.size() - 1); // 設定滑動條的最大值
+	cv::createTrackbar("Index", "Line", NULL, lines.size() - 1, on_line_index_change); // 建立一個滑動條用於選擇線的索引
+	
+	//cv::createTrackbar("Index", "Line", NULL, 0, on_line_index_change); // 建立一個滑動條用於選擇線的索引
+	//cv::setTrackbarMax("Index", "Line", lines.size() - 1); // 設定滑動條的最大值
 	cv::waitKey(0); 
 
 	return 0;

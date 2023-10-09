@@ -1023,9 +1023,13 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 # Hough Line Transform and Hough Circle Transform  
 
 [67_hough_ine_transform.cpp](cpp/67_hough_ine_transform.cpp)  
+<img src="media/67_hough_line_transform.jpg" width="900" height="400">  
 
 [67_hough_ine_transform3.cpp](cpp/67_hough_ine_transform3.cpp)  
 <img src="media/67_hough_line_transform3.jpg" width="900" height="400">  
+
+[68_hough_circle_transform.cpp](cpp/68_hough_circle_transform.cpp)  
+<img src="media/68_hough_circle_transform2.jpg" width="900" height="400">  
 
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  

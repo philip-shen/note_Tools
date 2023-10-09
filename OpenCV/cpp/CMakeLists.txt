@@ -7,7 +7,7 @@ project(OpenCV_Cpp)
 
 # Create Main project
 set(SOURCES
-    67_hough_line_transform3.cpp
+    68_hough_circle_transform.cpp
 )
 
 set(HEADERS
