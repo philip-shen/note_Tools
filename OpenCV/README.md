@@ -552,8 +552,8 @@ k-meansに比べてMean-shiftの方がバランスよく分けられているこ
 
 ### Hough Transform  
 
-[35_2_Hough_circle.py](35_2_Hough_circle.py)  
-<img src="./media/35_2_hough_circle.jpg" width="700" height="400">  
+[36_2_Hough_circle.py](36_2_Hough_circle.py)  
+<img src="./media/36_2_hough_circle.jpg" width="700" height="400">  
 
 [【画像処理】くっついている硬貨(コイン)を検出してみよう 2022-03-24](https://qiita.com/spc_ehara/items/afba011e15392c7851f6)  
 [画像処理入門講座 : OpenCVとPythonで始める画像処理 2016-4-6日](https://postd.cc/image-processing-101/)   
@@ -624,7 +624,7 @@ k-meansでk個のカテゴリに分類し、各カテゴリ毎にそのカテゴ
 [pythonで一から画像処理 (5)フーリエ変換 Posted at 2020-05-16](https://qiita.com/fugunoko/items/41c33ca163c7bb52d283)
 [35_1_fourier.py](35_1_fourier.py)  
 
-[python+opencvで画像処理の勉強4 周波数領域におけるフィルタリング Last updated at 2022-01-12](https://qiita.com/tanaka_benkyo/items/bfa35e7f08faa7b7a985)
+[python+opencvで画像処理の勉強4 周波数領域におけるフィルタリング Last updated at 2022-01-12](https://qiita.com/tanaka_benkyo/items/bfa35e7f08faa7b7a985)  
 [35_2_fourier.py](35_2_fourier.py)  
 
 ## Moment 
@@ -918,6 +918,7 @@ https://ithelp.ithome.com.tw/upload/images/20230925/201617321jxZ6Y92wO.png
 ```
 
 [62_morphology.cpp](cpp/62_morphology.cpp)  
+<img src="media/62_morphology.jpg" width="1000" height="500">  
 
 ## Gradient, Edge and Edge Dection   
 ```
@@ -1020,16 +1021,26 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 [66_hu_moments3.cpp](cpp/66_hu_moments3.cpp)  
 <img src="media/66_hu_moments3.jpg" width="900" height="400">  
 
-# Hough Line Transform and Hough Circle Transform  
+## Hough Line Transform and Hough Circle Transform  
 
 [67_hough_ine_transform.cpp](cpp/67_hough_ine_transform.cpp)  
 <img src="media/67_hough_line_transform.jpg" width="900" height="400">  
 
 [67_hough_ine_transform3.cpp](cpp/67_hough_ine_transform3.cpp)  
-<img src="media/67_hough_line_transform3.jpg" width="900" height="400">  
+<img src="media/67_hough_line_transform3.jpg" width="900" height="400">   
+<img src="media/67_hough_line_transform3-2.jpg" width="900" height="300">   
 
 [68_hough_circle_transform.cpp](cpp/68_hough_circle_transform.cpp)  
 <img src="media/68_hough_circle_transform2.jpg" width="900" height="400">  
+
+## Discrete Fourier Transform and Filter  
+[69_discrete_fourier_transform.cpp](cpp/69_discrete_fourier_transform.cpp)  
+
+[70_filter.cpp](cpp/70_filter.cpp)  
+<img src="media/70_filter_meam.jpg" width="900" height="400">  
+
+<img src="media/70_filter_gaussian.jpg" width="900" height="400">  
+
 
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
@@ -1058,6 +1069,10 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 [seamcarving / pressure_gaugesA2D](https://github.com/seamcarving/pressure_gaugesA2D)    
 
 [圖解C++影像處理與OpenCV應用：從基礎到高階，深入學習超硬核技術！](https://ithelp.ithome.com.tw/users/20161732/ironman/5994)
+
+[影像處理的形態學（Morphology）應用 Oct 21, 2020](https://medium.com/%E9%9B%BB%E8%85%A6%E8%A6%96%E8%A6%BA/%E5%BD%A2%E6%85%8B%E5%AD%B8-morphology-%E6%87%89%E7%94%A8-3a3c03b33e2b)  
+[OpenCV 学习（Hough 变换提取直线)](https://www.kancloud.cn/digest/usingopencv/145312)  
+[OpenCV 学习（直线拟合)](https://www.kancloud.cn/digest/usingopencv/145313)  
 
 
 # Troubleshooting
