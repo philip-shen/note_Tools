@@ -24,9 +24,7 @@ int main()
     cv::namedWindow("Circle", cv::WindowFlags::WINDOW_NORMAL); // 建立一個視窗用於顯示圓檢測結果
     cv::resizeWindow("Circle", 512.0f * ((float)grayImage.cols / grayImage.rows), 512);
 
-	cv::Mat edge_image;
-	cv::Canny(grayImage, edge_image, 28, 16); // 使用Canny邊緣檢測
-	cv::createTrackbar("Min R", "Circle", &min_r, 1000, on_circle_change); // 建立一個滑動條用於調整最小半徑
+	cv::createTrackbar("Min R", "Circle", &min_r, 100, on_circle_change); // 建立一個滑動條用於調整最小半徑
 	cv::waitKey(0); 
 	return 0;
 }
@@ -39,7 +37,7 @@ void on_circle_change(int position, void*) {
 	cv::cvtColor(grayImage, output, cv::COLOR_GRAY2BGR);
 
 	vector<cv::Vec3f> circles;
-	cv::HoughCircles(grayImage, circles, cv::HOUGH_GRADIENT, 1,200, 100, 30,min_r); // 使用霍夫轉換來檢測圓
+	cv::HoughCircles(grayImage, circles, cv::HOUGH_GRADIENT, 1, 200, 100, 30,min_r); // 使用霍夫轉換來檢測圓
 
 	 for( size_t i = 0; i < circles.size(); i++ )
 	 {

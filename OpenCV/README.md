@@ -89,6 +89,8 @@
      * [Contour and Area](#contour-and-area)
      * [Hu moments and Shape Match](#hu-moments-and-shape-match)
      * [Hough Line Transform and Hough Circle Transform](#hough-line-transform-and-hough-circle-transform)
+     * [Discrete Fourier Transform and Filter](#discrete-fourier-transform-and-filter)
+     * [GPU_CUDA](#gpu_cuda)
      * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
@@ -976,7 +978,7 @@ https://ithelp.ithome.com.tw/upload/images/20230925/201617321jxZ6Y92wO.png
 ```
 
 [63_edge_dection.cpp](cpp/63_edge_dection.cpp)  
-<img src="media/63_edge_dection.jpg" width="600" height="500">  
+<img src="media/63_edge_dection.jpg" width="900" height="600">  
 
 ## Contour and Area 
 
@@ -1041,6 +1043,8 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 
 <img src="media/70_filter_gaussian.jpg" width="900" height="400">  
 
+## GPU_CUDA  
+[71_gpu_cuda.cpp](cpp/71_gpu_cuda.cpp)  
 
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
