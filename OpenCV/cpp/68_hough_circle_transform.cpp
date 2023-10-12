@@ -37,7 +37,7 @@ void on_circle_change(int position, void*) {
 	cv::cvtColor(grayImage, output, cv::COLOR_GRAY2BGR);
 
 	vector<cv::Vec3f> circles;
-	cv::HoughCircles(grayImage, circles, cv::HOUGH_GRADIENT, 1, 200, 100, 30,min_r); // 使用霍夫轉換來檢測圓
+	cv::HoughCircles(grayImage, circles, cv::HOUGH_GRADIENT, 1, 200, 100, 35, min_r); // 使用霍夫轉換來檢測圓
 
 	 for( size_t i = 0; i < circles.size(); i++ )
 	 {
