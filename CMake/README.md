@@ -47,13 +47,16 @@ sudo make install
 # C/C++ Porject by CMake 
 
 ## Reference  
-[建構屬於自己的C/C++專案 : 我的30天CMake學習之旅 2023-09-15](https://ithelp.ithome.com.tw/users/20162026/ironman/6715)
-
+[建構屬於自己的C/C++專案 : 我的30天CMake學習之旅 2023-09-15](https://ithelp.ithome.com.tw/users/20162026/ironman/6715)  
+[ [Day 20] 使用第三方庫--以OpenCV為例 2023-10-04](https://ithelp.ithome.com.tw/articles/10334379)  
+[ [Day 21] 使用第三方庫--以json為例 2023-10-05](https://ithelp.ithome.com.tw/articles/10335066)  
+[m11112089/2023_iT_CMake.git](https://github.com/m11112089/2023_iT_CMake.git)  
 
 # CMake for Cross Platform  
 
 ## Reference  
 [30 天 CMake 跨平台之旅 2023-09-01](https://ithelp.ithome.com.tw/users/20161950/ironman/6278?page=1)
+[erichung0404/cmake-example](https://github.com/erichung0404/cmake-example)    
 
 # Visual Studio vs. VSCode and CMake  
 Visual Studio  | CMake 
