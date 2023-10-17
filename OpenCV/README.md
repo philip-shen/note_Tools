@@ -1078,6 +1078,8 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 [OpenCV 学习（Hough 变换提取直线)](https://www.kancloud.cn/digest/usingopencv/145312)  
 [OpenCV 学习（直线拟合)](https://www.kancloud.cn/digest/usingopencv/145313)  
 
+[fengbingchun/OpenCV_Test](https://github.com/fengbingchun/OpenCV_Test)  
+
 
 # Troubleshooting
 

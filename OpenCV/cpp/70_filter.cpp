@@ -5,6 +5,7 @@ https://ithelp.ithome.com.tw/articles/10333423
 */
 
 #include <iostream>
+#include <fstream>
 #include "opencv2/opencv.hpp"
 #include <chrono>
 #include "opencv2/core/utils/logger.hpp"
@@ -12,7 +13,15 @@ https://ithelp.ithome.com.tw/articles/10333423
 #define FILTER_GAUSSIAN 1
 #define FILTER FILTER_MEAM
 
+/*
+C++ — JSON for Modern C++ 解析JSON
+
+https://jefflin1982.medium.com/c-json-for-modern-c-%E8%A7%A3%E6%9E%90json-e8c2dd691483
+*/
+#include <nlohmann/json.hpp>
 using namespace std;
+using json = nlohmann::json;
+
 cv::Mat kernel;
 cv::Mat dft_kernel;
 int dft_rows;
@@ -40,11 +49,25 @@ void init_kernel(cv::Size image_size,cv::Mat kernel) {
     kernel.convertTo(dft_kernel_part, dft_kernel_part.type(), 1, 0);
     cv::dft(dft_kernel, dft_kernel,0, kernel.rows);
 }
-int main() {
+int main(int argc, char *argv[]) {
+    if (argc < 2)
+	{
+		printf("Please key in json file.\n");
+		return 1;
+	}
+
     cv::utils::logging::setLogLevel(cv::utils::logging::LOG_LEVEL_SILENT);
 
+    std::ifstream f(argv[1]);
+	json data = json::parse(f);
+
+	//std::cout << data << std::endl;
+	string path_img = data.at("path_imgfile").at(0).at("path_img_lena").get<string>();
+	std::cout << path_img << std::endl;
+
     // 讀取灰度影像
-    cv::Mat image = cv::imread("/home/philphoenix/infinicloud/OpenCV/Lenna.png", cv::IMREAD_GRAYSCALE);
+    //cv::Mat image = cv::imread("/home/philphoenix/infinicloud/OpenCV/Lenna.png", cv::IMREAD_GRAYSCALE);
+    cv::Mat image = cv::imread(path_img, cv::IMREAD_GRAYSCALE);
 
     cv::Mat kernel;
 #if FILTER==FILTER_MEAM 
