@@ -124,6 +124,13 @@ launch.json
 [Visual StudioでC++書く人向けのvscode&CMake乗り換えメモ 2023-09-30](https://qiita.com/husty530/items/ba74386a64a87631ef8e)  
 
 
+# multiple definition of `main'  
+<img src="images/multiple_main.jpg" width="400" height="500">
+
+##  Reference  
+[multiple definition of `main' 2020-02-20](https://blog.csdn.net/m0_37542524/article/details/104409600)  
+
+
 # Reference 
 [CMakeの使い方（その１）2022-03-25](https://qiita.com/shohirose/items/45fb49c6b429e8b204ac)  
 [CMakeの使い方（その２）2022-03-27](https://qiita.com/shohirose/items/637f4b712893764a7ec1)  
