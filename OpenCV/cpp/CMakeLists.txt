@@ -7,7 +7,7 @@ project(OpenCV_Cpp VERSION 1.0.0 LANGUAGES CXX)
 
 # Create Main project
 set(SOURCES
-    68_hough_circle_transform.cpp
+    72_colorthresh.cpp
 )
 
 set(HEADERS
