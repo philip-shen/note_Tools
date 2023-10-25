@@ -138,3 +138,5 @@ launch.json
 [【初心者向け】CMakeLists.txtを使ってビルドする。2023-06-13](https://qiita.com/hi_to_san/items/490f8320900617db9230)  
 [【初心者向け】CMakeLists.txtを使ってincludeのpathを省略する 2023-06-13](https://qiita.com/hi_to_san/items/00a5e9a75a8876b39492)  
 [【初心者向け】CMakeLists.txtを使ってlibraryをリンクする。2023-06-13](https://qiita.com/hi_to_san/items/2b44dd44d3e152594c53)  
+
+[VSCode で filesystem (C++17由来) が使えない時の対処法 2022-02-17](https://qiita.com/kabe_239/items/fcacc0050635ef6c25bb)  
