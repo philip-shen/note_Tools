@@ -91,6 +91,7 @@
      * [Hough Line Transform and Hough Circle Transform](#hough-line-transform-and-hough-circle-transform)
      * [Discrete Fourier Transform and Filter](#discrete-fourier-transform-and-filter)
      * [GPU_CUDA](#gpu_cuda)
+     * [NVIDIA Performance Primitives_NPP](#NVIDIA-Performance-Primitives_NPP)
      * [Reference](#reference-6)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
@@ -1046,6 +1047,14 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 ## GPU_CUDA  
 [71_gpu_cuda.cpp](cpp/71_gpu_cuda.cpp)  
 
+## NVIDIA Performance Primitives_NPP  
+[73_npp.cpp](cpp/73_npp.cpp)  
+[73_npp_time.cpp](cpp/73_npp_time.cpp)  
+[73_opencv.cpp](cpp/73_opencv.cpp)  
+[73_opencv_cuda-npp.cpp](cpp/73_opencv_cuda-npp.cpp)  
+[73_opencv_time.cpp](cpp/73_opencv_time.cpp)  
+[73_sample_cuda_memory.cpp](cpp/73_sample_cuda_memory.cpp)  
+
 ## Reference  
 [OpenCV Installation in Linux](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)  
 [CUDAありのOpenCVをbuildしたった(Ubuntu18.04) 2020-12-07](https://qiita.com/satsukiya/items/7d5a5e66bb361667f882)  
@@ -1079,6 +1088,16 @@ Hu不變矩是正規中心矩的線性組合，以下公式為Hu矩的數學定�
 [OpenCV 学习（直线拟合)](https://www.kancloud.cn/digest/usingopencv/145313)  
 
 [fengbingchun/OpenCV_Test](https://github.com/fengbingchun/OpenCV_Test)  
+
+[OpenCVをNPPにした結果→10倍高速に！2023/02/03](https://zenn.dev/turing_motors/articles/14a6ea47794535)  
+[chizuchizu/comp_opencv_npp](https://github.com/Chizuchizu/comp_opencv_npp)  []
+[PeppermintSummer/CUDA_NPP_samples](https://github.com/PeppermintSummer/CUDA_NPP_samples/tree/master)  
+[yuanxy92/CUDA_JPEG ](https://github.com/yuanxy92/CUDA_JPEG)  
+[ISSuh/CudaImageProcessing ](https://github.com/ISSuh/CudaImageProcessing)  
+
+[安裝 CUDA Deep Neural Network (cuDNN) 遇到 test.c:1:10: fatal error: FreeImage.h: No such file or directory 解決方法 2022-06-01](https://blog.clarence.tw/2022/06/01/%E5%AE%89%E8%A3%9D-cuda-deep-neural-network-cudnn-%E9%81%87%E5%88%B0-test-c110-fatal-error-freeimage-h-no-such-file-or-directory-%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/)  
+
+[Fatal error: cuda.h, No such file or directory 2020-02-24](https://blog.csdn.net/ECNU_LZJ/article/details/104475098)  
 
 
 # Troubleshooting
