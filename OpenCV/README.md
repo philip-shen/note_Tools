@@ -72,6 +72,9 @@
       * [C: cv2.FaceDetectorYN](#c-cv2facedetectoryn)
       * [D: cv2.FaceRecognizerSF](#d-cv2facerecognizersf)
       * [Reference](#reference-5)
+   * [OpenCV Object Detection](#opencv-object-detection)
+      * [YOLOv4](#yolov4)
+      * [Reference](#reference-6)
    * [OpenCV on Ubuntu in C++](#opencv-on-ubuntu-in-c)
      * [OpenCV Installtion with CUDA](#opencv-installtion-with-cuda)
      * [OpenCV Installtion without CUDA](#opencv-installtion-without-cuda)
@@ -92,14 +95,14 @@
      * [Discrete Fourier Transform and Filter](#discrete-fourier-transform-and-filter)
      * [GPU_CUDA](#gpu_cuda)
      * [NVIDIA Performance Primitives_NPP](#NVIDIA-Performance-Primitives_NPP)
-     * [Reference](#reference-6)   
+     * [Reference](#reference-7)   
    * [Troubleshooting](#troubleshooting)
       * [install libgtk2.0-dev and pkg-config, then re-run cmake or](#install-libgtk20-dev-and-pkg-config-then-re-run-cmake-or)
       * [ModuleNotFoundError: No module named '_lzma'](#modulenotfounderror-no-module-named-_lzma)
       * [How to install tkinter for python 3.7 on xubuntu 20.04?](#how-to-install-tkinter-for-python-37-on-xubuntu-2004)
       * [Can't use SURF, SIFT in OpenCV](#cant-use-surf-sift-in-opencv)
       * [BRIEF (Binary Robust Independent Elementary Features)](#brief-binary-robust-independent-elementary-features)
-   * [Reference](#reference-7)
+   * [Reference](#reference-8)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -680,6 +683,44 @@ k-meansでk個のカテゴリに分類し、各カテゴリ毎にそのカテゴ
 
 
 [(最終回)Python + OpenCVで遊んでみる(OCR編)](https://itport.cloud/?p=8326)  
+
+
+# OpenCV Object Detection  
+
+## YOLOv4  
+[37_object_dectecion.py](37_object_dectecion.py)  
+<img src="./media/37_YOLOV4.jpg" width="700" height="400">
+```
+2023-11-08 00:15:34,196 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 126.0, 'ymin': 129.0, 'xmax': 561.0, 'ymax': 426.0, 'result': array(['bicycle'], dtype='<U14'), 'conf': 0.9693878889083862}
+2023-11-08 00:15:34,196 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 470.0, 'ymin': 74.0, 'xmax': 692.0, 'ymax': 171.0, 'result': array(['truck'], dtype='<U14'), 'conf': 0.8209102153778076}
+2023-11-08 00:15:34,196 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 130.0, 'ymin': 224.0, 'xmax': 315.0, 'ymax': 497.0, 'result': array(['dog'], dtype='<U14'), 'conf': 0.9641251564025879}
+2023-11-08 00:15:34,196 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 1056.0, 'ymin': 200.0, 'xmax': 1191.0, 'ymax': 443.0, 'result': array(['zebra'], dtype='<U14'), 'conf': 0.907072901725769}
+2023-11-08 00:15:34,218 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 928.0, 'ymin': 28.0, 'xmax': 1221.0, 'ymax': 428.0, 'result': array(['giraffe'], dtype='<U14'), 'conf': 0.9841187000274658}
+2023-11-08 00:15:34,218 - 37_object_dectecion.py[line:133]- INFO: 
+YOLOv4物件偵測共花費 0.6439852714538574 秒
+```
+
+<img src="./media/37_YOLOV4-tiny.jpg" width="700" height="400">   
+```
+2023-11-08 00:15:54,331 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 458.0, 'ymin': 79.0, 'xmax': 697.0, 'ymax': 169.0, 'result': array(['truck'], dtype='<U14'), 'conf': 0.8319911360740662}
+2023-11-08 00:15:54,331 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 125.0, 'ymin': 218.0, 'xmax': 350.0, 'ymax': 497.0, 'result': array(['dog'], dtype='<U14'), 'conf': 0.6995347738265991}
+2023-11-08 00:15:54,331 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 1052.0, 'ymin': 262.0, 'xmax': 1179.0, 'ymax': 448.0, 'result': array(['zebra'], dtype='<U14'), 'conf': 0.6666281223297119}
+2023-11-08 00:15:54,331 - 37_object_dectecion.py[line:131]- INFO: 
+{'xmin': 927.0, 'ymin': 0.0, 'xmax': 1183.0, 'ymax': 343.0, 'result': array(['giraffe'], dtype='<U14'), 'conf': 0.5219258666038513}
+2023-11-08 00:15:54,331 - 37_object_dectecion.py[line:133]- INFO: 
+YOLOv4物件偵測共花費 0.11005973815917969 秒
+```
+
+## Reference  
+[《第9天》OpenCV物件偵測 2022-09-24](https://ithelp.ithome.com.tw/articles/10297918)    
 
 
 # OpenCV on Ubuntu in C++  
