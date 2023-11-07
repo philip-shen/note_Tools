@@ -689,7 +689,9 @@ k-meansでk個のカテゴリに分類し、各カテゴリ毎にそのカテゴ
 
 ## YOLOv4  
 [37_object_dectecion.py](37_object_dectecion.py)  
-<img src="./media/37_YOLOV4.jpg" width="700" height="400">
+
+<img src="./media/37_YOLOV4.jpg" width="700" height="400">  
+
 ```
 2023-11-08 00:15:34,196 - 37_object_dectecion.py[line:131]- INFO: 
 {'xmin': 126.0, 'ymin': 129.0, 'xmax': 561.0, 'ymax': 426.0, 'result': array(['bicycle'], dtype='<U14'), 'conf': 0.9693878889083862}
@@ -706,6 +708,7 @@ YOLOv4物件偵測共花費 0.6439852714538574 秒
 ```
 
 <img src="./media/37_YOLOV4-tiny.jpg" width="700" height="400">   
+
 ```
 2023-11-08 00:15:54,331 - 37_object_dectecion.py[line:131]- INFO: 
 {'xmin': 458.0, 'ymin': 79.0, 'xmax': 697.0, 'ymax': 169.0, 'result': array(['truck'], dtype='<U14'), 'conf': 0.8319911360740662}
