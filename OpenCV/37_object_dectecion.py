@@ -81,7 +81,7 @@ def initNet_tiny():
     if major == '4':
         model = cv2.dnn_DetectionModel(net)
         # 若以yolov4-tiny進行物件偵測，預設size=(416, 416)
-        model.setInputParams(size=(608, 608), scale=1/255.0)
+        model.setInputParams(size=(416, 416), scale=1/255.0)
         model.setInputSwapRB(True)
         return model
     else:
@@ -153,7 +153,12 @@ if __name__ == '__main__':
                             local_time.tm_hour,local_time.tm_min,local_time.tm_sec))
     opt_verbose = 'On'
     img_file = args.img    
-    path_infinicloud = 'Z:\\OpenCV'
+    
+    if sys.platform.startswith('linux'): # 包含 linux 與 linux2 的情況
+        path_infinicloud = '/home/philphoenix/infinicloud/OpenCV'
+    elif sys.platform.startswith('win32'):
+        path_infinicloud = 'Z:\\OpenCV'
+        
     if not os.path.isfile(os.path.join(path_infinicloud, img_file)):
         logger.info(f'{os.path.join(path_infinicloud, img_file)} does not exist!')
         est_timer(start_time=t0)
