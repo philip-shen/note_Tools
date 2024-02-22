@@ -35,6 +35,8 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 ## Installation  
 ```
+cd example_qdrant 
+
 docker-compose up -d
 ```
 
