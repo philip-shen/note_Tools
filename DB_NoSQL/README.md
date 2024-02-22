@@ -2,6 +2,10 @@ Table of Contents
 =================
 
    * [Table of Contents](#table-of-contents)
+   * [Vector Database_Qdrant](#vector-database_qdrant)
+      * [Installation](#installation)
+      * [Example](#example)
+      * [Reference](#reference)
    * [MongoDB Installation](#mongodb-installation)
       * [Register Windows Services](#register-windows-services)
    * [MongoDB Configuration](#mongodb-configuration)
@@ -15,14 +19,56 @@ Table of Contents
          * [1st insert data](#1st-insert-data)
          * [2nd cursor next](#2nd-cursor-next)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference)
+   * [Reference](#reference-1)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+
+
+# Vector Database_Qdrant  
+
+## Installation  
+```
+docker-compose up -d
+```
+
+Qdrant is now accessible:
+1. REST API: localhost:6333
+1. Web UI: localhost:6333/dashboard
+1. GRPC API: localhost:6334
+
+```
+$ curl localhost:6333 
+{"title":"qdrant - vector search engine","version":"1.7.4"}
+```
+
+```
+poetry add qdrant-client
+```
+
+## Example    
+```
+poetry run python qdrant_tutorial02.py
+```
+
+## Reference  
+[Vector Database まとめ  2023-08-04](https://qiita.com/y-mrkm/items/f49cabe1b007bfd65baf)
+[ベクター検索エンジン Qdrantでセマンティックサーチする  2023-05-11](https://qiita.com/kinshotomoya/items/e47f83bafd643ab7bf08)
+
+[全端 LLM 應用開發-Day21-用 Qdrant 儲存向量資料 2023-10-06](https://ithelp.ithome.com.tw/articles/10335513) 
+
+
+[全端 LLM 應用開發-Day16-Pinecone 申請與設定 2023-10-01](https://ithelp.ithome.com.tw/articles/10328073)
+[全端 LLM 應用開發-Day17-用 Pinecone 儲存向量資料 2023-10-02](https://ithelp.ithome.com.tw/articles/10332652)
+[全端 LLM 應用開發-Day18-用 Milvus 儲存向量資料 2023-10-03](https://ithelp.ithome.com.tw/articles/10333610)
+[全端 LLM 應用開發-Day19-用 Weaviate 儲存向量資料 2023-10-04](https://ithelp.ithome.com.tw/articles/10334181)
+
 
 # MongoDB Installation  
 [MongoDB的安装配置（zip版）2019-11-13](https://blog.csdn.net/J_wb49/article/details/103050462?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
@@ -44,6 +90,7 @@ net start mongodb
 
 
 [MongoDB 學習筆記 (一) : 在 Win10 上安裝 MongoDB 2019年1月16日](http://yhhuang1966.blogspot.com/2019/01/mongodb-win10-mongodb.html)
+
 
 # MongoDB Configuration    
 [MongoDB之conf配置文件详解(五) 2018-08-15](https://www.cnblogs.com/cwp-bg/p/9479945.html)  
@@ -189,6 +236,7 @@ replSet = name
 #sslPEMKeyPassword = pass
 ```
 
+
 # RethinkDB  
 
 ## Realtime 讀取資料  
@@ -272,5 +320,6 @@ cursor2 = r.table("test").filter({'user_id':"7788"}).changes().run()
 - 1
 - 2
 - 3
+
 
 
