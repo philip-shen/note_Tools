@@ -3,6 +3,7 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
+   * [Remote Repository in GitHub](#remote-repository-in-github)
       * [一、從頭開始－新增遠端空白儲存庫、本地空白儲存庫](#一從頭開始新增遠端空白儲存庫本地空白儲存庫)
       * [二、將遠端已存在儲存庫，拷貝至本地空白儲存庫](#二將遠端已存在儲存庫拷貝至本地空白儲存庫)
       * [三、將本地已存在的儲存庫(已有版控)，上傳至遠端儲存庫](#三將本地已存在的儲存庫已有版控上傳至遠端儲存庫)
@@ -15,8 +16,11 @@ Table of Contents
       * [更改連線協議](#更改連線協議)
    * ["server certificate verification failed. CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none"](#server-certificate-verification-failed-cafile-etcsslcertsca-certificatescrt-crlfile-none)
    * [Change Remote Repo Address](#change-remote-repo-address)
-   * [Setup .gitignore](#setup-gitignore)
-   * [Reference](#reference)
+   * [Setup .gitignore](#setup-gitignore)  
+   * [Work With Multiple Github Accounts](#work-with-multiple-github-accounts)
+      * [Steps](#steps)
+      * [Reference](#reference)
+   * [Reference](#reference-1)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -28,7 +32,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 # Purpose  
 Take note of Git  
 
-# Remote Repository in GitHub :memo:  
+# Remote Repository in GitHub    
 [GitHub建立遠端儲存庫](https://kingofamani.gitbooks.io/git-teach/content/chapter_5/github.html)  
 
 ```
@@ -96,6 +100,19 @@ $ git remote set-url origin git@github.com:user_name/project.git
 
 [【狀況題】有些檔案我不想放在 Git 裡面…](https://gitbook.tw/chapters/using-git/ignore)  
 有些比較機密的檔案不想放在 Git 裡面一起備份，例如資料庫的存取密碼或是 AWS 伺服器的存取金鑰…
+
+
+# Work With Multiple Github Accounts   
+## Steps:
+* Step 1 : Create SSH keys for all accounts
+* Step 2 : Add SSH keys to SSH Agent
+* Step 3 : Add SSH public key to the Github
+* Step 4 : Create a Config File and Make Host Entries
+* Step 5 : Cloning GitHub repositories using different accounts  
+
+## Reference  
+[rahularity/work-with-multiple-github-accounts.md](https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3) 
+
 
 # Reference  
 [Git-Tutorials 基本使用教學](https://github.com/twtrubiks/Git-Tutorials)  
