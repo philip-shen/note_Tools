@@ -5,9 +5,9 @@
    * [WebDAV](#webdav)
       * [Reference](#reference)
    * [BT](#bt)
-      * [1. htop](#1.-htop)
-      * [2. aria2 1.15.1](#2.-aria2-1.15.1)
-      * [3. transmission 2.52](#3.-transmission-2.52)
+      * [1 htop](#1-htop)
+      * [2 aria2 1.15.1](#2-aria2-1.15.1)
+      * [3 transmission 2.52](#3-transmission-2.52)
 
 # Purpose  
 Take a note of NAS.
@@ -103,13 +103,13 @@ htop為top的的最佳替代品；aria2是一款支持http/https/ftp、bt、磁�
 以下通過ssh連接wdmycloud進行命令列操作，aria2 與 transmission 不以 root 方式運行。
 ```
 
-## 1. htop  
+## 1 htop  
 ```
 #wget http://www.qiwu.org/uploads/2015/02/htop_1.0.1-1_armhf.deb
 #dpkg -i htop_1.0.1-1_armhf.deb
 ```
  
-##  2. aria2 1.15.1  
+## 2 aria2 1.15.1  
 ```
 安裝：
 #wget http://www.qiwu.org/uploads/2015/02/libc-ares2_1.9.1-3_armhf.deb
@@ -132,7 +132,7 @@ Aria2cRemoteControl-0.1.1-win32.exe 及 yaaw-zh-hans-master.zip
 [下載](http://www.qiwu.org/uploads/2015/02/Aria2cRemoteControl.zip)
 ```
 
-## 3. transmission 2.52  
+## 3 transmission 2.52  
 ```
 安裝支援檔：
 #wget http://www.qiwu.org/uploads/2015/02/libcurl3-gnutls_7.26.0-1_armhf.deb
