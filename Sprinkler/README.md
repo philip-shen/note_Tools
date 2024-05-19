@@ -2,15 +2,30 @@
 =================
 
    * [Purpose](#purpose)
-   * [Reference](#reference)
+      * [System Diagram](#system-diagram)
+      * [Automated Garden Parts List](#automated-garden-parts-list)
+      * [Reference](#reference)
+   * [Reference](#reference-1)
+
+
 # Purpose  
 Take a note of Sprinkler.
 
 
+# Garden Automation  
+
+## System Diagram 
+<img src="system%20diagram.png" width="900" height="600">
+
+## Automated Garden Parts List  
+[LEDgardener Automated Garden Parts List](https://github.com/ledgardener/gardenAutomation/blob/master/parts_list_with_links.md)  
+
+## Reference  
+[Update on My Automated Garden System (Plus System Diagram, Parts List, & All Code Now Shared!)](https://www.youtube.com/watch?v=SMWJXIhill8)  
+[ledgardener/gardenAutomation](https://github.com/ledgardener/gardenAutomation)  
+
 
 # Reference  
-[Update on My Automated Garden System (Plus System Diagram, Parts List, & All Code Now Shared!)](https://www.youtube.com/watch?v=SMWJXIhill8)
-[ledgardener/gardenAutomation](https://github.com/ledgardener/gardenAutomation)  
 
 
 [ DIY IoT Sprinkler Controller, made with Raspberry Pi and OpenSprinkler](https://www.youtube.com/watch?v=X8Iwvm6npW0)
