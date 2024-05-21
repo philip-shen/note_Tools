@@ -15,7 +15,7 @@ Take a note of Sprinkler.
 # Garden Automation  
 
 ## System Diagram 
-<img src="system%20diagram.png" width="900" height="600">
+<img src="system_diagram.png" width="900" height="600">
 
 ## Automated Garden Parts List  
 [LEDgardener Automated Garden Parts List](https://github.com/ledgardener/gardenAutomation/blob/master/parts_list_with_links.md)  
