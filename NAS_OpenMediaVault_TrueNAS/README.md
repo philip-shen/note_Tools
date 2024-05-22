@@ -42,7 +42,6 @@ Take a note of NAS.
     }
   ```
 
-
 ### 4. OpenMediaVault Installation  
   ```
     sudo -i
@@ -57,6 +56,13 @@ Take a note of NAS.
 
 ### 5. OpenMediaVault Setup from Browser on Windows
 
+### 6. SSH Setup  
+  ```
+  Whats missing? SSH as different user
+
+  Does the user have SSH permissions? In the web-gui at "user management" - "users" - "edit" check if the group "ssh" is checked ("sudo" is also useful).  
+  ```
+  [Whats missing? SSH as different user](https://www.reddit.com/r/OpenMediaVault/comments/pv0ksz/whats_missing_ssh_as_different_user/) 
 
 ## Reference  
 [Raspberry Pi 4 + OpenMediaVaultでNASを構築する 2023/03/13](https://zenn.dev/oversleep/articles/3f9ad984a37aba)  
@@ -68,6 +74,9 @@ DockerとPortainerのインストール
 ```
 [RaspberryPI4をサーバーにして遊び倒す。その２ 2020-12-20](https://qiita.com/miyukiaizawa/items/37d4d386150eddaaeddb)  
 
+[New 2024 openmediavault getting started, omv extras and portainer  2024年1月29日](https://www.youtube.com/watch?v=2hU8e61UE9w) 
+[*Link to my GitHub where you can find the portainer.yml file* ](https://github.com/robwithtech/homelab)  
+
 [RaspberrypiでNASを作成する 2024-03-12](https://qiita.com/T3pp31/items/36a9ce18b0780ff04cd3)  
 
 [PythonでRaspberryPiで撮影したカメラ映像をリアルタイム転送する 2023-01-27](https://qiita.com/Yurix/items/e3260da3d91451c5a60a)  
@@ -75,6 +84,12 @@ DockerとPortainerのインストール
 [Raspberry PiでRAID付きNASを構築する 2023-09-02](https://qiita.com/YaezakuraP/items/d0c41d6c5ee8438fecbb)
 
 [Raspberry Piでprimary/2replica構成のMySQL serverを建てる 2024/05/1](https://zenn.dev/kumashun8/articles/ab8ef900613f7c)  
+
+[OMV7.xをbookworm(Pi 4)へ新規インストールする方法 2024-03-09](https://raspida.com/omv7-bookworm-pi4)  
+[初心者でもラズパイでNASサーバーを作ってみよう！ 2024-03-13](https://raspida.com/make-nas-rpi)  
+[openmediavaultでexfatの外付けハードディスクを利用する 2023-05-03](https://raspida.com/omv-exfat/)  
+
+[Raspberry pi 4 でNAS（openmediavault）を構築する方法 2020-10-20](https://qiita.com/zono_0/items/1eb877ad9c6e5ac12532#14-guiopenmediavault%E3%81%B8%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9)  
 
 [【Raspberry Pi4】新OS「Bullseye」で自宅用NASを構築する-前編 OpennMediaVault6対応 2022.06.05](https://immedeep.com/raspberrypi4-omv-nas-1/364/)  
 [【Raspberry Pi4】新OS「Bullseye」で自宅用NASを構築する-後編 OpennMediaVault6の導入とベンチマーク 2022.10.19](https://immedeep.com/raspberrypi4-omv-nas-2/454/)  
