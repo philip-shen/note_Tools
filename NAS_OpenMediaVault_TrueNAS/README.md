@@ -3,6 +3,14 @@
 
    * [Purpose](#purpose)
    * [OpenMediaVault](#openmediavault)
+      * [Installation](#installation)
+         * [1. Raspberry Pi OS Lite(64bit) by Micro SD](#1-raspberry-pi-os-lite(64bit)-by-micro-sd)
+         * [2. config.txt Setup](#2-configtxt-setup)
+         * [3. WiFi and SSH Setup](#3-wifi-and-ssh-setup)
+         * [4. OpenMediaVault Installation](#4-openmediavault-installation)
+         * [5. OpenMediaVault Setup from Browser on Windows](#5-openmediavault-setup-from-browser-on-windows)
+         * [6. SSH Setup](#6-ssh-setup)
+         * [7. Format and Mount a USB drive](#7-format-and-mount-a-usb-drive)                           
       * [Reference](#reference)
    * [TrueNAS](#truenas)
       * [Reference](#reference-1)
@@ -63,6 +71,49 @@ Take a note of NAS.
   Does the user have SSH permissions? In the web-gui at "user management" - "users" - "edit" check if the group "ssh" is checked ("sudo" is also useful).  
   ```
   [Whats missing? SSH as different user](https://www.reddit.com/r/OpenMediaVault/comments/pv0ksz/whats_missing_ssh_as_different_user/) 
+
+### 7. Format and Mount a USB drive    
+  Find the virtual drive name:
+  ```
+  sudo fdisk -l
+  ```
+
+  Start fdisk:  
+  ```
+  sudo fdisk /dev/sda
+  ```
+
+  Use the following commands shortcuts in fdisk:
+  ```  
+    Create a new partition table: g (for GPT, use help for other formats)
+    Create a new partition: n
+    You can keep the default values for a single partition.
+    Just press Enter after each question.
+    Confirm with Y to remove the signature.
+    And finally, write and exit fdisk: w
+  ```
+
+  Format the partition:
+  ```
+  sudo mkfs.ext4 /dev/sda1
+  sudo mkfs.vfat /dev/sda1
+  sudo mkfs.ntfs /dev/sda1
+  ```
+
+  Create a new folder in /media:
+  ```
+  sudo mkdir /media/usb1
+  ```
+
+  Mount the drive:
+  ```
+  sudo mount -t ext4 /dev/disk/by-uuid/xxxxx-xxxx /media/usb1/
+  ```
+
+  Automatically mount the USB drive:
+  ```
+  UUID=xxxxxx-xxxxx /media/usb1 ext4 defaults 0 0
+  ```
 
 ## Reference  
 [Raspberry Pi 4 + OpenMediaVaultでNASを構築する 2023/03/13](https://zenn.dev/oversleep/articles/3f9ad984a37aba)  
