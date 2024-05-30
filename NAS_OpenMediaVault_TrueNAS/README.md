@@ -76,6 +76,13 @@ DockerとPortainerのインストール
 
 [New 2024 openmediavault getting started, omv extras and portainer  2024年1月29日](https://www.youtube.com/watch?v=2hU8e61UE9w)  
 [*Link to my GitHub where you can find the portainer.yml file* ](https://github.com/robwithtech/homelab)  
+[Installing Docker & Portainer with new OMV-Extras (June 2023) - Ad-Free](https://www.youtube.com/watch?v=olEAP0WcSdU)  
+```
+NSTALL PORTAINER
+SSH into your OMV server and run:
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+```
+[我在OMV上运行的一些有趣的Docker镜像  2021-04-21](https://east.moe/archives/1077) 
 
 [RaspberrypiでNASを作成する 2024-03-12](https://qiita.com/T3pp31/items/36a9ce18b0780ff04cd3)  
 
@@ -102,6 +109,10 @@ DockerとPortainerのインストール
 
 [Installing OpenMediaVault to a Raspberry Pi Jun 11, 2022](https://pimylifeup.com/raspberry-pi-openmediavault/)  
 
+[Mounting USB Drives Under Debian Aug 14, 2023](https://www.naturalborncoder.com/backup/2023/08/14/mounting-usb-drives-under-debian/)  
+[How To Mount a USB Drive On The Raspberry Pi (3 ways)](https://raspberrytips.com/mount-usb-drive-raspberry-pi/)    
+[How to Format and Mount a USB drive on Raspberry Pi](https://raspberrytips.com/format-mount-usb-drive/)  
+ 
 
 # TrueNAS   
 
