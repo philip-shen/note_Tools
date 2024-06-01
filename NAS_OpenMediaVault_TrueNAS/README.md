@@ -124,10 +124,10 @@ Take a note of NAS.
   ```
   {
     "log-driver": "json-file",
-    "log-opts": [
+    "log-opts": {
       "max-size": "10m",
       "max-file": "3"
-    ],
+    },
 
     "ipv6": true,
     "fixed-cidr-v6":"fc01:17:1:1::/64",
@@ -164,8 +164,9 @@ NSTALL PORTAINER
 SSH into your OMV server and run:
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 ```
-[y0ngb1n/docker-registry-mirrors.md](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)
+[y0ngb1n/docker-registry-mirrors.md](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)  
 [我在OMV上运行的一些有趣的Docker镜像  2021-04-21](https://east.moe/archives/1077) 
+[loganmarchione/docker-webdav-nginx](https://hub.docker.com/r/loganmarchione/docker-webdav-nginx)  
 
 [RaspberrypiでNASを作成する 2024-03-12](https://qiita.com/T3pp31/items/36a9ce18b0780ff04cd3)  
 
@@ -192,6 +193,9 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 
 [Installing OpenMediaVault to a Raspberry Pi Jun 11, 2022](https://pimylifeup.com/raspberry-pi-openmediavault/)  
 
+[(Docker) Compose Plugin For OMV7](https://wiki.omv-extras.org/doku.php?id=omv7:omv7_plugins:docker_compose)  
+[Docker in OMV 7](https://wiki.omv-extras.org/doku.php?id=omv7:docker_in_omv)  
+
 [Mounting USB Drives Under Debian Aug 14, 2023](https://www.naturalborncoder.com/backup/2023/08/14/mounting-usb-drives-under-debian/)  
 [How To Mount a USB Drive On The Raspberry Pi (3 ways)](https://raspberrytips.com/mount-usb-drive-raspberry-pi/)    
 [How to Format and Mount a USB drive on Raspberry Pi](https://raspberrytips.com/format-mount-usb-drive/)  
@@ -201,11 +205,8 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 [How to build a NAS server from old hard drives](https://www.youtube.com/watch?v=6LqFY5yymKQ&t=0s)  
 
 [2 omv安装社区插件和改用国内源](https://www.youtube.com/watch?v=RQJmJYoWROo) 
-
 [4 OMV设置snapraid插件](https://www.youtube.com/watch?v=b63S4oB8hrI) 
-
 [5 omv系统设置联合文件系统](https://www.youtube.com/watch?v=dblNqi-VxSs) 
-
 [6 omv安装docker](https://www.youtube.com/watch?v=Ge7lEE-Q5jo) 
 ```
 df -h
@@ -222,8 +223,15 @@ df -h
   ]
 }
 ```
-
 [7 omv系统docker配置ddns和webdav](https://www.youtube.com/watch?v=FnUqJ0ZFxtI) 
+
+[16 Steps to install the new compose plugin and add portainer](https://forum.openmediavault.org/index.php?thread/48797-16-steps-to-install-the-new-compose-plugin-and-add-portainer/)  
+
+[How to Install Docker on OpenMediaVault Dec 1, 2022](https://www.wundertech.net/how-to-install-docker-on-openmediavault/)  
+
+[Setting up a PostgreSQL Database on a Raspberry Pi   Oct 14, 2022](https://pimylifeup.com/raspberry-pi-postgresql/)  
+
+[How to install Postgresql Database on Ubunut Headless Feb 11, 2021](https://forum.blackmagicdesign.com/viewtopic.php?f=21&t=134463)  
 
 
 # TrueNAS   
