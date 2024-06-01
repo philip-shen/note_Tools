@@ -10,7 +10,8 @@
          * [4. OpenMediaVault Installation](#4-openmediavault-installation)
          * [5. OpenMediaVault Setup from Browser on Windows](#5-openmediavault-setup-from-browser-on-windows)
          * [6. SSH Setup](#6-ssh-setup)
-         * [7. Format and Mount a USB drive](#7-format-and-mount-a-usb-drive)                           
+         * [7. Format and Mount a USB drive](#7-format-and-mount-a-usb-drive)     
+         * [8. Docker Configuration json](#8-docker-configuration-json)                           
       * [Reference](#reference)
    * [TrueNAS](#truenas)
       * [Reference](#reference-1)
@@ -57,6 +58,8 @@ Take a note of NAS.
     sudo apt upgrade
   ```
 
+  *OMV-Extras*
+  (The following does not apply to SBC or i386- 32bit users. When using the scripted install, OMV-Extras is installed with openmediavault by default.)   
   ```
     cd /opt/
     wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash
@@ -115,6 +118,33 @@ Take a note of NAS.
   UUID=xxxxxx-xxxxx /media/usb1 ext4 defaults 0 0
   ```
 
+### 8. Docker Configuration json  
+  json修改内容
+  /etc/docker/daemon.json
+  ```
+  {
+    "log-driver": "json-file",
+    "log-opts": [
+      "max-size": "10m",
+      "max-file": "3"
+    ],
+
+    "ipv6": true,
+    "fixed-cidr-v6":"fc01:17:1:1::/64",
+    "registry-mirrors": [
+    "https://dockerproxy.com",
+    "https://https://docker.m.daocloud.io"
+    ]
+
+  }
+  ```
+
+  ```
+  systemctl daemon-reload 
+
+  systemctl restart docker.service 
+  ```
+
 ## Reference  
 [Raspberry Pi 4 + OpenMediaVaultでNASを構築する 2023/03/13](https://zenn.dev/oversleep/articles/3f9ad984a37aba)  
 [Raspberry Pi 4が起動しない（モニタが映らない）場合の設定方法 2022-07-06](https://qiita.com/karaage0703/items/97808dfb957b3312b649)  
@@ -127,12 +157,14 @@ DockerとPortainerのインストール
 
 [New 2024 openmediavault getting started, omv extras and portainer  2024年1月29日](https://www.youtube.com/watch?v=2hU8e61UE9w)  
 [*Link to my GitHub where you can find the portainer.yml file* ](https://github.com/robwithtech/homelab)  
+
 [Installing Docker & Portainer with new OMV-Extras (June 2023) - Ad-Free](https://www.youtube.com/watch?v=olEAP0WcSdU)  
 ```
 NSTALL PORTAINER
 SSH into your OMV server and run:
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 ```
+[y0ngb1n/docker-registry-mirrors.md](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)
 [我在OMV上运行的一些有趣的Docker镜像  2021-04-21](https://east.moe/archives/1077) 
 
 [RaspberrypiでNASを作成する 2024-03-12](https://qiita.com/T3pp31/items/36a9ce18b0780ff04cd3)  
@@ -163,7 +195,36 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 [Mounting USB Drives Under Debian Aug 14, 2023](https://www.naturalborncoder.com/backup/2023/08/14/mounting-usb-drives-under-debian/)  
 [How To Mount a USB Drive On The Raspberry Pi (3 ways)](https://raspberrytips.com/mount-usb-drive-raspberry-pi/)    
 [How to Format and Mount a USB drive on Raspberry Pi](https://raspberrytips.com/format-mount-usb-drive/)  
- 
+
+[OMV7 Docker安装(openmediavault7 install docker)](https://www.youtube.com/watch?v=O_G4A1Gllqo)  
+
+[How to build a NAS server from old hard drives](https://www.youtube.com/watch?v=6LqFY5yymKQ&t=0s)  
+
+[2 omv安装社区插件和改用国内源](https://www.youtube.com/watch?v=RQJmJYoWROo) 
+
+[4 OMV设置snapraid插件](https://www.youtube.com/watch?v=b63S4oB8hrI) 
+
+[5 omv系统设置联合文件系统](https://www.youtube.com/watch?v=dblNqi-VxSs) 
+
+[6 omv安装docker](https://www.youtube.com/watch?v=Ge7lEE-Q5jo) 
+```
+df -h
+```
+
+2:00 select folder for docker
+```
+{
+  "ipv6": true,
+  "fixed-cidr-v6":"fc01:17:1:1::/64",
+  "registry-mirrors": [
+    "https://dockerproxy.com",
+    "https://https://docker.m.daocloud.io"
+  ]
+}
+```
+
+[7 omv系统docker配置ddns和webdav](https://www.youtube.com/watch?v=FnUqJ0ZFxtI) 
+
 
 # TrueNAS   
 
