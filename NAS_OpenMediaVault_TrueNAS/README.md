@@ -12,10 +12,15 @@
          * [6. SSH Setup](#6-ssh-setup)
          * [7. Format and Mount a USB drive](#7-format-and-mount-a-usb-drive)     
          * [8. Docker Configuration json](#8-docker-configuration-json)                           
-      * [Reference](#reference)
-   * [TrueNAS](#truenas)
+         * [9. Docker images](#9-docker-images) 
+            * [Portainer](#portainer)     
+            * [Webdav](#webdav)
+            * [PostgreSQL and PgAdmin4](#postgresql-and-pgadmin4)                     
+            * [Reference](#reference)
       * [Reference](#reference-1)
-   * [Reference](#reference-2)
+   * [TrueNAS](#truenas)
+      * [Reference](#reference-2)
+   * [Reference](#reference-3)
 
 # Purpose  
 Take a note of NAS.
@@ -145,16 +150,23 @@ Take a note of NAS.
   systemctl restart docker.service 
   ```
 
-## Reference  
-[Raspberry Pi 4 + OpenMediaVaultでNASを構築する 2023/03/13](https://zenn.dev/oversleep/articles/3f9ad984a37aba)  
-[Raspberry Pi 4が起動しない（モニタが映らない）場合の設定方法 2022-07-06](https://qiita.com/karaage0703/items/97808dfb957b3312b649)  
+### 9. Docker images    
 
-[RaspberryPI4をサーバーにして遊び倒す。その１ 2020-12-24](https://qiita.com/miyukiaizawa/items/99da331359eaf4c7eec7)
-```
-DockerとPortainerのインストール
-```
-[RaspberryPI4をサーバーにして遊び倒す。その２ 2020-12-20](https://qiita.com/miyukiaizawa/items/37d4d386150eddaaeddb)  
+#### Portainer    
 
+#### Webdav    
+
+#### PostgreSQL and PgAdmin4    
+```
+curl -O https://raw.githubusercontent.com/khezen/compose-postgres/master/docker-compose.yml -o docker-compose_postgres_pgadmin4.yml
+```
+```
+curl -O https://raw.githubusercontent.com/twtrubiks/odoo-docker-tutorial/vscode_debug_docker_odoo17/docker-compose.yml -o docker-compose_odoo.yml
+```
+
+<img src="images/omv_postgres_pgadmin4.jpg" width="800" height="500">
+
+#### Reference  
 [New 2024 openmediavault getting started, omv extras and portainer  2024年1月29日](https://www.youtube.com/watch?v=2hU8e61UE9w)  
 [*Link to my GitHub where you can find the portainer.yml file* ](https://github.com/robwithtech/homelab)  
 
@@ -167,6 +179,62 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 [y0ngb1n/docker-registry-mirrors.md](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)  
 [我在OMV上运行的一些有趣的Docker镜像  2021-04-21](https://east.moe/archives/1077) 
 [loganmarchione/docker-webdav-nginx](https://hub.docker.com/r/loganmarchione/docker-webdav-nginx)  
+
+[2 omv安装社区插件和改用国内源](https://www.youtube.com/watch?v=RQJmJYoWROo)   
+[4 OMV设置snapraid插件](https://www.youtube.com/watch?v=b63S4oB8hrI)  
+[5 omv系统设置联合文件系统](https://www.youtube.com/watch?v=dblNqi-VxSs)   
+[6 omv安装docker](https://www.youtube.com/watch?v=Ge7lEE-Q5jo)   
+```
+df -h
+```
+
+2:00 select folder for docker
+```
+{
+  "ipv6": true,
+  "fixed-cidr-v6":"fc01:17:1:1::/64",
+  "registry-mirrors": [
+    "https://dockerproxy.com",
+    "https://https://docker.m.daocloud.io"
+  ]
+}
+```
+[7 omv系统docker配置ddns和webdav](https://www.youtube.com/watch?v=FnUqJ0ZFxtI) 
+
+[Docker-compose創建PostgreSQL Aug 25, 2021](https://cde566.medium.com/docker-compose%E5%89%B5%E5%BB%BApostgresql-7f3f9519fa20)
+
+[khezen/compose-postgres](https://github.com/khezen/compose-postgres/tree/master)  
+```
+curl -O https://raw.githubusercontent.com/khezen/compose-postgres/master/docker-compose.yml -o docker-compose_postgres_pgadmin4.yml
+```
+
+[felipewom/docker-compose-postgres](https://github.com/felipewom/docker-compose-postgres/tree/main)  
+```
+curl -O https://raw.githubusercontent.com/felipewom/docker-compose-postgres/main/docker-compose.yml 
+curl -O https://raw.githubusercontent.com/felipewom/docker-compose-postgres/main/init.sql
+```
+
+[Setting up a PostgreSQL Database on a Raspberry Pi   Oct 14, 2022](https://pimylifeup.com/raspberry-pi-postgresql/)  
+
+*[Errno 13] Permission denied: '/var/lib/pgadmin/sessions'*
+[HELP with pgAdmin volume mount.](https://www.reddit.com/r/docker/comments/11xr3gc/help_with_pgadmin_volume_mount/)  
+adding user on the service works
+```
+user: "${UID}:${GID}"
+```
+
+[Permission denied: '/var/lib/pgadmin/sessions' in Docker](https://stackoverflow.com/questions/64781245/permission-denied-var-lib-pgadmin-sessions-in-docker)  
+
+
+## Reference  
+[Raspberry Pi 4 + OpenMediaVaultでNASを構築する 2023/03/13](https://zenn.dev/oversleep/articles/3f9ad984a37aba)  
+[Raspberry Pi 4が起動しない（モニタが映らない）場合の設定方法 2022-07-06](https://qiita.com/karaage0703/items/97808dfb957b3312b649)  
+
+[RaspberryPI4をサーバーにして遊び倒す。その１ 2020-12-24](https://qiita.com/miyukiaizawa/items/99da331359eaf4c7eec7)
+```
+DockerとPortainerのインストール
+```
+[RaspberryPI4をサーバーにして遊び倒す。その２ 2020-12-20](https://qiita.com/miyukiaizawa/items/37d4d386150eddaaeddb)  
 
 [RaspberrypiでNASを作成する 2024-03-12](https://qiita.com/T3pp31/items/36a9ce18b0780ff04cd3)  
 
@@ -204,34 +272,9 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 
 [How to build a NAS server from old hard drives](https://www.youtube.com/watch?v=6LqFY5yymKQ&t=0s)  
 
-[2 omv安装社区插件和改用国内源](https://www.youtube.com/watch?v=RQJmJYoWROo) 
-[4 OMV设置snapraid插件](https://www.youtube.com/watch?v=b63S4oB8hrI) 
-[5 omv系统设置联合文件系统](https://www.youtube.com/watch?v=dblNqi-VxSs) 
-[6 omv安装docker](https://www.youtube.com/watch?v=Ge7lEE-Q5jo) 
-```
-df -h
-```
-
-2:00 select folder for docker
-```
-{
-  "ipv6": true,
-  "fixed-cidr-v6":"fc01:17:1:1::/64",
-  "registry-mirrors": [
-    "https://dockerproxy.com",
-    "https://https://docker.m.daocloud.io"
-  ]
-}
-```
-[7 omv系统docker配置ddns和webdav](https://www.youtube.com/watch?v=FnUqJ0ZFxtI) 
-
 [16 Steps to install the new compose plugin and add portainer](https://forum.openmediavault.org/index.php?thread/48797-16-steps-to-install-the-new-compose-plugin-and-add-portainer/)  
 
 [How to Install Docker on OpenMediaVault Dec 1, 2022](https://www.wundertech.net/how-to-install-docker-on-openmediavault/)  
-
-[Setting up a PostgreSQL Database on a Raspberry Pi   Oct 14, 2022](https://pimylifeup.com/raspberry-pi-postgresql/)  
-
-[How to install Postgresql Database on Ubunut Headless Feb 11, 2021](https://forum.blackmagicdesign.com/viewtopic.php?f=21&t=134463)  
 
 
 # TrueNAS   

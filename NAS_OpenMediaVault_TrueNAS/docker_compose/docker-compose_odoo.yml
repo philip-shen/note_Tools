@@ -1,0 +1,36 @@
+version: '3.5'
+services:
+  web17:
+    image: odoo:17.0
+    depends_on:
+      - db
+    command:
+      # odoo --dev all # 一般啟動
+
+      python3 -m debugpy --listen 0.0.0.0:19009 /usr/bin/odoo -c /etc/odoo/odoo.conf --dev all
+
+      # 不使用 odoo.conf
+      # python3 -m debugpy --listen 0.0.0.0:19009 /usr/bin/odoo --db_user=odoo --db_host=db --db_password=odoo
+    ports:
+      - "8017:8069"
+      - "19009:19009"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+
+  db:
+    image: postgres:16
+    # ports:
+    # - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+
+volumes:
+    odoo-web-data:
+    odoo-db-data:

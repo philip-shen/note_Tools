@@ -1,0 +1,20 @@
+version: '3'
+services:
+  webdav:
+    container_name: docker-webdav-nginx
+    image: loganmarchione/docker-webdav-nginx:latest
+    restart: unless-stopped
+    environment:
+      - WEBDAV_USER=webdav
+      - WEBDAV_PASS=webdav
+      - NGINX_CLIENT_MAX_BODY_SIZE=500M
+      - TZ=Asia/Taipei  #Change timezone if different
+    networks:
+      - webdav  
+    ports:
+      - '8888:80'
+    volumes:
+      - 'CHANGE_TO_COMPOSE_DATA_PATH/webdav:/data/docker_appdata'
+
+networks:
+  webdav:      
