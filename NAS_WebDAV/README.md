@@ -6,8 +6,8 @@
       * [Reference](#reference)
    * [BT](#bt)
       * [1 htop](#1-htop)
-      * [2 aria2 1.15.1](#2-aria2-1.15.1)
-      * [3 transmission 2.52](#3-transmission-2.52)
+      * [2 aria2 1.15.1](#2-aria2-1151)
+      * [3 transmission 2.52](#3-transmission-252)
 
 # Purpose  
 Take a note of NAS.
