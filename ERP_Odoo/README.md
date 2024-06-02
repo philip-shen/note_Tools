@@ -25,6 +25,11 @@ Automated database backups from Odoo, both locally and on an FTP server
 [Yenthe666/Odoo_Samples](https://github.com/Yenthe666/Odoo_Samples)  
 This repository contains samples with Odoo code 
 
+[hrmuwanika/odoo](https://github.com/hrmuwanika/odoo/tree/17.0) 
+  ```
+  Installation script for Odoo 17 on Ubuntu 22.04 
+  ```
+
 [Raspberry Pi安裝Odoo14紀錄 10月 14, 2021](https://www.eca.party/2021/10/raspberry-piodoo14.html)  
 
 
@@ -52,6 +57,13 @@ Odoo Install Script for Raspberry Pi and Ubuntu Server 20.04
 [建立 odoo 開發環境 - Youtube Tutorial - 如何建立 odoo 開發環境 - odoo13 - 從無到有](https://youtu.be/Yazci5Rd0p4)  
 [Odoo VSCode Debug - Youtube Tutorial - 如何在 VS Code 中 Debug - odoo13](https://youtu.be/cV8Sm5yYR38)  
 
+[odoo/docker](https://github.com/odoo/docker)  
+  ```
+  This is the Git repo of the official Docker image for Odoo. See the Hub page for the full readme on how to use the Docker image and for information regarding contributing and issues.
+
+  The full readme is generated over in docker-library/docs, specifically in docker-library/docs/odoo.
+  ```
+
 
 # Installation on Mac(Ubuntu22.04LTS arm64)  
 
@@ -65,8 +77,44 @@ Odoo Install Script for Raspberry Pi and Ubuntu Server 20.04
   Gamil smpt
   dpcviulzzvwipxjt\
   ```
- 
 
+[How to setup NGINX for Odoo? | Odoo NGINX configuration | Odoo Installation](https://youtu.be/-3wV7A_4s-w?feature=shared)  
+[Upload records (contacts) in ODOO through excel using PYTHON | Odoo Development | XLSX Import Python](https://www.youtube.com/watch?v=SgFmOD9Q2S4)  
+[Import/Upload Sale Order Lines from Excel sheet using PYTHON in ODOO | Odoo Development](https://www.youtube.com/watch?v=QZMD7EeyaUY)  
+[How to Install Odoo 16 on Ubuntu 22.04](https://www.rosehosting.com/blog/how-to-install-odoo-16-on-ubuntu-22-04/)  
+  ```
+    Table of Contents
+
+      Prerequisites
+      Step 1. Update The System
+      Step 2. Add System User
+      Step 3. Install Dependencies
+      Step 4. Install PostgreSQL
+      Step 5. Install Wkhtmltopdf
+      Step 6. Install Odoo
+      Step 7. Create Odoo Systemd Unit file
+      Step 8. Configure Reverse Proxy 
+  ```
+
+[Running Odoo in HTTPS using Nginx & Certbot  Feb 6, 2020](https://medium.com/@othmane.ghandi/running-odoo-in-https-using-nginx-certbot-90ef2f3e5ccb)  
+[How to Configure SSL Certificate in NGINX  Feb 19, 2020](https://www.cybrosys.com/blog/how-to-configure-ssl-certificate-in-nginx)  
+[To configure odoo with NGINX as a reverse proxy](https://www.cybrosys.com/blog/how-to-configure-odoo-with-nginx-as-reverse-proxy)  
+
+[Quick and Easy Local SSL Certificates for Your Homelab!](https://www.youtube.com/watch?v=qlcVx-k-02E)  
+[Odoo16 setup on ubuntu 20.04 or ubuntu 22.04 May 18, 2023](https://medium.com/@ajith.kalisetti99/odoo16-setup-on-ubuntu-20-04-or-ubuntu-22-04-60ef1803b4e4)  
+
+[Odoo教學」1. Odoo安裝(Open ERP)，在Ubuntu/Linux虛擬機中建立 Odoo 環境 ! How to install Odoo on Ubuntu and Linux!](https://www.youtube.com/watch?v=94KyFyNPzh0)  
+[Odoo教學」2. 如何新建 Odoo Database，No demo data。 Create odoo database in Odoo15!](https://www.youtube.com/watch?v=s-vMD-l9IE8&list=PLzoF0xJbyYF26ArFkzRoDHl01czdEGeHt&index=2)  
+
+[在Ubuntu 20.04 LTS上安装部署Odoo15并设置Nginx SSL反向代理 2021年12月19日](https://huwencai.com/2021/12/%E5%9C%A8ubuntu-20-04-lts%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2odoo15%E5%B9%B6%E8%AE%BE%E7%BD%AEnginx-ssl%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/)  
+[如何以生产环境的标准在Ubuntu 20.04上安装部署Odoo14并设置Nginx和SSL 2021年1月4日](https://huwencai.com/2021/01/ubuntu-odoo14-nginx-ssl/)  
+
+[架設Nginx網頁伺服器與申請Let’s Encrypt的TLS/SSL憑證 2024/01/04](https://tzungshiun.com/nginx_with_certificates/)  
+
+[第二部分：為網站加裝 SSL 憑證](https://man.twcc.ai/@twccdocs/howto-vcs-host-secure-multi-web-one-instance-main-zh/https%3A%2F%2Fman.twcc.ai%2F%40twccdocs%2Fhowto-vcs-host-secure-multi-web-one-instance-2-zh)  
+[第三部分：驗證網域 & 安全連線](https://man.twcc.ai/@twccdocs/howto-vcs-host-secure-multi-web-one-instance-main-zh/https%3A%2F%2Fman.twcc.ai%2F%40twccdocs%2Fhowto-vcs-host-secure-multi-web-one-instance-3-zh)  
+[(四)申請&設定SSL 靠Let’s encrypt簡單搞定](https://jax.blias.com/2019/01/21/wamp%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B6%B2%E7%AB%99%E8%87%AA%E5%B7%B1%E6%9E%B6-%E7%AC%AC%E5%9B%9B%E7%AF%87/)  
+[幫網站掛上 HTTPS，使用 Certbot 向 Let's Encrypt 申請憑證 最後更新於 2023-06-27](https://docfunc.com/posts/48/%E5%B9%AB%E7%B6%B2%E7%AB%99%E6%8E%9B%E4%B8%8A-https%E4%BD%BF%E7%94%A8-certbot-%E5%90%91-lets-encrypt-%E7%94%B3%E8%AB%8B%E6%86%91%E8%AD%89-post)  
 
 
 * []()
