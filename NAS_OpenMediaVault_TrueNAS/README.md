@@ -13,6 +13,7 @@
          * [7. Format and Mount a USB drive](#7-format-and-mount-a-usb-drive)     
          * [8. Docker Configuration json](#8-docker-configuration-json)                           
          * [9. Docker images](#9-docker-images) 
+            * [Global environmental variables](#global-environmental-variables)
             * [Portainer](#portainer)     
             * [Webdav](#webdav)
             * [PostgreSQL and PgAdmin4](#postgresql-and-pgadmin4)                     
@@ -152,6 +153,37 @@ Take a note of NAS.
 
 ### 9. Docker images    
 
+#### Global environmental variables  
+```
+# THE FOLLOWING VARIABLES CAN BE USED IN ANY COMPOSE FILE
+# THEIR VALUE WILL BE REPLACED BY THE VALUE ASSIGNED HERE
+# YOU CAN ADD AS MANY VARIABLES AS YOU NEED
+#
+#
+# Customize the PID and GID value of your appuser user.
+# You can see it in the OMV GUI in the USERS > USERS tab
+#
+APPUSER_PUID=1002
+APPUSER_PGID=100
+#
+# Customize your time zone value.
+# You can see it in the OMV GUI in the SYSTEM > DATE & TIME tab
+#
+TIME_ZONE_VALUE=Europe/Madrid
+#
+# In this file you can define how many paths you need for different compose files.
+# The following are examples corresponding to the example system in the Docker on OMV document on the omv-extras wiki.
+#
+PATH_TO_APPDATA=/srv/dev-disk-by-uuid-9d43cda9-20e5-474f-b38b-6b2b6c03211a/appdata
+PATH_TO_DATA=/srv/mergerfs/pool/data
+PATH_TO_DOCUMENTS=/srv/mergerfs/pool/data/documents
+PATH_TO_MEDIA=/srv/mergerfs/pool/data/media
+PATH_TO_MOVIES=/srv/mergerfs/pool/data/media/movies
+PATH_TO_PHOTOS=/srv/mergerfs/pool/data/media/photos
+PATH_TO_BACKUPS=/srv/dev-disk-by-uuid-384444bb-f020-4492-acd2-5997e908f49f/backups
+PATH_TO_DOWNLOADS=/srv/dev-disk-by-uuid-384444bb-f020-4492-acd2-5997e908f49f/downloads
+```
+
 #### Portainer    
 
 #### Webdav    
@@ -166,7 +198,16 @@ curl -O https://raw.githubusercontent.com/twtrubiks/odoo-docker-tutorial/vscode_
 
 <img src="images/omv_postgres_pgadmin4.jpg" width="800" height="500">
 
+#### Code Server     
+
 #### Reference  
+[4. Global environmental variables](https://wiki.omv-extras.org/doku.php?id=omv7:docker_in_omv#global_environmental_variables)  
+
+[openmediavault-Compose安装与设置 2024年03月21日](https://www.bilibili.com/read/cv33333171/)  
+[omv 6.5 nas 系统教程 安装/docker/插件拓展 2023/11/04](https://hechuan.me/omv-6-5/)  
+[OMV Docker-Compose PhotoPrism 2023-10-22 ](https://www.chungg.com/omv-docker-compose-photoprism/)  
+[Getting Started with OpenMediaVault](https://wiki.friendlyelec.com/wiki/index.php/Getting_Started_with_OpenMediaVault#Docker_on_OMV)  
+
 [New 2024 openmediavault getting started, omv extras and portainer  2024年1月29日](https://www.youtube.com/watch?v=2hU8e61UE9w)  
 [*Link to my GitHub where you can find the portainer.yml file* ](https://github.com/robwithtech/homelab)  
 
@@ -177,7 +218,7 @@ SSH into your OMV server and run:
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 ```
 [y0ngb1n/docker-registry-mirrors.md](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)  
-[我在OMV上运行的一些有趣的Docker镜像  2021-04-21](https://east.moe/archives/1077) 
+[我在OMV上运行的一些有趣的Docker镜像  2021-04-21](https://east.moe/archives/1077)  
 [loganmarchione/docker-webdav-nginx](https://hub.docker.com/r/loganmarchione/docker-webdav-nginx)  
 
 [2 omv安装社区插件和改用国内源](https://www.youtube.com/watch?v=RQJmJYoWROo)   
@@ -216,7 +257,7 @@ curl -O https://raw.githubusercontent.com/felipewom/docker-compose-postgres/main
 
 [Setting up a PostgreSQL Database on a Raspberry Pi   Oct 14, 2022](https://pimylifeup.com/raspberry-pi-postgresql/)  
 
-*[Errno 13] Permission denied: '/var/lib/pgadmin/sessions'*
+*[Errno 13] Permission denied: '/var/lib/pgadmin/sessions'*  
 [HELP with pgAdmin volume mount.](https://www.reddit.com/r/docker/comments/11xr3gc/help_with_pgadmin_volume_mount/)  
 adding user on the service works
 ```
@@ -225,6 +266,14 @@ user: "${UID}:${GID}"
 
 [Permission denied: '/var/lib/pgadmin/sessions' in Docker](https://stackoverflow.com/questions/64781245/permission-denied-var-lib-pgadmin-sessions-in-docker)  
 
+[VS Code: NoPermissions (FileSystemError): Error: EACCES: permission denied Mar 5, 2021](https://stackoverflow.com/questions/66496890/vs-code-nopermissions-filesystemerror-error-eacces-permission-denied)  
+
+```
+sudo chown -R username path 
+```
+```
+sudo chown -R appuser /srv/dev-disk-by-uuid-417ee010-3948-4114-8776-bc1fdf6b5599/data/docker_appdata/code-server/project
+```
 
 ## Reference  
 [Raspberry Pi 4 + OpenMediaVaultでNASを構築する 2023/03/13](https://zenn.dev/oversleep/articles/3f9ad984a37aba)  

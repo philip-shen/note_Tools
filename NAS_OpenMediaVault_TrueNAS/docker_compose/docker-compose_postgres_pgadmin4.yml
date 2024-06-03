@@ -28,7 +28,7 @@ services:
       TZ: Asia/Taipei  #Change timezone if different
     volumes:
        - CHANGE_TO_COMPOSE_DATA_PATH/pgadmin:/var/lib/pgadmin
-
+    user: "${UID}:${GID}"
     ports:
       - "8080:80"
     networks:

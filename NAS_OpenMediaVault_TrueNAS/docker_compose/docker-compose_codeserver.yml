@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+ vscode:
+    image: ghcr.io/linuxserver/code-server
+    #user: "1000:100" # Your user ID : Your group ID
+    #networks:
+    #  - global
+    #  - local
+    environment:
+      - PUID=${APPUSER_PUID}
+      - PGID=${APPUSER_PGID}
+      #- PASSWORD=admin
+      #- CONTAINER_USER=admin
+      - TZ=${TIME_ZONE_VALUE}
+    volumes:
+      - CHANGE_TO_COMPOSE_DATA_PATH/code-server/config:/config
+      - CHANGE_TO_COMPOSE_DATA_PATH/code-server/project:/home/coder/project
+      - CHANGE_TO_COMPOSE_DATA_PATH/code-server:/home/coder
+    ports:
+      - 8443:8443  
+    restart: unless-stopped
+    
+#networks:
+#  local:
+#    external: false
+#  global:
+#    external: true
