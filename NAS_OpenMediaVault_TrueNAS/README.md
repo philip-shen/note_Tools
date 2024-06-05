@@ -18,6 +18,7 @@
             * [Webdav](#webdav)
             * [PostgreSQL and PgAdmin4](#postgresql-and-pgadmin4)                     
             * [Reference](#reference)
+            * [Troubleshooting](#troubleshooting)
       * [Reference](#reference-1)
    * [TrueNAS](#truenas)
       * [Reference](#reference-2)
@@ -257,6 +258,7 @@ curl -O https://raw.githubusercontent.com/felipewom/docker-compose-postgres/main
 
 [Setting up a PostgreSQL Database on a Raspberry Pi   Oct 14, 2022](https://pimylifeup.com/raspberry-pi-postgresql/)  
 
+#### Troubleshooting    
 *[Errno 13] Permission denied: '/var/lib/pgadmin/sessions'*  
 [HELP with pgAdmin volume mount.](https://www.reddit.com/r/docker/comments/11xr3gc/help_with_pgadmin_volume_mount/)  
 adding user on the service works
@@ -274,6 +276,7 @@ sudo chown -R username path
 ```
 sudo chown -R appuser /srv/dev-disk-by-uuid-417ee010-3948-4114-8776-bc1fdf6b5599/data/docker_appdata/code-server/project
 ```
+
 
 ## Reference  
 [Raspberry Pi 4 + OpenMediaVaultでNASを構築する 2023/03/13](https://zenn.dev/oversleep/articles/3f9ad984a37aba)  

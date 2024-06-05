@@ -8,6 +8,7 @@
       * [Reference](#reference-1)
    * [Installation on Docker](#installation-on-docker)
       * [Reference](#reference-2)
+      * [Troubleshooting](#troubleshooting)
    * [Installation on Mac(Ubuntu22.04LTS arm64)](#installation-on-macubuntu2204lts-arm64)
       * [Reference](#reference-3)
    * [Reference](#reference-4)
@@ -64,6 +65,15 @@ Odoo Install Script for Raspberry Pi and Ubuntu Server 20.04
   The full readme is generated over in docker-library/docs, specifically in docker-library/docs/odoo.
   ```
 
+#### Troubleshooting    
+[How to set an Odoo docker container using existing PostgreSQL server? Aug 20, 2022](https://stackoverflow.com/questions/73430003/how-to-set-an-odoo-docker-container-using-existing-postgresql-server)
+
+[Multiples Odoo containers with multiples Postgresql containers Dec 12, 2019](https://stackoverflow.com/questions/59311431/multiples-odoo-containers-with-multiples-postgresql-containers)  
+
+[Step-by-Step Guide for Installing Odoo with Docker Compose and Nginx Oct 8, 2023](https://sundar365.com.np/step-by-step-guide-for-installing-odoo-with-docker-compose-and-nginx)  
+
+[Odoo development using Visual Studio Code and Docker  February 23, 2023](https://cetmix.com/blog/cetmix-blog-2/odoo-development-using-visual-studio-code-and-docker-1)  
+
 
 # Installation on Mac(Ubuntu22.04LTS arm64)  
 
@@ -116,6 +126,25 @@ Odoo Install Script for Raspberry Pi and Ubuntu Server 20.04
 [(四)申請&設定SSL 靠Let’s encrypt簡單搞定](https://jax.blias.com/2019/01/21/wamp%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B6%B2%E7%AB%99%E8%87%AA%E5%B7%B1%E6%9E%B6-%E7%AC%AC%E5%9B%9B%E7%AF%87/)  
 [幫網站掛上 HTTPS，使用 Certbot 向 Let's Encrypt 申請憑證 最後更新於 2023-06-27](https://docfunc.com/posts/48/%E5%B9%AB%E7%B6%B2%E7%AB%99%E6%8E%9B%E4%B8%8A-https%E4%BD%BF%E7%94%A8-certbot-%E5%90%91-lets-encrypt-%E7%94%B3%E8%AB%8B%E6%86%91%E8%AD%89-post)  
 
+How to Secure Nginx with Lets Encrypt on Ubuntu 20.04 with Certbot?
+https://www.youtube.com/watch?v=R5d-hN9UtpU
+
+如何使用Let's Encrypt在Ubuntu 20.04上保護Nginx
+04/19/2021
+https://blog.containerize.com/zh-hant/how-to-secure-nginx-with-letsencrypt-on-ubuntu-20-04/
+
+DAY28 - 在主機上建立WordPress網站與SSL設定 
+https://ithelp.ithome.com.tw/articles/10279792?sc=iThelpR
+
+How to Secure Nginx with Lets Encrypt on Ubuntu 20.04 with Certbot?
+https://www.youtube.com/watch?v=R5d-hN9UtpU
+
+
+Easy Cloudflare SSL WordPress setup that the top 1% of websites use - Cloudflare SSL DNS
+https://www.youtube.com/watch?v=d44H4G8cthE
+
+ How to Setup @cloudflare FAST (DNS, Performance, Security) Updated 2024 - FREE PLAN! 
+https://www.youtube.com/watch?v=CiOXICbaBQk
 
 * []()
 ![alt tag]()  
