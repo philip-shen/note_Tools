@@ -119,6 +119,8 @@ Odoo Install Script for Raspberry Pi and Ubuntu Server 20.04
 [在Ubuntu 20.04 LTS上安装部署Odoo15并设置Nginx SSL反向代理 2021年12月19日](https://huwencai.com/2021/12/%E5%9C%A8ubuntu-20-04-lts%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2odoo15%E5%B9%B6%E8%AE%BE%E7%BD%AEnginx-ssl%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/)  
 [如何以生产环境的标准在Ubuntu 20.04上安装部署Odoo14并设置Nginx和SSL 2021年1月4日](https://huwencai.com/2021/01/ubuntu-odoo14-nginx-ssl/)  
 
+[GTLSCA TLS憑證，NGINX 伺服器設定方式 May 27, 2024](https://medium.com/@rz12345/gtlsca-tls%E6%86%91%E8%AD%89-nginx-%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%AD%E5%AE%9A%E6%96%B9%E5%BC%8F-5fb67d696dc0)  
+
 [架設Nginx網頁伺服器與申請Let’s Encrypt的TLS/SSL憑證 2024/01/04](https://tzungshiun.com/nginx_with_certificates/)  
 
 [第二部分：為網站加裝 SSL 憑證](https://man.twcc.ai/@twccdocs/howto-vcs-host-secure-multi-web-one-instance-main-zh/https%3A%2F%2Fman.twcc.ai%2F%40twccdocs%2Fhowto-vcs-host-secure-multi-web-one-instance-2-zh)  
