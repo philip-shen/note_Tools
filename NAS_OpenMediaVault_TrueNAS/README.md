@@ -16,7 +16,8 @@
             * [Global environmental variables](#global-environmental-variables)
             * [Portainer](#portainer)     
             * [Webdav](#webdav)
-            * [PostgreSQL and PgAdmin4](#postgresql-and-pgadmin4)                     
+            * [PostgreSQL and PgAdmin4](#postgresql-and-pgadmin4)       
+            * [Nextcloud](#nextcloud)       
             * [Reference](#reference)
             * [Troubleshooting](#troubleshooting)
       * [Reference](#reference-1)
@@ -201,6 +202,8 @@ curl -O https://raw.githubusercontent.com/twtrubiks/odoo-docker-tutorial/vscode_
 
 #### Code Server     
 
+#### Nextcloud   
+
 #### Reference  
 [4. Global environmental variables](https://wiki.omv-extras.org/doku.php?id=omv7:docker_in_omv#global_environmental_variables)  
 
@@ -257,6 +260,9 @@ curl -O https://raw.githubusercontent.com/felipewom/docker-compose-postgres/main
 ```
 
 [Setting up a PostgreSQL Database on a Raspberry Pi   Oct 14, 2022](https://pimylifeup.com/raspberry-pi-postgresql/)  
+
+[Nextcloud container on openmediavault using macvlan step-by-step Apr 15, 2024](https://www.youtube.com/watch?v=SQ80JmRQE_o)  
+[homelab/docker compose/Nextcloud/nextcloud.yml](https://github.com/robwithtech/homelab/blob/main/docker%20compose/Nextcloud/nextcloud.yml)  
 
 #### Troubleshooting    
 *[Errno 13] Permission denied: '/var/lib/pgadmin/sessions'*  
