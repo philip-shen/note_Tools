@@ -7,7 +7,7 @@ services:
       - nextcloud-mariadb
     networks:
       nextcloud-network:
-        ipv4_address: ${HOST_IPv4} #Change, your nextcloud ipaddress
+        ipv4_address: ${MACVLAN_HOST_IP} #Change, your nextcloud ipaddress
       backend-network:    
     environment:
       - PUID=${APPUSER_PUID}               #Change to your user PUID
@@ -42,5 +42,5 @@ networks:
   backend-network:
     name: mariadb-backend-network
   nextcloud-network:
-    name: local-network
+    name: macvlan-network
     external: true

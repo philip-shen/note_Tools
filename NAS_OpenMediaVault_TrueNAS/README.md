@@ -203,6 +203,19 @@ curl -O https://raw.githubusercontent.com/twtrubiks/odoo-docker-tutorial/vscode_
 #### Code Server     
 
 #### Nextcloud   
+*MACVLAN Setting*  
+<img src="images/docker_macvlan_setup.jpg" width="500" height="200">  
+
+
+<img src="images/docker_macvlan.jpg" width="600" height="300">  
+
+
+
+*Nextcloud Login Web*  
+<img src="images/nextcloud_login.jpg" width="600" height="500">  
+
+
+<img src="images/nextcloud_apps.jpg" width="800" height="600">  
 
 #### Reference  
 [4. Global environmental variables](https://wiki.omv-extras.org/doku.php?id=omv7:docker_in_omv#global_environmental_variables)  
@@ -263,6 +276,15 @@ curl -O https://raw.githubusercontent.com/felipewom/docker-compose-postgres/main
 
 [Nextcloud container on openmediavault using macvlan step-by-step Apr 15, 2024](https://www.youtube.com/watch?v=SQ80JmRQE_o)  
 [homelab/docker compose/Nextcloud/nextcloud.yml](https://github.com/robwithtech/homelab/blob/main/docker%20compose/Nextcloud/nextcloud.yml)  
+[home/other/ip subnet calculator](https://www.calculator.net/ip-subnet-calculator.html)  
+
+[DockerコンテナにLAN内のIPアドレスを割り当て、ホストからもアクセス可能にする 2024-03-18](https://qiita.com/pochy9n/items/8c175db18da4a44ae2d2)
+[Dockerの"分からない"を簡単にメモ  2023-08-03](https://qiita.com/fsd-fukufuku/items/f8539e562352c046f39c#%E7%8C%BF%E3%81%A7%E3%82%82%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9)  
+[Linuxカーネルのコンテナ機能［5］ ─ネットワーク 2014-07-22](https://gihyo.jp/admin/serial/01/linux_containers/0006)  
+
+[Macvlan network driver](https://docs.docker.com/network/drivers/macvlan/)  
+[How to put docker containers on LAN network ? | Macvlan setup in GUI Jul 18, 2022](https://www.youtube.com/watch?v=6bbe1BdPycU)  
+[Docker Networking Tutorial, ALL Network Types explained! Oct 26, 2021](https://www.youtube.com/watch?v=5grbXvV_DSk)  
 
 #### Troubleshooting    
 *[Errno 13] Permission denied: '/var/lib/pgadmin/sessions'*  
