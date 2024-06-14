@@ -286,6 +286,10 @@ curl -O https://raw.githubusercontent.com/felipewom/docker-compose-postgres/main
 [How to put docker containers on LAN network ? | Macvlan setup in GUI Jul 18, 2022](https://www.youtube.com/watch?v=6bbe1BdPycU)  
 [Docker Networking Tutorial, ALL Network Types explained! Oct 26, 2021](https://www.youtube.com/watch?v=5grbXvV_DSk)  
 
+[架設Nextcloud個人雲端硬碟 ＋ 網頁版LibreOffice教學 (docker-compose + ZeroTier內網穿透) May 18, 2023](https://ivonblog.com/posts/nextcloud-docker/)  
+[Docker安裝私有雲端硬碟Nextcloud 27.0.2-含線上office服務 Sep 5, 2023](https://blog.tomy168.com/2023/09/dockernextcloud-2702-office.html)  
+[NextCloud安装和使用图文教程 2021-11-05](https://cloud.tencent.com/developer/article/1897454)  
+
 #### Troubleshooting    
 *[Errno 13] Permission denied: '/var/lib/pgadmin/sessions'*  
 [HELP with pgAdmin volume mount.](https://www.reddit.com/r/docker/comments/11xr3gc/help_with_pgadmin_volume_mount/)  
