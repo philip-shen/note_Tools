@@ -1,0 +1,53 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:16
+    environment:
+      POSTGRES_DB: postgres      
+      POSTGRES_USER: ${POSTGRES_USER:-odoo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-odoo}
+      PGDATA: /var/lib/postgresql/data/pgdata
+      PUID: ${APPUSER_PUID}               #Change to your user PUID
+      PGID: ${APPUSER_PGID}               #Change to your user PGID
+      TZ: ${TIME_ZONE_VALUE}      #Change to your timezone
+    volumes:
+       - CHANGE_TO_COMPOSE_DATA_PATH/odoo-db-data_external:/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    networks:
+      postgres-backend-network:
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin_external
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-pgadmin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PUID: ${APPUSER_PUID}               #Change to your user PUID
+      PGID: ${APPUSER_PGID}               #Change to your user PGID
+      TZ: ${TIME_ZONE_VALUE}      #Change to your timezone
+    volumes:
+       - CHANGE_TO_COMPOSE_DATA_PATH/pgadmin_external:/var/lib/${APPUSER_PGID}
+    # user: "${UID}:${GID}"
+    ports:
+      - "8080:80"
+    networks:
+      pgadmin-network:
+        ipv4_address: ${MACVLAN_HOST2_IP} #Change, your pgadmin ipaddress
+      postgres-backend-network:  
+    restart: unless-stopped
+
+networks:
+  postgres-backend-network:
+    name: postgres-network
+  pgadmin-network:
+    name: macvlan-network
+    external: true
+
+#volumes:
+#    odoo-db-data:
+#    pgadmin:
