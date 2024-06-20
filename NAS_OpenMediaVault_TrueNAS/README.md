@@ -198,7 +198,12 @@ curl -O https://raw.githubusercontent.com/khezen/compose-postgres/master/docker-
 ```
 curl -O https://raw.githubusercontent.com/twtrubiks/odoo-docker-tutorial/vscode_debug_docker_odoo17/docker-compose.yml -o docker-compose_odoo.yml
 ```
+*External Network*  
+[docker-compose_postgres_pgadmin4-externalNet.yml](docker_compose/docker-compose_postgres_pgadmin4-externalNet.yml)  
+<img src="images/omv_postgres_pgadmin4_external_network.jpg" width="800" height="500">
 
+
+[docker-compose_postgres_pgadmin4.yml](docker_compose/docker-compose_postgres_pgadmin4.yml)  
 <img src="images/omv_postgres_pgadmin4.jpg" width="800" height="500">
 
 #### Code Server     
