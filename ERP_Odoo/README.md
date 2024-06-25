@@ -46,10 +46,21 @@ Odoo Install Script for Raspberry Pi and Ubuntu Server 20.04
 
 
 # Installation on Docker  
+[docker-compose_odoo.yml](docker_compose/docker-compose_odoo.yml)   
+[odoo.conf](config/odoo.conf)  
+
+*http://192.168.1.204:8069*  
+<img src="images/odoo_16_01.jpg" width="600" height="400">  
+
+*http://192.168.1.202*  
+<img src="images/odoo_16_postgres.jpg" width="600" height="300">  
+
 
 ## Reference 
 [odoo-docker-tutorial-15](https://github.com/twtrubiks/odoo-docker-tutorial/tree/15.0)  
 [Youtube Tutorial - Odoo](https://www.youtube.com/playlist?list=PLteWjpkbvj7pbdPXhIqgtX3v3pQxHz-5l)  
+
+[docker-library/docs/oddd](https://github.com/docker-library/docs/tree/master/odoo)  
 
 [利用 docker 快速建立 pgadmin4 以及 Ubuntu 本機如何安裝 pgadmin4](https://github.com/twtrubiks/docker-pgadmin4-tutorial)  
 [Youtube Tutorial - 如何使用 pgadmin4 連接 odoo](https://youtu.be/afuB8wnozo8)    

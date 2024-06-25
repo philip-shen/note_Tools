@@ -1,0 +1,34 @@
+version: '3.5'
+services:
+  web:
+    image: odoo:16.0
+    ports:
+      - "8069:8069"
+    networks:
+      od00_16-network:
+        ipv4_address: ${MACVLAN_HOST4_IP} #Change, your pgadmin ipaddress 
+    healthcheck:
+      test: curl -fs http://localhost:8069/web/database/selector || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - PUID=${APPUSER_PUID}       #Change to your user PUID
+      - PGID=${APPUSER_PGID}       #Change to your user PGID
+      - TZ=${TIME_ZONE_VALUE}      #Change to your timezone  
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - CHANGE_TO_COMPOSE_DATA_PATH/odoo_16/config:/etc/odoo
+      - CHANGE_TO_COMPOSE_DATA_PATH/odoo_16/addons:/mnt/extra-addons
+      - CHANGE_TO_COMPOSE_DATA_PATH/odoo-log-data:/var/log/odoo
+    restart: unless-stopped  
+    # command:
+    #   odoo -r odoo -w odoo -i addons -d odoo
+volumes:
+  odoo-web-data:    
+networks:
+  od00_16-network:
+    name: macvlan-network
+    external: true  
+
+#ci7m-zv6g-x8b3    

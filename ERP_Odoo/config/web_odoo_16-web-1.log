@@ -1,0 +1,339 @@
+time="2024-06-25T23:54:22+08:00" level=warning msg="/srv/dev-disk-by-uuid-417ee010-3948-4114-8776-bc1fdf6b5599/data/docker_compose/Odoo_16/Odoo_16.yml: `version` is obsolete"
+web-1  | 2024-06-25 15:42:42,602 1 INFO ? odoo: Odoo version 16.0-20240624 
+web-1  | 2024-06-25 15:42:42,603 1 INFO ? odoo: Using configuration file at /etc/odoo/odoo.conf 
+web-1  | 2024-06-25 15:42:42,603 1 INFO ? odoo: addons paths: ['/usr/lib/python3/dist-packages/odoo/addons', '/var/lib/odoo/addons/16.0', '/mnt/extra-addons'] 
+web-1  | 2024-06-25 15:42:42,604 1 INFO ? odoo: database: odoo@192.168.1.203:5432 
+web-1  | 2024-06-25 15:42:42,967 1 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+web-1  | 2024-06-25 15:42:43,583 1 INFO ? odoo.service.server: HTTP service (werkzeug) running on eed85c92398f:8069 
+web-1  | 2024-06-25 15:42:52,746 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:42:52] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 2.016
+web-1  | 2024-06-25 15:43:04,171 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:43:04] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.309
+web-1  | 2024-06-25 15:43:04,596 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:43:04] "GET / HTTP/1.1" 303 - 1 0.004 0.024
+web-1  | 2024-06-25 15:43:04,655 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:43:04] "GET /web HTTP/1.1" 303 - 2 0.008 0.044
+web-1  | 2024-06-25 15:43:05,983 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:43:05] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.312
+web-1  | 2024-06-25 15:43:15,596 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:43:15] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.307
+web-1  | 2024-06-25 15:43:27,019 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:43:27] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.313
+web-1  | 2024-06-25 15:43:38,541 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:43:38] "GET /web/database/selector HTTP/1.1" 200 - 2 0.010 1.338
+web-1  | 2024-06-25 15:43:49,963 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:43:49] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.303
+web-1  | 2024-06-25 15:44:01,411 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:44:01] "GET /web/database/selector HTTP/1.1" 200 - 2 0.009 1.327
+web-1  | 2024-06-25 15:44:12,840 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:44:12] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.314
+web-1  | 2024-06-25 15:44:24,382 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:44:24] "GET /web/database/selector HTTP/1.1" 200 - 2 0.011 1.357
+web-1  | 2024-06-25 15:44:35,848 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:44:35] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.303
+web-1  | 2024-06-25 15:44:47,285 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:44:47] "GET /web/database/selector HTTP/1.1" 200 - 2 0.009 1.316
+web-1  | 2024-06-25 15:44:58,778 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:44:58] "GET /web/database/selector HTTP/1.1" 200 - 2 0.009 1.381
+web-1  | 2024-06-25 15:45:10,213 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:45:10] "GET /web/database/selector HTTP/1.1" 200 - 2 0.009 1.307
+web-1  | 2024-06-25 15:45:21,682 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:45:21] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.302
+web-1  | 2024-06-25 15:45:33,174 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:45:33] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.377
+web-1  | 2024-06-25 15:45:44,709 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:45:44] "GET /web/database/selector HTTP/1.1" 200 - 2 0.011 1.373
+web-1  | 2024-06-25 15:45:56,146 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:45:56] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.309
+web-1  | 2024-06-25 15:46:07,589 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:46:07] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.315
+web-1  | 2024-06-25 15:46:19,120 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:46:19] "GET /web/database/selector HTTP/1.1" 200 - 2 0.010 1.359
+web-1  | 2024-06-25 15:46:30,595 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:46:30] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.315
+web-1  | 2024-06-25 15:46:42,021 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:46:42] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.313
+web-1  | 2024-06-25 15:46:53,524 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:46:53] "GET /web/database/selector HTTP/1.1" 200 - 2 0.010 1.319
+web-1  | 2024-06-25 15:47:04,938 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:47:04] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.309
+web-1  | 2024-06-25 15:47:16,410 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:47:16] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.308
+web-1  | 2024-06-25 15:47:27,846 1 INFO ? werkzeug: 127.0.0.1 - - [25/Jun/2024 15:47:27] "GET /web/database/selector HTTP/1.1" 200 - 2 0.008 1.329
+web-1  | ERROR: couldn't write the config file
+web-1  | 2024-06-25 15:47:31,045 1 INFO None odoo.service.db: Create database `odoo_16_docker`. 
+web-1  | 2024-06-25 15:47:36,298 1 INFO odoo_16_docker odoo.modules.loading: loading 1 modules... 
+web-1  | 2024-06-25 15:47:36,299 1 INFO odoo_16_docker odoo.modules.loading: Loading module base (1/1) 
+web-1  | 2024-06-25 15:47:36,372 1 INFO odoo_16_docker odoo.modules.registry: module base: creating or updating database tables 
+web-1  | 2024-06-25 15:47:42,183 1 INFO odoo_16_docker odoo.models: Prepare computation of ir.module.module.menus_by_module 
+web-1  | 2024-06-25 15:47:42,184 1 INFO odoo_16_docker odoo.models: Prepare computation of ir.module.module.reports_by_module 
+web-1  | 2024-06-25 15:47:42,184 1 INFO odoo_16_docker odoo.models: Prepare computation of ir.module.module.views_by_module 
+web-1  | 2024-06-25 15:47:44,509 1 INFO odoo_16_docker odoo.models: Prepare computation of res.partner.user_id 
+web-1  | 2024-06-25 15:47:44,510 1 INFO odoo_16_docker odoo.models: Prepare computation of res.partner.commercial_partner_id 
+web-1  | 2024-06-25 15:47:44,510 1 INFO odoo_16_docker odoo.models: Prepare computation of res.partner.display_name 
+web-1  | 2024-06-25 15:47:44,511 1 INFO odoo_16_docker odoo.models: Prepare computation of res.partner.company_registry 
+web-1  | 2024-06-25 15:47:44,511 1 INFO odoo_16_docker odoo.models: Prepare computation of res.partner.commercial_company_name 
+web-1  | 2024-06-25 15:47:44,511 1 INFO odoo_16_docker odoo.models: Prepare computation of res.partner.partner_share 
+web-1  | 2024-06-25 15:47:45,197 1 INFO odoo_16_docker odoo.models: Prepare computation of res.currency.decimal_places 
+web-1  | 2024-06-25 15:47:45,593 1 INFO odoo_16_docker odoo.models: Prepare computation of res.company.logo_web 
+web-1  | 2024-06-25 15:47:46,091 1 INFO odoo_16_docker odoo.models: Prepare computation of res.users.signature 
+web-1  | 2024-06-25 15:47:46,092 1 INFO odoo_16_docker odoo.models: Prepare computation of res.users.share 
+web-1  | 2024-06-25 15:47:55,813 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res_bank.xml 
+web-1  | 2024-06-25 15:47:55,834 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res.lang.csv 
+web-1  | 2024-06-25 15:47:55,978 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res_lang_data.xml 
+web-1  | 2024-06-25 15:47:56,059 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res_partner_data.xml 
+web-1  | 2024-06-25 15:47:56,259 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res_currency_data.xml 
+web-1  | 2024-06-25 15:47:57,673 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res_company_data.xml 
+web-1  | 2024-06-25 15:47:57,784 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res_users_data.xml 
+web-1  | 2024-06-25 15:48:00,093 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/report_paperformat_data.xml 
+web-1  | 2024-06-25 15:48:00,117 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res_country_data.xml 
+web-1  | 2024-06-25 15:48:01,584 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/ir_demo_data.xml 
+web-1  | 2024-06-25 15:48:01,620 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/ir_config_parameter_data.xml 
+web-1  | 2024-06-25 15:48:01,645 1 INFO odoo_16_docker odoo.modules.loading: loading base/security/base_groups.xml 
+web-1  | 2024-06-25 15:48:04,138 1 INFO odoo_16_docker odoo.modules.loading: loading base/security/base_security.xml 
+web-1  | 2024-06-25 15:48:04,530 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/base_menus.xml 
+web-1  | 2024-06-25 15:48:04,814 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/decimal_precision_views.xml 
+web-1  | 2024-06-25 15:48:04,867 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_config_views.xml 
+web-1  | 2024-06-25 15:48:04,894 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/res.country.state.csv 
+web-1  | 2024-06-25 15:48:06,504 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_actions_views.xml 
+web-1  | 2024-06-25 15:48:06,858 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_asset_views.xml 
+web-1  | 2024-06-25 15:48:06,918 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_config_parameter_views.xml 
+web-1  | 2024-06-25 15:48:06,972 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_cron_views.xml 
+web-1  | 2024-06-25 15:48:07,059 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_cron_trigger_views.xml 
+web-1  | 2024-06-25 15:48:07,114 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_filters_views.xml 
+web-1  | 2024-06-25 15:48:07,173 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_mail_server_views.xml 
+web-1  | 2024-06-25 15:48:07,238 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_model_views.xml 
+web-1  | 2024-06-25 15:48:07,689 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_attachment_views.xml 
+web-1  | 2024-06-25 15:48:07,760 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_rule_views.xml 
+web-1  | 2024-06-25 15:48:07,840 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_sequence_views.xml 
+web-1  | 2024-06-25 15:48:07,905 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_ui_menu_views.xml 
+web-1  | 2024-06-25 15:48:07,966 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_ui_view_views.xml 
+web-1  | 2024-06-25 15:48:08,134 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_default_views.xml 
+web-1  | 2024-06-25 15:48:08,205 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/ir_cron_data.xml 
+web-1  | 2024-06-25 15:48:08,225 1 INFO odoo_16_docker odoo.modules.loading: loading base/report/ir_model_report.xml 
+web-1  | 2024-06-25 15:48:08,239 1 INFO odoo_16_docker odoo.modules.loading: loading base/report/ir_model_templates.xml 
+web-1  | 2024-06-25 15:48:08,260 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_logging_views.xml 
+web-1  | 2024-06-25 15:48:08,319 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_qweb_widget_templates.xml 
+web-1  | 2024-06-25 15:48:08,347 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_module_views.xml 
+web-1  | 2024-06-25 15:48:08,585 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/ir_module_category_data.xml 
+web-1  | 2024-06-25 15:48:08,794 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/ir_module_module.xml 
+web-1  | 2024-06-25 15:48:09,005 1 INFO odoo_16_docker odoo.modules.loading: loading base/report/ir_module_reports.xml 
+web-1  | 2024-06-25 15:48:09,017 1 INFO odoo_16_docker odoo.modules.loading: loading base/report/ir_module_report_templates.xml 
+web-1  | 2024-06-25 15:48:09,035 1 INFO odoo_16_docker odoo.modules.loading: loading base/wizard/base_module_update_views.xml 
+web-1  | 2024-06-25 15:48:09,071 1 INFO odoo_16_docker odoo.modules.loading: loading base/wizard/base_language_install_views.xml 
+web-1  | 2024-06-25 15:48:09,108 1 INFO odoo_16_docker odoo.modules.loading: loading base/wizard/base_import_language_views.xml 
+web-1  | 2024-06-25 15:48:09,142 1 INFO odoo_16_docker odoo.modules.loading: loading base/wizard/base_module_upgrade_views.xml 
+web-1  | 2024-06-25 15:48:09,197 1 INFO odoo_16_docker odoo.modules.loading: loading base/wizard/base_module_uninstall_views.xml 
+web-1  | 2024-06-25 15:48:09,218 1 INFO odoo_16_docker odoo.modules.loading: loading base/wizard/base_export_language_views.xml 
+web-1  | 2024-06-25 15:48:09,253 1 INFO odoo_16_docker odoo.modules.loading: loading base/wizard/base_partner_merge_views.xml 
+web-1  | 2024-06-25 15:48:09,297 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/ir_actions_data.xml 
+web-1  | 2024-06-25 15:48:09,310 1 INFO odoo_16_docker odoo.modules.loading: loading base/data/ir_demo_failure_data.xml 
+web-1  | 2024-06-25 15:48:09,353 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_profile_views.xml 
+web-1  | 2024-06-25 15:48:09,423 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_company_views.xml 
+web-1  | 2024-06-25 15:48:09,491 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_lang_views.xml 
+web-1  | 2024-06-25 15:48:09,563 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_partner_views.xml 
+web-1  | 2024-06-25 15:48:09,925 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_bank_views.xml 
+web-1  | 2024-06-25 15:48:10,028 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_country_views.xml 
+web-1  | 2024-06-25 15:48:10,146 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_currency_views.xml 
+web-1  | 2024-06-25 15:48:10,260 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_users_views.xml 
+web-1  | 2024-06-25 15:48:10,615 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/ir_property_views.xml 
+web-1  | 2024-06-25 15:48:10,679 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/res_config_settings_views.xml 
+web-1  | 2024-06-25 15:48:10,701 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/report_paperformat_views.xml 
+web-1  | 2024-06-25 15:48:10,778 1 INFO odoo_16_docker odoo.modules.loading: loading base/views/onboarding_views.xml 
+web-1  | 2024-06-25 15:48:10,847 1 INFO odoo_16_docker odoo.modules.loading: loading base/security/ir.model.access.csv 
+web-1  | 2024-06-25 15:48:11,341 1 INFO odoo_16_docker odoo.modules.loading: Module base loaded in 35.04s, 7890 queries (+7893 other) 
+web-1  | 2024-06-25 15:48:11,341 1 INFO odoo_16_docker odoo.modules.loading: 1 modules loaded in 35.04s, 7890 queries (+7893 extra) 
+web-1  | 2024-06-25 15:48:11,429 1 INFO odoo_16_docker odoo.modules.loading: updating modules list 
+web-1  | 2024-06-25 15:48:11,430 1 INFO odoo_16_docker odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+web-1  | 2024-06-25 15:48:13,080 1 INFO odoo_16_docker odoo.modules.loading: loading 8 modules... 
+web-1  | 2024-06-25 15:48:13,080 1 INFO odoo_16_docker odoo.modules.loading: Loading module web (2/8) 
+web-1  | 2024-06-25 15:48:13,155 1 INFO odoo_16_docker odoo.modules.registry: module web: creating or updating database tables 
+web-1  | 2024-06-25 15:48:14,658 1 INFO odoo_16_docker odoo.modules.loading: loading web/security/ir.model.access.csv 
+web-1  | 2024-06-25 15:48:14,685 1 INFO odoo_16_docker odoo.modules.loading: loading web/views/webclient_templates.xml 
+web-1  | 2024-06-25 15:48:14,845 1 INFO odoo_16_docker odoo.modules.loading: loading web/views/report_templates.xml 
+web-1  | 2024-06-25 15:48:15,090 1 INFO odoo_16_docker odoo.modules.loading: loading web/views/base_document_layout_views.xml 
+web-1  | 2024-06-25 15:48:15,125 1 INFO odoo_16_docker odoo.modules.loading: loading web/views/speedscope_template.xml 
+web-1  | 2024-06-25 15:48:15,140 1 INFO odoo_16_docker odoo.modules.loading: loading web/views/lazy_assets.xml 
+web-1  | 2024-06-25 15:48:15,159 1 INFO odoo_16_docker odoo.modules.loading: loading web/views/neutralize_views.xml 
+web-1  | 2024-06-25 15:48:15,181 1 INFO odoo_16_docker odoo.modules.loading: loading web/data/ir_attachment.xml 
+web-1  | 2024-06-25 15:48:15,198 1 INFO odoo_16_docker odoo.modules.loading: loading web/data/report_layout.xml 
+web-1  | 2024-06-25 15:48:15,312 1 INFO odoo_16_docker odoo.modules.loading: Module web loaded in 2.23s, 882 queries (+882 other) 
+web-1  | 2024-06-25 15:48:15,312 1 INFO odoo_16_docker odoo.modules.loading: Loading module auth_totp (3/8) 
+web-1  | 2024-06-25 15:48:15,407 1 INFO odoo_16_docker odoo.modules.registry: module auth_totp: creating or updating database tables 
+web-1  | 2024-06-25 15:48:15,896 1 INFO odoo_16_docker odoo.modules.loading: loading auth_totp/security/security.xml 
+web-1  | 2024-06-25 15:48:15,977 1 INFO odoo_16_docker odoo.modules.loading: loading auth_totp/security/ir.model.access.csv 
+web-1  | 2024-06-25 15:48:16,004 1 INFO odoo_16_docker odoo.modules.loading: loading auth_totp/data/ir_action_data.xml 
+web-1  | 2024-06-25 15:48:16,023 1 INFO odoo_16_docker odoo.modules.loading: loading auth_totp/views/res_users_views.xml 
+web-1  | 2024-06-25 15:48:16,100 1 INFO odoo_16_docker odoo.modules.loading: loading auth_totp/views/templates.xml 
+web-1  | 2024-06-25 15:48:16,117 1 INFO odoo_16_docker odoo.modules.loading: loading auth_totp/wizard/auth_totp_wizard_views.xml 
+web-1  | 2024-06-25 15:48:16,184 1 INFO odoo_16_docker odoo.modules.loading: Module auth_totp loaded in 0.87s, 175 queries (+175 other) 
+web-1  | 2024-06-25 15:48:16,184 1 INFO odoo_16_docker odoo.modules.loading: Loading module base_import (4/8) 
+web-1  | 2024-06-25 15:48:16,361 1 INFO odoo_16_docker odoo.modules.registry: module base_import: creating or updating database tables 
+web-1  | 2024-06-25 15:48:20,157 1 INFO odoo_16_docker odoo.modules.loading: loading base_import/security/ir.model.access.csv 
+web-1  | 2024-06-25 15:48:20,258 1 INFO odoo_16_docker odoo.modules.loading: Module base_import loaded in 4.07s, 891 queries (+891 other) 
+web-1  | 2024-06-25 15:48:20,259 1 INFO odoo_16_docker odoo.modules.loading: Loading module bus (5/8) 
+web-1  | 2024-06-25 15:48:20,362 1 INFO odoo_16_docker odoo.modules.registry: module bus: creating or updating database tables 
+web-1  | 2024-06-25 15:48:20,802 1 INFO odoo_16_docker odoo.modules.loading: loading bus/security/ir.model.access.csv 
+web-1  | 2024-06-25 15:48:20,926 1 INFO odoo_16_docker odoo.modules.loading: Module bus loaded in 0.67s, 103 queries (+103 other) 
+web-1  | 2024-06-25 15:48:20,927 1 INFO odoo_16_docker odoo.modules.loading: Loading module web_kanban_gauge (6/8) 
+web-1  | 2024-06-25 15:48:21,074 1 INFO odoo_16_docker odoo.modules.loading: Module web_kanban_gauge loaded in 0.15s, 12 queries (+12 other) 
+web-1  | 2024-06-25 15:48:21,074 1 INFO odoo_16_docker odoo.modules.loading: Loading module web_tour (7/8) 
+web-1  | 2024-06-25 15:48:21,150 1 INFO odoo_16_docker odoo.modules.registry: module web_tour: creating or updating database tables 
+web-1  | 2024-06-25 15:48:21,331 1 INFO odoo_16_docker odoo.modules.loading: loading web_tour/security/ir.model.access.csv 
+web-1  | 2024-06-25 15:48:21,360 1 INFO odoo_16_docker odoo.modules.loading: loading web_tour/security/ir.rule.csv 
+web-1  | 2024-06-25 15:48:21,392 1 INFO odoo_16_docker odoo.modules.loading: loading web_tour/views/tour_views.xml 
+web-1  | 2024-06-25 15:48:21,494 1 INFO odoo_16_docker odoo.modules.loading: Module web_tour loaded in 0.42s, 101 queries (+101 other) 
+web-1  | 2024-06-25 15:48:21,495 1 INFO odoo_16_docker odoo.modules.loading: Loading module web_editor (8/8) 
+web-1  | 2024-06-25 15:48:21,694 1 INFO odoo_16_docker odoo.modules.registry: module web_editor: creating or updating database tables 
+web-1  | 2024-06-25 15:48:23,608 1 INFO odoo_16_docker odoo.modules.loading: loading web_editor/security/ir.model.access.csv 
+web-1  | 2024-06-25 15:48:23,635 1 INFO odoo_16_docker odoo.modules.loading: loading web_editor/data/editor_assets.xml 
+web-1  | 2024-06-25 15:48:23,649 1 INFO odoo_16_docker odoo.modules.loading: loading web_editor/views/editor.xml 
+web-1  | 2024-06-25 15:48:23,717 1 INFO odoo_16_docker odoo.modules.loading: loading web_editor/views/snippets.xml 
+web-1  | 2024-06-25 15:48:23,857 1 INFO odoo_16_docker odoo.modules.loading: Module web_editor loaded in 2.36s, 821 queries (+822 other) 
+web-1  | 2024-06-25 15:48:23,857 1 INFO odoo_16_docker odoo.modules.loading: 8 modules loaded in 10.78s, 2985 queries (+2986 extra) 
+web-1  | 2024-06-25 15:48:24,511 1 INFO odoo_16_docker odoo.modules.loading: Modules loaded. 
+web-1  | 2024-06-25 15:48:24,539 1 INFO odoo_16_docker odoo.modules.registry: Registry loaded in 48.268s 
+web-1  | 2024-06-25 15:48:24,664 1 INFO odoo_16_docker odoo.addons.base.models.ir_http: Generating routing map for key None 
+web-1  | 2024-06-25 15:48:24,671 1 INFO odoo_16_docker odoo.addons.base.models.ir_http: Generating routing map for key None 
+web-1  | 2024-06-25 15:48:24,707 1 INFO odoo_16_docker odoo.addons.base.models.ir_http: Generating routing map for key None 
+web-1  | 2024-06-25 15:48:24,733 1 INFO odoo_16_docker odoo.addons.base.models.ir_http: Generating routing map for key None 
+web-1  | 2024-06-25 15:48:27,954 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:48:27] "GET /web/database/selector HTTP/1.1" 200 - 7 0.040 49.961
+web-1  | 2024-06-25 15:48:27,979 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:48:27] "GET /web/database/selector HTTP/1.1" 200 - 8 0.088 4.644
+web-1  | 2024-06-25 15:48:28,010 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:48:28] "GET /web/database/selector HTTP/1.1" 200 - 10 0.113 19.749
+web-1  | 2024-06-25 15:48:28,042 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:48:28] "GET /web/database/selector HTTP/1.1" 200 - 7 0.055 34.933
+web-1  | 2024-06-25 15:48:28,473 1 INFO odoo_16_docker odoo.addons.base.models.res_users: Login successful for db:odoo_16_docker login:philipshen.fpc from 192.168.1.105 
+web-1  | 2024-06-25 15:48:28,526 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:28] "POST /web/database/create HTTP/1.1" 303 - 15852 40.725 21.241
+web-1  | 2024-06-25 15:48:28,564 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:28] "GET /web HTTP/1.1" 303 - 6 0.007 0.013
+web-1  | 2024-06-25 15:48:35,100 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:35] "GET /web/login HTTP/1.1" 200 - 66 0.100 6.429
+web-1  | 2024-06-25 15:48:35,144 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:35] "GET /web/assets/15-3c9896c/web.assets_frontend.min.css HTTP/1.1" 200 - 6 0.008 0.011
+web-1  | 2024-06-25 15:48:35,158 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:35] "GET /web/assets/16-82c8452/web.assets_frontend_minimal.min.js HTTP/1.1" 200 - 5 0.006 0.012
+web-1  | 2024-06-25 15:48:35,201 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:35] "GET /web/binary/company_logo HTTP/1.1" 200 - 2 0.002 0.006
+web-1  | 2024-06-25 15:48:35,307 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:35] "GET /web/assets/17-0d3d3c3/web.assets_frontend_lazy.min.js HTTP/1.1" 200 - 5 0.003 0.008
+web-1  | 2024-06-25 15:48:35,656 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:35] "GET /web/webclient/translations/1719330515516 HTTP/1.1" 200 - 3 0.002 0.011
+web-1  | 2024-06-25 15:48:37,341 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:37] "GET /web/webclient/translations/1719330517204 HTTP/1.1" 200 - 3 0.002 0.007
+web-1  | 2024-06-25 15:48:37,366 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:48:37] "GET /web/static/img/spin.svg HTTP/1.1" 200 - 0 0.000 0.003
+web-1  | 2024-06-25 15:48:39,474 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:48:39] "GET /web/database/selector HTTP/1.1" 200 - 5 0.014 1.316
+web-1  | 2024-06-25 15:48:43,965 1 INFO odoo_16_docker odoo.addons.base.models.ir_cron: Starting job `Base: Auto-vacuum internal data`. 
+web-1  | 2024-06-25 15:48:44,014 1 INFO odoo_16_docker odoo.addons.base.models.ir_attachment: filestore gc 14 checked, 0 removed 
+web-1  | 2024-06-25 15:48:44,118 1 INFO odoo_16_docker odoo.addons.base.models.res_users: GC'd 0 user log entries 
+web-1  | 2024-06-25 15:48:44,171 1 INFO odoo_16_docker odoo.addons.auth_totp.models.auth_totp: GC'd 0 totp devices entries 
+web-1  | 2024-06-25 15:48:44,204 1 INFO odoo_16_docker odoo.addons.base.models.ir_cron: Job `Base: Auto-vacuum internal data` done. 
+web-1  | 2024-06-25 15:48:50,967 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:48:50] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.305
+web-1  | 2024-06-25 15:49:02,097 1 INFO odoo_16_docker odoo.addons.base.models.res_users: Login successful for db:odoo_16_docker login:philipshen.fpc from 192.168.1.105 
+web-1  | 2024-06-25 15:49:02,119 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:02] "POST /web/login HTTP/1.1" 303 - 38 0.054 1.210
+web-1  | 2024-06-25 15:49:02,431 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:49:02] "GET /web/database/selector HTTP/1.1" 200 - 5 0.014 1.328
+web-1  | 2024-06-25 15:49:13,791 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:13] "GET /web HTTP/1.1" 200 - 94 0.169 11.492
+web-1  | 2024-06-25 15:49:13,942 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:13] "GET /web/assets/19-60f24cb/web.assets_backend.min.css HTTP/1.1" 200 - 4 0.030 0.067
+web-1  | 2024-06-25 15:49:13,976 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:13] "GET /web/assets/18-fe57db6/web.assets_common.min.css HTTP/1.1" 200 - 4 0.028 0.113
+web-1  | 2024-06-25 15:49:13,983 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:13] "GET /web/assets/22-6bf707c/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 4 0.025 0.089
+web-1  | 2024-06-25 15:49:13,996 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:49:13] "GET /web/database/selector HTTP/1.1" 200 - 5 0.026 1.415
+web-1  | 2024-06-25 15:49:14,001 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/assets/20-fe57db6/web.assets_common.min.js HTTP/1.1" 200 - 4 0.008 0.124
+web-1  | 2024-06-25 15:49:14,003 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/assets/21-60f24cb/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.029 0.103
+web-1  | 2024-06-25 15:49:14,464 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/webclient/load_menus/3b5665afdb76f0b35edca6c8b7486724a31b5c9e8fd5a2aa71a636993cb1dd9b HTTP/1.1" 200 - 1 0.000 0.008
+web-1  | 2024-06-25 15:49:14,474 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/webclient/translations/65607f58d5469d51a5b051eb66c57db2c3d405a5?lang=en_US HTTP/1.1" 200 - 3 0.005 0.011
+web-1  | 2024-06-25 15:49:14,618 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/static/img/mobile-icons/android-192x192.png HTTP/1.1" 200 - 0 0.000 0.004
+web-1  | 2024-06-25 15:49:14,640 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/webclient/locale/en_US HTTP/1.1" 200 - 1 0.001 0.011
+web-1  | 2024-06-25 15:49:14,699 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.019
+web-1  | 2024-06-25 15:49:14,734 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 9 0.032 0.030
+web-1  | 2024-06-25 15:49:14,742 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "POST /web/action/load HTTP/1.1" 200 - 11 0.030 0.036
+web-1  | 2024-06-25 15:49:14,757 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 200 - 9 0.019 0.107
+web-1  | 2024-06-25 15:49:14,779 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /websocket HTTP/1.1" 101 - 1 0.001 0.009
+web-1  | 2024-06-25 15:49:14,841 1 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+web-1  | 2024-06-25 15:49:14,882 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 42 0.055 0.079
+web-1  | 2024-06-25 15:49:14,932 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.025 0.023
+web-1  | 2024-06-25 15:49:14,950 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.018 0.031
+web-1  | 2024-06-25 15:49:14,954 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /web/image/res.company/1/favicon HTTP/1.1" 200 - 10 0.033 0.027
+web-1  | 2024-06-25 15:49:14,980 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:14] "GET /base/static/img/avatar.png HTTP/1.1" 200 - 0 0.000 0.006
+web-1  | 2024-06-25 15:49:15,009 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 40 0.066 0.045
+web-1  | 2024-06-25 15:49:15,033 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /crm/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.011
+web-1  | 2024-06-25 15:49:15,034 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /sale_management/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.016
+web-1  | 2024-06-25 15:49:15,040 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /account/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.021
+web-1  | 2024-06-25 15:49:15,041 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /website/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.014
+web-1  | 2024-06-25 15:49:15,043 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/mrp_workorder.png HTTP/1.1" 200 - 0 0.000 0.018
+web-1  | 2024-06-25 15:49:15,054 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /stock/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.018
+web-1  | 2024-06-25 15:49:15,055 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/account_accountant.png HTTP/1.1" 200 - 0 0.000 0.011
+web-1  | 2024-06-25 15:49:15,060 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/knowledge.png HTTP/1.1" 200 - 0 0.000 0.011
+web-1  | 2024-06-25 15:49:15,068 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /purchase/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.015
+web-1  | 2024-06-25 15:49:15,071 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /point_of_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.014
+web-1  | 2024-06-25 15:49:15,077 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /project/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.014
+web-1  | 2024-06-25 15:49:15,082 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /website_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.012
+web-1  | 2024-06-25 15:49:15,088 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /mrp/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.012
+web-1  | 2024-06-25 15:49:15,101 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/timesheet_grid.png HTTP/1.1" 200 - 0 0.000 0.018
+web-1  | 2024-06-25 15:49:15,101 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /mass_mailing/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.022
+web-1  | 2024-06-25 15:49:15,108 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /hr_expense/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.022
+web-1  | 2024-06-25 15:49:15,109 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /hr_holidays/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.014
+web-1  | 2024-06-25 15:49:15,109 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/web_studio.png HTTP/1.1" 200 - 0 0.000 0.018
+web-1  | 2024-06-25 15:49:15,117 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.013
+web-1  | 2024-06-25 15:49:15,127 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/industry_fsm.png HTTP/1.1" 200 - 0 0.000 0.016
+web-1  | 2024-06-25 15:49:15,142 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /data_recycle/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.016
+web-1  | 2024-06-25 15:49:15,146 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /hr/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.026
+web-1  | 2024-06-25 15:49:15,154 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/sign.png HTTP/1.1" 200 - 0 0.000 0.017
+web-1  | 2024-06-25 15:49:15,165 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/helpdesk.png HTTP/1.1" 200 - 0 0.000 0.014
+web-1  | 2024-06-25 15:49:15,167 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/sale_subscription.png HTTP/1.1" 200 - 0 0.000 0.012
+web-1  | 2024-06-25 15:49:15,168 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /maintenance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.038
+web-1  | 2024-06-25 15:49:15,177 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/quality_control.png HTTP/1.1" 200 - 0 0.000 0.017
+web-1  | 2024-06-25 15:49:15,181 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/planning.png HTTP/1.1" 200 - 0 0.000 0.012
+web-1  | 2024-06-25 15:49:15,185 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /website_slides/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.020
+web-1  | 2024-06-25 15:49:15,190 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /website_event/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.017
+web-1  | 2024-06-25 15:49:15,195 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /mail/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.013
+web-1  | 2024-06-25 15:49:15,204 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /contacts/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.016
+web-1  | 2024-06-25 15:49:15,206 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/mrp_plm.png HTTP/1.1" 200 - 0 0.000 0.012
+web-1  | 2024-06-25 15:49:15,214 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/social.png HTTP/1.1" 200 - 0 0.000 0.014
+web-1  | 2024-06-25 15:49:15,218 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /calendar/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.018
+web-1  | 2024-06-25 15:49:15,220 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/hr_appraisal.png HTTP/1.1" 200 - 0 0.000 0.015
+web-1  | 2024-06-25 15:49:15,226 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /fleet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.015
+web-1  | 2024-06-25 15:49:15,231 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/marketing_automation.png HTTP/1.1" 200 - 0 0.000 0.014
+web-1  | 2024-06-25 15:49:15,243 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /im_livechat/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.018
+web-1  | 2024-06-25 15:49:15,249 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/web_mobile.png HTTP/1.1" 200 - 0 0.000 0.012
+web-1  | 2024-06-25 15:49:15,253 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /survey/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.020
+web-1  | 2024-06-25 15:49:15,255 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/appointment.png HTTP/1.1" 200 - 0 0.000 0.025
+web-1  | 2024-06-25 15:49:15,260 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /hr_attendance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.017
+web-1  | 2024-06-25 15:49:15,261 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /repair/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.019
+web-1  | 2024-06-25 15:49:15,265 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /mass_mailing_sms/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.013
+web-1  | 2024-06-25 15:49:15,277 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/stock_barcode.png HTTP/1.1" 200 - 0 0.000 0.018
+web-1  | 2024-06-25 15:49:15,279 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /note/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.012
+web-1  | 2024-06-25 15:49:15,285 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /hr_skills/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.016
+web-1  | 2024-06-25 15:49:15,291 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/voip.png HTTP/1.1" 200 - 0 0.000 0.017
+web-1  | 2024-06-25 15:49:15,297 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /website_hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.016
+web-1  | 2024-06-25 15:49:15,298 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /base/static/img/icons/sale_ebay.png HTTP/1.1" 200 - 0 0.000 0.012
+web-1  | 2024-06-25 15:49:15,299 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /lunch/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.022
+web-1  | 2024-06-25 15:49:15,302 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:15] "GET /hr_contract/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.013
+web-1  | 2024-06-25 15:49:24,311 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:24] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.004 0.018
+web-1  | 2024-06-25 15:49:24,367 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:24] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.046 0.034
+web-1  | 2024-06-25 15:49:25,480 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:49:25] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.362
+web-1  | 2024-06-25 15:49:26,742 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:26] "POST /web/action/load HTTP/1.1" 200 - 25 0.024 0.038
+web-1  | 2024-06-25 15:49:26,913 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:26] "POST /web/dataset/call_kw/res.users/get_views HTTP/1.1" 200 - 45 0.051 0.109
+web-1  | 2024-06-25 15:49:26,947 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:26] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 2 0.002 0.011
+web-1  | 2024-06-25 15:49:26,970 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:26] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 13 0.017 0.020
+web-1  | 2024-06-25 15:49:32,682 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:32] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 6 0.012 0.025
+web-1  | 2024-06-25 15:49:36,961 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:49:36] "GET /web/database/selector HTTP/1.1" 200 - 5 0.014 1.297
+web-1  | 2024-06-25 15:49:48,372 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:49:48] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.301
+web-1  | 2024-06-25 15:49:49,824 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:49] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 6 0.017 0.024
+web-1  | 2024-06-25 15:49:51,928 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:51] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 6 0.006 0.012
+web-1  | 2024-06-25 15:49:54,982 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:54] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 6 0.012 0.027
+web-1  | 2024-06-25 15:49:56,749 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:56] "POST /web/dataset/call_kw/res.users/onchange HTTP/1.1" 200 - 31 0.044 0.086
+web-1  | 2024-06-25 15:49:56,768 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:56] "POST /web/dataset/call_kw/res.company/read HTTP/1.1" 200 - 2 0.001 0.006
+web-1  | 2024-06-25 15:49:56,799 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:49:56] "GET /web/static/img/placeholder.png HTTP/1.1" 200 - 0 0.000 0.004
+web-1  | 2024-06-25 15:49:59,778 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:49:59] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.289
+web-1  | 2024-06-25 15:50:00,238 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:00] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.007 0.033
+web-1  | 2024-06-25 15:50:00,301 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:00] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.060 0.044
+web-1  | 2024-06-25 15:50:06,002 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:06] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 6 0.006 0.012
+web-1  | 2024-06-25 15:50:10,170 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:10] "POST /web/dataset/call_kw/res.users/read HTTP/1.1" 200 - 25 0.022 0.036
+web-1  | 2024-06-25 15:50:10,188 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:10] "POST /web/dataset/call_kw/res.company/read HTTP/1.1" 200 - 2 0.001 0.007
+web-1  | 2024-06-25 15:50:11,202 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:50:11] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.299
+web-1  | 2024-06-25 15:50:13,317 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:13] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.004 0.017
+web-1  | 2024-06-25 15:50:13,372 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:13] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.042 0.034
+web-1  | 2024-06-25 15:50:22,624 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:50:22] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.295
+web-1  | 2024-06-25 15:50:24,603 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:24] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 5 0.017 0.027
+web-1  | 2024-06-25 15:50:24,682 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:24] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.064 0.063
+web-1  | 2024-06-25 15:50:29,271 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:29] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 6 0.006 0.012
+web-1  | 2024-06-25 15:50:34,124 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:50:34] "GET /web/database/selector HTTP/1.1" 200 - 5 0.014 1.315
+web-1  | 2024-06-25 15:50:42,967 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:42] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 6 0.006 0.012
+web-1  | 2024-06-25 15:50:44,237 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:44] "POST /web/dataset/call_kw/res.users/onchange HTTP/1.1" 200 - 20 0.031 0.094
+web-1  | 2024-06-25 15:50:44,256 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:44] "POST /web/dataset/call_kw/res.company/read HTTP/1.1" 200 - 2 0.002 0.007
+web-1  | 2024-06-25 15:50:45,604 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:50:45] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.303
+web-1  | 2024-06-25 15:50:47,115 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:47] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.007 0.014
+web-1  | 2024-06-25 15:50:47,169 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:47] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.039 0.037
+web-1  | 2024-06-25 15:50:51,942 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:51] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 5 0.005 0.013
+web-1  | 2024-06-25 15:50:51,995 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:50:51] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.039 0.034
+web-1  | 2024-06-25 15:50:57,067 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:50:57] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.297
+web-1  | 2024-06-25 15:51:05,891 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:51:05] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.006 0.014
+web-1  | 2024-06-25 15:51:05,946 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:51:05] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.043 0.034
+web-1  | 2024-06-25 15:51:08,485 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:51:08] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.301
+web-1  | 2024-06-25 15:51:19,961 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:51:19] "GET /web/database/selector HTTP/1.1" 200 - 5 0.011 1.348
+web-1  | 2024-06-25 15:51:31,436 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:51:31] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.357
+web-1  | 2024-06-25 15:51:42,851 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:51:42] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.288
+web-1  | 2024-06-25 15:51:44,649 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:51:44] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.008 0.021
+web-1  | 2024-06-25 15:51:44,693 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:51:44] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.043 0.032
+web-1  | 2024-06-25 15:51:44,711 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:51:44] "GET /base/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.006
+web-1  | 2024-06-25 15:51:44,712 1 INFO ? werkzeug: 192.168.1.105 - - [25/Jun/2024 15:51:44] "GET /l10n_ar_website_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
+web-1  | 2024-06-25 15:51:54,274 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:51:54] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.305
+web-1  | 2024-06-25 15:51:56,131 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:51:56] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.087 0.054
+web-1  | 2024-06-25 15:51:56,157 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:51:56] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.007 0.008
+web-1  | 2024-06-25 15:52:05,745 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:52:05] "GET /web/database/selector HTTP/1.1" 200 - 5 0.011 1.294
+web-1  | 2024-06-25 15:52:07,303 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:52:07] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.005 0.016
+web-1  | 2024-06-25 15:52:07,358 1 INFO odoo_16_docker werkzeug: 192.168.1.105 - - [25/Jun/2024 15:52:07] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.040 0.037
+web-1  | 2024-06-25 15:52:17,222 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:52:17] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.304
+web-1  | 2024-06-25 15:52:28,623 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:52:28] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.284
+web-1  | 2024-06-25 15:52:40,103 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:52:40] "GET /web/database/selector HTTP/1.1" 200 - 5 0.011 1.348
+web-1  | 2024-06-25 15:52:51,569 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:52:51] "GET /web/database/selector HTTP/1.1" 200 - 5 0.011 1.353
+web-1  | 2024-06-25 15:53:02,970 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:53:02] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.287
+web-1  | 2024-06-25 15:53:14,590 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:53:14] "GET /web/database/selector HTTP/1.1" 200 - 5 0.013 1.440
+web-1  | 2024-06-25 15:53:26,039 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:53:26] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.283
+web-1  | 2024-06-25 15:53:37,444 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:53:37] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.284
+web-1  | 2024-06-25 15:53:48,891 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:53:48] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.294
+web-1  | 2024-06-25 15:54:00,345 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:54:00] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.346
+web-1  | 2024-06-25 15:54:11,844 1 INFO odoo_16_docker werkzeug: 127.0.0.1 - - [25/Jun/2024 15:54:11] "GET /web/database/selector HTTP/1.1" 200 - 5 0.012 1.362

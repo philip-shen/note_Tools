@@ -1,0 +1,30 @@
+# THE FOLLOWING VARIABLES CAN BE USED IN ANY COMPOSE FILE
+# THEIR VALUE WILL BE REPLACED BY THE VALUE ASSIGNED HERE
+# YOU CAN ADD AS MANY VARIABLES AS YOU NEED
+#
+#
+# Customize the PID and GID value of your appuser user.
+# You can see it in the OMV GUI in the USERS > USERS tab
+#
+APPUSER_PUID=1003
+APPUSER_PGID=100
+POSTGRES_DB_HOST=192.168.1.103
+HOST_IPv4=192.168.1.103
+HOST2_IPv4=192.168.1.104
+MACVLAN_HOST_IP=192.168.1.201
+MACVLAN_HOST2_IP=192.168.1.202
+MACVLAN_HOST3_IP=192.168.1.203
+MACVLAN_HOST4_IP=192.168.1.204
+MACVLAN_HOST5_IP=192.168.1.205
+ODOOUSER_PUID=1004
+ODOOUSER_PGID=100
+#
+# Customize your time zone value.
+# You can see it in the OMV GUI in the SYSTEM > DATE & TIME tab
+#
+TIME_ZONE_VALUE=Asia/Taipei
+#
+# In this file you can define how many paths you need for different compose files.
+# The following are examples corresponding to the example system in the Docker on OMV document on the omv-extras wiki.
+#
+PATH_TO_APPDATA=/srv/dev-disk-by-uuid-xxxxxxxx/data
