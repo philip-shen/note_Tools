@@ -1,0 +1,6 @@
+pandas
+coloredlogs
+IPython
+scrapy
+fake_useragent
+openpyxl

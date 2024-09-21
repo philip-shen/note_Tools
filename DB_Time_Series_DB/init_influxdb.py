@@ -20,29 +20,7 @@ import googlefinance.client as gf
 import time
 from influxdb import DataFrameClient
 
-# 從 Login.txt 中匯入 InfluxDB 登入資料，這邊皆是使用 InfluxDB 預設值
-with open('Login.txt', 'r') as loginfile:
-    login_info = loginfile.read()
-    login_info = login_info.split()
-    
-    host = login_info[0]      # localhost
-    port = int(login_info[1]) # 8086
-    user = login_info[2]      # root
-    password = login_info[3]  # root
 
-# 資料庫
-database = 'taiwan_securities_db'
-
-# 相當於是 SQL 中的 Table
-measurement = 'stocks'
-
-client = DataFrameClient(host, port, user, password, database)
-client.create_database(database)
-client.switch_database(database)
-
-# 由 tw_stocks.pkl 中匯入台灣上市公司名單 DataFrame ，抓取方式請參考
-# grap_taiwan_stock_list.ipynb 檔。
-tw_stocks_meta = pd.read_pickle('tw_stocks.pkl')
 
 def get_price(company, intervel='60', period='1Y', market='TPE'):
     ''' 使用 googlefinance.client 取得 Google Finance 的價格資料並以 DataFrame
@@ -90,6 +68,30 @@ def init_all_data(sleep_time=0.3):
     return
 
 if __name__ == '__main__':
+    # 從 Login.txt 中匯入 InfluxDB 登入資料，這邊皆是使用 InfluxDB 預設值
+    with open('Login.txt', 'r') as loginfile:
+        login_info = loginfile.read()
+        login_info = login_info.split()
+    
+        host = login_info[0]      # localhost
+        port = int(login_info[1]) # 8086
+        user = login_info[2]      # root
+        password = login_info[3]  # root
+
+    # 資料庫
+    database = 'taiwan_securities_db'
+
+    # 相當於是 SQL 中的 Table
+    measurement = 'stocks'
+
+    client = DataFrameClient(host, port, user, password, database)
+    client.create_database(database)
+    client.switch_database(database)
+
+    # 由 tw_stocks.pkl 中匯入台灣上市公司名單 DataFrame ，抓取方式請參考
+    # grap_taiwan_stock_list.ipynb 檔。
+    tw_stocks_meta = pd.read_pickle('tw_stocks.pkl')
+
     init_all_data()
     
     point_count = client.query('SELECT COUNT("Open") FROM {0}'

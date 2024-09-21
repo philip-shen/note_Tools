@@ -1,55 +1,59 @@
 '''
 https://github.com/x01963815/grab-stocks-data-to-influxdb/blob/master/grap_taiwan_stock_list.ipynb
 '''
+import os, sys, time
 import pandas as pd
-'''從 台灣證券交易所 取得資料
-首頁 > 產品與服務 > 證券編碼 > 證券編碼公告 > 本國上市證券國際證券辨識號碼一覽表'''
-data = pd.read_html('http://isin.twse.com.tw/isin/C_public.jsp?strMode=2')
+import argparse
 
-tw_list = data[0]
-tw_stocks = tw_list.loc[:tw_list[tw_list[0]=='上市認購(售)權證'].index.values[0]-1]
-tw_stocks = tw_stocks.drop([0,1])
-tw_stocks.columns = ['Code_Name', 'ISIN', 'ListedDate', 'Market', 'Industry', 'CFI', 'Note']
-tw_stocks = tw_stocks.reset_index(drop=True)
-tw_stocks['Code'] = tw_stocks.Code_Name.str.split('　').str.get(0) # 4148 全宇生技-KY 有問題
-tw_stocks['Name'] = tw_stocks.Code_Name.str.split('　').str.get(1)
-tw_stocks.index = tw_stocks.Code
+import _libs.lib_misc as lib_misc
+from _libs.logger_setup import *
+from _libs.lib_twse_otc import *
 
-tw_stocks.loc['2353','Name'] = '宏碁'
-tw_stocks.loc['6285','Name'] = '啟碁'
-tw_stocks.loc['3046','Name'] = '建碁'
+strabspath=os.path.abspath(sys.argv[0])
+strdirname=os.path.dirname(strabspath)
+str_split=os.path.split(strdirname)
+prevdirname=str_split[0]
+dirnamelog=os.path.join(strdirname,"logs")
 
-tw_stocks.to_pickle('tw_stocks.pkl')
+def est_timer(start_time):
+    time_consumption, h, m, s= lib_misc.format_time(time.time() - start_time)         
+    msg = 'Time Consumption: {}.'.format( time_consumption)#msg = 'Time duration: {:.3f} seconds.'
+    logger.info(msg)
 
-#### for ETF  
-ETFlist = pd.read_html('http://md.jsun.com/event/jsun_school/ETF_stock09.html')
-ETFlist[0]
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='grap taiwan stock tikcer')
+    args = parser.parse_args()
+    
+    opt_verbose='ON'
+    #opt_verbose='OFF'
+    
+    str_twse_url= 'https://isin.twse.com.tw/isin/C_public.jsp?strMode=2'
+    str_tpex_url = 'https://isin.twse.com.tw/isin/C_public.jsp?strMode=4'
 
-ETFlist = ETFlist.iloc[:-1]
-ETFlist.index.name = 'Code'
-ETFlist
-
-ETFlist.columns = ['Name', 'Type', 'TargetIndex']
-ETFlist
-'''
-Name 	Type 	TargetIndex
-Code 			
-0050 	元大台灣50 	國內成分證券ETF 	臺灣50指數
-0051 	元大中型100 	國內成分證券ETF 	臺灣中型100指數
-0053 	元大電子 	國內成分證券ETF 	電子類加權股價指數
-0054 	元大台商50 	國內成分證券ETF 	S&P台商收成指數
-0055 	元大MSCI金融 	國內成分證券ETF 	MSCI台灣金融指數
-0056 	元大高股息 	國內成分證券ETF 	臺灣高股息指數
-006201 	元大富櫃50 	國內成分證券ETF 	富櫃五十指數
-006203 	元大MSCI台灣 	國內成分證券ETF 	MSCI®臺灣指數
-00631L 	元大台灣50正2 	槓桿型ETF 	臺灣50指數
-00632R 	元大台灣50反1 	反向型ETF 	臺灣50指數
-0052 	FB科技 	國內成分證券ETF 	臺灣資訊科技指數
-0057 	FB摩台 	國內成分證券ETF 	MSCI®臺灣指數
-0058 	FB發達 	國內成分證券ETF 	臺灣發達指數
-0059 	FB金融 	國內成分證券ETF 	金融保險類股指數
-006208 	FB台50 	國內成分證券ETF 	臺灣50指數
-006204 	永豐臺灣加權 	國內成分證券ET 	臺灣證券交易所發行量加權股價指數
-00663L 	國泰臺灣加權正2 	槓桿型ETF 	臺灣日報酬兩倍指數
-006204 	永豐臺灣加權 	國內成分證券ET 	臺灣證券交易所發行量加權股價指數
-'''
+    logger_set(strdirname)
+    
+    # Get present time
+    t0 = time.time()
+    local_time = time.localtime(t0)
+    msg = 'Start Time is {}/{}/{} {}:{}:{}'
+    logger.info(msg.format( local_time.tm_year,local_time.tm_mon,local_time.tm_mday,\
+                            local_time.tm_hour,local_time.tm_min,local_time.tm_sec))
+    pickle_fname = 'tw_stocks.pkl'
+    
+    query_twse_otc_code_02([str_twse_url], pickle_fname, opt_verbose=opt_verbose)
+    '''
+               code      name      國際證券辨識號碼         上市日 市場別   產業別     CFI
+    0       1102.TW        亞泥  TW0001102002  1962/06/08  上市  水泥工業  ESVUFR
+    1       1103.TW        嘉泥  TW0001103000  1969/11/14  上市  水泥工業  ESVUFR
+    2       1104.TW        環泥  TW0001104008  1971/02/01  上市  水泥工業  ESVUFR
+    3       1108.TW        幸福  TW0001108009  1990/06/06  上市  水泥工業  ESVUFR
+    4       1109.TW        信大  TW0001109007  1991/12/05  上市  水泥工業  ESVUFR
+    ...         ...       ...           ...         ...  ..   ...     ...
+    38709  00951.TW   台新日本半導體  TW0000095108  2024/07/25  上市        CEOIEU
+    38710  00952.TW  凱基台灣AI50  TW0000095207  2024/09/05  上市        CEOIEU
+    38712  00954.TW   中信日本半導體  TW0000095405  2024/08/20  上市        CEOIEU
+    38713  00956.TW   中信日經高股息  TW0000095603  2024/08/20  上市        CEOIEU
+    38714  00960.TW  野村全球航運龍頭  TW0000096007  2024/09/20  上市        CEOIEU
+    '''
+    
+    est_timer(t0) 
