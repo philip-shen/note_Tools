@@ -1,0 +1,3 @@
+# requirements.txt
+python-binance
+influxdb_client
