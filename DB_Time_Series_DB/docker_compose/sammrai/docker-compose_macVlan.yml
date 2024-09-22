@@ -55,7 +55,7 @@ services:
       - DOCKER_INFLUXDB_DB=grafana      
       - DOCKER_INFLUXDB_INIT_USERNAME=grafana
       - DOCKER_INFLUXDB_INIT_PASSWORD=grafana
-      - DOCKER_INFLUXDB_INIT_ORG=phiphoenix.com
+      - DOCKER_INFLUXDB_INIT_ORG=philphoenix.com
       - DOCKER_INFLUXDB_INIT_BUCKET=my-bucket
       - DOCKER_INFLUXDB_INIT_RETENTION=1w
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=super-secret-auth-token

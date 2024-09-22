@@ -4,3 +4,11 @@ IPython
 scrapy
 fake_useragent
 openpyxl
+asyncer
+httpx
+pydantic==1.10.9
+pendulum
+feedparser
+python-binance
+python-telegram-bot
+influxdb-client[ciso]

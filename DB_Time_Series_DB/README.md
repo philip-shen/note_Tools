@@ -3,7 +3,9 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [InfluxDB](#influxdb)
-      * [Installation](#installation)               
+      * [InfluxDB Installation](#influxdb-installation)               
+      * [InfluxDB Installation](#grafana-installation)                     
+      * [Dashboard Setup](#dashboard-setup)                     
          * [Reference](#reference)  
       * [DataSet Insertation](#dataset-insertation)                
          * [Reference](#reference-1)   
@@ -27,35 +29,81 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 # InfluxDB  
 
-## Installation  
+## InfluxDB Installation  
 ```
-version: '3'
+localhost:8086にアクセスします。
+```
 
-services:
-  influxdb:
-    container_name: influxdb
-    image: influxdb:latest
-    volumes:
-      - ./influxDB/influxdb2:/var/lib/influxdb2:rw
-    ports:
-      - "8086:8086"
-    
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    #hostname: grafana
-    ports:
-      - 3000:3000
-    volumes:
-      - ./grafana/grafana:/var/lib/grafana
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2F5670a2c3-25f4-274a-88de-33583f6bc7f1.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=33ac8ff7bd3a876135adcc589b8c0626" width="800" height="500">  
 
-volumes:
-  influxdb2:
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2F0424b5a0-8297-431a-5b59-4423dcc12f39.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=e8f96462a27323bed504b54dca21a16a" width="800" height="500">  
+
 ```
+Grafana, Proxmoxでは以下の情報が必要になります。
+
+    Organizationの名前
+    APIトークン
+    バケットの名前
 ```
-localhost:3000でアクセスし、
-user nameとpasswordを両方admin
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2Ffe6960ce-d08e-a3e2-fce4-261f4a2d1785.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=2e69685395eb2644a24894c83cc29f0e" width="800" height="500">  
+
 ```
+画像のように{ユーザー名}'s Tokenという項目があるので、名前をクリックするとトークンが表示されます。
+
+COPY TO CLIPBOARDを押すとコピーできるのでメモしておいてください。
+```
+
+## Grafana Installation  
+```
+localhost:3000にアクセスする
+```
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2F304ac3e6-04f6-b21c-80b8-c491b9d7418a.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=0d8a8c87d41afb30986f6c02e88e7749" width="800" height="500">  
+
+```
+Query Language をInfluxQL からFlux に変更することです。
+```
+
+```
+URLについてはcomposeで定義したサービス名を使用してください。
+```
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2Fd834ab3a-fe74-48db-bbdc-1269e4079a7a.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=9843bb94e794302db7fe847259f3ec94" width="300" height="100">  
+
+```
+Fluxに変更した状態で画像のように残りのフォームを埋めます。
+```
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2F5f761e20-3f14-ba26-e951-6a68f8a17ed5.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=1bda1158442f0c849340d034c6bad888" width="800" height="500">  
+
+## Dashboard Setup  
+```
+Import via grafana.comの入力欄に先ほどコピーしたIDを入力してLoadしてください。
+```
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2F745f5a20-f5b0-f0b1-8298-0043ac86ac25.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=edd3c6dd3580ab4902ec2f2f718c3cbe" width="600" height="500">  
+
+
+```
+OptionsのデータソースからInfluxDBを選択してImportを押します。
+```
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2F3b3ef3e4-dcb8-fc93-dcc3-9b6cc4c353bc.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=41efad3c69fc27e61472eb8893a6113b" width="600" height="500">  
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2F69b22cd9-f97a-4ecd-145c-a9fcd59f0d76.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=5530391d0d150ef4634cbec54d0a0119" width="800" height="500">  
+
+[GrafanaとInfluxDBで作るProxmoxダッシュボード【Docker】 Docker proxmox influxdb grafana 可視化](https://qiita.com/rokuosan/items/a378e46a89d31d544d4d)  
+
+Name | Version
+------------------------------------ | --------------------------------------------- 
+Proxmox VE | 7.2-7
+Ubuntu | 22.04.1 LTS
+Docker | 20.10.17
+Docker Compose | v2.6.0
+Grafana | 9.1.8
+InfluxDB | v2.4.0
+
+[docker_compose_rokuosan.yml](docker_compose/docker_compose_rokuosan.yml)  
+[docker-compose_shazforiot.yml](docker_compose/docker-compose_shazforiot.yml)  
+
 
 ### Reference  
 [[01] docker-compose で influxdb 2.0 + grafana を立ち上げる ... 🔥失敗🔥 influxdb grafana influxdb2 2021-08-16](https://qiita.com/robozushi10/items/a0e8b3de1b9a9628f751)  
@@ -79,18 +127,6 @@ No  | サービス  | ホスト側ポート  | コンテナ側ポート  | 	備�
 
 [fluentdのプラグインを公式DockerイメージでインストールするときはRootユーザーで実行しよう  2019-08-07](https://qiita.com/tamanobi/items/a57f2802c7fd1236ea52)  
 
-[GrafanaとInfluxDBで作るProxmoxダッシュボード【Docker】 Docker proxmox influxdb grafana 可視化](https://qiita.com/rokuosan/items/a378e46a89d31d544d4d)  
-
-Name | Version
------------------------------------- | --------------------------------------------- 
-Proxmox VE | 7.2-7
-Ubuntu | 22.04.1 LTS
-Docker | 20.10.17
-Docker Compose | v2.6.0
-Grafana | 9.1.8
-InfluxDB | v2.4.0
-
-[docker_compose_rokuosan.yml](docker_compose/docker_compose_rokuosan.yml)
 
 [InfluxDB2.0+Grafana+Telegrafの構築 influxdb grafana Telegraf 2021-12-18](https://qiita.com/sammrai/items/0c329ac7aa8b100b66a8)  
 ```

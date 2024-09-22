@@ -7,6 +7,8 @@ import pandas as pd
 import argparse
 #import pandas_datareader.data as web
 from datetime import datetime
+import pathlib
+import json, pickle
 
 from influxdb_client import InfluxDBClient, BucketRetentionRules, WriteOptions
 from influxdb_client.client.write_api import PointSettings
@@ -39,26 +41,43 @@ def write_dataframe(client, bucket, df, point_settings):
                 data_frame_measurement_name="stock prices")
 
 if __name__ == '__main__':
-    INFLUXDB_TOKEN = '（上記のAPI TOKENをここにコピペ）'
-    URL    = "http://influxdb:8086" # "influxdb"はdocker-compose.ymlのcontainer_nameで指定した名前。
-    ORG    = "myorg"                # InfluxDB初期設定で指定した組織名
-    BUCKET = 'influxdb-test'        # 任意のBUCKET名
+    parser = argparse.ArgumentParser(description='stock indicator')
+    parser.add_argument('--conf_json', type=str, default='config.json', help='Config json')
+    
+    args = parser.parse_args()
+
+    logger_set(strdirname)
+    
+    # Get present time
+    t0 = time.time()
+    local_time = time.localtime(t0)
+    msg = 'Start Time is {}/{}/{} {}:{}:{}'
+    logger.info(msg.format( local_time.tm_year,local_time.tm_mon,local_time.tm_mday,\
+                            local_time.tm_hour,local_time.tm_min,local_time.tm_sec))
+    
+    json_file= args.conf_json
+    
+    json_path_file = pathlib.Path(strdirname)/json_file
+    
+    if (not os.path.isfile(json_file))  :
+        msg = 'Please check json file:{}  if exist!!! '
+        logger.info(msg.format(json_file) )    
+        est_timer(t0)
+        sys.exit()
+
+    with open(json_file, encoding="utf-8") as f:
+        json_data = json.load(f)  
+        
+    opt_verbose= 'OFF'
+
+    INFLUXDB_TOKEN = json_data["INFLUXDB_TOKEN"]
+    URL    = json_data["URL"] # "influxdb"はdocker-compose.ymlのcontainer_nameで指定した名前。
+    ORG    = json_data["ORG"]       # InfluxDB初期設定で指定した組織名
+    BUCKET = json_data["BUCKET"]        # 任意のBUCKET名
 
     start_date = datetime(2000,1,1)
-    end_date  = datetime(2024,1,1)
+    end_date  = datetime(2024,1,1)    
     
-    '''
-    # Bucketの生成
-    #https://github.com/influxdata/influxdb-client-python/blob/master/influxdb_client/domain/bucket_retention_rules.py
-    '''
-    with InfluxDBClient(url=URL, token=INFLUXDB_TOKEN) as client:
-        buckets_api = client.buckets_api()
-        retention_rules = BucketRetentionRules(type="expire", every_seconds=0, shard_group_duration_seconds=3600*24*365*10) # every_seconds = 0 means infinite
-        created_bucket = buckets_api.create_bucket(bucket_name=BUCKET,
-                                                   retention_rules=retention_rules,
-                                                   org=ORG)
-        print(created_bucket)
-
     #株価をyahoo financeからダウンロード(例としてfordとGE)
     #Tesla, Inc. (TSLA)
     target_ticker = 'TSLA'
@@ -71,9 +90,9 @@ if __name__ == '__main__':
                                                                 startdate= start_date, enddate= end_date)
     local_stock_indicator_NVDA.pstock_interval_startdate_enddate()
     
-    #ford = web.DataReader('F', 'yahoo', start=start, end=end)
-    #GE = web.DataReader('GE', 'yahoo', start=start, end=end)
-
+    logger.info(f'TSLA.stock_data:\n{local_stock_indicator_TSLA.stock_data}')
+    logger.info(f'NVDA.stock_data:\n{local_stock_indicator_NVDA.stock_data}')
+    
     #後にGrafanaでのローソク足表示の際にすんなり認識される様に列名を変更
     #また、調整済みcloseの値（Adj close）をcloseとする
     #ford.columns = ["high", "low", "open", "close.raw", "volume", "close"]
@@ -86,6 +105,28 @@ if __name__ == '__main__':
 
     #GE.index = GE.index.tz_localize(tz='US/Eastern')+pd.DateOffset(hours=9.5)
     #GE.index = GE.index.tz_convert(tz='UTC')
+
+    '''
+    # Bucketの生成
+    #https://github.com/influxdata/influxdb-client-python/blob/master/influxdb_client/domain/bucket_retention_rules.py
+    '''
+    '''
+    Reason: Unauthorized
+    HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.10', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 22 Sep 2024 16:46:09 GMT', 'Content-Length': '55'})
+    HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+    '''
+    '''
+    getting {"code":"unauthorized","message":"unauthorized access"} after using "query" http api for InfluxDB 2.0
+
+    https://stackoverflow.com/questions/69771271/getting-codeunauthorized-messageunauthorized-access-after-using-que
+    '''
+    with InfluxDBClient(url=URL, token=INFLUXDB_TOKEN) as client:
+        buckets_api = client.buckets_api()
+        retention_rules = BucketRetentionRules(type="expire", every_seconds=0, shard_group_duration_seconds=3600*24*365*10) # every_seconds = 0 means infinite
+        created_bucket = buckets_api.create_bucket(bucket_name=BUCKET,
+                                                   retention_rules=retention_rules,
+                                                   org=ORG)
+        logger.info(f"created_bucket: {created_bucket}")
 
     timeperiod = 20
     

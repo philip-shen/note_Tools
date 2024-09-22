@@ -1,0 +1,6 @@
+{
+    "INFLUXDB_TOKEN":"VLxWD5MA3vW19jpiIU4lDXYdGD_lYCn4gEJ5brXSBc2EfYuApuXFt4Pg7Kbo55OPSOeuzOIlqPmdzRfSvJKiEw==",
+    "URL": "http://localhost:8086",
+    "ORG": "philphoenix.com",
+    "BUCKET": "my-bucket"
+}
