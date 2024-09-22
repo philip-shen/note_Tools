@@ -1,0 +1,26 @@
+# https://qiita.com/rokuosan/items/a378e46a89d31d544d4d#docker-composeyml-%E3%81%AE%E4%BD%9C%E6%88%90  
+
+version: "3"
+
+services:
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    restart: always
+    volumes:
+      - ./influxdb:/var/lib/influxdb2
+    ports:
+      - 8086:8086
+      - 8083:8083
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    user: "root"
+    restart: always
+    volumes:
+      - ./grafana:/var/lib/grafana    
+    depends_on:
+      - influxdb
+    ports:
+      - 3000:3000

@@ -228,6 +228,31 @@ curl -O https://raw.githubusercontent.com/twtrubiks/odoo-docker-tutorial/vscode_
 #### Reference  
 [4. Global environmental variables](https://wiki.omv-extras.org/doku.php?id=omv7:docker_in_omv#global_environmental_variables)  
 
+[NextCloud](https://dbt3ch.com/books/nextcloud)  
+```
+Share and collaborate on documents, send and receive email, manage your calendar and have video chats without data leaks
+As fully on-premises solution, Nextcloud Hub provides the benefits of online collaboration without the compliance and security risks.
+
+More information here: https://nextcloud.com/
+
+Increase File Size Uploads with .htaccess
+```
+
+[chalmers-revere/omv-monitoring](https://github.com/chalmers-revere/omv-monitoring?tab=readme-ov-file)  
+[omv-monitoring](https://git.opendlv.org/testing/omv-monitoring/-/tree/main)  
+```
+$ mkdir grafana-data && sudo chown 472:472 grafana-data
+$ docker-compose -d up
+$ docker exec -it influxdb influx
+create database collectd
+```
+
+[OMV 6 on Raspberry Pi 4](https://dbt3ch.com/books/omv-6-on-raspberry-pi-4)  
+[Installation Instructions](https://dbt3ch.com/books/omv-6-on-raspberry-pi-4/page/installation-instructions)  
+```
+Installation Instructions
+```
+
 [openmediavault-Compose安装与设置 2024年03月21日](https://www.bilibili.com/read/cv33333171/)  
 [omv 6.5 nas 系统教程 安装/docker/插件拓展 2023/11/04](https://hechuan.me/omv-6-5/)  
 [OMV Docker-Compose PhotoPrism 2023-10-22 ](https://www.chungg.com/omv-docker-compose-photoprism/)  

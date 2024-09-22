@@ -1,0 +1,56 @@
+# Copyright (C) 2018  Christian Berger
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# https://raw.githubusercontent.com/chalmers-revere/omv-monitoring/refs/heads/master/docker-compose.yml
+
+version: '2'
+
+services:
+  influxdb:
+    image: influxdb:1.7.5
+    container_name: influxdb
+    restart: always
+    environment:
+    - INFLUXDB_HTTP_BIND_ADDRESS=:2719
+    - INFLUXDB_REPORTING_DISABLED=1
+    ports:
+    - "2719:2719"
+    - "25826:25826/udp"
+    volumes:
+    - ./influxdb-data:/var/lib/influxdb
+    - ./influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
+    - ./influxdb/types.db:/usr/share/collectd/types.db:ro
+
+  grafana:
+    image: grafana/grafana:6.1.3
+    container_name: grafana
+    restart: always
+    depends_on:
+    - influxdb
+    links:
+    - "influxdb"
+    ports:
+    - "2718:2718"
+    environment:
+    - GF_SERVER_HTTP_PORT=2718
+    - GF_SECURITY_ADMIN_PASSWORD=adm!n321
+    - GF_SERVER_PROTOCOL=http
+    - GF_SESSION_COOKIE_NAME=grafana_omv
+    - GF_INSTALL_PLUGINS=grafana-clock-panel
+    volumes:
+    - ./grafana-data:/var/lib/grafana
+    - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+    - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+    - ./grafana/Dashboard.json:/var/lib/grafana/dashboards/Dashboard.json

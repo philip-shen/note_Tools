@@ -1,0 +1,23 @@
+# https://dbt3ch.com/books/prometheus-grafana-dashboard/page/docker-compose
+version: '3.3'
+services:
+    node-exporter:
+        network_mode: host
+        pid: host
+        volumes:
+            - '/:/host:ro,rslave'
+        image: 'quay.io/prometheus/node-exporter:latest'
+		
+    prometheus:
+        container_name: prometheus
+        ports:
+            - '9091:9090' #modify 9091 to your setup needs
+        volumes:
+            - '/volume1/Configs/Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml' #modify the path for your install location
+        image: prom/prometheus
+
+    grafana:
+        container_name: grafana
+        ports:
+            - '3457:3000' #modify 3457 to your setup needs
+        image: grafana/grafana

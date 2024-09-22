@@ -1,0 +1,77 @@
+# https://qiita.com/sammrai/items/0c329ac7aa8b100b66a8#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E8%B5%B7%E5%8B%95
+
+version: "3"
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: influxdb_grafana
+    networks:
+      grafana_network:
+        ipv4_address: ${MACVLAN_HOST3_GRAFANA_IP} #Change, your nextcloud ipaddress
+      backend-network:
+    #ports:
+    #  - 3000:3000
+    environment:
+      - PUID=${APPUSER_PUID}               #Change to your user PUID
+      - PGID=${APPUSER_PGID}               #Change to your user PGID
+      - TZ=${TIME_ZONE_VALUE}      #Change to your timezone  
+    volumes:
+      - CHANGE_TO_COMPOSE_DATA_PATH/grafana:/var/lib/grafana
+    depends_on:
+      - influxdb
+
+  telegraf:
+    image: telegraf
+    container_name: influxdb_telegraf
+    volumes:
+      - CHANGE_TO_COMPOSE_DATA_PATH/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/rootfs/sys:ro
+      - /proc:/rootfs/proc:ro
+      - /etc:/rootfs/etc:ro
+    environment:
+      - PUID=${APPUSER_PUID}               #Change to your user PUID
+      - PGID=${APPUSER_PGID}               #Change to your user PGID
+      - TZ=${TIME_ZONE_VALUE}      #Change to your timezone      
+      HOST_PROC: /rootfs/proc
+      HOST_SYS: /rootfs/sys
+      HOST_ETC: /rootfs/etc
+    depends_on:
+      - influxdb
+
+  influxdb:
+    image: influxdb:2.0
+    container_name: grafana_influxdb
+    networks:
+      backend-network:
+    ports:
+      - 8086:8086
+    restart: unless-stopped  
+    environment:
+      - PUID=${APPUSER_PUID}               #Change to your user PUID
+      - PGID=${APPUSER_PGID}               #Change to your user PGID
+      - TZ=${TIME_ZONE_VALUE}      #Change to your timezone            
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_DB=grafana      
+      - DOCKER_INFLUXDB_INIT_USERNAME=grafana
+      - DOCKER_INFLUXDB_INIT_PASSWORD=grafana
+      - DOCKER_INFLUXDB_INIT_ORG=phiphoenix.com
+      - DOCKER_INFLUXDB_INIT_BUCKET=my-bucket
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=super-secret-auth-token
+    volumes:
+      - CHANGE_TO_COMPOSE_DATA_PATH/influxdb2:/var/lib/influxdb2 
+      - CHANGE_TO_COMPOSE_DATA_PATH/influxdb2-config:/etc/influxdb2
+
+volumes:
+    grafana-data:
+    influxdb2-data:
+    telegraf-data:
+    
+networks:
+  backend-network:
+    name: influxdb-backend-network
+  grafana_network:
+    name: macvlan-network
+    external: true
+  

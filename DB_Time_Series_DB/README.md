@@ -58,7 +58,90 @@ user nameとpasswordを両方admin
 ```
 
 ### Reference  
-[ファイナンス分野で時系列データベースinfluxDBを使う Python 時系列 Finance influxdb 2022-08-27](https://qiita.com/ixtlan001/items/c87e4b2c4a97d7dba800)
+[[01] docker-compose で influxdb 2.0 + grafana を立ち上げる ... 🔥失敗🔥 influxdb grafana influxdb2 2021-08-16](https://qiita.com/robozushi10/items/a0e8b3de1b9a9628f751)  
+[docker_compose_robozushi10.yml](docker_compose/docker_compose_robozushi10.yml)
+[robozushi10/qiita-influxdb-docker/influxdb-2.0](https://github.com/robozushi10/qiita-influxdb-docker/tree/master/influxdb-2.0)  
+
+[Grafana Influxdb Tutorial | Grafana Influxdb Docker Compose YAML Dec 14, 2020](https://www.youtube.com/watch?v=rRKDfU4tmJQ&ab_channel=Thetips4you)  
+[shazforiot/grafana_influxdb-docker-compose ](https://github.com/shazforiot/grafana_influxdb-docker-compose)  
+[docker-compose_shazforiot.yml](docker_compose/docker-compose_shazforiot.yml) 
+
+[[02] docker-compose で influxdb 1.8 + grafana を立ち上げる influxdb grafana influxdb2 2021-08-16](https://qiita.com/robozushi10/items/d29b255fec94e4fdde2f)  
+No  | サービス  | ホスト側ポート  | コンテナ側ポート  | 	備考
+------------------------------------ | --------------------------------------------- | ----------------------------------- | --------------------------------------------- | ----------------------------------- 
+1  | grafana  | 3000  | 3000  | 
+2  | influxdb  | 8086   | 8086  | WEBブラウザから 8086 にアクセスしても「404」エラーになるので、下記「Chronograf」を使う.
+3  | Fluentd  | 44224  | 44224  | 本記事の趣旨とは無関係であるが、使用していたので載せているだけである
+4  | Chronograf  | 8888  | 8888  | influxdb を GUI で操作するためのソフトの模様. influxdb 2.0 であれば不要なような気がする.
+
+[robozushi10/qiita-influxdb-docker/influxdb-1.8](https://github.com/robozushi10/qiita-influxdb-docker/tree/master/influxdb-1.8)  
+
+
+[fluentdのプラグインを公式DockerイメージでインストールするときはRootユーザーで実行しよう  2019-08-07](https://qiita.com/tamanobi/items/a57f2802c7fd1236ea52)  
+
+[GrafanaとInfluxDBで作るProxmoxダッシュボード【Docker】 Docker proxmox influxdb grafana 可視化](https://qiita.com/rokuosan/items/a378e46a89d31d544d4d)  
+
+Name | Version
+------------------------------------ | --------------------------------------------- 
+Proxmox VE | 7.2-7
+Ubuntu | 22.04.1 LTS
+Docker | 20.10.17
+Docker Compose | v2.6.0
+Grafana | 9.1.8
+InfluxDB | v2.4.0
+
+[docker_compose_rokuosan.yml](docker_compose/docker_compose_rokuosan.yml)
+
+[InfluxDB2.0+Grafana+Telegrafの構築 influxdb grafana Telegraf 2021-12-18](https://qiita.com/sammrai/items/0c329ac7aa8b100b66a8)  
+```
+確認環境
+    docker 19.03.8
+    docker-compose 1.26.0
+    os ubuntu20
+```
+[docker_compose.yml](docker_compose/sammrai/docker_compose.yml)  
+[telegraf.conf](docker_compose/sammrai/telegraf.conf)  
+
+[ローソク足を自炊してGrafanaで描画してみた influxdb grafana Telegraf 仮想通貨 2024-05-03](https://qiita.com/sammrai/items/b9ab6246c72b3b527126)  
+[sammrai/fetch_ohlcv Commits on Aug 21, 2024](https://github.com/sammrai/fetch_ohlcv)  
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F96637%2F5791a90f-02fb-fc38-01ed-7638aaeaf086.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=abc3a652299c1f161fc3ff3c9f8a744b" width="800" height="500">  
+
+[makaveli10 / StockPrediction_Transformer ](https://github.com/makaveli10/StockPrediction_Transformer)  
+```
+Intra day Stock Prediction 10 minutes into the future 
+```
+
+[Docker コンテナの監視ツールについて zabbix Docker influxdb grafana prometheus 2020-11-21](https://qiita.com/yokra9/items/1e48ea2492ed00c2c38f)  
+
+[#1 「Confluent + InfluxDB + Grafana 」 で IoTデータをストリーミング処理後に可視化してみました influxdb grafana Kafka confluent Connector  2021-08-10](https://qiita.com/turupon/items/e637ded0a42806b4e901) 
+
+サービス名 | 変更有無 | 内容
+------------------------------------ | --------------------------------------------- | ----------------------------------- 
+zookeeper | 無 | 	
+broker | 無 | 
+schema-registry | 無 | 
+connect | 有 | 使用イメージ変更
+control-center | 無 | 	
+ksqldb-server | 無 | 
+ksqldb-cli | 無 | 
+rabbitmq | 無 | 
+influxdb | 有 | 新規追加
+grafana | 有 | 新規追加
+
+[docker_compose_turupon.yml](docker_compose/docker_compose_turupon.yml)
+
+[#2 「Confluent + InfluxDB + Grafana 」 で IoTデータをストリーミング処理後に可視化してみました influxdb grafana Kafka confluent Connector  2021-08-10](https://qiita.com/turupon/items/f0d98656dfdc29aed348)  
+[#3 「Confluent + InfluxDB + Grafana 」 で IoTデータをストリーミング処理後に可視化してみました influxdb grafana Kafka confluent Connector  2021-08-26](https://qiita.com/turupon/items/7d1eb598e0291fb999da)  
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F544022%2Fb7c70647-bc9e-e2c7-de4c-c17235240c37.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=95554d76323445676515c18189c74b95" width="800" height="500">  
+
+```
+Consumer側の可視化の構成を追加する形で確認します。
+```
+
+<img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F544022%2Fe97acb66-f12f-9421-1694-a869787e10fc.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=e1cfc66be8e83604adfe1eb78c405540" width="800" height="500">  
+
 [ファイナンス分野でInfluxDB+Grafanaを使う（株価をローソク足表示） Python 時系列解析 Finance influxdb grafana 2022-08-27](https://qiita.com/ixtlan001/items/268dfab0d1ee21887602)  
 ```
 データソースの追加(influxDBとの連携設定)
@@ -201,6 +284,8 @@ from(bucket: "cryptocurrency")  |> range(start: v.timeRangeStart, stop: v.timeRa
 [init_influxdb.py](init_influxdb.py)  
 [update_influxdb.py](update_influxdb.py)  
 
+[inject_stock_prices.py](inject_stock_prices.py)
+
 ### Reference  
 [x01963815/grab-stocks-data-to-influxdb May 1, 2018](https://github.com/x01963815/grab-stocks-data-to-influxdb)
 ```
@@ -209,6 +294,9 @@ from(bucket: "cryptocurrency")  |> range(start: v.timeRangeStart, stop: v.timeRa
 init_influxdb.ipynb：初始化InfluxDB股價資料庫
 update_influxdb.ipynb：更新InfluxDB股價資料庫
 ```
+
+[ファイナンス分野で時系列データベースinfluxDBを使う Python 時系列 Finance influxdb 2022-08-27](https://qiita.com/ixtlan001/items/c87e4b2c4a97d7dba800)  
+
 
 ## Reference  
 
@@ -271,7 +359,15 @@ InfluxDB is supported from version 1.0 and up.
 a climate sensor logger client for a InfluxDB backend written in python
 ```
 
+[RaspberryPi4 influxDBとGrafana編 RaspberryPi influxdb grafana 2023-05-05](https://qiita.com/kanon700/items/e3a8a1cea4bcd635a002)  
+
 [Raspberry Pi上のInfluxDBに格納したデータをGrafanaで可視化する（Chronografとの比較も）RaspberryPi influxdb grafana IoT Chronograf 2020-05-29](https://qiita.com/yoroyasu/items/5893849a896aec6da25c)  
+
+[Rock 5b开发板 + BME280传感器 + InfluxDB/Grafana打造动态温湿度监控平台 Jan 14, 2023](https://post.smzdm.com/p/a60plx3o/)  
+```
+
+```
+
 
 [InfluxDB 2016-01-06](http://yume190.github.io/2016/01/06/InfluxDB/)  
 ```
@@ -281,23 +377,32 @@ a climate sensor logger client for a InfluxDB backend written in python
 # Prometheus  
 
 ## Reference    
-[RaspberryPi4 influxDBとGrafana編 RaspberryPi influxdb grafana 2023-05-05](https://qiita.com/kanon700/items/e3a8a1cea4bcd635a002)  
 
 [【Grafana】 基礎から徹底解説 〜 実際に導入までしてみる 〜 監視 grafana prometheus オープンソース 視覚化 2020-05-13](https://qiita.com/MetricFire/items/bbf10dbd60c6b85ccee0)  
 [子供がPCで遊んでいないかPrometheusで監視する 育児 prometheus AlertManager 2024-04-01](https://qiita.com/ipppppei/items/6a0958de500ffc634c94)  
 
+[Grafana Agent によるメトリクス収集と Grafana による可視化に入門する grafana Prometheus 2024-04-11](https://qiita.com/Shigai/items/c80281c2b965b88582c7)  
+
+[Prometheus + Node_exporter + Grafanaでシステム管理 grafana prometheus node_exporter 2024-03-13](https://qiita.com/Charon9/items/09745a2ca1279045f10f)  
+
+[grafana dashboard で環境差分を扱う Tips grafana prometheus 2024-06-01](https://qiita.com/hiroakiyoshii/items/ff4e82ba5acea78cefc7)  
+
+[PrometheusのExporterをPythonで作る。Client Library無しで Python prometheus 2022-06-30](https://qiita.com/rk05231977/items/f37ce713c06c170715f7)  
+
+[Kalasearch/grafana-tutorial](https://github.com/Kalasearch/grafana-tutorial/tree/master)  
+
+[Prometheus Python Client](https://github.com/prometheus/client_python?tab=readme-ov-file)  
+
+
+## Reference    
+
 [Owner avatar 1102_Dist_Sys Prometheus 監控和 Grafana 視覺化及報警 ](https://github.com/kebwlmbhee/1102_Dist_Sys)  
 
-[Grafana Agent によるメトリクス収集と Grafana による可視化に入門する grafana Prometheus 2024-04-11](https://qiita.com/Shigai/items/c80281c2b965b88582c7)  
 [Grafana®とは？ MySQL PostgreSQL grafana ClickHouse OpenSearch 2023-10-30](https://qiita.com/tomozilla/items/cd8eee21fb7d032c49e4)  
-[grafana dashboard で環境差分を扱う Tips grafana prometheus 2024-06-01](https://qiita.com/hiroakiyoshii/items/ff4e82ba5acea78cefc7)  
-[Prometheus + Node_exporter + Grafanaでシステム管理 grafana prometheus node_exporter 2024-03-13](https://qiita.com/Charon9/items/09745a2ca1279045f10f)  
+
 [家計支出をGrafanaで可視化 PostgreSQL Docker grafana 2024-03-24](https://qiita.com/nagomiita/items/792204beb9c10e542fa9)  
 [[Grafana 7.x] データベースを Sqlite3 から MySQL へ移行 (マイグレーション) する MySQL SQLite3 grafana 2021-02-18](https://qiita.com/sho7650/items/b5022313fc473a938a37)  
 [Linux: データ可視化ソフト「Grafana」を無料インストールしてみた＋「Prometheus」と連携させてみた Bash Linux grafana prometheus 2023-11-05](https://qiita.com/frozencatpisces/items/f6e331c1c1c14be7275d)  
-[PrometheusのExporterをPythonで作る。Client Library無しで Python prometheus 2022-06-30](https://qiita.com/rk05231977/items/f37ce713c06c170715f7)  
-
-[Prometheus Python Client](https://github.com/prometheus/client_python?tab=readme-ov-file)  
 [如何用python实时监控股票，并且持续扫描大盘？ Prometheus 2023-05-20](https://blog.csdn.net/m0_59164520/article/details/130778612)  
 
 
