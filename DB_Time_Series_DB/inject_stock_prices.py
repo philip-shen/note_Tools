@@ -13,9 +13,6 @@ import json, pickle
 from influxdb_client import InfluxDBClient, BucketRetentionRules, WriteOptions
 from influxdb_client.client.write_api import PointSettings
 
-# Bollinger Band, SMA(simple moving average)を計算して追加
-#import talib
-
 import _libs.lib_misc as lib_misc
 from _libs.logger_setup import *
 from _libs.lib_twse_otc import *
@@ -33,12 +30,23 @@ def est_timer(start_time):
     logger.info(msg)
 
 def write_dataframe(client, bucket, df, point_settings):
-        
-        with client.write_api(write_options=WriteOptions(batch_size=1000, flush_interval=30_000, jitter_interval=10_000, retry_interval=30_000), point_settings=point_settings) as write_api:
+   #instantiate the WriteAPI        
+   with client.write_api(write_options=WriteOptions(batch_size=1000, flush_interval=30_000, jitter_interval=10_000, retry_interval=30_000), 
+                         point_settings=point_settings) as write_api:
+        write_api.write(bucket=bucket, record=df,
+            data_frame_tag_columns=['retrieved from', 'inject time', 'SYMBOL', 'name'],
+            data_frame_measurement_name="stock prices")
 
-            write_api.write(bucket=bucket, record=df,
-                data_frame_tag_columns=['retrieved from', 'inject time', 'SYMBOL', 'name'],
-                data_frame_measurement_name="stock prices")
+def query_influxdb(client, org, query):
+    #instantiate the WriteAPI and QueryAPI
+     #return the table and print the result
+    result = client.query_api().query(org=org, query=query)
+    results = []
+    for table in result:
+        for record in table.records:
+            results.append((record.get_value(), record.get_field()))
+    
+    logger.info(f'results: {results}')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='stock indicator')
@@ -75,24 +83,21 @@ if __name__ == '__main__':
     ORG    = json_data["ORG"]       # InfluxDB初期設定で指定した組織名
     BUCKET = json_data["BUCKET"]        # 任意のBUCKET名
 
-    start_date = datetime(2000,1,1)
-    end_date  = datetime(2024,1,1)    
+    start_date = datetime(2013,1,1)
+    end_date  = datetime(2024,9,24)    
     
     #株価をyahoo financeからダウンロード(例としてfordとGE)
     #Tesla, Inc. (TSLA)
-    target_ticker = 'TSLA'
-    local_stock_indicator_TSLA = stock_indicator_pstock(ticker=target_ticker, interval="1d", \
+    tsla_ticker = 'TSLA'
+    local_stock_indicator_TSLA = stock_indicator_pstock(ticker=tsla_ticker, interval="1d", \
                                                                 startdate= start_date, enddate= end_date)
     local_stock_indicator_TSLA.pstock_interval_startdate_enddate()
     #NVIDIA Corporation (NVDA)            
-    target_ticker = 'NVDA'
-    local_stock_indicator_NVDA = stock_indicator_pstock(ticker=target_ticker, interval="1d", \
+    nvda_ticker = 'NVDA'
+    local_stock_indicator_NVDA = stock_indicator_pstock(ticker=nvda_ticker, interval="1d", \
                                                                 startdate= start_date, enddate= end_date)
     local_stock_indicator_NVDA.pstock_interval_startdate_enddate()
-    
-    logger.info(f'TSLA.stock_data:\n{local_stock_indicator_TSLA.stock_data}')
-    logger.info(f'NVDA.stock_data:\n{local_stock_indicator_NVDA.stock_data}')
-    
+        
     #後にGrafanaでのローソク足表示の際にすんなり認識される様に列名を変更
     #また、調整済みcloseの値（Adj close）をcloseとする
     #ford.columns = ["high", "low", "open", "close.raw", "volume", "close"]
@@ -120,21 +125,31 @@ if __name__ == '__main__':
 
     https://stackoverflow.com/questions/69771271/getting-codeunauthorized-messageunauthorized-access-after-using-que
     '''
+    '''
+    HTTP response body: {
+	"code": "conflict",
+	"message": "bucket with name my-bucket already exists"
+    }
+    using another new bucket name
+    '''
     with InfluxDBClient(url=URL, token=INFLUXDB_TOKEN) as client:
         buckets_api = client.buckets_api()
-        retention_rules = BucketRetentionRules(type="expire", every_seconds=0, shard_group_duration_seconds=3600*24*365*10) # every_seconds = 0 means infinite
-        created_bucket = buckets_api.create_bucket(bucket_name=BUCKET,
-                                                   retention_rules=retention_rules,
-                                                   org=ORG)
-        logger.info(f"created_bucket: {created_bucket}")
+    #    retention_rules = BucketRetentionRules(type="expire", every_seconds=0, shard_group_duration_seconds=3600*24*365*10) # every_seconds = 0 means infinite
+    #    created_bucket = buckets_api.create_bucket(bucket_name=BUCKET,
+    #                                               retention_rules=retention_rules, org=ORG)
+    #    logger.info(f"created_bucket: {created_bucket}")
 
+    
+    # Bollinger Band, SMA(simple moving average)を計算して追加
     timeperiod = 20
     
     local_stock_indicator_TSLA.calculate_bollinger_bands(window= timeperiod)
     upper, middle, lower = local_stock_indicator_TSLA.stock_data['Bollinger Upper'], \
                             local_stock_indicator_TSLA.stock_data['Bollinger Middle'], \
                             local_stock_indicator_TSLA.stock_data['Bollinger Lower']    
+    local_stock_indicator_TSLA.calculate_moving_averages()
     SMA = local_stock_indicator_TSLA.stock_data['MA_20']
+    
     tsla = pd.concat([local_stock_indicator_TSLA.stock_data, upper.rename('Upper Bollinger Band'), \
                         middle.rename('Middle Bollinger Band'), lower.rename('Lower Bollinger Band'), SMA.rename('SMA')], axis=1)
     
@@ -142,9 +157,16 @@ if __name__ == '__main__':
     upper, middle, lower = local_stock_indicator_NVDA.stock_data['Bollinger Upper'], \
                             local_stock_indicator_NVDA.stock_data['Bollinger Middle'], \
                             local_stock_indicator_NVDA.stock_data['Bollinger Lower']    
-    SMA = local_stock_indicator_NVDA.stock_data['MA_20']                        
+    local_stock_indicator_NVDA.calculate_moving_averages()
+    SMA = local_stock_indicator_NVDA.stock_data['MA_20']  
+
     nvda = pd.concat([local_stock_indicator_NVDA.stock_data, upper.rename('Upper Bollinger Band'), \
                         middle.rename('Middle Bollinger Band'), lower.rename('Lower Bollinger Band'), SMA.rename('SMA')], axis=1)
+    
+    #logger.info(f'TSLA.stock_data:\n{local_stock_indicator_TSLA.stock_data}')
+    #logger.info(f'NVDA.stock_data:\n{local_stock_indicator_NVDA.stock_data}')
+    logger.info(f'tsla:\n{tsla}')
+    logger.info(f'nvda:\n{nvda}')
     
     # 株価を投入   
     client = InfluxDBClient(url=URL, token=INFLUXDB_TOKEN, org=ORG, timeout=30_000)
@@ -158,3 +180,17 @@ if __name__ == '__main__':
     point_settings = PointSettings(**{"retrieved from" : "yahoo finance", "inject time": str(datetime.now()), \
                                         "SYMBOL" : "NVDA", "NAME" : "NVIDIA Corporation", "transform" : "original"})
     write_dataframe(client, BUCKET, nvda, point_settings)
+
+    est_timer(t0)
+    
+    query = f'from(bucket: "{BUCKET}") \
+    |> range(start: -10y)\
+    |> filter(fn: (r) => r["_measurement"] == "stock prices")\
+    |> filter(fn: (r) => r["NAME"] == "Tesla, Inc.")\
+    |> filter(fn: (r) => r["SYMBOL"] == "{nvda_ticker}")\
+    |> filter(fn: (r) => r["_field"] == "Open")\
+    |> last()'
+    
+    query_influxdb(client, ORG, query)
+
+    est_timer(t0)

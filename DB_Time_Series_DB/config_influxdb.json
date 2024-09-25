@@ -1,6 +1,7 @@
 {
-    "INFLUXDB_TOKEN":"VLxWD5MA3vW19jpiIU4lDXYdGD_lYCn4gEJ5brXSBc2EfYuApuXFt4Pg7Kbo55OPSOeuzOIlqPmdzRfSvJKiEw==",
+    "INFLUXDB_TOKEN00":"9Oliwp701JZUu2DFLB_f1CV0PqA4i77UGY6Qkkusf1K799Vv88wICF3yigflYgLLuYRSH8X7EpgfKLbTi9iBXQ==",
+    "INFLUXDB_TOKEN":"XnBLAwBzE0_kA5RHLY-lTBp8ll9nZKHKSoGys2w_2yShWlMPVyROjpY67GSBQ8eZDj1XaxJEgj1QxsmUwNdL_w==",
     "URL": "http://localhost:8086",
     "ORG": "philphoenix.com",
-    "BUCKET": "my-bucket"
+    "BUCKET": "bucket_us-market"
 }

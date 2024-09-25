@@ -4,7 +4,7 @@ Table of Contents
    * [Table of Contents](#table-of-contents)
    * [InfluxDB](#influxdb)
       * [InfluxDB Installation](#influxdb-installation)               
-      * [InfluxDB Installation](#grafana-installation)                     
+      * [Grafana Installation](#grafana-installation)                     
       * [Dashboard Setup](#dashboard-setup)                     
          * [Reference](#reference)  
       * [DataSet Insertation](#dataset-insertation)                
@@ -178,77 +178,6 @@ Consumer側の可視化の構成を追加する形で確認します。
 
 <img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F544022%2Fe97acb66-f12f-9421-1694-a869787e10fc.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=e1cfc66be8e83604adfe1eb78c405540" width="800" height="500">  
 
-[ファイナンス分野でInfluxDB+Grafanaを使う（株価をローソク足表示） Python 時系列解析 Finance influxdb grafana 2022-08-27](https://qiita.com/ixtlan001/items/268dfab0d1ee21887602)  
-```
-データソースの追加(influxDBとの連携設定)
-
-GrafanaのConfigurationメニュー→"Data sources"→"Add data source"をクリック。
-下記項目を入力して"Save & test"をクリック。
-
-    "Query Language" : "Flux"を選択
-    "URL" : http://influxdb:8086
-    "Basic Auth Details"のUserとPassword : influxDBのユーザー名とパスワード
-    "Organization" : influxDBで登録しているorganization名
-    "Token" : influxDBのAPI Tokenをコピ
-```
-
-```
-Dashboard作成
-
-画面左側のメニューからDashboards→New dashboard→Add a new panelを順に辿る。
-
-query入力部分にFlux（influxDBのクエリ言語）で例えば下記を入力（Fordの株価の場合）:
-
-from(bucket: "influxdb_stock_prices")
-|> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-|> filter(fn: (r) => r["_measurement"] == "stock prices")
-|> filter(fn: (r) => r["NAME"] == "ford")
-|> filter(fn: (r) => r["SYMBOL"] == "F")
-
-画面上部の時計マークの所をクリックしてFromをnow-2M、ToをnowにしてApply Time Rangeをクリック。
-
-右上のパネルのタイプとして"Time series"が選ばれている所のドロップダウンメニューから"Candlestick"を選択。
-```
-
-```
-Bollinger Band等の表示
-
-以下はinfluxdbの_fieldにOHLCV以外の"Upper Bollinger Band"、"Lower Bollinger Band"が入っていることを前提としています。
-
-    "Additional fields"で"Include"を選択
-    "Point size"を1に変更（これはお好みで）
-
-ここまででとりあえずOHLCV以外の線が表示されます。
-
-    線の下を不透明にする
-        "+ Add field override"をクリック
-        "Fields with name"を選択
-        "Upper Bollinger Band(base field name)"を選択
-        "+ Add override property"で"Graph styles > Fill Opacity"を選択して20程度に設定
-        "+ Add override property"で"Standard options > Color scheme"を選択して"Single color"を選択、右端のカラーパレット（default黒になってて見にくいです）で好みの色を選択
-
-同様のことをLower Bollinger Bandに対しても繰り返します。
-```
-
-```
-Legendテキストの変更
-
-デフォールトではLegendに使われるテキストラベルが長たらしいので下記で変更できます。
-
-    パネルのEdit画面で"Overrides"タブを開く。
-    Add field overrideをクリック
-    Fields with nameを選択
-    変更したい変数を選択
-    Add override propertyで"Standard options > Display name"を選択
-    新しいテキストラベルを入力
-```
-
-[influxdb-flux-change-or-alias-legend-label-from-temp-host-xx-topic-yy-just-to-yy](https://community.grafana.com/t/influxdb-flux-change-or-alias-legend-label-from-temp-host-xx-topic-yy-just-to-yy/49596)  
-
-
-[influxdb+grafanaで変数を利用して個別の株価パネルを複製  Python 時系列解析 Finance influxdb grafana 2022-08-28](https://qiita.com/ixtlan001/items/7ba21c1f94fc4547fcca)  
-[Influxdb 2.0 how to get a tag all values? Apr 25, 2020](https://stackoverflow.com/questions/61424275/influxdb-2-0-how-to-get-a-tag-all-values)  
-
 
 [Docker玩轉InfluxDB 2022-01-15](https://wenwender.wordpress.com/2022/01/15/docker%e7%8e%a9%e8%bd%89influxdb/)  
 [Docker玩轉Grafana(feat. InfluxDB) 2022-01-18](https://wenwender.wordpress.com/2022/01/18/docker%e7%8e%a9%e8%bd%89grafanafeat-influxdb/)  
@@ -333,6 +262,82 @@ update_influxdb.ipynb：更新InfluxDB股價資料庫
 
 [ファイナンス分野で時系列データベースinfluxDBを使う Python 時系列 Finance influxdb 2022-08-27](https://qiita.com/ixtlan001/items/c87e4b2c4a97d7dba800)  
 
+[ファイナンス分野でInfluxDB+Grafanaを使う（株価をローソク足表示） Python 時系列解析 Finance influxdb grafana 2022-08-27](https://qiita.com/ixtlan001/items/268dfab0d1ee21887602)  
+```
+データソースの追加(influxDBとの連携設定)
+
+GrafanaのConfigurationメニュー→"Data sources"→"Add data source"をクリック。
+下記項目を入力して"Save & test"をクリック。
+
+    "Query Language" : "Flux"を選択
+    "URL" : http://influxdb:8086
+    "Basic Auth Details"のUserとPassword : influxDBのユーザー名とパスワード
+    "Organization" : influxDBで登録しているorganization名
+    "Token" : influxDBのAPI Tokenをコピ
+```
+
+```
+Dashboard作成
+
+画面左側のメニューからDashboards→New dashboard→Add a new panelを順に辿る。
+
+query入力部分にFlux（influxDBのクエリ言語）で例えば下記を入力（Fordの株価の場合）:
+
+from(bucket: "influxdb_stock_prices")
+|> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+|> filter(fn: (r) => r["_measurement"] == "stock prices")
+|> filter(fn: (r) => r["NAME"] == "ford")
+|> filter(fn: (r) => r["SYMBOL"] == "F")
+
+画面上部の時計マークの所をクリックしてFromをnow-2M、ToをnowにしてApply Time Rangeをクリック。
+
+右上のパネルのタイプとして"Time series"が選ばれている所のドロップダウンメニューから"Candlestick"を選択。
+```
+
+```
+Bollinger Band等の表示
+
+以下はinfluxdbの_fieldにOHLCV以外の"Upper Bollinger Band"、"Lower Bollinger Band"が入っていることを前提としています。
+
+    "Additional fields"で"Include"を選択
+    "Point size"を1に変更（これはお好みで）
+
+ここまででとりあえずOHLCV以外の線が表示されます。
+
+    線の下を不透明にする
+        "+ Add field override"をクリック
+        "Fields with name"を選択
+        "Upper Bollinger Band(base field name)"を選択
+        "+ Add override property"で"Graph styles > Fill Opacity"を選択して20程度に設定
+        "+ Add override property"で"Standard options > Color scheme"を選択して"Single color"を選択、右端のカラーパレット（default黒になってて見にくいです）で好みの色を選択
+
+同様のことをLower Bollinger Bandに対しても繰り返します。
+```
+
+```
+Legendテキストの変更
+
+デフォールトではLegendに使われるテキストラベルが長たらしいので下記で変更できます。
+
+    パネルのEdit画面で"Overrides"タブを開く。
+    Add field overrideをクリック
+    Fields with nameを選択
+    変更したい変数を選択
+    Add override propertyで"Standard options > Display name"を選択
+    新しいテキストラベルを入力
+```
+
+[influxdb-flux-change-or-alias-legend-label-from-temp-host-xx-topic-yy-just-to-yy](https://community.grafana.com/t/influxdb-flux-change-or-alias-legend-label-from-temp-host-xx-topic-yy-just-to-yy/49596)  
+
+
+[influxdb+grafanaで変数を利用して個別の株価パネルを複製  Python 時系列解析 Finance influxdb grafana 2022-08-28](https://qiita.com/ixtlan001/items/7ba21c1f94fc4547fcca)  
+[Influxdb 2.0 how to get a tag all values? Apr 25, 2020](https://stackoverflow.com/questions/61424275/influxdb-2-0-how-to-get-a-tag-all-values)  
+
+[InfluxDB v2 (OSS版) PythonクライアントでInfluxdbの気象データを取得する Python SQL PostgreSQL influxdb 2024-01-31](https://qiita.com/pipito-yukio/items/0b1c8234a3467a9b98e8)  
+
+[RaspberryPiでセンサーデータの可視化(1) InfluxDBとGrafanaを使う 2024/09/07](https://zenn.dev/kiyokiyo/articles/ae29bbbbefd24c)  
+<img src="https://storage.googleapis.com/zenn-user-upload/c58a04d0226f-20240907.png" width="600" height="300"> 
+
 
 ## Reference  
 
@@ -413,6 +418,15 @@ a climate sensor logger client for a InfluxDB backend written in python
 # Prometheus  
 
 ## Reference    
+[Ubuntu22.04にQuestdbを入れてinfluxDBと比較してみた。 ESXi java17 Ubuntu22.04 questdb 2024-08-05](https://qiita.com/nw-engineer/items/10224376ffb0917dc7f2)  
+```
+QuestDBは、高スループットの取り込みと高速SQLクエリを実現するオープンソースの時系列データベースという事らしく、
+influxDBよりも高速に動作するという話なので両者の性能差を比較してみたいと思います。
+```
+influxdb | Questdb
+------------------------------------ | --------------------------------------------- 
+3.29s | 27ms
+
 
 [【Grafana】 基礎から徹底解説 〜 実際に導入までしてみる 〜 監視 grafana prometheus オープンソース 視覚化 2020-05-13](https://qiita.com/MetricFire/items/bbf10dbd60c6b85ccee0)  
 [子供がPCで遊んでいないかPrometheusで監視する 育児 prometheus AlertManager 2024-04-01](https://qiita.com/ipppppei/items/6a0958de500ffc634c94)  
