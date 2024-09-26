@@ -192,7 +192,8 @@ datetime.datetime.fromtimestamp(ds[0]/ 1e3)
 ```
 Grafana Dashboard
 
-這裡一樣的步驟是，先到InfluxDB取得SQL語法，再把它貼到Grafana去，這裡我就不再示範，如果有忘記的可以去看這篇文 Docker玩轉Grafana，有個小提醒是，記得要先去influxDB建立bucket，不然資料會insert不進去喔。
+這裡一樣的步驟是，先到InfluxDB取得SQL語法，再把它貼到Grafana去，這裡我就不再示範，如果有忘記的可以去看這篇文 Docker玩轉Grafana，
+有個小提醒是，記得要先去influxDB建立bucket，不然資料會insert不進去喔。
 
 最後呈現的結果大概會像這樣，而且資料是會不斷的更新的。
 ```
@@ -252,6 +253,36 @@ from(bucket: "cryptocurrency")  |> range(start: v.timeRangeStart, stop: v.timeRa
 [inject_stock_prices.py](inject_stock_prices.py)
 
 ### Reference  
+[Cannot convert timezone for a timestamp in pandas Jul 21, 2022 ](https://stackoverflow.com/questions/73064425/cannot-convert-timezone-for-a-timestamp-in-pandas)  
+
+
+[sruon/telegraf-stocks Dec 20, 2016](https://github.com/sruon/telegraf-stocks)  
+```
+Retrieve Stock infos from Yahoo Finance in a format ready to consume for Telegraf - InfluxDB. 
+```
+
+[Automated Stock Trading Model Using InfluxDB Aug 22, 2022](https://www.influxdata.com/blog/automated-stock-trading-model-using-influxdb/)  
+[Westonside/Influx-Intern-Project Jul 14, 2022](https://github.com/Westonside/Influx-Intern-Project)  
+
+[Getting Started with Python and InfluxDB Jan 21st, 2022](https://thenewstack.io/getting-started-with-python-and-influxdb/)  
+```
+measurementName,tagKey=tagValue fieldKey1="fieldValue1",fieldKey2=fieldValue2 timestamp
+```
+
+[pandas.DatetimeIndex.tz_localize - PyData](https://pandas.pydata.org/docs/reference/api/pandas.Series.tz_localize.html)  
+
+[Line protocol](https://docs.influxdata.com/influxdb/v2/reference/syntax/line-protocol/)
+```
+// Syntax
+<measurement>[,<tag_key>=<tag_value>[,<tag_key>=<tag_value>]] <field_key>=<field_value>[,<field_key>=<field_value>] [<timestamp>]
+
+// Example
+myMeasurement,tag1=value1,tag2=value2 fieldKey="fieldValue" 1556813561098000000
+```
+```
+Line protocol does not support the newline character \n in tag or field values.
+```
+
 [x01963815/grab-stocks-data-to-influxdb May 1, 2018](https://github.com/x01963815/grab-stocks-data-to-influxdb)
 ```
 從 Google Finance 上抓取台灣上市公司股價資料，並且存入 InfluxDB 資料庫中
@@ -343,7 +374,9 @@ Legendテキストの変更
 
 [Distributed-System-Spark](https://github.com/aaron1aaron2/NCCU_110-2_Distributed-System-Spark_final?tab=readme-ov-file)  
 ```
-本專案以Spark-MLlib API實現爬蟲資料缺失自動補救機制，先透過FinMind API爬取每日股票，將資料存入Influx Database，當爬蟲部分出現錯誤而無法依序取得資料時，系統將自動呼叫MLlib API存取Database資料並進行預測，再將預測結果寫回Database，最後以Plotly API 和 Dash API進行資料視覺化比較有補救與未補救的差異，以下為我們整體專案的介紹和相關API的安裝流程。
+本專案以Spark-MLlib API實現爬蟲資料缺失自動補救機制，先透過FinMind API爬取每日股票，將資料存入Influx Database，
+當爬蟲部分出現錯誤而無法依序取得資料時，系統將自動呼叫MLlib API存取Database資料並進行預測，再將預測結果寫回Database，
+最後以Plotly API 和 Dash API進行資料視覺化比較有補救與未補救的差異，以下為我們整體專案的介紹和相關API的安裝流程。
 ```
 
 [MarkhamLee/internet-and-iot-data-platform Commits on Sep 16, 2024](https://github.com/MarkhamLee/internet-and-iot-data-platform)  
