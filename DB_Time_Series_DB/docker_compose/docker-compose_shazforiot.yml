@@ -25,7 +25,7 @@ services:
     networks:
       - grafana_network
     volumes:
-      - influxdb_data:/var/lib/influxdb
+      - influxdb_data:/var/lib/influxdb:rw
     environment:
       - INFLUXDB_DB=grafana
       - INFLUXDB_USER=grafana

@@ -29,14 +29,22 @@ def est_timer(start_time):
     msg = 'Time Consumption: {}.'.format( time_consumption)#msg = 'Time duration: {:.3f} seconds.'
     logger.info(msg)
 
-def write_dataframe(client, bucket, df, point_settings):
+def create_bucket(client, bucket, organization):
+
+    with client.buckets_api() as buckets_api:        
+        retention_rules = BucketRetentionRules(type="expire", every_seconds=0, shard_group_duration_seconds=3600*24*365*10) # every_seconds = 0 means infinite
+        created_bucket = buckets_api.create_bucket(bucket_name=bucket,
+                                                   retention_rules=retention_rules, org= organization)
+        logger.info(f"created_bucket: {created_bucket}")
+
+def write_dataframe(client, bucket, df, measurement, point_settings):
    #instantiate the WriteAPI        
    with client.write_api(write_options=WriteOptions(batch_size=1000, flush_interval=30_000, jitter_interval=10_000, retry_interval=30_000), 
                          point_settings=point_settings) as write_api:
         write_api.write(bucket=bucket, 
                         record=df,
-                        data_frame_tag_columns=['retrieved from', 'inject time', 'SYMBOL', 'name'],
-                        data_frame_measurement_name="stock prices")
+                        data_frame_tag_columns= ['retrieved from', 'inject time', 'SYMBOL', 'name'],
+                        data_frame_measurement_name= measurement)
 
 def query_influxdb(client, org, query):
     #instantiate the WriteAPI and QueryAPI
@@ -48,6 +56,31 @@ def query_influxdb(client, org, query):
             results.append((record.get_value(), record.get_field()))
     
     logger.info(f'results: {results}')
+
+def delete_measurement(client, startdate, stopdate, measurement, bucket, organization):
+    delete_api = client.delete_api()
+    delete_api.delete(startdate, stopdate, f'_measurement="{measurement}"', bucket=bucket, org=organization)
+
+#タイムスタンプを米国東部時間でのNasdaqとNYSEのOpen時間（午前9:30）に設定
+#tsla = tsla.tz_localize(tz='US/Eastern')+pd.DateOffset(hours=9.5)    
+def df_datetime_toUTC_drop_interval(dataframe):
+    #if input is DataFrame with column 0
+    dataframe['date'] = dataframe['date'].dt.tz_localize(tz='US/Eastern').dt.tz_convert(tz='UTC')
+    # remove column 'interval' for insert data
+    dataframe.drop(['interval'], axis=1, inplace=True)
+
+    return dataframe
+
+def query_flux_str(bucket, measurement, name, ticker):
+    query = f'from(bucket: "{bucket}") \
+        |> range(start: -10y)\
+        |> filter(fn: (r) => r["_measurement"] == "{measurement}")\
+        |> filter(fn: (r) => r["NAME"] == "{name}")\
+        |> filter(fn: (r) => r["SYMBOL"] == "{ticker}")\
+        |> filter(fn: (r) => r["_field"] == "open")\
+        |> last()'
+    
+    return query
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='stock indicator')
@@ -85,8 +118,25 @@ if __name__ == '__main__':
     BUCKET = json_data["BUCKET"]        # 任意のBUCKET名
 
     start_date = datetime(2012,1,1)
-    end_date  = datetime(2024,9,24)    
+    end_date  = datetime(2024,10,2)    
+    measurement_name="stock_prices"
+    measurement_name_bb_band="stock_prices_bb_band"
+    # Influxdb client
+    client = InfluxDBClient(url=URL, token=INFLUXDB_TOKEN, org=ORG, timeout=30_000)
     
+    #Delete measurement
+    delete_measurement(client, 
+                       startdate='2012-01-03T05:00:00Z', 
+                       stopdate='2024-10-01T04:00:00Z',
+                       measurement= measurement_name, bucket=BUCKET, organization= ORG)
+    logger.info(f'Delete measurement: {measurement_name}')
+
+    delete_measurement(client, 
+                       startdate='2012-01-03T05:00:00Z', 
+                       stopdate='2024-10-01T04:00:00Z',
+                       measurement= measurement_name_bb_band, bucket=BUCKET, organization= ORG)
+    logger.info(f'Delete measurement: {measurement_name_bb_band}')
+
     #株価をyahoo financeからダウンロード(例としてfordとGE)
     #Tesla, Inc. (TSLA)
     tsla_ticker = 'TSLA'
@@ -99,11 +149,6 @@ if __name__ == '__main__':
                                                                 startdate= start_date, enddate= end_date)
     local_stock_indicator_NVDA.pstock_interval_startdate_enddate()
         
-    #後にGrafanaでのローソク足表示の際にすんなり認識される様に列名を変更
-    #また、調整済みcloseの値（Adj close）をcloseとする
-    #ford.columns = ["high", "low", "open", "close.raw", "volume", "close"]
-    #GE.columns =  ["high", "low", "open", "close.raw", "volume", "close"]
-
     '''
     # Bucketの生成
     #https://github.com/influxdata/influxdb-client-python/blob/master/influxdb_client/domain/bucket_retention_rules.py
@@ -125,14 +170,6 @@ if __name__ == '__main__':
     }
     using another new bucket name
     '''
-    with InfluxDBClient(url=URL, token=INFLUXDB_TOKEN) as client:
-        buckets_api = client.buckets_api()
-    #    retention_rules = BucketRetentionRules(type="expire", every_seconds=0, shard_group_duration_seconds=3600*24*365*10) # every_seconds = 0 means infinite
-    #    created_bucket = buckets_api.create_bucket(bucket_name=BUCKET,
-    #                                               retention_rules=retention_rules, org=ORG)
-    #    logger.info(f"created_bucket: {created_bucket}")
-
-    
     # Bollinger Band, SMA(simple moving average)を計算して追加
     timeperiod = 20
     
@@ -140,72 +177,107 @@ if __name__ == '__main__':
     Cannot convert timezone for a timestamp in pandas Jul 21, 2022    
     https://stackoverflow.com/questions/73064425/cannot-convert-timezone-for-a-timestamp-in-pandas
     '''
-    #タイムスタンプを米国東部時間でのNasdaqとNYSEのOpen時間（午前9:30）に設定
-    #tsla = tsla.tz_localize(tz='US/Eastern')+pd.DateOffset(hours=9.5)
     
-    #if input is DataFrame with column 0
-    local_stock_indicator_TSLA.stock_data['date'] = local_stock_indicator_TSLA.stock_data['date'].dt.tz_localize(tz='US/Eastern').\
-                                            dt.tz_convert(tz='UTC')
-    # remove column 'interval' for insert data
-    local_stock_indicator_TSLA.stock_data.drop(['interval'], axis=1, inplace=True)
-
     logger.info(f'TSLA.stock_data:\n{local_stock_indicator_TSLA.stock_data}')
     
-    local_stock_indicator_TSLA.calculate_bollinger_bands(window= timeperiod)
     local_stock_indicator_TSLA.calculate_moving_averages()
-    tsla = local_stock_indicator_TSLA.stock_data.rename(columns={'Bollinger Upper': 'Upper Bollinger Band',
+    tsla = local_stock_indicator_TSLA.stock_data
+    tsla = df_datetime_toUTC_drop_interval(tsla)
+
+    local_stock_indicator_TSLA.pstock_interval_startdate_enddate()
+    local_stock_indicator_TSLA.calculate_bollinger_bands(window= timeperiod)
+    tsla_bb_band = local_stock_indicator_TSLA.stock_data.rename(columns={'Bollinger Upper': 'Upper Bollinger Band',
                                                                  'Bollinger Middle': 'Middle Bollinger Band',
-                                                                 'Bollinger Lower': 'Lower Bollinger Band',
-                                                                 'MA_20': 'SMA'})
+                                                                 'Bollinger Lower': 'Lower Bollinger Band'}
+                                                        )
+    tsla_bb_band = df_datetime_toUTC_drop_interval((tsla_bb_band))
+    '''
+    Understanding how to write pandas DF with tags, to influxDB #510
+    Sep 30, 2017
+    https://github.com/influxdata/influxdb-python/issues/510
+    '''
+    
+    '''    
+    data frame with tag columns #286
+    Jan 26, 2016
+    https://github.com/influxdata/influxdb-python/issues/286
+    '''
+    '''
+    gte620V on Oct 2, 2017
+    Sorry, I didn't look at the error closely before. Your problem is that the index is not a datetime index.
+
+    You need to do some combination of pd.to_datetime and df.set_index to get your dataframe to have a datetimeindex. 
+    You seem to have a column of string called index, which is not the same thing. 
+    You need convert these strings to datetime objects with pd.to_datetime and then pass that column to df.set_index.
+    '''
+
+    # Set 'TimeStamp' field as index of dataframe
+    tsla = tsla.set_index('date')
     logger.info(f'tsla:\n{tsla}')
-        
-    local_stock_indicator_NVDA.calculate_bollinger_bands(window= timeperiod)
-    local_stock_indicator_NVDA.calculate_moving_averages()
+    tsla.to_csv(path_or_buf='tsla.csv', sep=',', encoding = 'utf-8',index = False)
+
+    tsla_bb_band = tsla_bb_band.set_index('date')
+    logger.info(f'tsla_bb_band:\n{tsla_bb_band}')
+    tsla_bb_band.to_csv(path_or_buf='tsla_bb_band.csv', sep=',', encoding = 'utf-8',index = False)
+
     
-    local_stock_indicator_NVDA.stock_data['date'] = local_stock_indicator_NVDA.stock_data['date'].dt.tz_localize(tz='US/Eastern').\
-                                            dt.tz_convert(tz='UTC')
-    #タイムスタンプを米国東部時間でのNasdaqとNYSEのOpen時間（午前9:30）に設定
-    #nvda = nvda.tz_localize(tz='US/Eastern')+pd.DateOffset(hours=9.5)
-    
-    # remove column 'interval' for insert data
-    local_stock_indicator_NVDA.stock_data.drop(['interval'], axis=1, inplace=True)
     logger.info(f'NVDA.stock_data:\n{local_stock_indicator_NVDA.stock_data}')
     
-    nvda = local_stock_indicator_NVDA.stock_data.rename(columns={'Bollinger Upper': 'Upper Bollinger Band',
+    local_stock_indicator_NVDA.calculate_moving_averages()
+    nvda = local_stock_indicator_NVDA.stock_data
+    nvda = df_datetime_toUTC_drop_interval(nvda)
+
+    local_stock_indicator_NVDA.pstock_interval_startdate_enddate()
+    local_stock_indicator_NVDA.calculate_bollinger_bands(window= timeperiod)
+    nvda_bb_band = local_stock_indicator_NVDA.stock_data.rename(columns={'Bollinger Upper': 'Upper Bollinger Band',
                                                                  'Bollinger Middle': 'Middle Bollinger Band',
-                                                                 'Bollinger Lower': 'Lower Bollinger Band',
-                                                                 'MA_20': 'SMA'})
-    logger.info(f'nvda:\n{nvda}')
-        
+                                                                 'Bollinger Lower': 'Lower Bollinger Band'}
+                                                                 )
+    nvda_bb_band = df_datetime_toUTC_drop_interval(nvda_bb_band)
     
-    # 株価を投入   
-    client = InfluxDBClient(url=URL, token=INFLUXDB_TOKEN, org=ORG, timeout=30_000)
+    # Set 'TimeStamp' field as index of dataframe
+    nvda = nvda.set_index('date')
+    logger.info(f'nvda:\n{nvda}')
+    nvda.to_csv(path_or_buf='nvda.csv', sep=',', encoding = 'utf-8',index = False)
+    
+    nvda_bb_band = nvda_bb_band.set_index('date')
+    logger.info(f'nvda_bb_band:\n{nvda_bb_band}')
+    nvda_bb_band.to_csv(path_or_buf='nvda_bb_band.csv', sep=',', encoding = 'utf-8',index = False)
 
     # Tsla株価投入
     point_settings = PointSettings(**{"retrieved from" : "yahoo finance", 
                                       "inject time": str(datetime.now()), \
                                     "SYMBOL" : "TSLA", "NAME" : "Tesla, Inc.", "transform" : "original"})
-    write_dataframe(client, BUCKET, tsla, point_settings)
+    write_dataframe(client, BUCKET, tsla, measurement_name, point_settings)
+    write_dataframe(client, BUCKET, tsla_bb_band, measurement_name_bb_band, point_settings)
 
     # NVIDIA株価投入
     point_settings = PointSettings(**{"retrieved from" : "yahoo finance", 
                                       "inject time": str(datetime.now()), \
                                     "SYMBOL" : "NVDA", "NAME" : "NVIDIA Corporation", "transform" : "original"})
-    write_dataframe(client, BUCKET, nvda, point_settings)
+    write_dataframe(client, BUCKET, nvda, measurement_name, point_settings)
+    write_dataframe(client, BUCKET, nvda_bb_band, measurement_name_bb_band, point_settings)
 
     est_timer(t0)
     
     # Get present time
     t0 = time.time()    
-    query = f'from(bucket: "{BUCKET}") \
-    |> range(start: -10y)\
-    |> filter(fn: (r) => r["_measurement"] == "stock prices")\
-    |> filter(fn: (r) => r["NAME"] == "NVIDIA Corporation")\
-    |> filter(fn: (r) => r["SYMBOL"] == "{nvda_ticker}")\
-    |> filter(fn: (r) => r["_field"] == "open")\
-    |> last()'
+    # query MA    
+    query_str = query_flux_str(BUCKET, measurement_name, "Tesla, Inc.", tsla_ticker)
+    logger.info(f'query_str: {query_str}')
+    query_influxdb(client, ORG, query_str)
+
+    query_str = query_flux_str(BUCKET, measurement_name, "NVIDIA Corporation", nvda_ticker)
+    logger.info(f'query_str: {query_str}')
+    query_influxdb(client, ORG, query_str)
+
+    # query bollinger_bands
+    query_str = query_flux_str(BUCKET, measurement_name_bb_band, "Tesla, Inc.", tsla_ticker)
+    logger.info(f'query_str: {query_str}')
+    query_influxdb(client, ORG, query_str)
     
-    logger.info(f'query: {query}')
-    query_influxdb(client, ORG, query)
+    query_str = query_flux_str(BUCKET, measurement_name_bb_band, "NVIDIA Corporation", nvda_ticker)
+    logger.info(f'query_str: {query_str}')
+    query_influxdb(client, ORG, query_str)
 
     est_timer(t0)

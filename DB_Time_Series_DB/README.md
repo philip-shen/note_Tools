@@ -8,6 +8,7 @@ Table of Contents
       * [Dashboard Setup](#dashboard-setup)                     
          * [Reference](#reference)  
       * [DataSet Insertation](#dataset-insertation)                
+         * [NVIDIA CandleStick Chart](#nvidia-candlestick-chart)
          * [Reference](#reference-1)   
       * [Reference](#reference-2)  
    * [Prometheus](#prometheus)  
@@ -57,6 +58,9 @@ COPY TO CLIPBOARDを押すとコピーできるのでメモしておいてくだ
 ## Grafana Installation  
 ```
 localhost:3000にアクセスする
+
+username: admin
+password: admin
 ```
 
 <img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F1447932%2F304ac3e6-04f6-b21c-80b8-c491b9d7418a.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=0d8a8c87d41afb30986f6c02e88e7749" width="800" height="500">  
@@ -246,15 +250,44 @@ from(bucket: "cryptocurrency")  |> range(start: v.timeRangeStart, stop: v.timeRa
 [實作:透過LSTM預測股票 2019-10-18](https://wenwender.wordpress.com/2019/10/18/%e5%af%a6%e4%bd%9c%e9%80%8f%e9%81%8elstm%e9%a0%90%e6%b8%ac%e8%82%a1%e7%a5%a8/)   
 
 ## DataSet Insertation  
+[inject_stock_prices.py](inject_stock_prices.py)
+
+
 [grap_taiwan_stock_list.py](grap_taiwan_stock_list.py)  
 [init_influxdb.py](init_influxdb.py)  
 [update_influxdb.py](update_influxdb.py)  
 
-[inject_stock_prices.py](inject_stock_prices.py)
+### Tesla and NVIDIA CandleStick Chart  
+<img src="images/NVDA_CandleStick.jpg" width="1000" height="700">  
+'''
+
+
+'''
+
+<img src="images/TSLA_NVDA_CandleStick.jpg" width="1000" height="700">  
 
 ### Reference  
 [Cannot convert timezone for a timestamp in pandas Jul 21, 2022 ](https://stackoverflow.com/questions/73064425/cannot-convert-timezone-for-a-timestamp-in-pandas)  
 
+[Understanding how to write pandas DF with tags, to influxDB #510 Sep 30, 2017](https://github.com/influxdata/influxdb-python/issues/510) 
+[data frame with tag columns #286 Jan 26, 2016](https://github.com/influxdata/influxdb-python/issues/286)  
+'''
+   gte620V on Oct 2, 2017
+
+   Sorry, I didn't look at the error closely before. Your problem is that the index is not a datetime index.
+
+   You need to do some combination of pd.to_datetime and df.set_index to get your dataframe to have a datetimeindex. 
+   You seem to have a column of string called index, which is not the same thing. 
+   You need convert these strings to datetime objects with pd.to_datetime and then pass that column to df.set_index.
+'''
+
+[How do I properly set the Datetimeindex for a Pandas datetime object in a dataframe? Nov 20, 2014](https://stackoverflow.com/questions/27032052/how-do-i-properly-set-the-datetimeindex-for-a-pandas-datetime-object-in-a-datafr)  
+
+
+[Python pandas dataframe to Influxdb with column and other tags August 6, 2020](https://www.mka.in/wp/python-pandas-dataframe-to-influxdb-with-column-and-other-tags/)  
+[Python pandas dataframe into influxdb with tags August 6, 2020](https://www.youtube.com/watch?v=oB-lvuJlBd4)  
+
+[Getting Started: InfluxDB 3.0 Python Client Library August 2, 2023](https://www.youtube.com/watch?v=tpdONTm1GC8)  
 
 [sruon/telegraf-stocks Dec 20, 2016](https://github.com/sruon/telegraf-stocks)  
 ```
@@ -405,6 +438,69 @@ STEPS:
    5. Risk analysis was done on the stock by finding the Sharpe ratio and Sortino ratio of the stock.
 ```
 
+[InfluxDBについて最初に知るべき10のこと 2017-12-04](https://qiita.com/nmrmsys/items/cdeb4afa76c591acfd3f)  
+```
+#InfluxDBサーバコンテナ作成
+docker run --name=influxdb -d -p 8086:8086 -p 8083:8083 -e INFLUXDB_ADMIN_ENABLED=true influxdb:1.2
+
+#上記コンテナに入るとCLIが使用可能
+docker exec -it influxdb bash
+influx -precision rfc3339
+
+#Web管理UIにはポート8083でアクセス
+<お好みのブラウザ> http://localhost:8083
+
+#InfluxDBサーバ停止
+docker stop influxdb
+
+#InfluxDBサーバ開始
+docker start influxdb
+
+#InfluxDBサーバコンテナ削除
+docker rm influxdb
+```
+```
+SHOW DATABASES
+CREATE DATABASE testdb
+USE testdb
+DROP DATABASE testdb
+
+SHOW MEASUREMENTS
+DROP MEASUREMENT tbl1 
+
+SELECT * FROM tbl1
+INSERT tbl1,tag1='a' fld1=1
+DELETE * FROM tbl1
+
+SHOW TAG KEYS FROM tbl1
+SHOW TAG VALUES FROM tbl1 WITH KEY = tag1
+SHOW FIELD KEYS FROM tbl1
+
+SHOW SERIES FROM tbl1
+DROP SERIES FROM tbl1 WHERE tag1 = 'a'
+```
+```
+SELECT <function>(<field_key>)
+FROM_clause
+WHERE <time_range>
+GROUP BY time(<time_interval>,<offset_interval>),[tag_key] [fill(<fill_option: null/numeric/linear/none/previous>)]
+
+SELECT MAX(water_level)
+FROM h2o_feet
+WHERE time >= '2015-09-18T16:00:00Z' AND time <= '2015-09-18T16:42:00Z'
+GROUP BY time(12m,3m),location fill(0)
+```
+[HTTPS Setup](https://docs.influxdata.com/influxdb/v1.3/administration/https_setup/)  
+```
+etc/influxdb/influxdb.conf
+
+[http]  
+  https-enabled = true
+  https-certificate = "server.crt"
+  https-private-key = "server.key"
+```
+
+
 [InfluxDB 3.0 Python Client](https://github.com/InfluxCommunity/influxdb3-python)  
 [influxdb-client-python](https://github.com/influxdata/influxdb-client-python)  
 ```
@@ -447,6 +543,7 @@ a climate sensor logger client for a InfluxDB backend written in python
 ```
 時序性資料庫。拿來監看 Metric 還不錯！
 ```
+
 
 # Prometheus  
 
