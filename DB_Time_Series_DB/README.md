@@ -8,15 +8,20 @@ Table of Contents
       * [Dashboard Setup](#dashboard-setup)                     
          * [Reference](#reference)  
       * [DataSet Insertation](#dataset-insertation)                
-         * [NVIDIA CandleStick Chart](#nvidia-candlestick-chart)
+         * [Tesla and NVIDIA CandleStick Chart](#tesla-and-nvidia-candlestick-chart)
+         * [TSLA Trading View](#tesla-trading-view)
+         * [TSLA and NVDA Grafana View](#tsla-and-nvda-grafana-view)
+         * [NVDA Trading View](#nvda-trading-view)   
          * [Reference](#reference-1)   
       * [Reference](#reference-2)  
-   * [Prometheus](#prometheus)  
+   * [Grafana](#grafana)  
       * [Reference](#reference-3) 
+   * [Prometheus](#prometheus)  
+      * [Reference](#reference-4) 
    * [OpenTSDB](#opentsdb) 
-      * [Reference](#reference-4)
+      * [Reference](#reference-5)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-5)
+   * [Reference](#reference-6)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -259,12 +264,15 @@ from(bucket: "cryptocurrency")  |> range(start: v.timeRangeStart, stop: v.timeRa
 
 ### Tesla and NVIDIA CandleStick Chart  
 <img src="images/NVDA_CandleStick.jpg" width="1000" height="700">  
-'''
 
+### TSLA Trading View  
+<img src="images/TSLA_2024-10-03.jpg" width="890" height="400">  
 
-'''
-
+### TSLA and NVDA Grafana View  
 <img src="images/TSLA_NVDA_CandleStick.jpg" width="1000" height="700">  
+
+### NVDA Trading View  
+<img src="images/NVDA_2024-10-03.jpg" width="890" height="400">  
 
 ### Reference  
 [Cannot convert timezone for a timestamp in pandas Jul 21, 2022 ](https://stackoverflow.com/questions/73064425/cannot-convert-timezone-for-a-timestamp-in-pandas)  
@@ -543,6 +551,96 @@ a climate sensor logger client for a InfluxDB backend written in python
 ```
 時序性資料庫。拿來監看 Metric 還不錯！
 ```
+
+
+# Grafana   
+
+## Reference    
+[How to use candlestick visualization-5 Nov 8, 2023](https://community.grafana.com/t/how-to-use-candlestick-visualization/72565/5)  
+```
+from(bucket: "market")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "market")
+  |> filter(fn: (r) => r["_field"] == "close" or r["_field"] == "high" or r["_field"] == "low" or r["_field"] == "open" or r["_field"] == "volume")
+   |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")  
+  |> drop(columns: ["_start", "_stop", "_measurement", "type"])
+```
+
+[How to use candlestick visualization-22 Nov 8, 2023](https://community.grafana.com/t/how-to-use-candlestick-visualization/72565/22)  
+```
+close = from(bucket: "Mydata")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "WeatherData")
+  |> filter(fn: (r) => r["_field"] == "OutdoorTemp")
+  |> aggregateWindow(every: 1h, fn: last)
+  |> set(key: "newValue", value: "close_value_of_the_dataset")
+
+open = from(bucket: "Mydata")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "WeatherData")
+  |> filter(fn: (r) => r["_field"] == "OutdoorTemp")
+  |> aggregateWindow(every: 1h, fn: first)
+  |> set(key: "newValue", value: "open_value_of_the_dataset")
+
+low = from(bucket: "Mydata")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "WeatherData")
+  |> filter(fn: (r) => r["_field"] == "OutdoorTemp")
+  |> aggregateWindow(every: 1h, fn: min)
+  |> set(key: "newValue", value: "low_value_of_the_dataset")
+
+high = from(bucket: "Mydata")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "WeatherData")
+  |> filter(fn: (r) => r["_field"] == "OutdoorTemp")
+  |> aggregateWindow(every: 1h, fn: max)
+  |> set(key: "newValue", value: "high_value_of_the_dataset")
+
+union(tables: [close, open, low, high])
+  |> pivot(rowKey:["_time"], columnKey: ["newValue"], valueColumn: "_value")
+```
+<img src="https://global.discourse-cdn.com/grafana/original/3X/e/c/ec35feb54594a2d2cb26fa3837892744a120016b.png" width="1000" height="500"> 
+
+<img src="https://global.discourse-cdn.com/grafana/original/3X/4/a/4a6fcc0468557d7da1f1b4a010a175716b90fa3b.png" width="1000" height="500"> 
+
+[How to use candlestick visualization-23 Nov 8, 2023](https://community.grafana.com/t/how-to-use-candlestick-visualization/72565/23)  
+```
+data = () =>
+    from(bucket: "forex")
+        |> range(start: 2023-11-04T14:20:00Z, stop:2023-11-04T18:20:00Z)
+        |> filter(fn: (r) => r._measurement == "ethusd")
+
+aggregate = (tables=<-, filterFn, agg, name) =>
+    tables
+        |> filter(fn: filterFn)
+        |> aggregateWindow(every: 1m, fn: agg)
+        |> set(key: "_field", value: name)
+
+union(
+    tables: [
+        data() |> aggregate(filterFn: (r) => r._field == "price", agg: first, name: "open"),
+        data() |> aggregate(filterFn: (r) => r._field == "price", agg: max, name: "high"),
+        data() |> aggregate(filterFn: (r) => r._field == "price", agg: min, name: "low"),
+        data() |> aggregate(filterFn: (r) => r._field == "price", agg: last, name: "close"),
+    ],
+)
+    |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+     |> drop(columns: ["_start","_stop","currency"])
+```
+<img src="https://global.discourse-cdn.com/grafana/optimized/3X/2/1/211579b83559685d526a3a4e6c90237e0c1529c0_2_1035x397.png" width="1000" height="500"> 
+
+<img src="https://global.discourse-cdn.com/grafana/optimized/3X/e/c/ec62d13c9502856cc90b37b1bf68d6b163fc4768_2_1035x468.jpeg" width="1000" height="500"> 
+
+[How to use candlestick visualization-25 Nov 8, 2023](https://community.grafana.com/t/how-to-use-candlestick-visualization/72565/25)  
+```
+do you now how to plot a normal timeseries (e.g. a moving average) onto the candlestick panel?
+```
+<img src="https://global.discourse-cdn.com/grafana/original/3X/f/5/f57b15cae746a9574725453440dd0df1731366f7.png" width="400" height="300"> 
+
+<img src="https://global.discourse-cdn.com/grafana/optimized/3X/3/8/3878ff70c0b449ab3f6e43b54fc52d8fd85b4213_2_1035x361.png" width="1000" height="500"> 
+
+[Candlestick questions Jan 20, 2022](https://community.grafana.com/t/candlestick-questions/59348)    
+[grafana/panels-visualizations-Time series](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/time-series/)
 
 
 # Prometheus  

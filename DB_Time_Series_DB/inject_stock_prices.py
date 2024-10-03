@@ -17,6 +17,7 @@ import _libs.lib_misc as lib_misc
 from _libs.logger_setup import *
 from _libs.lib_twse_otc import *
 from _libs.stock import *
+from _libs.lib_db import *
 
 strabspath=os.path.abspath(sys.argv[0])
 strdirname=os.path.dirname(strabspath)
@@ -29,58 +30,6 @@ def est_timer(start_time):
     msg = 'Time Consumption: {}.'.format( time_consumption)#msg = 'Time duration: {:.3f} seconds.'
     logger.info(msg)
 
-def create_bucket(client, bucket, organization):
-
-    with client.buckets_api() as buckets_api:        
-        retention_rules = BucketRetentionRules(type="expire", every_seconds=0, shard_group_duration_seconds=3600*24*365*10) # every_seconds = 0 means infinite
-        created_bucket = buckets_api.create_bucket(bucket_name=bucket,
-                                                   retention_rules=retention_rules, org= organization)
-        logger.info(f"created_bucket: {created_bucket}")
-
-def write_dataframe(client, bucket, df, measurement, point_settings):
-   #instantiate the WriteAPI        
-   with client.write_api(write_options=WriteOptions(batch_size=1000, flush_interval=30_000, jitter_interval=10_000, retry_interval=30_000), 
-                         point_settings=point_settings) as write_api:
-        write_api.write(bucket=bucket, 
-                        record=df,
-                        data_frame_tag_columns= ['retrieved from', 'inject time', 'SYMBOL', 'name'],
-                        data_frame_measurement_name= measurement)
-
-def query_influxdb(client, org, query):
-    #instantiate the WriteAPI and QueryAPI
-     #return the table and print the result
-    result = client.query_api().query(org=org, query=query)
-    results = []
-    for table in result:
-        for record in table.records:
-            results.append((record.get_value(), record.get_field()))
-    
-    logger.info(f'results: {results}')
-
-def delete_measurement(client, startdate, stopdate, measurement, bucket, organization):
-    delete_api = client.delete_api()
-    delete_api.delete(startdate, stopdate, f'_measurement="{measurement}"', bucket=bucket, org=organization)
-
-#タイムスタンプを米国東部時間でのNasdaqとNYSEのOpen時間（午前9:30）に設定
-#tsla = tsla.tz_localize(tz='US/Eastern')+pd.DateOffset(hours=9.5)    
-def df_datetime_toUTC_drop_interval(dataframe):
-    #if input is DataFrame with column 0
-    dataframe['date'] = dataframe['date'].dt.tz_localize(tz='US/Eastern').dt.tz_convert(tz='UTC')
-    # remove column 'interval' for insert data
-    dataframe.drop(['interval'], axis=1, inplace=True)
-
-    return dataframe
-
-def query_flux_str(bucket, measurement, name, ticker):
-    query = f'from(bucket: "{bucket}") \
-        |> range(start: -10y)\
-        |> filter(fn: (r) => r["_measurement"] == "{measurement}")\
-        |> filter(fn: (r) => r["NAME"] == "{name}")\
-        |> filter(fn: (r) => r["SYMBOL"] == "{ticker}")\
-        |> filter(fn: (r) => r["_field"] == "open")\
-        |> last()'
-    
-    return query
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='stock indicator')
@@ -118,7 +67,7 @@ if __name__ == '__main__':
     BUCKET = json_data["BUCKET"]        # 任意のBUCKET名
 
     start_date = datetime(2012,1,1)
-    end_date  = datetime(2024,10,2)    
+    end_date  = datetime(2024,10,4)    
     measurement_name="stock_prices"
     measurement_name_bb_band="stock_prices_bb_band"
     # Influxdb client
@@ -246,14 +195,14 @@ if __name__ == '__main__':
 
     # Tsla株価投入
     point_settings = PointSettings(**{"retrieved from" : "yahoo finance", 
-                                      "inject time": str(datetime.now()), \
+                                    #  "inject time": str(datetime.now()), \
                                     "SYMBOL" : "TSLA", "NAME" : "Tesla, Inc.", "transform" : "original"})
     write_dataframe(client, BUCKET, tsla, measurement_name, point_settings)
     write_dataframe(client, BUCKET, tsla_bb_band, measurement_name_bb_band, point_settings)
 
     # NVIDIA株価投入
     point_settings = PointSettings(**{"retrieved from" : "yahoo finance", 
-                                      "inject time": str(datetime.now()), \
+                                    #  "inject time": str(datetime.now()), \
                                     "SYMBOL" : "NVDA", "NAME" : "NVIDIA Corporation", "transform" : "original"})
     write_dataframe(client, BUCKET, nvda, measurement_name, point_settings)
     write_dataframe(client, BUCKET, nvda_bb_band, measurement_name_bb_band, point_settings)
@@ -263,20 +212,20 @@ if __name__ == '__main__':
     # Get present time
     t0 = time.time()    
     # query MA    
-    query_str = query_flux_str(BUCKET, measurement_name, "Tesla, Inc.", tsla_ticker)
+    query_str = query_flux_str(BUCKET, measurement_name, "Tesla, Inc.", tsla_ticker, "open")
     logger.info(f'query_str: {query_str}')
     query_influxdb(client, ORG, query_str)
 
-    query_str = query_flux_str(BUCKET, measurement_name, "NVIDIA Corporation", nvda_ticker)
+    query_str = query_flux_str(BUCKET, measurement_name, "NVIDIA Corporation", nvda_ticker, "open")
     logger.info(f'query_str: {query_str}')
     query_influxdb(client, ORG, query_str)
 
     # query bollinger_bands
-    query_str = query_flux_str(BUCKET, measurement_name_bb_band, "Tesla, Inc.", tsla_ticker)
+    query_str = query_flux_str(BUCKET, measurement_name_bb_band, "Tesla, Inc.", tsla_ticker, "close")
     logger.info(f'query_str: {query_str}')
     query_influxdb(client, ORG, query_str)
     
-    query_str = query_flux_str(BUCKET, measurement_name_bb_band, "NVIDIA Corporation", nvda_ticker)
+    query_str = query_flux_str(BUCKET, measurement_name_bb_band, "NVIDIA Corporation", nvda_ticker, "close")
     logger.info(f'query_str: {query_str}')
     query_influxdb(client, ORG, query_str)
 
