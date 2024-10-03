@@ -247,6 +247,15 @@ from(bucket: "cryptocurrency")  |> range(start: v.timeRangeStart, stop: v.timeRa
 問題一:記憶體耗用高
 問題二:插入時間跨度長的數據會造成性能下降和內存耗盡
 ```
+
+[Airflow實作-台指選擇權PC ratio儀表板(Grafana+InfluxDB) 2022-09-09](https://wenwender.wordpress.com/2022/09/09/airflow%e5%af%a6%e4%bd%9c-%e5%8f%b0%e6%8c%87%e9%81%b8%e6%93%87%e6%ac%8apc-ratio%e5%84%80%e8%a1%a8%e6%9d%bfgrafanainfluxdb/)  
+```
+   Airflow: 負責task排程、Pipeline
+   Grafana: 作為資料呈現的Dashboard
+   InfluxDB: 時序型資料庫，做為後端的資料儲存
+```
+[jason8745/airflow-dag Oct 7, 2022](https://github.com/jason8745/airflow-dag)  
+
 [Grafana實時呈現攝影機畫面 2022-01-28](https://wenwender.wordpress.com/2022/01/28/grafana%e5%af%a6%e6%99%82%e5%91%88%e7%8f%be%e6%94%9d%e5%bd%b1%e6%a9%9f%e7%95%ab%e9%9d%a2/)  
 
 [python-binance](https://python-binance.readthedocs.io/en/latest/)  
