@@ -161,7 +161,61 @@ docker-compose -f docker-compose-CeleryExecutor.yml scale scheduler=3
 <img src="https://miro.medium.com/max/720/1*KbTBRPXn21XUJKsocetrBw.png" width="600" height="400">
 
 ## Reference  
+[[Day16] 用 Docker Compose 建立 Airflow 環境 2023-10-01](https://ithelp.ithome.com.tw/articles/10331507)  
+```
+curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.10.2/docker-compose.yaml'
+```
+```
+mkdir -p ./dags ./logs ./plugins ./config
+
+docker-compose up airflow-init
+
+docker ps -a
+
+docker-compose up
+```
+[[Day17] Airflow 連接到 Database 的三種方法 2023-10-02](https://ithelp.ithome.com.tw/articles/10332967)  
+
+設定連接 port，兩個 5432，代表 docker 容器外和容器內的 port  
+<img src="https://ithelp.ithome.com.tw/upload/images/20231002/20135427TDeEEi3YzW.png" width="500" height="300">
+
+重新 Build Postgres 的服務
+```
+docker-compose up -d --no-deps --build postgres
+```
+
+*Airflow CLI 設定* 
+```
+docker exec -it <container_id> bash
+
+airflow connections add 'local-db-cli' \
+--conn-uri 'postgres://airflow:airflow@host.docker.internal:5432/postgres'
+```
+
+*Docker Compose 設定*
+```
+x-airflow-common:
+    xxx
+    environment:
+        xxx
+        AIRFLOW__API__AUTH_BACKENDS:
+        AIRFLOW_CONN_LOCAL_DB=
+                'postgres://airflow:airflow@host.docker.internal:5432/postgres'
+```
+```
+Docker Compose 設定是比較推薦的方式，不會因為清空容器就要重新設定連接，
+但還是盡量不要直接像上面一樣把帳號密碼放在設定中
+
+成功連接 db 之後就趕緊實作一個 DAG 來看看能不能下 sql 來取得資料囉～
+```
+
+[[day18] 急！在線等！求解20 點！Airflow 安裝 Python 模組 2023-10-03](https://ithelp.ithome.com.tw/articles/10333330)  
+[[Day19] Airflow Scheduler 排程爬坑筆記(上) 2023-10-04](https://ithelp.ithome.com.tw/articles/10334198)  
+[[Day20] Airflow Scheduler 排程爬坑筆記(下) 2023-10-05](https://ithelp.ithome.com.tw/articles/10334705)  
+
+
 [一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
+
 [Airflow with Docker 容器部署 — part 2 Mar 26, 2019](https://medium.com/@cchangleo/airflow-with-docker-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2-part2-8ddb83dc2d4a)  
 [cchangleo/docker-airflow](https://github.com/cchangleo/docker-airflow)
 
