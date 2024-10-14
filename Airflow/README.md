@@ -161,6 +161,13 @@ docker-compose -f docker-compose-CeleryExecutor.yml scale scheduler=3
 <img src="https://miro.medium.com/max/720/1*KbTBRPXn21XUJKsocetrBw.png" width="600" height="400">
 
 ## Reference  
+[Cleaning-up the environment](https://airflow.apache.org/docs/apache-airflow/2.8.4/howto/docker-compose/index.html#cleaning-up-the-environment)  
+```
+The best way to do this is to:
+
+    Run docker compose down --volumes --remove-orphans command in the directory you downloaded the docker-compose.yaml file
+```
+
 [[Day16] 用 Docker Compose 建立 Airflow 環境 2023-10-01](https://ithelp.ithome.com.tw/articles/10331507)  
 ```
 curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.10.2/docker-compose.yaml'
