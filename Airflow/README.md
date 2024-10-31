@@ -223,6 +223,10 @@ Docker Compose 設定是比較推薦的方式，不會因為清空容器就要�
 
 [一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
 
+[Install Airflow on Windows without Docker or Virtual Box in 5 mins Mar 10, 2023](https://medium.com/@routr5953/installing-airflow-on-windows-without-docker-in-5-mins-21d16091ebc5)  
+[Windows11でApache Airflowを起動するまで 2022-07-06](https://qiita.com/mizukyf/items/5489a0eef6db58ee7e5f)  
+[Airflow での処理通知を Slack でなく Teams に送りたい 2021/09/26](https://zenn.dev/antyuntyun/articles/airflow_custom_notification)  
+
 [Airflow with Docker 容器部署 — part 2 Mar 26, 2019](https://medium.com/@cchangleo/airflow-with-docker-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2-part2-8ddb83dc2d4a)  
 [cchangleo/docker-airflow](https://github.com/cchangleo/docker-airflow)
 
