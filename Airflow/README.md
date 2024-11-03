@@ -221,9 +221,138 @@ Docker Compose 設定是比較推薦的方式，不會因為清空容器就要�
 [[Day20] Airflow Scheduler 排程爬坑筆記(下) 2023-10-05](https://ithelp.ithome.com.tw/articles/10334705)  
 
 
-[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
-
 [Install Airflow on Windows without Docker or Virtual Box in 5 mins Mar 10, 2023](https://medium.com/@routr5953/installing-airflow-on-windows-without-docker-in-5-mins-21d16091ebc5)  
+```
+Step 1:- Search for Turn Windows Features On/Off
+
+Step 2:- Check the Windows Subsystem for Linux
+
+Step 3:- Installing WSL
+wsl --set-default-version 2
+wsl --status
+
+Step 4:- Install Ubuntu Distribution
+wsl --install -d ubuntu
+
+Step 5:- Configure Ubuntu
+
+Step 6:- Accessing Root User
+sudo su
+
+Step 7:- Update and Install the packages
+apt-get update
+
+apt install python3.12-virtualenv
+
+Step 8:- Change User from root to your user
+su "username"
+
+Step 9:- Create a virtual environment
+mkdir ~/virtualenv
+python3 -m venv ~/virtualenv/airflow_env
+
+Step 10:- Create a folder called ‘airflow’
+mkdir ~/airflow
+
+Step 11:- Now activate your virtual env
+source ~/virtualenv/airflow_env/bin/activate
+
+Step 12:- Installing airflow
+pip install 'apache-airflow[crypto, slack]==2.10.2' \
+ --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.10.2/constraints-3.8.txt"
+
+Step 13:- Configure Airflow Files
+a) Set the AIRFLOW_HOME environment variable with a folder name for our Airflow Project.
+export AIRFLOW_HOME=~/airflow
+cd airflow
+
+b) Initialize Airflow Database
+airflow db migrate    # Earlier it was airflow db init, now its not supported
+
+c) Create a User for our Airflow UI with Admin Role
+airflow users create --username <username> --firstname <firstname> 
+--lastname <lastname> --role Admin --password <password> --email <email> 
+ 
+d) Create a DAGS and PLUGINS folder in the same directory, which will be used to keep our DAGS and plugins files.
+mkdir dags plugins
+```
+
+[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
+```
+git clone https://github.com/leemengtaiwan/airflow-tutorials.git
+cd airflow-tutorials
+```
+```
+export AIRFLOW_HOME="$(pwd)"
+airflow initdb
+```
+```
+【2018/08/27 加註】如果沒有設定 export AIRFLOW_HOME="$(pwd)" 就執行 airflow initdb的話，
+會讓 Airflow 使用作者當初測試時使用的路徑，而不是你 git clone 下來的 repo 的路徑而造成問題，務必記得設定。
+```
+```
+Step 14: Let’s run our Airflow Webserver and Scheduler
+
+Airflow Webserver:-
+nohup airflow webserver -p 8080 >> airflow_webserver.out &
+
+Airflow Scheduler:-
+nohup airflow scheduler >> airflow_scheduler.out &
+```
+```
+We have used the nohup utility, which is a command on Linux systems that keeps processes running even after exiting the shell or terminal. 
+You can remove the nohup command if you don't need it.
+```
+
+[【WSL2】WSL2のUbuntuでsshdの自動起動を有効にする【Ubuntu】2023-04-23](https://qiita.com/tmiki/items/022242af3853cd8e7a6a) 
+```
+#sshdのインストール
+
+$ sudo apt install ssh -y
+```
+
+```
+#sshd設定ファイルの変更
+
+$ sudo vi /etc/ssh/sshd_config.d/sshd_ubuntu.conf
+# 以下の2行を追加
+Port 10022
+PasswordAuthentication yes
+```
+
+```
+#sshd再起動
+
+$ sudo systemctl restart ssh
+
+```
+
+```
+shdステータス確認
+
+$ systemctl status ssh
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sun 2023-04-23 11:58:01 JST; 4s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 1429 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 1430 (sshd)
+      Tasks: 1 (limit: 19182)
+     Memory: 1.7M
+        CPU: 10ms
+     CGroup: /system.slice/ssh.service
+```
+
+```
+/etc/wsl.confの確認
+
+$ cat /etc/wsl.conf
+# 以下2行が存在することを確認する。
+[boot]
+systemd=true
+```
+
 [Windows11でApache Airflowを起動するまで 2022-07-06](https://qiita.com/mizukyf/items/5489a0eef6db58ee7e5f)  
 [Airflow での処理通知を Slack でなく Teams に送りたい 2021/09/26](https://zenn.dev/antyuntyun/articles/airflow_custom_notification)  
 
