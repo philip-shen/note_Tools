@@ -24,6 +24,8 @@ Table of Contents
       * [Initialization](#initialization)
       * [DGA](#dga)
       * [Reference](#reference-2)
+   * [Airflow on WSL](#airflow-on-wsl)
+      * [Reference](#reference-3)
    * [Airflow-Learning-English-tool](#airflow-learning-english-tool)
       * [update docker-compose.yml by Airflow-Learning-English-tool/docker-compose.yaml](#update-docker-composeyml-by-airflow-learning-english-tooldocker-composeyaml)
    * [How to Upload Files to Google Drive using Airflow](#how-to-upload-files-to-google-drive-using-airflow)
@@ -31,7 +33,7 @@ Table of Contents
       * [2. Configuring Domain-wide Delegation on our Google Workspace](#2-configuring-domain-wide-delegation-on-our-google-workspace)
       * [3. Writing the code for our custom GoogleDriveOperator](#3-writing-the-code-for-our-custom-googledriveoperator)
       * [4. Testing a minimal DAG that uploads a text file to our Google Drive account](#4-testing-a-minimal-dag-that-uploads-a-text-file-to-our-google-drive-account)
-      * [Reference](#reference-3)
+      * [Reference](#reference-4)
    * [Airflow import local module](#airflow-import-local-module)
    * [Failed to import custom python module in Airflow](#failed-to-import-custom-python-module-in-airflow)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
@@ -41,7 +43,7 @@ Table of Contents
          * [scheduler](#scheduler)
          * [worker](#worker)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-4)
+   * [Reference](#reference-5)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -215,13 +217,20 @@ Docker Compose 設定是比較推薦的方式，不會因為清空容器就要�
 
 成功連接 db 之後就趕緊實作一個 DAG 來看看能不能下 sql 來取得資料囉～
 ```
+## Reference  
 
 [[day18] 急！在線等！求解20 點！Airflow 安裝 Python 模組 2023-10-03](https://ithelp.ithome.com.tw/articles/10333330)  
 [[Day19] Airflow Scheduler 排程爬坑筆記(上) 2023-10-04](https://ithelp.ithome.com.tw/articles/10334198)  
 [[Day20] Airflow Scheduler 排程爬坑筆記(下) 2023-10-05](https://ithelp.ithome.com.tw/articles/10334705)  
 
+[Windows11でApache Airflowを起動するまで 2022-07-06](https://qiita.com/mizukyf/items/5489a0eef6db58ee7e5f)  
+[Airflow での処理通知を Slack でなく Teams に送りたい 2021/09/26](https://zenn.dev/antyuntyun/articles/airflow_custom_notification)  
 
-[Install Airflow on Windows without Docker or Virtual Box in 5 mins Mar 10, 2023](https://medium.com/@routr5953/installing-airflow-on-windows-without-docker-in-5-mins-21d16091ebc5)  
+[Airflow with Docker 容器部署 — part 2 Mar 26, 2019](https://medium.com/@cchangleo/airflow-with-docker-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2-part2-8ddb83dc2d4a)  
+[cchangleo/docker-airflow](https://github.com/cchangleo/docker-airflow)
+
+
+# Airflow on WSL 
 ```
 Step 1:- Search for Turn Windows Features On/Off
 
@@ -277,7 +286,6 @@ d) Create a DAGS and PLUGINS folder in the same directory, which will be used to
 mkdir dags plugins
 ```
 
-[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
 ```
 git clone https://github.com/leemengtaiwan/airflow-tutorials.git
 cd airflow-tutorials
@@ -304,7 +312,6 @@ We have used the nohup utility, which is a command on Linux systems that keeps p
 You can remove the nohup command if you don't need it.
 ```
 
-[【WSL2】WSL2のUbuntuでsshdの自動起動を有効にする【Ubuntu】2023-04-23](https://qiita.com/tmiki/items/022242af3853cd8e7a6a) 
 ```
 #sshdのインストール
 
@@ -350,14 +357,18 @@ $ systemctl status ssh
 $ cat /etc/wsl.conf
 # 以下2行が存在することを確認する。
 [boot]
-systemd=true
+systemd=true   
 ```
 
-[Windows11でApache Airflowを起動するまで 2022-07-06](https://qiita.com/mizukyf/items/5489a0eef6db58ee7e5f)  
-[Airflow での処理通知を Slack でなく Teams に送りたい 2021/09/26](https://zenn.dev/antyuntyun/articles/airflow_custom_notification)  
+## Reference  
+[Install Airflow on Windows without Docker or Virtual Box in 5 mins Mar 10, 2023](https://medium.com/@routr5953/installing-airflow-on-windows-without-docker-in-5-mins-21d16091ebc5)  
 
-[Airflow with Docker 容器部署 — part 2 Mar 26, 2019](https://medium.com/@cchangleo/airflow-with-docker-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2-part2-8ddb83dc2d4a)  
-[cchangleo/docker-airflow](https://github.com/cchangleo/docker-airflow)
+
+[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
+
+
+[【WSL2】WSL2のUbuntuでsshdの自動起動を有効にする【Ubuntu】2023-04-23](https://qiita.com/tmiki/items/022242af3853cd8e7a6a) 
+
 
 # Airflow tutorial
 
