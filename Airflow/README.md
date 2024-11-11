@@ -28,6 +28,7 @@ Table of Contents
       * [Reference](#reference-3)
    * [Airflow-Learning-English-tool](#airflow-learning-english-tool)
       * [update docker-compose.yml by Airflow-Learning-English-tool/docker-compose.yaml](#update-docker-composeyml-by-airflow-learning-english-tooldocker-composeyaml)
+   * [Airflow-scraping-ETL-tutorial](#airflow-scraping-etl-tutorial)
    * [How to Upload Files to Google Drive using Airflow](#how-to-upload-files-to-google-drive-using-airflow)
       * [1. Configuring the Google Drive API and a creating service account on GCP](#1-configuring-the-google-drive-api-and-a-creating-service-account-on-gcp)
       * [2. Configuring Domain-wide Delegation on our Google Workspace](#2-configuring-domain-wide-delegation-on-our-google-workspace)
@@ -398,10 +399,10 @@ $ docker ps
 ## DGA
 <img src="images/airflow_tutorial_docke-compose_02.png" width="900" height="400">
 
-
 ## Reference  
 [Airflow を単体の docker container で立ち上げる posted at 2019-02-15](https://qiita.com/kysnm/items/feda7b8cca44bb7389ac)  
 [用 Airflow & Flink 來開發 ETL 吧 系列](https://ithelp.ithome.com.tw/users/20161625/ironman/6233)  
+
 
 # Airflow-Learning-English-tool
 [ ChickenBenny/Airflow-Learning-English-tool ](https://github.com/ChickenBenny/Airflow-Learning-English-tool)
@@ -409,6 +410,26 @@ $ docker ps
 ## update docker-compose.yml by Airflow-Learning-English-tool/docker-compose.yaml
 
 <img src="images/airflow_learning_english_tool_01.jpg" width="900" height="300">
+
+
+# Airflow-scraping-ETL-tutorial
+[Airflow-scraping-ETL-tutorial](https://github.com/ChickenBenny/Airflow-scraping-ETL-tutorial?tab=readme-ov-file)  
+
+<img src="https://camo.githubusercontent.com/2a5be8e536eb1118b089f1418fc9badf025f8f435ab923ae8a8ace0c61bf135a/68747470733a2f2f692e696d6775722e636f6d2f447448476f59742e706e67" width="900" height="200">
+
+```
+上證交所查看當日是否有交易紀錄
+
+    股市有開盤
+        Trigger爬蟲程式
+        爬取交易資訊
+        資料清洗
+        存入資料庫 or csv file
+        發送爬取消息
+    股市沒開盤
+        不做事
+```
+
 
 # How to Upload Files to Google Drive using Airflow  
 [How to Upload Files to Google Drive using Airflow Mar 26, 2021](https://towardsdatascience.com/how-to-upload-files-to-google-drive-using-airflow-73d961bbd22)
