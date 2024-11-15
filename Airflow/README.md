@@ -364,6 +364,60 @@ systemd=true
 ## Reference  
 [Install Airflow on Windows without Docker or Virtual Box in 5 mins Mar 10, 2023](https://medium.com/@routr5953/installing-airflow-on-windows-without-docker-in-5-mins-21d16091ebc5)  
 
+[coder2j/airflow-docker](https://github.com/coder2j/airflow-docker)  
+[1. Introduction and Local Installation](https://www.youtube.com/watch?v=z7xyNOF8tak)  
+[2. Get Airflow running in Docker](https://www.youtube.com/watch?v=J6azvFhndLg) 
+[3. Airflow Core Concepts in 5 mins](https://www.youtube.com/watch?v=mtJHMdoi_Gg) 
+[4. Airflow Task Lifecycle and Basic Architecture](https://www.youtube.com/watch?v=UFsCvWjQT4w) 
+[5. Airflow DAG with BashOperator](https://www.youtube.com/watch?v=CLkzXrjrFKg) 
+```
+1. Remove all the airflow example dags
+   
+   docker-compose -f docker-compose_airflow.yaml down -v
+   docker-compose -f docker-compose_airflow.yaml up airflow-init
+   docker-compose -f docker-compose_airflow.yaml up -d
+```
+
+[6. Airflow DAG with PythonOperator and XComs](https://www.youtube.com/watch?v=IumQX-mm20Y) 
+[7. Airflow TaskFlow API](https://www.youtube.com/watch?v=9y0mqWsok_4)  
+[8. Airflow Catchup and Backfill](https://www.youtube.com/watch?v=OXOiUeHOQ-0)  
+[9. Schedule Airflow DAG with Cron Expression](https://www.youtube.com/watch?v=tpuovQFUByk)  
+[10. Airflow Connection and PostgresOperator](https://www.youtube.com/watch?v=S1eapG6gjLU)  
+[11. Add Python Dependencies via Airflow Docker Image Extending and Customizing](https://www.youtube.com/watch?v=0UepvC9X4HY)  
+[12. AWS S3 Key Sensor Operator](https://www.youtube.com/watch?v=vuxrhipJMCk)  
+[13. Airflow Hooks S3 PostgreSQL](https://www.youtube.com/watch?v=rcG4WNwi900)  
+
+```
+1. Clone this repo
+2. Create dags, logs and plugins folder inside the project directory
+
+mkdir ./dags ./logs ./plugins
+
+3. Set user permissions for Airflow to your current user
+
+echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+
+4. Install docker desktop application if you don't have docker running on your machine
+```
+[Download Docker Desktop Application for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows)  
+[Download Docker Desktop Application for Mac OS](https://hub.docker.com/editions/community/docker-ce-desktop-mac)  
+```
+If your admin account is different to your user account, you must add the user to the docker-users group:
+
+ $ net localgroup docker-users <user> /add
+```
+
+```
+5. Launch airflow by docker-compose
+
+docker-compose up -d
+
+6. Check the running containers
+
+docker ps
+
+7. Open browser and type http://http://172.27.181.205:8080 to launch the airflow webserver
+```
 
 [一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
 
