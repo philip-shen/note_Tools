@@ -18,14 +18,35 @@ Table of Contents
          * [Update Dockerfile](#update-dockerfile)
          * [Update docker-compose-CeleryExecutor.yml](#update-docker-compose-celeryexecutoryml)
          * [Update Airflow config](#update-airflow-config)
+      * [Airflow connects to Database](#airflow-connects-to-database)   
+         * [Web UI 新增 Connections](#web-ui-新增-connections)
+         * [Airflow CLI 設定](#airflow-cli-設定)
+         * [Docker Compose 設定](#docker-compose-設定)
       * [Reference](#reference-1)
+   * [Airflow on WSL](#airflow-on-wsl)
+      * [Step 1: Search for Turn Windows Features On/Off](#step-1-search-for-turn-windows-features-onOff)
+      * [Step 2: Check the Windows Subsystem for Linux](#step-2-check-the-windows-subsystem-for-linux)
+      * [Step 3: Installing WSL](#step-3-installing-wsl)
+      * [Step 4: Install Ubuntu Distribution](#step-4-install-ubuntu-distribution)
+      * [Step 5: Configure Ubuntu](#step-5-configure-ubuntu)
+      * [Step 6: Accessing Root User](#step-6-accessing-root-user)
+      * [Step 7: Update and Install the packages](#step-7-update-and-install-the-packages)
+      * [Step 8: Change User from root to your user](#step-8-change-user-from-root-to-your-user)
+      * [Step 9: Create a virtual environment](#step-9-create-a-virtual-environment)
+      * [Step 10: Create a folder called ‘airflow’](#step-10-create-a-folder-called-airflow)
+      * [Step 11: Now activate your virtual env](#step-11-now-activate-your-virtual-env)
+      * [Step 12: Installing airflow](#step-12-installing-airflow)
+      * [Step 13: Configure Airflow Files](#step-13-configure-airflow-files)
+      * [Step 14: Let’s run our Airflow Webserver and Scheduler](#step-14-lets-run-our-airflow-webserver-and-scheduler)
+      * [Step 15: SSH Server Installation](#step-15-ssh-server-installation)
+      * [Reference](#reference-2)
+   * [Airflow on WSL Docker](#airflow-on-wsl-docker)
+      * [Reference](#reference-3)
    * [Airflow tutorial](#airflow-tutorial)
       * [docker-compose Installation](#docker-compose-installation)
       * [Initialization](#initialization)
       * [DGA](#dga)
-      * [Reference](#reference-2)
-   * [Airflow on WSL](#airflow-on-wsl)
-      * [Reference](#reference-3)
+      * [Reference](#reference-4)
    * [Airflow-Learning-English-tool](#airflow-learning-english-tool)
       * [update docker-compose.yml by Airflow-Learning-English-tool/docker-compose.yaml](#update-docker-composeyml-by-airflow-learning-english-tooldocker-composeyaml)
    * [Airflow-scraping-ETL-tutorial](#airflow-scraping-etl-tutorial)
@@ -34,7 +55,7 @@ Table of Contents
       * [2. Configuring Domain-wide Delegation on our Google Workspace](#2-configuring-domain-wide-delegation-on-our-google-workspace)
       * [3. Writing the code for our custom GoogleDriveOperator](#3-writing-the-code-for-our-custom-googledriveoperator)
       * [4. Testing a minimal DAG that uploads a text file to our Google Drive account](#4-testing-a-minimal-dag-that-uploads-a-text-file-to-our-google-drive-account)
-      * [Reference](#reference-4)
+      * [Reference](#reference-5)
    * [Airflow import local module](#airflow-import-local-module)
    * [Failed to import custom python module in Airflow](#failed-to-import-custom-python-module-in-airflow)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
@@ -44,7 +65,7 @@ Table of Contents
          * [scheduler](#scheduler)
          * [worker](#worker)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-5)
+   * [Reference](#reference-6)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -103,8 +124,6 @@ docker ps
 ```
 
 ## Install Docker-Compose
-~~sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose~~
-
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
@@ -163,6 +182,55 @@ docker-compose -f docker-compose-CeleryExecutor.yml scale scheduler=3
 
 <img src="https://miro.medium.com/max/720/1*KbTBRPXn21XUJKsocetrBw.png" width="600" height="400">
 
+## Airflow connects to Database  
+設定連接 port，兩個 5432，代表 docker 容器外和容器內的 port  
+<img src="https://ithelp.ithome.com.tw/upload/images/20231002/20135427TDeEEi3YzW.png" width="500" height="300">
+
+重新 Build Postgres 的服務
+```
+docker-compose up -d --no-deps --build postgres
+```
+
+### Web UI 新增 Connections  
+```
+設定
+   Connection Id(要在airflow中使用的id): localhost-db (可以自己設定)
+   HOST(連接的主機): host.docker.internal
+   Connection Type(連接的資料庫類型): Postgres
+   Schema(連接的db名稱): postgres
+   Login 和 Password 都是 airflow
+```
+<img src="https://ithelp.ithome.com.tw/upload/images/20231002/201354273InlHO6oFg.png" width="600" height="400">
+
+```
+設定完按save即可，想要測試可以直接跳到實作時間～
+```
+
+### Airflow CLI 設定  
+```
+docker exec -it <container_id> bash
+
+airflow connections add 'local-db-cli' \
+--conn-uri 'postgres://airflow:airflow@host.docker.internal:5432/postgres'
+```
+
+### Docker Compose 設定  
+```
+x-airflow-common:
+    xxx
+    environment:
+        xxx
+        AIRFLOW__API__AUTH_BACKENDS:
+        AIRFLOW_CONN_LOCAL_DB=
+                'postgres://airflow:airflow@host.docker.internal:5432/postgres'
+```
+```
+Docker Compose 設定是比較推薦的方式，不會因為清空容器就要重新設定連接，
+但還是盡量不要直接像上面一樣把帳號密碼放在設定中
+
+成功連接 db 之後就趕緊實作一個 DAG 來看看能不能下 sql 來取得資料囉～
+```
+
 ## Reference  
 [Cleaning-up the environment](https://airflow.apache.org/docs/apache-airflow/2.8.4/howto/docker-compose/index.html#cleaning-up-the-environment)  
 ```
@@ -186,40 +254,6 @@ docker-compose up
 ```
 [[Day17] Airflow 連接到 Database 的三種方法 2023-10-02](https://ithelp.ithome.com.tw/articles/10332967)  
 
-設定連接 port，兩個 5432，代表 docker 容器外和容器內的 port  
-<img src="https://ithelp.ithome.com.tw/upload/images/20231002/20135427TDeEEi3YzW.png" width="500" height="300">
-
-重新 Build Postgres 的服務
-```
-docker-compose up -d --no-deps --build postgres
-```
-
-*Airflow CLI 設定* 
-```
-docker exec -it <container_id> bash
-
-airflow connections add 'local-db-cli' \
---conn-uri 'postgres://airflow:airflow@host.docker.internal:5432/postgres'
-```
-
-*Docker Compose 設定*
-```
-x-airflow-common:
-    xxx
-    environment:
-        xxx
-        AIRFLOW__API__AUTH_BACKENDS:
-        AIRFLOW_CONN_LOCAL_DB=
-                'postgres://airflow:airflow@host.docker.internal:5432/postgres'
-```
-```
-Docker Compose 設定是比較推薦的方式，不會因為清空容器就要重新設定連接，
-但還是盡量不要直接像上面一樣把帳號密碼放在設定中
-
-成功連接 db 之後就趕緊實作一個 DAG 來看看能不能下 sql 來取得資料囉～
-```
-## Reference  
-
 [[day18] 急！在線等！求解20 點！Airflow 安裝 Python 模組 2023-10-03](https://ithelp.ithome.com.tw/articles/10333330)  
 [[Day19] Airflow Scheduler 排程爬坑筆記(上) 2023-10-04](https://ithelp.ithome.com.tw/articles/10334198)  
 [[Day20] Airflow Scheduler 排程爬坑筆記(下) 2023-10-05](https://ithelp.ithome.com.tw/articles/10334705)  
@@ -231,47 +265,65 @@ Docker Compose 設定是比較推薦的方式，不會因為清空容器就要�
 [cchangleo/docker-airflow](https://github.com/cchangleo/docker-airflow)
 
 
-# Airflow on WSL 
+# Airflow on WSL  
+## Step 1: Search for Turn Windows Features On/Off   
+
+## Step 2: Check the Windows Subsystem for Linux  
+
+## Step 3: Installing WSL   
 ```
-Step 1:- Search for Turn Windows Features On/Off
-
-Step 2:- Check the Windows Subsystem for Linux
-
-Step 3:- Installing WSL
 wsl --set-default-version 2
 wsl --status
+```
 
-Step 4:- Install Ubuntu Distribution
+## Step 4: Install Ubuntu Distribution  
+```
 wsl --install -d ubuntu
+```
 
-Step 5:- Configure Ubuntu
+## Step 5: Configure Ubuntu  
 
-Step 6:- Accessing Root User
+## Step 6: Accessing Root User  
+```
 sudo su
+```
 
-Step 7:- Update and Install the packages
+## Step 7: Update and Install the packages  
+```
 apt-get update
 
 apt install python3.12-virtualenv
+```
 
-Step 8:- Change User from root to your user
+## Step 8: Change User from root to your user  
+```
 su "username"
+```
 
-Step 9:- Create a virtual environment
+## Step 9: Create a virtual environment  
+```
 mkdir ~/virtualenv
 python3 -m venv ~/virtualenv/airflow_env
+```
 
-Step 10:- Create a folder called ‘airflow’
+## Step 10: Create a folder called ‘airflow’  
+```
 mkdir ~/airflow
+```
 
-Step 11:- Now activate your virtual env
+## Step 11: Now activate your virtual env  
+```
 source ~/virtualenv/airflow_env/bin/activate
+```
 
-Step 12:- Installing airflow
+## Step 12: Installing airflow  
+```
 pip install 'apache-airflow[crypto, slack]==2.10.2' \
  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.10.2/constraints-3.8.txt"
+```
 
-Step 13:- Configure Airflow Files
+## Step 13: Configure Airflow Files  
+```
 a) Set the AIRFLOW_HOME environment variable with a folder name for our Airflow Project.
 export AIRFLOW_HOME=~/airflow
 cd airflow
@@ -299,9 +351,9 @@ airflow initdb
 【2018/08/27 加註】如果沒有設定 export AIRFLOW_HOME="$(pwd)" 就執行 airflow initdb的話，
 會讓 Airflow 使用作者當初測試時使用的路徑，而不是你 git clone 下來的 repo 的路徑而造成問題，務必記得設定。
 ```
-```
-Step 14: Let’s run our Airflow Webserver and Scheduler
 
+## Step 14: Let’s run our Airflow Webserver and Scheduler  
+```
 Airflow Webserver:-
 nohup airflow webserver -p 8080 >> airflow_webserver.out &
 
@@ -313,6 +365,7 @@ We have used the nohup utility, which is a command on Linux systems that keeps p
 You can remove the nohup command if you don't need it.
 ```
 
+## Step 15: SSH Server Installation  
 ```
 #sshdのインストール
 
@@ -364,12 +417,20 @@ systemd=true
 ## Reference  
 [Install Airflow on Windows without Docker or Virtual Box in 5 mins Mar 10, 2023](https://medium.com/@routr5953/installing-airflow-on-windows-without-docker-in-5-mins-21d16091ebc5)  
 
-[coder2j/airflow-docker](https://github.com/coder2j/airflow-docker)  
+
+
+[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
+
+
+[【WSL2】WSL2のUbuntuでsshdの自動起動を有効にする【Ubuntu】2023-04-23](https://qiita.com/tmiki/items/022242af3853cd8e7a6a) 
+
+
+# Airflow on WSL Docker   
 [1. Introduction and Local Installation](https://www.youtube.com/watch?v=z7xyNOF8tak)  
-[2. Get Airflow running in Docker](https://www.youtube.com/watch?v=J6azvFhndLg) 
-[3. Airflow Core Concepts in 5 mins](https://www.youtube.com/watch?v=mtJHMdoi_Gg) 
-[4. Airflow Task Lifecycle and Basic Architecture](https://www.youtube.com/watch?v=UFsCvWjQT4w) 
-[5. Airflow DAG with BashOperator](https://www.youtube.com/watch?v=CLkzXrjrFKg) 
+[2. Get Airflow running in Docker](https://www.youtube.com/watch?v=J6azvFhndLg)  
+[3. Airflow Core Concepts in 5 mins](https://www.youtube.com/watch?v=mtJHMdoi_Gg)  
+[4. Airflow Task Lifecycle and Basic Architecture](https://www.youtube.com/watch?v=UFsCvWjQT4w)  
+[5. Airflow DAG with BashOperator](https://www.youtube.com/watch?v=CLkzXrjrFKg)  
 ```
 1. Remove all the airflow example dags
    
@@ -378,11 +439,18 @@ systemd=true
    docker-compose -f docker-compose_airflow.yaml up -d
 ```
 
-[6. Airflow DAG with PythonOperator and XComs](https://www.youtube.com/watch?v=IumQX-mm20Y) 
+[6. Airflow DAG with PythonOperator and XComs](https://www.youtube.com/watch?v=IumQX-mm20Y)  
 [7. Airflow TaskFlow API](https://www.youtube.com/watch?v=9y0mqWsok_4)  
 [8. Airflow Catchup and Backfill](https://www.youtube.com/watch?v=OXOiUeHOQ-0)  
 [9. Schedule Airflow DAG with Cron Expression](https://www.youtube.com/watch?v=tpuovQFUByk)  
 [10. Airflow Connection and PostgresOperator](https://www.youtube.com/watch?v=S1eapG6gjLU)  
+```
+Conn Id: postgres_docker
+Conn Type: Postgres
+Host: host.docker.internal
+Port: 5432 
+```
+
 [11. Add Python Dependencies via Airflow Docker Image Extending and Customizing](https://www.youtube.com/watch?v=0UepvC9X4HY)  
 [12. AWS S3 Key Sensor Operator](https://www.youtube.com/watch?v=vuxrhipJMCk)  
 [13. Airflow Hooks S3 PostgreSQL](https://www.youtube.com/watch?v=rcG4WNwi900)  
@@ -419,10 +487,18 @@ docker ps
 7. Open browser and type http://http://172.27.181.205:8080 to launch the airflow webserver
 ```
 
-[一段 Airflow 與資料工程的故事：談如何用 Python 追漫畫連載 2018-08-21](https://leemeng.tw/a-story-about-airflow-and-data-engineering-using-how-to-use-python-to-catch-up-with-latest-comics-as-an-example.html)  
+## Reference  
+[coder2j/airflow-docker](https://github.com/coder2j/airflow-docker)  
 
+[https://stackoverflow.com/questions/70797971/docker-error-response-from-daemon-ports-are-not-available-listen-tcp-0-0-0-0](https://stackoverflow.com/questions/70797971/docker-error-response-from-daemon-ports-are-not-available-listen-tcp-0-0-0-0)  
+```
+docker run -p 5001:5000 flask_demo:v0
 
-[【WSL2】WSL2のUbuntuでsshdの自動起動を有効にする【Ubuntu】2023-04-23](https://qiita.com/tmiki/items/022242af3853cd8e7a6a) 
+-p 5001:5000 basically means, bind port 5001 in my host machine with the port 5000 in the container. 
+Since port 5000 already used in your host machine, then u can bind with another port example: port 5001
+```
+
+[DBeaver™ portable](https://portapps.io/app/dbeaver-portable/)  
 
 
 # Airflow tutorial
