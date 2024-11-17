@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from airflow.decorators import dag, task
 from airflow.hooks.postgres_hook import PostgresHook
+#from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 default_args = {
     'owner': 'philphoenix',
@@ -11,7 +12,7 @@ default_args = {
 }
 
 @dag(
-    dag_id = 'my_dag_postgres_hook_V1',
+    dag_id = 'my_dag_postgres_hook_V2',
     description = 'my dag postgres hook',
     default_args = default_args,
     schedule_interval='@daily', 
@@ -34,4 +35,4 @@ def conn_db_run():
 
     conn_local_db()
 
-conn_db_run()
+dag_postgres_hook = conn_db_run()

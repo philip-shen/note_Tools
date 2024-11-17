@@ -258,6 +258,32 @@ docker-compose up
 [[Day19] Airflow Scheduler 排程爬坑筆記(上) 2023-10-04](https://ithelp.ithome.com.tw/articles/10334198)  
 [[Day20] Airflow Scheduler 排程爬坑筆記(下) 2023-10-05](https://ithelp.ithome.com.tw/articles/10334705)  
 
+*Crontab 預設(preset)*  
+
+Crontab  | 意思 | 等同 Cron 表達式
+------------------------------------ | --------------------------------------------- | ----------------------------------- 
+None | 不設定排程，可能是手動觸發或是外部觸發 | 
+@once | 只執行唯一一次 | 
+@continuous | 上一次執行完就接著執行 | 
+@hourly | 每個小時結束時執行一次 | 0 * * * *
+@daily | 每天半夜12點執行一次 | 0 0 * * *
+@weekly | 每週星期天半夜12點執行一次 | 0 0 * * 0
+@monthly | 每個月第一天半夜12點執行一次 | 0 0 1 * *
+@quarterly | 每季第一天半夜12點執行一次 | 0 0 1 */3 *
+@yearly | 每年1月1日半夜12點執行一次 | 0 0 1 1 *
+
+*Cron 表達式(Expressions) 基本語法*  
+
+```
+┌───────────── 分鐘   (0 - 59)
+| ┌─────────── 小時   (0 - 23)
+│ │ ┌───────── 日期   (1 - 31)
+│ │ │ ┌─────── 月份   (1 - 12)
+│ │ │ │ ┌───── 星期幾 (0 - 7，0 和 7 都是週日，6 是週六，以此類推)
+│ │ │ │ │
+* * * * *
+```
+
 [Windows11でApache Airflowを起動するまで 2022-07-06](https://qiita.com/mizukyf/items/5489a0eef6db58ee7e5f)  
 [Airflow での処理通知を Slack でなく Teams に送りたい 2021/09/26](https://zenn.dev/antyuntyun/articles/airflow_custom_notification)  
 
