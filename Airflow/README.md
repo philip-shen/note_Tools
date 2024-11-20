@@ -50,12 +50,13 @@ Table of Contents
    * [Airflow-Learning-English-tool](#airflow-learning-english-tool)
       * [update docker-compose.yml by Airflow-Learning-English-tool/docker-compose.yaml](#update-docker-composeyml-by-airflow-learning-english-tooldocker-composeyaml)
    * [Airflow-scraping-ETL-tutorial](#airflow-scraping-etl-tutorial)
+      * [Reference](#reference-5)
    * [How to Upload Files to Google Drive using Airflow](#how-to-upload-files-to-google-drive-using-airflow)
       * [1. Configuring the Google Drive API and a creating service account on GCP](#1-configuring-the-google-drive-api-and-a-creating-service-account-on-gcp)
       * [2. Configuring Domain-wide Delegation on our Google Workspace](#2-configuring-domain-wide-delegation-on-our-google-workspace)
       * [3. Writing the code for our custom GoogleDriveOperator](#3-writing-the-code-for-our-custom-googledriveoperator)
       * [4. Testing a minimal DAG that uploads a text file to our Google Drive account](#4-testing-a-minimal-dag-that-uploads-a-text-file-to-our-google-drive-account)
-      * [Reference](#reference-5)
+      * [Reference](#reference-6)
    * [Airflow import local module](#airflow-import-local-module)
    * [Failed to import custom python module in Airflow](#failed-to-import-custom-python-module-in-airflow)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
@@ -65,7 +66,7 @@ Table of Contents
          * [scheduler](#scheduler)
          * [worker](#worker)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-6)
+   * [Reference](#reference-7)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -585,6 +586,20 @@ $ docker ps
     股市沒開盤
         不做事
 ```
+## Reference  
+[Apache Airflow ile Telegram’a Bildirim Mesajı Gönderme Jun 18, 2024](https://kayademirs.medium.com/apache-airflow-ile-telegrama-bildirim-mesaj%C4%B1-g%C3%B6nderme-bf5fd99f65f2) 
+[kayademirs /airflow-telegram-notifications](https://github.com/kayademirs/airflow-telegram-notifications)  
+```
+User Guide for Airflow Telegram Notifications
+This GitHub repository contains a step-by-step guide for receiving notifications via Telegram using Apache Airflow. 
+The guide covers the process from creating the Telegram bot to setting up the Airflow environment on Docker.
+```
+
+[Apache Airflow: ETL を容易にする](https://prohoster.info/ja/blog/administrirovanie/apache-airflow-delaem-etl-proshhe)  
+[dmlogv/airflow-tutorial](https://github.com/dm-logv/airflow-tutorial)  
+
+[tayonagithab/airflow_hw](https://github.com/tayonagithab/airflow_hw)  
+[dmlogv/docker-airflow](https://github.com/dmlogv/docker-airflow)  
 
 
 # How to Upload Files to Google Drive using Airflow  
