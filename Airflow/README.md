@@ -59,6 +59,21 @@ Table of Contents
       * [Reference](#reference-6)
    * [Airflow import local module](#airflow-import-local-module)
    * [Failed to import custom python module in Airflow](#failed-to-import-custom-python-module-in-airflow)
+   * [Airflow, Google Sheets](#airflow-google-sheets) 
+      * [1. Service Account Configuration](#1-service-account-configuration)
+      * [2. Airflow Configuration](#2-airflow-configuration)
+      * [2.1 Adding Google Connection to your Airflow](#21-adding-google-connection-to-your-airflow)  
+      * [2.2 Errors when testing the API connection](#22-errors-when-testing-the-api-connection)  
+      * [3. DAG Creation](#3-dag-creation)  
+      * [Reference](#reference-7)
+   * [Airflow, Yahoo Finance](#airflow-yahoo-finance)
+      * [1. Checking if Yahoo API is Available](#1-checking-if-yahoo-api-is-available)  
+      * [2. Fetching Stock Prices](#2-fetching-stock-prices) 
+      * [3. Storing Data in MinIO](#3-storing-data-in-minio)    
+      * [4. Data Transformation with Spark](#4-data-transformation-with-spark)  
+      * [5. Loading Data to Postgres](#5-loading-data-to-postgres)    
+      * [6. Notifications via Slack](#6-notifications-via-slack)  
+      * [Reference](#reference-8)
    * [Airflow, Docker and Data Analysis](#airflow-docker-and-data-analysis)
       * [imageを取得する](#imageを取得する)
       * [単体で動かす](#単体で動かす)
@@ -66,7 +81,7 @@ Table of Contents
          * [scheduler](#scheduler)
          * [worker](#worker)
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-7)
+   * [Reference](#reference-9)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -237,7 +252,8 @@ Docker Compose 設定是比較推薦的方式，不會因為清空容器就要�
 ```
 The best way to do this is to:
 
-    Run docker compose down --volumes --remove-orphans command in the directory you downloaded the docker-compose.yaml file
+    Run docker compose down --volumes --remove-orphans 
+    command in the directory you downloaded the docker-compose.yaml file
 ```
 
 [[Day16] 用 Docker Compose 建立 Airflow 環境 2023-10-01](https://ithelp.ithome.com.tw/articles/10331507)  
@@ -669,6 +685,122 @@ not for all programs. FIxed by adding it in
 
 /etc/environment
 ```
+
+
+# Airflow, Google Sheets  
+## 1. Service Account Configuration  
+
+## 2. Airflow Configuration  
+Dockerfile
+```
+FROM apache/airflow:2.5.1
+
+USER airflow
+
+RUN pip install gspread
+```
+### 2.1 Adding Google Connection to your Airflow    
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*XiyFtX1fgXITcY1QOPDtOg.png" width="900" height="200">  
+
+```
+   * Connection Id: Here you will put the name you prefer for your connection
+   
+   * Connection Type: You should select the Google Cloud option
+   
+   * Project Id: You will enter the id of your project
+   
+   * Keyfile JSON: Here you will paste the credentials that you downloaded
+   
+   * Scopes: paste https://www.googleapis.com/auth/drive
+```
+
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*HLTCfpoXhSRWgbQm5P1lxA.png" width="900" height="400">
+
+/*if your connection is ok:*/  
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*yfbeHT_AaFy6hl6cxy7FxA.png" width="900" height="400">
+
+### 2.2 Errors when testing the API connection  
+/*docker-compose.yml*/
+```
+volumes:    
+  - /etc/timezone:/etc/timezone:ro
+  - /etc/localtime:/etc/localtime:ro
+```
+
+## 3. DAG Creation  
+```
+data = {
+            "products": ["product_1", "product_2", "product_3"],
+            "price": [50, 40, 45],
+        }
+
+df = pd.DataFrame(data)
+```
+
+```
+hook = GoogleBaseHook(gcp_conn_id="google_conn_id")
+credentials = hook.get_credentials()
+google_credentials = gspread.Client(auth=credentials)
+```
+
+```
+sheet = google_credentials.open("Products - Data")
+
+worksheet = sheet.worksheet("products-data")
+
+worksheet.update([df.columns.values.tolist()] + df.values.tolist())
+```
+
+## Reference  
+[Gspread in Airflow  Jul 15, 2023](https://medium.com/@camila-marquess/gspread-in-airflow-3728abe4b617)  
+
+[camila-marquess/airflow-gspread-dag](https://github.com/camila-marquess/airflow-gspread-dag)  
+[camila-marquess/estudos-airflow](https://github.com/camila-marquess/estudos-airflow)  
+
+[How to connect Google Cloud Composer (Airflow) with Google Sheets and extract the info to Google Storage (bucket) Mar 30, 2022](https://stackoverflow.com/questions/71681902/how-to-connect-google-cloud-composer-airflow-with-google-sheets-and-extract-th)  
+
+[How to ETL mongodb To Google Sheets using Airflow Jun 15, 2024](https://medium.com/@miller.yoon/how-to-etl-mongodb-to-google-sheets-using-airflow-b54c24484737)  
+[ssssyyyoon/mongo_to_gspread](https://github.com/ssssyyyoon/mongo_to_gspread)  
+
+[aceino/airflow-gspread](https://github.com/aceino/airflow-gspread)  
+
+
+# Airflow, Yahoo Finance  
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*J41FiKV5PnO-4TqDCPvflw.jpeg" width="900" height="300">
+
+## 1. Checking if Yahoo API is Available  
+
+## 2. Fetching Stock Prices 
+
+## 3. Storing Data in MinIO  
+
+## 4. Data Transformation with Spark  
+
+## 5. Loading Data to Postgres  
+
+## 6. Notifications via Slack
+
+## Reference  
+[Automating Stock Market Data Pipeline with Apache Airflow, MinIO, Spark, and Postgres Sep 13, 2024](https://medium.com/@mehran1414/automating-stock-market-data-pipeline-with-apache-airflow-minio-spark-and-postgres-b67f7379566a)  
+[Mehranmzn/stock_market_prices](https://github.com/Mehranmzn/stock_market_prices)  
+
+[sheoran19 /yahoo-airflow-data-engineering-project](https://github.com/sheoran19/yahoo-airflow-data-engineering-project)  
+```
+Yahoo Data Pipeline using Airflow
+```
+
+[Airflow For Data Extraction Feb 23, 2022](https://medium.com/@digvijay-gaikwad/airflow-for-data-extraction-cf39415b5d50)  
+[digvijay13873/airflow-docker](https://github.com/digvijay13873/airflow-docker) 
+
+[[5/22] TIL - Airflow DAG 작성하기 2024/5/22](https://velog.io/@hjjwa1234/0522TIL)  
+```
+docker exec --user root -it [컨테이너ID] sh
+```
+[Yahoo Finance API DAG - 1](https://velog.io/@hjjwa1234/0522TIL#yahoo-finance-api-dag---1)  
+[Source code](https://velog.io/@hjjwa1234/0522TIL#%EC%BD%94%EB%93%9C)
+
+[Yahoo Finance API DAG - 2](https://velog.io/@hjjwa1234/0522TIL#yahoo-finance-api-dag---2)  
+[Source code](https://velog.io/@hjjwa1234/0522TIL#%EC%BD%94%EB%93%9C-1)
 
 
 # Airflow, Docker and Data Analysis
