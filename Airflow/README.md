@@ -751,6 +751,17 @@ worksheet = sheet.worksheet("products-data")
 worksheet.update([df.columns.values.tolist()] + df.values.tolist())
 ```
 
+/*Errno 13 - Permission denied: '/opt/airflow/logs/scheduler*/
+[Errno 13 - Permission denied: '/opt/airflow/logs/scheduler](https://github.com/helm/charts/issues/23589)  
+```
+ "chmod -R 777 /opt"
+```
+
+```
+ mkdir -p dags logs plugins
+ chown 50000:50000 dags logs plugins 
+```
+
 ## Reference  
 [Gspread in Airflow  Jul 15, 2023](https://medium.com/@camila-marquess/gspread-in-airflow-3728abe4b617)  
 
