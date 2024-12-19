@@ -80,8 +80,10 @@ Table of Contents
          * [webserver](#webserver)
          * [scheduler](#scheduler)
          * [worker](#worker)
+   * [SSL on Airflow](#ssl-on-airflow)  
+      * [Reference](#reference-9)       
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-9)
+   * [Reference](#reference-10)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -773,8 +775,24 @@ worksheet.update([df.columns.values.tolist()] + df.values.tolist())
 [How to ETL mongodb To Google Sheets using Airflow Jun 15, 2024](https://medium.com/@miller.yoon/how-to-etl-mongodb-to-google-sheets-using-airflow-b54c24484737)  
 [ssssyyyoon/mongo_to_gspread](https://github.com/ssssyyyoon/mongo_to_gspread)  
 
-[aceino/airflow-gspread](https://github.com/aceino/airflow-gspread)  
+[Airflow: FileNotFoundError: [Errno 2] No such file or directory:](https://www.reddit.com/r/docker/comments/ow3j8l/airflow_filenotfounderror_errno_2_no_such_file_or/?rdt=46398)  
+[Volumes](https://docs.docker.com/engine/storage/volumes/) 
+```
+By design docker containers can't interact directly with the host machine's file system. 
+For the container to be able to "see" this file you will have to use a volume.
+https://docs.docker.com/storage/volumes/
 
+I suggest putting the CSV file in a separate directory from the DAGs, say D:\airflow\data, 
+then adding a volume to the list in the compose file you linked to, e.g.
+
+volumes:
+- ./dags:/opt/airflow/dags
+- ./logs:/opt/airflow/logs
+- ./plugins:/opt/airflow/plugins
+- ./data:/opt/airflow/data
+
+Then in your DAG code point to "/opt/airflow/data/data_2012.csv".
+```
 
 # Airflow, Yahoo Finance  
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*J41FiKV5PnO-4TqDCPvflw.jpeg" width="900" height="300">
@@ -837,6 +855,34 @@ $  docker run --env-file=./env_example shinyorke/airflow scheduler init
 ```
 $  docker run --env-file=./env_example shinyorke/airflow worker init
 ```
+
+
+# SSL on Airflow  
+```
+airflow-webserver:
+    <<: *airflow-common
+    command: webserver --ssl-cert domain.cer --ssl-key domain.key
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+```
+
+## Reference  
+[Airflow 2.5.3, unable to specify ssl key and cert for webserver in Docker based installation #31089](https://github.com/apache/airflow/discussions/31089)
+
+[How to enable SSL on Apache Airflow?](https://stackoverflow.com/questions/47883769/how-to-enable-ssl-on-apache-airflow)
+
+[Question Regarding SSL Errors Inside Container](https://www.reddit.com/r/docker/comments/jetrdn/question_regarding_ssl_errors_inside_container/)  
 
 
 # Troubleshooting
