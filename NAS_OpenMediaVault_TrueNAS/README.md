@@ -36,7 +36,7 @@ Take a note of NAS.
 ### 1. Raspberry Pi OS Lite(64bit) by Micro SD  
   Raspberry Pi Imager installation on Windows 
     
-  <img src="https://camo.qiitausercontent.com/6cc2fc7d82d3526122024edbdd6cb651df31398d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e61702d6e6f727468656173742d312e616d617a6f6e6177732e636f6d2f302f3235363931342f66366434373534632d346436332d373831352d313762642d6334396466313530333463622e706e67" width="600" height="400">  
+  <img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F256914%2Ff6d4754c-4d63-7815-17bd-c49df15034cb.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&s=14104795f4fe29a31c137e3293ad3ad6" width="600" height="400">  
 
 ### 2. config.txt Setup  
   ```
