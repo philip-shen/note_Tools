@@ -82,8 +82,10 @@ Table of Contents
          * [worker](#worker)
    * [SSL on Airflow](#ssl-on-airflow)  
       * [Reference](#reference-9)       
+   * [Airflow on Raspberry Pi](#airflow-on-raspberry-pi)  
+      * [Reference](#reference-10)      
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-10)
+   * [Reference](#reference-11)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -883,6 +885,82 @@ airflow-webserver:
 [How to enable SSL on Apache Airflow?](https://stackoverflow.com/questions/47883769/how-to-enable-ssl-on-apache-airflow)
 
 [Question Regarding SSL Errors Inside Container](https://www.reddit.com/r/docker/comments/jetrdn/question_regarding_ssl_errors_inside_container/)  
+
+
+# Airflow on Raspberry Pi  
+
+```
+$ AIRFLOW_VERSION=2.1.2
+$ PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"
+$ CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+$ sudo pip3 install "apache-airflow[async,postgres,redis,slack,discord]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+$ sudo apt-get install redis postgresql
+```
+
+```
+$ mkdir ~/airflow
+$ cd ~/airflow
+$ mkdir dags
+$ export AIRFLOW_HOME=$(pwd)
+$ airflow db init
+```
+
+```
+Open airflow.cfg with any text editor, then:* set your favorite executor in "executor = ..."
+* replace "sql_alchemy_conn = sqlite:..." with "sql_alchemy_conn = postgresql+psycopg2://airflow:password@localhost:5432/airflow"
+* replace "result_backend = ..." to "result_backend = db+postgresql+psycopg2://airflow:password@localhost:5432/airflow"
+```
+
+```
+$ sudo -u postgres psqlpostgres=# CREATE USER airflow PASSWORD 'password';
+postgres=# CREATE DATABASE airflow;
+postgres=# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO airflow;
+postgres=# EXIT
+```
+
+```
+$ cd ~/airflow
+$ export AIRFLOW_HOME=$(pwd)
+$ airflow db init
+```
+
+```
+$ cd ~/airflow
+$ export AIRFLOW_HOME=$(pwd)
+$ airflow webserver
+```
+
+```
+$ sudo su
+# systemd-tmpfile --create
+# systemctl daemon-reload
+# systemctl enable .... # enable whatever service units as required
+# systemctl start .... # start whatever service units as required
+# systemctl status .... # check if the services is running 
+```
+
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*2_CWBNVt-RVr5i0NIlYTHw.png" width="900" height="300">
+
+## Reference 
+[Apache Airflow, Raspberry Pi OS & Systemd Aug 20, 2021](https://medium.com/@phutidus/apache-airflow-raspberry-pi-os-systemd-90ef3ed20a87)  
+
+[Docker 多架構 image Part 2 (Docker multi-arch image — build on multiple physical machines) Feb 14, 2022](https://medium.com/@phutidus/docker-%E5%A4%9A%E6%9E%B6%E6%A7%8B-image-part-2-docker-multi-arch-image-build-on-multiple-physical-machines-d82828953015)  
+
+[建立 Docker 多架構 image (Building Docker multi-arch image) Aug 4, 2021](https://medium.com/@phutidus/%E5%BB%BA%E7%AB%8B-docker-%E5%A4%9A%E6%9E%B6%E6%A7%8B-image-building-docker-multi-arch-image-9b79e611da7a)  
+
+[資產價格走勢圖 HD Remaster Nov 6, 2022](https://medium.com/@phutidus/%E8%B3%87%E7%94%A2%E5%83%B9%E6%A0%BC%E8%B5%B0%E5%8B%A2%E5%9C%96-hd-remaster-f2c9f89a7b31) 
+
+[Install Airflow 2 on a Raspberry Pi (using Python 3.x) July 21, 2021](https://pedromadruga.com/posts/airflow-install/)  
+
+[Apache Airflow Running on a Raspberry PI Jul 7, 2020](https://medium.com/the-kickstarter/apache-airflow-running-on-a-raspberry-pi-2e061f6c3655)  
+
+[Setting up airflow on a Raspberry Pi 4 (Part 1)](http://www.thecrustyengineer.com/home/post/setting_up_airflow_on_a_raspberry_pi_4_part_1)  
+
+[Setting up airflow on a Raspberry Pi 4 (Part 2)](http://www.thecrustyengineer.com/post/setting_up_airflow_on_a_raspberry_pi_4_part_2)  
+
+[justinwagg /docker-airflow-tutorial](https://github.com/justinwagg/docker-airflow-tutorial)  
+
+[puckel /docker-airflow ](https://github.com/puckel/docker-airflow)  
 
 
 # Troubleshooting
