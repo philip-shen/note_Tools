@@ -145,7 +145,7 @@ docker ps
 
 ## Install Docker-Compose
 ```
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.32.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 #給予執行權限
 sudo chmod +x /usr/local/bin/docker-compose
@@ -153,6 +153,20 @@ sudo pip install docker-compose
 
 #檢查版本
 docker-compose version
+```
+
+## troubleshooting  
+```
+TypeError: kwargs_from_env() got an unexpected keyword argument 'ssl_version'
+```
+*Update Docker-Compose to latest version*
+```
+$ pip list | grep docker
+docker                7.1.0
+docker-compose        1.29.2
+docker-py             1.10.6
+docker-pycreds        0.4.0
+dockerpty             0.4.1
 ```
 
 ## Docker Pull Image
