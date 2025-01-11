@@ -638,6 +638,9 @@ The guide covers the process from creating the Telegram bot to setting up the Ai
 ## 4. Testing a minimal DAG that uploads a text file to our Google Drive account
 
 ## Reference  
+[gontcharovd/google-drive-operator](https://github.com/gontcharovd/google-drive-operator)  
+
+
 [ChickenBenny/Airflow-tutorial](https://github.com/ChickenBenny/Airflow-tutorial)  
 
 # Airflow import local module
@@ -815,10 +818,73 @@ Then in your DAG code point to "/opt/airflow/data/data_2012.csv".
 [Automating Stock Market Data Pipeline with Apache Airflow, MinIO, Spark, and Postgres Sep 13, 2024](https://medium.com/@mehran1414/automating-stock-market-data-pipeline-with-apache-airflow-minio-spark-and-postgres-b67f7379566a)  
 [Mehranmzn/stock_market_prices](https://github.com/Mehranmzn/stock_market_prices)  
 
-[sheoran19 /yahoo-airflow-data-engineering-project](https://github.com/sheoran19/yahoo-airflow-data-engineering-project)  
+[avilares-stack/airflow-google-sheets-data-loader Aug 16, 2023](https://github.com/avilares-stack/airflow-google-sheets-data-loader)  
+[ashish1104/options_dat_yahoo_fin_airflow Sep 29, 2023](https://github.com/ashish1104/options_dat_yahoo_fin_airflow)  
+[seepala98/Churn_Data_Enginering Jan 3, 2025](https://github.com/seepala98/Churn_Data_Enginering)  
+```
+Data Engineering for Churn Analysis Using Google Sheets, Airflow, Bigquery, GCS and Looker 
+```
+```
+Setup Airflow environment.
+
+This is the site used to setup the environment locally: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
+
+   Install Docker (https://docs.docker.com/desktop/setup/install/windows-install/)
+
+   Install Airflow locally using Docker Compose (https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html)
+```
+
+```   
+   SetUp steps:
+      fetch docker-compose for airflow setup: curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.10.4/docker-compose.yaml'
+      
+      create necessary folders: mkdir ./dags ./logs ./plugins ./config
+      
+      setip environment variable: export AIRFLOW_UID=$(id -u)
+      
+      Initialize Airflow: docker-compose up airflow-init
+      
+      Docker compose to spin up the environment: docker-compose up -d
+```
+
+[sheoran19 /yahoo-airflow-data-engineering-project Mar 18, 2024](https://github.com/sheoran19/yahoo-airflow-data-engineering-project)  
 ```
 Yahoo Data Pipeline using Airflow
 ```
+```
+.              
+├── airflow  
+|   └── airflow.cfg                           
+│   └── dags 
+|       └── yahoo_dag.py
+│
+├── app                                 
+│   ├── main.py                            
+│   ├── models.py                          
+│   └── database.py 
+│
+├── docker    
+│   ├── Dockerfile                        
+│   └── docker-compose.yaml                           
+│
+├── etl                                 
+|   └── yahoo_data_etl.py 
+|
+├── .env                               
+├── README.md                          
+├── application_default_credentials.json 
+├── architecture_diagram.png            
+├── market_codes.csv                  
+├── requirements.txt     
+```
+<img src="https://github.com/sheoran19/yahoo-airflow-data-engineering-project/raw/main/architecture_diagram.png" width="900" height="300">
+
+[Mapa0/airflow-amazonads-postgres-pipeline Dec 11, 2024](https://github.com/Mapa0/airflow-amazonads-postgres-pipeline)
+```
+ETL pipeline that extracts data from Amazon Ads API, transforms and loads it into Google Sheets. All orchastrated via Airflow.
+```
+[dodinovembri/airflow_google_sheets Jan 12, 2022](https://github.com/dodinovembri/airflow_google_sheets)  
+
 
 [Airflow For Data Extraction Feb 23, 2022](https://medium.com/@digvijay-gaikwad/airflow-for-data-extraction-cf39415b5d50)  
 [digvijay13873/airflow-docker](https://github.com/digvijay13873/airflow-docker) 
