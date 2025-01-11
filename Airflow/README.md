@@ -148,7 +148,8 @@ docker ps
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 #給予執行權限
-sudo chmod +x /usr/local/bin/docker-composesudo pip install docker-compose  
+sudo chmod +x /usr/local/bin/docker-compose
+sudo pip install docker-compose  
 
 #檢查版本
 docker-compose version
