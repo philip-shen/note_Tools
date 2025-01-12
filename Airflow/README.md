@@ -138,8 +138,8 @@ sudo apt-get update
 sudo apt-get install docker-ce
 #將當前用户加入docker組
 sudo gpasswd -a ${USER} docker  
-sudo systemcl enable docker 
-sudo systemcl restart docker  
+sudo systemctl enable docker 
+sudo systemctl restart docker  
 docker ps
 ```
 
@@ -675,6 +675,11 @@ the Python path: How to use [PYTHONPATH](https://stackoverflow.com/questions/199
 # Failed to import custom python module in Airflow
 [Failed to import custom python module in Airflow Jul 14, 2020](https://stackoverflow.com/questions/62868156/failed-to-import-custom-python-module-in-airflow)
 
+I put all my scripts in airflow/my_scripts and exported the airflow path to PYTHONPATH
+```
+export PYTHONPATH="${PYTHONPATH}:${AIRFLOW_HOME}"
+```
+
 So the Airflow folder structure looks like this:
 ```
 airflow/  
@@ -785,6 +790,51 @@ worksheet.update([df.columns.values.tolist()] + df.values.tolist())
 ```
 
 ## Reference  
+[[Linux] 使用者帳號管理  2020-12-11](https://wshs0713.github.io/posts/4128a650/)  
+
+*建立使用者帳號*
+```
+# 建立帳號
+$ sudo useradd <username> -m -s /bin/bash
+```
+```
+# 設定密碼
+$ sudo passwd <username>
+```
+
+*設定使用者 root 權限*
+```
+$ sudo visudo
+```
+```
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+```
+```
+sudo usermod -aG <group_name> <username>
+```
+
+*測試權限是否設定成功*
+```
+# 切換帳號
+$ su <username>
+
+# 查看所在群組
+$ groups
+<username> sudo
+
+# 測試 sudo 指令
+$ sudo whoami
+[sudo] password for <username>:
+root
+```
+
+*刪除使用者帳號*
+```
+$ sudo deluser -remove-home <username>
+```
+
+
 [Gspread in Airflow  Jul 15, 2023](https://medium.com/@camila-marquess/gspread-in-airflow-3728abe4b617)  
 
 [camila-marquess/airflow-gspread-dag](https://github.com/camila-marquess/airflow-gspread-dag)  
