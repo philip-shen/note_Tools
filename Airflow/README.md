@@ -82,10 +82,17 @@ Table of Contents
          * [worker](#worker)
    * [SSL on Airflow](#ssl-on-airflow)  
       * [Reference](#reference-9)       
-   * [Airflow on Raspberry Pi](#airflow-on-raspberry-pi)  
+   * [Docker Container with a Custom Non-Root User](#docker-container-with-a-custom-non-root-user)  
+      * [Step 1: Adjust the Dockerfile to Accept UID and GID as Arguments](#step-1-adjust-the-dockerfile-to-accept-uid-and-gid-as-arguments)  
+      * [Step 2: Set the Working Directory](#step-2-set-the-working-directory)  
+      * [Step 3: Copy Files and Set Permissions](#step-3-copy-files-and-set-permissions)  
+      * [Step 4: Build and Run the Docker Container with UID and GID Parameters](#step-4-build-and-run-the-docker-container-with-uid-and-gid-parameters)  
+      * [Optional - Adding Docker Compose for Running a Custom Non-Root User Container](#optional---adding-docker-compose-for-running-a-custom-non-root-user-container)
       * [Reference](#reference-10)      
+   * [Airflow on Raspberry Pi](#airflow-on-raspberry-pi)  
+      * [Reference](#reference-11)      
    * [Troubleshooting](#troubleshooting)
-   * [Reference](#reference-11)
+   * [Reference](#reference-12)
    * [h1 size](#h1-size)
       * [h2 size](#h2-size)
          * [h3 size](#h3-size)
@@ -1016,6 +1023,81 @@ airflow-webserver:
 [How to enable SSL on Apache Airflow?](https://stackoverflow.com/questions/47883769/how-to-enable-ssl-on-apache-airflow)
 
 [Question Regarding SSL Errors Inside Container](https://www.reddit.com/r/docker/comments/jetrdn/question_regarding_ssl_errors_inside_container/)  
+
+
+# Docker Container with a Custom Non-Root User  
+
+## Step 1: Adjust the Dockerfile to Accept UID and GID as Arguments 
+Dockerfile:  
+
+```
+FROM ubuntu
+ARG UID
+ARG GID
+
+# Update the package list, install sudo, create a non-root user, and grant password-less sudo permissions
+RUN apt update && \
+    apt install -y sudo && \
+    addgroup --gid $GID nonroot && \
+    adduser --uid $UID --gid $GID --disabled-password --gecos "" nonroot && \
+    echo 'nonroot ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+# Set the non-root user as the default user
+USER nonroot
+```
+
+## Step 2: Set the Working Directory  
+Dockerfile:  
+
+```
+# Set the working directory
+WORKDIR /home/nonroot/app
+```
+
+## Step 3: Copy Files and Set Permissions 
+Dockerfile:  
+
+```
+# Copy files into the container and set the appropriate permissions
+COPY --chown=nonroot:nonroot . /home/nonroot/app
+RUN chmod -R 755 /home/nonroot/app
+```
+
+## Step 4: Build and Run the Docker Container with UID and GID Parameters 
+Dockerfile:  
+
+```
+# Get your host's UID and GID
+export HOST_UID=$(id -u)
+export HOST_GID=$(id -g)
+
+# Build the Docker image
+docker build --build-arg UID=$HOST_UID --build-arg GID=$HOST_GID -t your-image-name .
+
+# Run the Docker container
+docker run -it --rm --name your-container-name your-image-name id
+```
+
+## Optional - Adding Docker Compose for Running a Custom Non-Root User Container 
+docker-compose.yml:
+```
+version: '3.8'
+
+services:
+  your_service_name:
+    build:
+      context: .
+      args:
+        UID: ${HOST_UID}
+        GID: ${HOST_GID}
+    image: your-image-name
+    container_name: your-container-name
+    volumes:
+      - ./app:/home/nonroot/app
+```
+
+## Reference  
+[Running a Docker Container with a Custom Non-Root User: Syncing Host and Container Permissions Mar 30, 2023](https://dev.to/izackv/running-a-docker-container-with-a-custom-non-root-user-syncing-host-and-container-permissions-26mb)  
 
 
 # Airflow on Raspberry Pi  
